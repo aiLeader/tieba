@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,5 +59,12 @@ public class TypesServiceTest {
 		int t = typesService.deleteTypes(types);
 		System.out.println(t);
 		assertEquals(1, t);
+	}
+	
+	@Test
+	public void testTFindNote() {
+		
+		System.out.println(typesService.findNotes("1","10","bbssbqnc"));
+		assertNotNull(typesService.findNotes("1","10","bbssbqnc"));
 	}
 }

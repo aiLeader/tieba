@@ -13,22 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="findNote" parameterType="Map" resultMap="PaginationBeanMap">
-		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
-		${pageSize} pageSize,${currPage} currPage
-		<if test="options!=null">
-			,'${options}' options
-		</if>
-		<if test="options==null">
-			,'' options
-		</if>
-		from note where nstatus in (0,1) and nstates  in (0,1)
-		<if test="options!=null">
-			and (nid like '${options}%'
-			or ntitle like '%${options}%'
-			or ncontent like '%${options}%'
-			or ntimes like '%${options}%'
-			)
-		</if>
 	</select>
 
   <resultMap type="NoteInfo" id="NoteInfoMap">
