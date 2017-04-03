@@ -168,7 +168,6 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="page/noteDetail.jsp">View details »</a>
@@ -193,7 +192,6 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="#">View details »</a>
@@ -218,7 +216,6 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="#">View details »</a>
