@@ -25,7 +25,7 @@ import com.yc.tieba.util.ServletUtil;
 
 @Controller("usersHandler")
 @RequestMapping("user")
-@SessionAttributes(ServletUtil.LOGIN_USER)
+@SessionAttributes({ServletUtil.LOGIN_USER,ServletUtil.ERROR_MESSAGE})
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
