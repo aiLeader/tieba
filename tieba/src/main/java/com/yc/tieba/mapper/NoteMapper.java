@@ -1,5 +1,6 @@
 package com.yc.tieba.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -19,4 +20,6 @@ public interface NoteMapper {
 	int deleteNote(String ids);
 
 	int updateNote(NoteInfo rowData);
+
+	List<NoteInfo> listNoteOrderByNum();
 }

@@ -122,7 +122,7 @@
 		<div class="col-md-3 column" >
 			<p id="pstyle">贴吧分类</p>
 			<ul id="ulstyle">
-				<li>
+				<!-- <li>
 					<a href="#">王俊凯艺考</a>
 				</li>
 				<li>
@@ -145,7 +145,7 @@
 				</li>
 				<li>
 					<a href="#">花儿与少年</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<!-- <div class="col-md-6 column"> -->
@@ -267,23 +267,7 @@
 		<div class="col-md-3 column">
 			<p id="pstyle">贴吧热议榜</p>
 			<div id="olstyle">
-				<ol>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-				</ol>
+				<ol id="hot"></ol>
 			</div>
 			
 			<p id="pstyle">贴吧推荐</p>

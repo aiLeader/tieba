@@ -69,32 +69,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
-
-
-
-
-
-
-
-
-
-	<!-- <select id="getnote" resultType="NoteInfo">
-		select * from
-		(select n.*, rownum rn from
-		(select * from note where
-		nstatus in (0,1)
-		<if test="options!=null">
-			and (nid like '%${options}%'
-			or ntitle like '%${options}%'
-			or ncontent like '%${options}%'
-			or ntimes like '%${options}%'
-			)
-		</if>
-		) n
-		where ${pageSize}* ${currPage} >= rownum)
-		where
-		rn>(${currPage}-1)*${pageSize}
-	</select> -->
 	
 	
 	<!--    通过tid查找     -->
@@ -109,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 		</if>
 	</select>
-
+	
 	<resultMap type="PaginationBean" id="PaginationBeanMap02">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
@@ -202,10 +176,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	
-	
-	
-	
+
 	<!-- 删除note -->
 	<update id="deleteNote" parameterType="String">
 		update note set nstatus =0 where  nid = #{ids}
@@ -215,4 +186,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateNote" parameterType="NoteInfo">
 		update note set nstatus =#{nstatus},nstates=#{nstates} where  nid = #{nid}
 	</update>
+	
+	<!-- 根据评论数量显示前五条帖子 -->
+	<select id="listNoteOrderByNum" resultType="NoteInfo">
+		select n.*,rownum from NOTE n where  5>=rownum order by nnum desc 
+	</select>
 </mapper>

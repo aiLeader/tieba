@@ -40,7 +40,8 @@
 		<div id="right-side">
 			<div id="first" class="active">
 				<form method="post" id="PerInfoForm">
-					姓名:<input name="uname" id="username" value="${loginUser.uname}"><br />
+					账号:<input name="userid" id="userid" value="${loginUser.userid}" readonly="readonly"><br/>
+					 姓名:<input name="uname" id="username" value="${loginUser.uname}" ><br />
 					性别:<input type="radio" name="sex" value="男">男<input
 						type="radio" name="sex" value="女">女<br /> 生日:<input
 						id="birthday" name="birthday" type="text" class="easyui-datebox"
@@ -64,9 +65,9 @@
 			</div>
 			<div id="third">
 				<form>
-					请输入密码：<input type="password" name="password"><br /> 请输入新密码：<input
-						type="password" name="password"><br /> 请再次输入新密码：<input
-						type="password" name="password"><br /> <input
+					请输入密码：<input type="password" name="password"><br />
+					请输入新密码：<input type="password" name="password"><br />
+					请再次输入新密码：<input type="password" name="password"><br /> <input
 						type="button" value="保存">
 				</form>
 

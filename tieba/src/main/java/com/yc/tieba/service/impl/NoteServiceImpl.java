@@ -1,6 +1,7 @@
 package com.yc.tieba.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,10 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public int updateNote(NoteInfo rowData) {
 		return noteMapper.updateNote(rowData);
+	}
+
+	@Override
+	public List<NoteInfo> listNoteOrderByNum() {
+		return noteMapper.listNoteOrderByNum();
 	}
 }

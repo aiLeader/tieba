@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.tieba.entity.NoteInfo;
-import com.yc.tieba.mapper.NoteMapper;
 import com.yc.tieba.service.NoteService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,5 +40,10 @@ public class NoteServiceTest {
 		rowData.setNid("10004");
 		noteService.updateNote(rowData);
 	}
-
+	
+	@Test
+	public void testListNoteByNum() {
+		System.out.println(noteService.listNoteOrderByNum());
+		assertNotNull(noteService.listNoteOrderByNum());
+	}
 }

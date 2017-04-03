@@ -78,13 +78,16 @@ $('.ship').click(function () {
 	$('#third').removeClass('active');
 	$('#fourth').addClass('active');
 });
+
+
+
 var email=null;
-var username=document.getElementById("username");
-var uname=$("#username").val();
-//alert(uname);
-loadUserInfo(uname);
-function loadUserInfo(uname){
-	$.get("../user/list",{options:uname}, function(data){
+//var username=document.getElementById("userid");
+var userid=$("#userid").val();
+alert(userid);
+loadUserInfo(userid);
+function loadUserInfo(userid){
+	$.get("../user/list",{options:userid}, function(data){
 		email=data.rows[0].email;
 		//alert(email);
 		//alert(data.rows[0].birthday);
@@ -110,7 +113,6 @@ function loadUserInfo(uname){
 $("#PerInfoForm").form({
 	url:"../user/update",
 	success:function(data){
-		alert(data);
 		$.messager.show({
 			title:'修改个人信息',
 			msg:'修改个人信息' + (data ? "成功..." : "失败!!!"),
@@ -119,6 +121,7 @@ $("#PerInfoForm").form({
 				top:document.body.scrollTop+document.documentElement.scrollTop,
 			}
 		});
+		loadUserInfo(userid);
 	}
 })
 
@@ -126,7 +129,6 @@ $("#PerInfoForm").form({
 $("#updatePic").form({
 	url:"../user/update",
 	success:function(data){
-		alert(data);
 		$.messager.show({
 			title:'修改个人图片信息',
 			msg:'修改个人图片信息' + (data=="true" ? "成功..." : "失败!!!"),

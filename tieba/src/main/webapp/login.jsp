@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"  isELIgnored="false" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<base href="${deployName}"/>
 <meta charset="utf-8">
 <title>登录</title>
 <link type="text/css" rel="stylesheet" href="css/login.css">
@@ -28,7 +30,7 @@
 						<p><input name="userid" placeholder="请输入用户名" required="required"/></p>
 						<p><input type="password" name="password" placeholder="请输入密码"  required="required"/></p>
 						<p><img src="vcode.jpg" title="看不清，换一张"/><input name="vcode" placeholder="请输入验证码" id="vcode"  required="required"/></p>
-						<p><a id="btnRegister" href="javascript:void(0)">没有账号注册一个</a><a id="btnLogin" href="javascript:void(0)">登录</a></p>
+						<p><a id="btnRegister" href="register.jsp">没有账号注册一个</a><a id="btnLogin" href="javascript:void(0)">登录</a></p>
 					</form>
 				</div>
 			</div>

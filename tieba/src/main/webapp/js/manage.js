@@ -43,6 +43,20 @@ $(".treeNav").tree({
 				iconCls:"icon-mini-add",
 				closable:true,
 			});
+		}else if(nodeContent == "评论信息"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/commentsInfo.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
+		}else if(nodeContent == "被禁评论"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/banCommentsInfo.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
 		}else{
 			$("#main").tabs('add',{
 				title: nodeContent,

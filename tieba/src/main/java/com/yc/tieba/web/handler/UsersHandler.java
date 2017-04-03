@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +25,7 @@ import com.yc.tieba.util.ServletUtil;
 
 @Controller("usersHandler")
 @RequestMapping("user")
-@SessionAttributes(ServletUtil.LOGIN_USER)
+@SessionAttributes({ServletUtil.LOGIN_USER,ServletUtil.ERROR_MESSAGE})
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
@@ -39,7 +38,7 @@ public class UsersHandler {
 			return "redirect:../index.jsp";
 		}else{
 			map.addAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!");
-			return "redirect:login.jsp";
+			return "redirect:../login.jsp";
 		}
 	}
 	
@@ -59,15 +58,16 @@ public class UsersHandler {
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUser(Users users) throws IOException {
-		System.out.println("更新我进来了。。。==>"+users);
-		//return true;
-		return usersService.updateUser(users);
-
+	private boolean doUpdateUser(Users users,ModelMap map) throws IOException {
+		if(usersService.updateUser(users)){
+			map.addAttribute(ServletUtil.LOGIN_USER, users);
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	
-	@SuppressWarnings("unused")
 	@Autowired
 	private JavaMailSender mailSender;
 	@RequestMapping("sendMail")
