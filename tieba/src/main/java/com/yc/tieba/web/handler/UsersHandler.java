@@ -58,10 +58,13 @@ public class UsersHandler {
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUser(Users users) throws IOException {
-		System.out.println("更新我进来了。。。==>"+users);
-		//return true;
-		return usersService.updateUser(users);
+	private boolean doUpdateUser(Users users,ModelMap map) throws IOException {
+		if(usersService.updateUser(users)){
+			map.addAttribute(ServletUtil.LOGIN_USER, users);
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	
