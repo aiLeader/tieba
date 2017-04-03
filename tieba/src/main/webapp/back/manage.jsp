@@ -65,7 +65,7 @@
 			<div title="评论管理" data-options="iconCls:'icon-mini-add'">
 				<ul class="treeNav">
 					<li><span>评论信息</span></li>
-					<li><span>评论编辑</span></li>
+					<li><span>被禁评论</span></li>
 				</ul>
 			</div>
 			<div title="主题管理" data-options="iconCls:'icon-mini-add'">
