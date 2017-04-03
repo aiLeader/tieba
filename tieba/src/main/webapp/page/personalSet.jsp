@@ -59,7 +59,7 @@
 				<form method="post" id="updatePic" enctype="multipart/form-data">
 					<input id="upicPath" type="file" name="picData"
 						onchange="chgPic(this)"/><br> 
-					<img id="pic" src="../images/xh.jpg">
+					<img id="pic" src="../images/xh.jpg" width="100" height="100" >
 					<input name="userid" type="hidden" value="${loginUser.userid}">
 					<input name="uname"  type="hidden" value="${loginUser.uname}"/>
 					<input type="hidden" name="signs" value="${loginUser.signs}">

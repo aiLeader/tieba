@@ -9,73 +9,95 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="currPage" property="currPage" />
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage,options=options}"
-		 select="getnote" />
+			select="getnote" />
 	</resultMap>
-	
+
 	<select id="findNote" parameterType="Map" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
+		${pageSize} pageSize,${currPage} currPage
+		<if test="options!=null">
+			,'${options}' options
+		</if>
+		<if test="options==null">
+			,'' options
+		</if>
+		from note where nstatus in (0,1) and nstates in (0,1)
+		<if test="options!=null">
+			and (nid like '${options}%'
+			or ntitle like '%${options}%'
+			or ncontent like '%${options}%'
+			or ntimes like '%${options}%'
+			)
+		</if>
 	</select>
 
-  <resultMap type="NoteInfo" id="NoteInfoMap">
-	  	<id column="nid" property="nid"/>
-	  <result column="ntitle" property="ntitle"/><!--column为取到的值的名字 property为类中的名称  -->
-	  <result column="ncontent" property="ncontent"/>
-	  <result column="ntimes" property="ntimes"/>
-	  <result column="nnum" property="nnum"/>
-	  <result column="naccess" property="naccess"/>
-	  <result column="ngood" property="ngood"/>
-	  <result column="nstatus" property="nstatus"/>
-	  <result column="nstates" property="nstates"/>
-	  <association property="types" column="tid" javaType="Types">
-	  	<id column="tid" property="tid"/>
-	  	<id column="tname" property="tname"/>
-	  </association>
-	  <association property="users" column="userid" javaType="Users">
-	  	<id column="userid" property="userid"/>
-	  	<id column="uname" property="uname"/>
-	  </association>
-	  </resultMap>
-	  
-		<select id="getnote"  resultMap="NoteInfoMap">
+	<resultMap type="NoteInfo" id="NoteInfoMap">
+		<id column="nid" property="nid" />
+		<result column="ntitle" property="ntitle" /><!--column为取到的值的名字 property为类中的名称 -->
+		<result column="ncontent" property="ncontent" />
+		<result column="ntimes" property="ntimes" />
+		<result column="nnum" property="nnum" />
+		<result column="naccess" property="naccess" />
+		<result column="ngood" property="ngood" />
+		<result column="nstatus" property="nstatus" />
+		<result column="nstates" property="nstates" />
+		<association property="types" column="tid" javaType="Types">
+			<id column="tid" property="tid" />
+			<id column="tname" property="tname" />
+		</association>
+		<association property="users" column="userid" javaType="Users">
+			<id column="userid" property="userid" />
+			<id column="uname" property="uname" />
+		</association>
+	</resultMap>
+
+	<select id="getnote" resultMap="NoteInfoMap">
 		select * from
 		(select n.*, rownum rn from
-		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
-		o.nstatus in (0,1)
+		(select o.*,u.uname
+		uname,t.tname tname from note o,users u,types t where
+		o.nstatus in
+		(0,1)
 		<if test="options!=null">
 			and (o.nid like '%${options}%'
-			or o.ntitle like '%${options}%'
+			or o.ntitle like
+			'%${options}%'
 			or o.ncontent like '%${options}%'
-			or o.ntimes like '%${options}%'
+			or o.ntimes like
+			'%${options}%'
 			)
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}* ${currPage} >= rownum)
+		where ${pageSize}*
+		${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
-	
-	
-	<!--    通过tid查找     -->
+
+
+	<!-- 通过tid查找 -->
 	<select id="findTyId" parameterType="String" resultType="int">
 		select tid from types where
-		tstate in (0,1) 
+		tstate in (0,1)
 		<if test="_parameter!=null">
 			and (tid like '%${_parameter}%'
-			or tname like '%${_parameter}%'
+			or tname like
+			'%${_parameter}%'
 			or tnum like '%${_parameter}%'
-			or tdesc like '%${_parameter}%'
+			or tdesc like
+			'%${_parameter}%'
 			)
 		</if>
 	</select>
-	
 	<resultMap type="PaginationBean" id="PaginationBeanMap02">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage,options=options}"
-		 select="getnote02" />
+			select="getnote02" />
 	</resultMap>
-	
+
 	<select id="findNoteTy" parameterType="Map" resultMap="PaginationBeanMap02">
 		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
 		${pageSize} pageSize,${currPage} currPage
@@ -85,19 +107,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus in (0,1) and nstates  in (0,1)
+		from note where nstatus in (0,1) and nstates in (0,1)
 		<if test="options!=null">
-			and  note.tid = '${options}'
+			and note.tid = '${options}'
 		</if>
 	</select>
 
-		<select id="getnote02"  resultMap="NoteInfoMap">
+	<select id="getnote02" resultMap="NoteInfoMap">
 		select * from
 		(select n.*, rownum rn from
-		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
-		o.nstatus in (0,1)
-		<if test="options!=null">
-			and o.tid = '${options}'
+		(select o.*,u.uname
+		uname,t.tname tname from note o,users u,types t where
+		o.nstatus in
+		(0,1)
+		<if test="options!=null"> tid like '${options}%' and o.tid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
@@ -105,30 +128,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
-
-	
 	<!-- 通过userid查找 -->
 	<select id="findUsId" parameterType="String" resultType="int">
-	select userid from users where
-		status in (0,1) 
-		<if test="_parameter !=null">
-			and (uname like '%${_parameter}%'
-			or userid like '%${_parameter}%'
-			or sex like '%${_parameter}%'
-			or telephone like '%${_parameter}%'
+		select userid from users where
+		status in (0,1)
+		<if test="_parameter !=null"> and (name like '%${_parameter}%'
+			or userid like
+			'%${_parameter}%' and (uname like '%${_parameter}%'
+			or userid like
+			'%${_parameter}%' or sex like '%${_parameter}%'
+			or telephone like
+			'%${_parameter}%'
 			or email like '%${_parameter}%'
 			)
 		</if>
 	</select>
-	
+
 	<resultMap type="PaginationBean" id="PaginationBeanMap03">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage,options=options}"
-		 select="getnote03" />
+			select="getnote03" />
 	</resultMap>
-	
+
 	<select id="findNoteUs" parameterType="Map" resultMap="PaginationBeanMap03">
 		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
 		${pageSize} pageSize,${currPage} currPage
@@ -138,41 +161,96 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus in (0,1) and nstates  in (0,1)
+		from note where nstatus in (0,1) and nstates in (0,1)
 		<if test="options!=null">
 			and userid ='${options}'
 		</if>
 	</select>
 
-	<select id="getnote03"  resultMap="NoteInfoMap">
+	<select id="getnote03" resultMap="NoteInfoMap">
 		select * from
-		(select n.*, rownum rn from
-		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
-		o.nstatus in (0,1)
+		(select n.*, rownum rn from (select * from note where
+		nstatus in (0,1) and nstates in (0,1) (select o.*,u.uname
+		uname,t.tname tname from note o,users u,types t where
+		o.nstatus in
+		(0,1)
 		<if test="options!=null">
-			and  o.userid ='${options}'
+			and o.userid ='${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}* ${currPage} >= rownum)
+		where ${pageSize}*
+		${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
-	
-	
-
 	<!-- 删除note -->
 	<update id="deleteNote" parameterType="String">
-		update note set nstatus =0 where  nid = #{ids}
+		update note set nstatus =0
+		where nid = #{ids}
 	</update>
-	
+
 	<!-- 修改note -->
 	<update id="updateNote" parameterType="NoteInfo">
-		update note set nstatus =#{nstatus},nstates=#{nstates} where  nid = #{nid}
+		update note set nstatus
+		=#{nstatus},nstates=#{nstates} where nid = #{nid}
 	</update>
-	
+	<!-- 主页显示note -->
+	<resultMap type="PaginationBean" id="PaginationBeanMapLs">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage}" ofType="NoteInfo"
+			select="getNoteinfo" />
+	</resultMap>
+	<resultMap type="NoteInfo" id="indexNoteInfoMap">
+		<id property="nid" column="nid" />
+		<result property="ntitle" column="ntitle" />
+		<result property="ncontent" column="ncontent" />
+		<result property="ntimes" column="ntimes" />
+		<result property="nnum" column="nnum" />
+		<result property="naccess" column="naccess" />
+		<result property="ngood" column="ngood" />
+		<result property="nstatus" column="nstatus" />
+		<result property="nstates" column="nstates" />
+		<result property="nremark" column="nremark" />
+		<association property="users" javaType="Users">
+			<id property="userid" column="userid" />
+			<result property="uname" column="uname" />
+			<result property="birthday" column="birthday" />
+			<result property="sex" column="sex" />
+			<result property="telephone" column="telephone" />
+			<result property="email" column="email" />
+			<result property="address" column="address" />
+		</association>
+		<association property="types" javaType="Types">
+			<id column="tid" property="tid" />
+			<result column="tname" property="tname" />
+		</association>
+	</resultMap>
+	<select id="indexListNote" parameterType="PaginationBean"
+		resultMap="PaginationBeanMapLs">
+		select count(1) total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize}
+		pageSize ,${currPage} currPage from note
+	</select>
+	<select id="getNoteinfo" resultMap="indexNoteInfoMap">
+		select * from (
+		select
+		nid,ntitle,ncontent,tid,tname,userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		, rownum rn from
+		(select nid,ntitle,ncontent,types.tid
+		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		from note inner join users on note.userid = users.userid inner join
+		types on types.tid=note.tid order by nid desc ) n
+		where ${pageSize}* ${currPage}>=rownum )
+		where rn
+		>(${currPage}-1)*${pageSize}
+	</select>
 	<!-- 根据评论数量显示前五条帖子 -->
 	<select id="listNoteOrderByNum" resultType="NoteInfo">
-		select n.*,rownum from NOTE n where  5>=rownum order by nnum desc 
+		select n.*,rownum
+		from NOTE n where 5>=rownum order by nnum desc
 	</select>
 </mapper>
+

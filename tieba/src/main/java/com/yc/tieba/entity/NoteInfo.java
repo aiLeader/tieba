@@ -112,7 +112,7 @@ public class NoteInfo {
 				+ ncontent + ", ntimes=" + ntimes + ", nnum=" + nnum
 				+ ", naccess=" + naccess + ", ngood=" + ngood + ", nstatus="
 				+ nstatus + ", nstates=" + nstates + ", nremark=" + nremark
-				+ ", types=" + types + ", users=" + users + "]";
+				+ ", types=" + types + ", users=" + users + "]\n";
 	}
 	
 	

@@ -1,7 +1,5 @@
 package com.yc.tieba.service;
 
-
-
 import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Types;
