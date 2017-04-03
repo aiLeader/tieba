@@ -4,5 +4,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.CommentsMapper">
-	
+	<select id="findAllComment" resultType="Comments">
+		select * from comments where cstatus = 1
+	</select>
+	<select id="findCommById" parameterType="String" resultType="Comments">
+		select * from comments where cid = ${_parameter} and cstatus = 1
+	</select>
+	<select id="findCommByUid" parameterType="QueryEntity" resultType="Comments">
+		select * from comments where cstatus = #{status}
+		<if test="param != null and param != ''"> and userid=#{param}</if>
+	</select>
+	<select id="findCommByNid" parameterType="QueryEntity"  resultType="Comments">
+		select * from comments where cstatus = #{status}
+		<if test="param != null and param != ''"> and nid=#{param}</if>
+	</select>
+	<select id="findBanComm" resultType="Comments">
+		select * from comments where cstatus = 0
+	</select>
+	<update id="banComm" parameterType="int">
+		update comments set cstatus=0 where cid = ${_parameter}
+	</update>
+	<update id="letComm" parameterType="int">
+		update comments set cstatus=1 where cid = ${_parameter}
+	</update>
 </mapper>
