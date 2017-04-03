@@ -36,24 +36,20 @@
 			<div class="tabbable" id="tabs-692685">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-216861" data-toggle="tab">全部</a>
+						 <a href="#panel-all" data-toggle="tab">全部</a>
 					</li>
 					<li>
-						 <a href="#panel-687439" data-toggle="tab">收藏</a>
+						 <a href="#panel-store" data-toggle="tab">收藏</a>
 					</li>
 					<li>
-						 <a href="#panel-687440" data-toggle="tab">关注</a>
+						 <a href="#panel-concern" data-toggle="tab">关注</a>
 					</li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane  active" id="panel-216861">
+					<div class="tab-pane  active" id="panel-all">
 						<div id="note">
 							<p>
 								<a id="title" href="page/noteDetail.html" style="padding-right:21px">Heading</a>
-								<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
-								    <span class="glyphicon glyphicon-plus"></span>
-								    关注
-								</button>
 							</p>
 							<p>
 								Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
@@ -75,7 +71,7 @@
 						</div>
 						
 					</div>
-					<div class="tab-pane" id="panel-687439">
+					<div class="tab-pane" id="panel-store">
 						<div id="note">
 							<p>
 								<a id="title" href="page/noteDetail.html" style="padding-right:21px">Store</a>
@@ -103,13 +99,13 @@
 							</p>
 						</div>
 					</div>
-					<div class="tab-pane" id="panel-687440">
+					<div class="tab-pane" id="panel-concern">
 						<div id="note">
 							<p>
 								<a id="title" href="page/noteDetail.html" style="padding-right:21px">Concern</a>
-								<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
+								<button id="concern" type="button" class="btn btn-default btn-sm" style="background:white">
 								    <span class="glyphicon glyphicon-plus"></span>
-								    关注
+								    取消关注
 								</button>
 							</p>
 							<p>
