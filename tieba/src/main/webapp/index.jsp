@@ -150,16 +150,6 @@
 		</div>
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-6 column" id="center">
-			<div id="top">
-				贴吧类型
-				<select>
-					<option value="1">王源</option>
-					<option value="2">王源</option>
-					<option value="3">王源</option>
-				</select>
-				<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
-				<button>发送</button>
-			</div>
 			<div id="content">
 			<p>
 				<a id="title" href="page/noteDetail.jsp" style="padding-right:21px">Heading</a>
@@ -178,12 +168,7 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a  href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-				<!-- 点击评论 -->
-				<div id="comm" style="display: none;">
-					<textarea rows="4" cols="80"></textarea><br>
-					<button>提交</button>
-				</div>
+				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="page/noteDetail.jsp">View details »</a>
@@ -265,12 +250,12 @@
 			</ul>
 		</div>
 		<div class="col-md-3 column">
-			<p id="pstyle">贴吧热议榜</p>
+			<p id="pstyle">帖子热议榜</p>
 			<div id="olstyle">
 				<ol id="hot"></ol>
 			</div>
 			
-			<p id="pstyle">贴吧推荐</p>
+			<p id="pstyle">帖子推荐</p>
 			<ul id="ulstyle">
 				<li>
 					<image id="picPath" src="images/mr.jpg">
@@ -308,19 +293,6 @@
 </div>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
-<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript">
-$(function() {
-	$("#toggle").click(function() {
-		$(this).text($("#comm").is(":hidden") ? "收起" : "评论");
-		$("#comm").slideToggle();
-	});
-});
-</script>
 </body>
 </html>
