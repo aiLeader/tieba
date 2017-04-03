@@ -19,7 +19,6 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public PaginationBean<NoteInfo> findNote(String page, String rows,
 			String options) {
-		PaginationBean<NoteInfo> pb=null;
 		int pageSize=10; //条数
 		int currPage=1; //当前页
 		if(rows!=null){
@@ -32,11 +31,10 @@ public class NoteServiceImpl implements NoteService {
 			}
 		}	
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("pageSize", rows);
-		map.put("currPage",page);
+		map.put("pageSize", String.valueOf(pageSize));
+		map.put("currPage",String.valueOf(currPage));
 		
 		if(options == null){
-			System.out.println("12");
 			return noteMapper.findNote(map);
 		}else if(options.startsWith("贴主")){
 			options =  options.replace("贴主", "");
@@ -64,5 +62,24 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public int updateNote(NoteInfo rowData) {
 		return noteMapper.updateNote(rowData);
+	}
+
+	@Override
+	public PaginationBean<NoteInfo> indexfindNote(String page, String rows) {
+		int pageSize = 5;
+		int currPage = 1;
+		if(rows!=null){
+			pageSize=Integer.parseInt(rows);
+		}
+		if(page!=null&&!page.equals("nop")){
+			currPage=Integer.parseInt(page);
+			if(currPage<=0){
+				currPage=1;
+			}
+		}
+		PaginationBean<NoteInfo> pb= new PaginationBean<NoteInfo>();
+		pb.setCurrPage(currPage);
+		pb.setPageSize(pageSize);
+		return noteMapper.indexListNote(pb);
 	}
 }

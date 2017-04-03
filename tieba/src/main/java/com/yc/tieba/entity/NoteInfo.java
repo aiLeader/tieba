@@ -16,6 +16,13 @@ public class NoteInfo {
 	private Integer nstatus;
 	private Integer nstates;
 	private String nremark;
+	private Users user;
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
 	public NoteInfo(String nid, String ntitle, String ncontent, String tid,
 			String userid, Date ntimes, Integer nnum, Integer naccess,
 			Integer ngood, Integer nstatus, Integer nstates, String nremark) {
@@ -108,10 +115,8 @@ public class NoteInfo {
 	}
 	@Override
 	public String toString() {
-		return "NoteInfo [nid=" + nid + ", ntitle=" + ntitle + ", ncontent="
-				+ ncontent + ", tid=" + tid + ", userid=" + userid
-				+ ", ntimes=" + ntimes + ", nnum=" + nnum + ", naccess="
-				+ naccess + ", ngood=" + ngood + ", nstatus=" + nstatus
-				+ ", nstates=" + nstates + ", nremark=" + nremark + "]";
+		return "NoteInfo [nid=" + nid + ", ntitle=" + ntitle + ", ncontent=" + ncontent + ", tid=" + tid + ", userid="
+				+ userid + ", ntimes=" + ntimes + ", nnum=" + nnum + ", naccess=" + naccess + ", ngood=" + ngood
+				+ ", nstatus=" + nstatus + ", nstates=" + nstates + ", nremark=" + nremark + ", user=" + user + "]\n";
 	}
 }

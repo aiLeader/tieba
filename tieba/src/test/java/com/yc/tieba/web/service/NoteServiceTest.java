@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.tieba.entity.NoteInfo;
-import com.yc.tieba.mapper.NoteMapper;
+import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.service.NoteService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,6 +31,14 @@ public class NoteServiceTest {
 		
 		System.out.println(noteService.findNote("10", "1","贴主莱因哈特"));
 		assertNotNull(noteService.findNote("10", "1", "贴主莱因哈特"));
+	}
+	
+	@Test
+	public void testIndexListNote() {
+		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
+		pb = noteService.indexfindNote("1", "5");
+		System.out.println(pb);
+		assertNotNull(pb);
 	}
 	
 	@Test

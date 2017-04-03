@@ -19,4 +19,6 @@ public interface NoteMapper {
 	int deleteNote(String ids);
 
 	int updateNote(NoteInfo rowData);
+
+	PaginationBean<NoteInfo> indexListNote(PaginationBean<NoteInfo> pb);
 }
