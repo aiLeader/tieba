@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.yc.tieba.util.ServletUtil;
+
 /**
  *  过滤验证码
  */
@@ -33,7 +35,7 @@ public class VcodeFilter extends AbstractFilter{
 			chain.doFilter(request, response);
 		}else{
 			LogManager.getLogger().debug("过滤器VcodeFilter验证验证码失败.....");
-			session.setAttribute("errorMsg", "验证码错误！！！");
+			session.setAttribute(ServletUtil.ERROR_MESSAGE, "验证码错误！！！");
 			((HttpServletResponse) response).sendRedirect("/tieba/back/userLogin.jsp");
 		}
 		
