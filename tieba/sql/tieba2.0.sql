@@ -119,7 +119,7 @@ insert into  note
 select note_id.nextval,dbms_random.string('l',6) ,
 dbms_random.string('l',6),'101','1001',
 sysdate,0,0,0,1,1,'' from dual connect by level<=10;
-select * from NOTE;
+select n.*,rownum from NOTE n where rownum <=5 order by nnum desc;--根据评论数量排序
 
 
 
