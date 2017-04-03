@@ -7,12 +7,12 @@
 </head>
 <body>
 	<div class="top-searcher">
-	<select id="select1">
+	<select id="banselect1">
 	<option value="quserid">根据用户</option>
 	<option value="qnoteid">根据帖子</option>
 	</select>
-	<input id="param" name="param"/>
-	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="findByParam()">查询</a>
+	<input id="banparam" name="param"/>
+	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="findByParam()">查询</a>
 	</div>
 	<table id="bancommentInfo"></table>
 	<div id="bancommentDetail">

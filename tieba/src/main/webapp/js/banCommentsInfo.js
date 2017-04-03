@@ -1,6 +1,6 @@
 function findByParam(){
-	var type=$("#select1").val();
-	var param=$("#param").val();
+	var type=$("#banselect1").val();
+	var param=$("#banparam").val();
 	var commentInfoUrl='comments/'+type+'?status=0&param='+param;
 	reloadDatagrid(commentInfoUrl);
 }
@@ -26,7 +26,7 @@ function reloadDatagrid(commentInfoUrl){
 	        	formatter: function(value,row,index){
 	        		return '<a class="detailBtn" href="javascript:void(0)"  onclick="showDetail('+row.cid+')">详情</a>' +
 	        		'<a class="delBtn" href="javascript:void(0)"  onclick="letDetail('+row.cid+')">恢复</a>' +
-	        		'<script>$(".detailBtn").linkbutton({iconCls: "icon-search"});$(".delBtn").linkbutton({iconCls: "icon-cancel"});</script>';
+	        		'<script>$(".detailBtn").linkbutton({iconCls: "icon-search"});$(".delBtn").linkbutton({iconCls: "icon-ok"});</script>';
 				}
 	        }
 	    ]],
