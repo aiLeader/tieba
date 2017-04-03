@@ -64,7 +64,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	
 	<resultMap type="PaginationBean" id="PaginationBeanMap02">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
@@ -153,8 +152,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	
-	
 	<!-- 删除note -->
 	<update id="deleteNote" parameterType="String">
 		update note set nstatus =0 where  nid = #{ids}
@@ -164,4 +161,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateNote" parameterType="NoteInfo">
 		update note set nstatus =#{nstatus},nstates=#{nstates} where  nid = #{nid}
 	</update>
+	
+	<!-- 根据评论数量显示前五条帖子 -->
+	<select id="listNoteOrderByNum" resultType="NoteInfo">
+		select n.*,rownum from NOTE n where  5>=rownum order by nnum desc 
+	</select>
 </mapper>

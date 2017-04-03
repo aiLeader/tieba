@@ -267,23 +267,7 @@
 		<div class="col-md-3 column">
 			<p id="pstyle">贴吧热议榜</p>
 			<div id="olstyle">
-				<ol>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-				</ol>
+				<ol id="hot"></ol>
 			</div>
 			
 			<p id="pstyle">贴吧推荐</p>
