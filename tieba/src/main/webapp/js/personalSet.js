@@ -113,7 +113,6 @@ function loadUserInfo(userid){
 $("#PerInfoForm").form({
 	url:"../user/update",
 	success:function(data){
-		alert(data);
 		$.messager.show({
 			title:'修改个人信息',
 			msg:'修改个人信息' + (data ? "成功..." : "失败!!!"),
@@ -130,7 +129,6 @@ $("#PerInfoForm").form({
 $("#updatePic").form({
 	url:"../user/update",
 	success:function(data){
-		alert(data);
 		$.messager.show({
 			title:'修改个人图片信息',
 			msg:'修改个人图片信息' + (data=="true" ? "成功..." : "失败!!!"),
