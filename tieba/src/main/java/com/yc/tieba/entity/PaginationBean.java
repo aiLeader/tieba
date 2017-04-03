@@ -7,7 +7,6 @@ public class PaginationBean<T> {
 	//请求参数
 	private Integer currPage;//当前页
 	private Integer pageSize;//每页显示的数据条数
-	
 	//响应的数据
 	private Integer totalPage;//总页数
 	private Integer total;//总数据条数

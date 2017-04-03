@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -38,12 +39,14 @@ public class NoteHandler {
 	@RequestMapping(value="/update")
 	@ResponseBody
 	public boolean updateNote(@RequestBody NoteInfo rowData ){
-	
-		System.out.println("noteinfo"+rowData);
-		
 		return noteService.updateNote(rowData)>0;
 	}
 	
+	@RequestMapping("listindex")
+	@ResponseBody
+	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page){
+		return noteService.indexfindNote(page,"5");
+	}
 	/**
 	 * sh
 	 */

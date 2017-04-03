@@ -7,7 +7,7 @@ import com.yc.tieba.entity.Users;
 
 
 public interface UsersMapper {
-	PaginationBean<Users> listUsers(Map b);
+	PaginationBean<Users> listUsers(Map<String,String> b);
 	int deleteUser(String userid);
 	int updateUser(Users users);
 	int insertUser(Users users);
