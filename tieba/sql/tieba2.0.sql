@@ -63,10 +63,6 @@ decode(ceil(dbms_random.value(0, 6)), 1, '湖南', 2, '湖北', 3, '广东', 4, 
 dbms_random.string('l',11),0,sysdate,0,0,'' from dual connect by level <= 10; 
 
 
-
-
-
-
 create table typeadmin(
     taid varchar2(5) primary key,--板块
     userid varchar2(5) constraint fk_typeadmin_userid references users(userid),--用户
@@ -74,9 +70,6 @@ create table typeadmin(
 );
 
 create  sequence typeadmin_id start with 10000;--版块ID
-
-
-
 
 --板块信息表
 create table types(
@@ -144,8 +137,12 @@ create table comments(
     cstates NUMBER DEFAULT 0 CONSTRAINT comments_cstates CHECK(cstates IN(0,1)),--私密状态 1私密
     cremark varchar2(20)
 );
-insert into comments(cid,nid,userid,ccontent,ctime,cgood,cstatus,cstates) values(comments_id.nextval,'10000','1000',empty_blob(),sysdate,0,1,0);
-
+insert into comments(cid,nid,userid,ccontent,ctime,cgood,cstatus,cstates) values(comments_id.nextval,'10000','1000','aaa',sysdate,0,1,0);
+insert into  comments 
+select comments_id.nextval||'','10001','1001','',
+dbms_random.string('l',6),
+sysdate,0,1,0,'' from dual connect by level<=10;
+select * from comments;
 
 --收藏表
 
