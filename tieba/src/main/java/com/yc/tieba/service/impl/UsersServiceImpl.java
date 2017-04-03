@@ -62,5 +62,9 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertUser(users);
 	}
+	@Override
+	public boolean updateUserPic(Users users) {
+		return usersMapper.updateUserPic(users)>0;
+	}
 	
 }
