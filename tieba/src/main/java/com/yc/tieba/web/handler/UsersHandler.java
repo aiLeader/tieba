@@ -59,8 +59,9 @@ public class UsersHandler {
 	
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUser(@RequestBody Users users) throws IOException {
+	private boolean doUpdateUser(Users users) throws IOException {
 		System.out.println("更新我进来了。。。==>"+users);
+		//return true;
 		return usersService.updateUser(users);
 
 	}
