@@ -25,7 +25,6 @@ public class UsersServiceImpl implements UsersService {
 	//分页操作
 	@Override
 	public PaginationBean<Users> listuser(String rows, String page,String option) {
-		PaginationBean<Users> pb=null;
 		int pageSize=10; //条数
 		int currPage=1; //当前页
 		if(rows!=null){
@@ -39,7 +38,6 @@ public class UsersServiceImpl implements UsersService {
 		}
 		rows=String.valueOf(pageSize);
 		page=String.valueOf(currPage);
-		pb=new PaginationBean<Users>();
 		Map<String,String> map=new HashMap<String,String>();
 		map.put("currPage", page);
 		map.put("pageSize",rows);
@@ -61,6 +59,10 @@ public class UsersServiceImpl implements UsersService {
 	public int  insertUser(Users users) {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertUser(users);
+	}
+	@Override
+	public boolean updateUserPic(Users users) {
+		return usersMapper.updateUserPic(users)>0;
 	}
 	
 }

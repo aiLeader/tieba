@@ -122,70 +122,19 @@
 		<div class="col-md-3 column" >
 			<p id="pstyle">贴吧分类</p>
 			<ul id="ulstyle">
-				<!-- <li>
-					<a href="#">王俊凯艺考</a>
-				</li>
-				<li>
-					<a href="#">大唐荣耀</a>
-				</li>
-				<li>
-					<a href="#">三生三世</a>
-				</li>
-				<li>
-					<a href="#">韩国萨德</a>
-				</li>
-				<li>
-					<a href="#">因为遇见你</a>
-				</li>
-				<li>
-					<a href="#">王牌对王牌</a>
-				</li>
-				<li>
-					<a href="#">高能少年团</a>
-				</li>
-				<li>
-					<a href="#">花儿与少年</a>
-				</li> -->
 			</ul>
 		</div>
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-6 column" id="center">
-			<div id="top">
-				贴吧类型
-				<select>
-					<option value="1">王源</option>
-					<option value="2">王源</option>
-					<option value="3">王源</option>
-				</select>
-				<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
-				<button>发送</button>
-			</div>
-			<div id="indexNoteContent">
-			</div>
-		</div>
+		<!-- 主页的帖子显示div -->
+		<div id="indexNoteContent"></div>
 		<div class="col-md-3 column">
-			<p id="pstyle">贴吧热议榜</p>
+			<p id="pstyle">帖子热议榜</p>
 			<div id="olstyle">
-				<ol>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-				</ol>
+				<ol id="hot"></ol>
 			</div>
 			
-			<p id="pstyle">贴吧推荐</p>
+			<p id="pstyle">帖子推荐</p>
 			<ul id="ulstyle">
 				<li>
 					<image id="picPath" src="images/mr.jpg">

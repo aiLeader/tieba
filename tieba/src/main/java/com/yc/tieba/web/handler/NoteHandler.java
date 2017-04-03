@@ -1,6 +1,8 @@
 package com.yc.tieba.web.handler;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +23,6 @@ public class NoteHandler {
 	@Autowired
 	private NoteService noteService;
 	
-	
-	//@RequestMapping(value="find/{noteName}",method=RequestMethod.GET)
 	//查询
 	@RequestMapping(value="find")
 	@ResponseBody
@@ -35,7 +35,6 @@ public class NoteHandler {
 	public boolean deleteNote(@PathVariable("ids") String ids){
 		return noteService.deleteNote(ids)>0;
 	}
-	
 
 	@RequestMapping(value="/update")
 	@ResponseBody
@@ -47,5 +46,14 @@ public class NoteHandler {
 	@ResponseBody
 	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page){
 		return noteService.indexfindNote(page,"5");
+	}
+	/**
+	 * sh
+	 */
+	//显示首页右边贴吧热议榜
+	@RequestMapping(value="listOrderByNum")
+	@ResponseBody
+	public List<NoteInfo> listNoteOrderByNum(){
+		return noteService.listNoteOrderByNum();
 	}
 }

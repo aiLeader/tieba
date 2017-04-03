@@ -22,15 +22,15 @@ public class NoteServiceTest {
 	@Test
 	public void testFindNote() {
 		
-		System.out.println(noteService.findNote("10", "1",null));
-		assertNotNull(noteService.findNote("10", "1", null));
+		System.out.println(noteService.findNote("1", "10",null));
+		assertNotNull(noteService.findNote("1", "10", null));
 	}
 	
 	@Test
 	public void testFindNoteTyID() {
 		
-		System.out.println(noteService.findNote("10", "1","贴主莱因哈特"));
-		assertNotNull(noteService.findNote("10", "1", "贴主莱因哈特"));
+		System.out.println(noteService.findNote("1", "10","贴主莱因哈特"));
+		assertNotNull(noteService.findNote("1", "10", "贴主莱因哈特"));
 	}
 	
 	@Test
@@ -46,8 +46,13 @@ public class NoteServiceTest {
 		NoteInfo rowData = new NoteInfo();
 		rowData.setNstatus(0);
 		rowData.setNstates(0);
-		rowData.setNid("100");
+		rowData.setNid("10004");
 		noteService.updateNote(rowData);
 	}
-
+	
+	@Test
+	public void testListNoteByNum() {
+		System.out.println(noteService.listNoteOrderByNum());
+		assertNotNull(noteService.listNoteOrderByNum());
+	}
 }

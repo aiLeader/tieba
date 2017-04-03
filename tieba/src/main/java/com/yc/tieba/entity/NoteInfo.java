@@ -7,8 +7,6 @@ public class NoteInfo {
 	private String nid;
 	private String ntitle;
 	private String ncontent;
-	private String tid;
-	private String userid;
 	private Date ntimes;
 	private Integer nnum;
 	private Integer naccess;
@@ -16,21 +14,14 @@ public class NoteInfo {
 	private Integer nstatus;
 	private Integer nstates;
 	private String nremark;
-	private Users user;
-	public Users getUser() {
-		return user;
-	}
-	public void setUser(Users user) {
-		this.user = user;
-	}
-	public NoteInfo(String nid, String ntitle, String ncontent, String tid,
-			String userid, Date ntimes, Integer nnum, Integer naccess,
-			Integer ngood, Integer nstatus, Integer nstates, String nremark) {
+	private Types types;
+	private Users users;
+	public NoteInfo(String nid, String ntitle, String ncontent, Date ntimes,
+			Integer nnum, Integer naccess, Integer ngood, Integer nstatus,
+			Integer nstates, String nremark, Types types, Users users) {
 		this.nid = nid;
 		this.ntitle = ntitle;
 		this.ncontent = ncontent;
-		this.tid = tid;
-		this.userid = userid;
 		this.ntimes = ntimes;
 		this.nnum = nnum;
 		this.naccess = naccess;
@@ -38,6 +29,8 @@ public class NoteInfo {
 		this.nstatus = nstatus;
 		this.nstates = nstates;
 		this.nremark = nremark;
+		this.types = types;
+		this.users = users;
 	}
 	public NoteInfo() {
 	}
@@ -58,18 +51,6 @@ public class NoteInfo {
 	}
 	public void setNcontent(String ncontent) {
 		this.ncontent = ncontent;
-	}
-	public String getTid() {
-		return tid;
-	}
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 	public Date getNtimes() {
 		return ntimes;
@@ -113,10 +94,30 @@ public class NoteInfo {
 	public void setNremark(String nremark) {
 		this.nremark = nremark;
 	}
+	public Types getTypes() {
+		return types;
+	}
+	public void setTypes(Types types) {
+		this.types = types;
+	}
+	public Users getUsers() {
+		return users;
+	}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 	@Override
 	public String toString() {
-		return "NoteInfo [nid=" + nid + ", ntitle=" + ntitle + ", ncontent=" + ncontent + ", tid=" + tid + ", userid="
-				+ userid + ", ntimes=" + ntimes + ", nnum=" + nnum + ", naccess=" + naccess + ", ngood=" + ngood
-				+ ", nstatus=" + nstatus + ", nstates=" + nstates + ", nremark=" + nremark + ", user=" + user + "]\n";
+		return "\n\nNoteInfo [nid=" + nid + ", ntitle=" + ntitle + ", ncontent="
+				+ ncontent + ", ntimes=" + ntimes + ", nnum=" + nnum
+				+ ", naccess=" + naccess + ", ngood=" + ngood + ", nstatus="
+				+ nstatus + ", nstates=" + nstates + ", nremark=" + nremark
+				+ ", types=" + types + ", users=" + users + "]\n";
 	}
+	
+	
+	
+
+	
+	
 }

@@ -22,8 +22,18 @@ $(function () {
 		        			  return "<img width='100' src='" + value + "'/>"
 		        		  }
 		        	  }},*/
-		        	  { field: 'tid', title: '板块', width: 100,align:'center'},
-		        	  { field: 'userid', title: '发帖人', width: 130,align:'center'},
+		        	  { field: 'tid', title: '板块', width: 100,align:'center', 
+		        		  formatter: function(value,row,index){
+		      				//alert(row + "==>" + JSON.stringify(row));
+		              		return row.types.tname;
+		      			}  
+		        	  },
+		        	  { field: 'userid', title: '发帖人', width: 130,align:'center',
+		        		  formatter: function(value,row,index){
+			      				//alert(row + "==>" + JSON.stringify(row));
+			              		return row.users.uname;
+			      			}    
+		        	  },
 		        	  { field: 'nnum', title: '评论数量', width: 130,align:'center'},
 		        	  { field: 'ngood', title: '点赞数', width: 130,align:'center'},  
 		        /*	  { field: 'ntimes', title: '发布日期', width: 170,align:'center',formatter:formatDatebox},    */

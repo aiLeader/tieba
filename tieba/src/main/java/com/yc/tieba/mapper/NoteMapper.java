@@ -1,5 +1,6 @@
 package com.yc.tieba.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -21,4 +22,6 @@ public interface NoteMapper {
 	int updateNote(NoteInfo rowData);
 
 	PaginationBean<NoteInfo> indexListNote(PaginationBean<NoteInfo> pb);
+	
+	List<NoteInfo> listNoteOrderByNum();
 }

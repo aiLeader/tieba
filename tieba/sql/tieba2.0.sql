@@ -119,7 +119,7 @@ insert into  note
 select note_id.nextval,dbms_random.string('l',6) ,
 dbms_random.string('l',6),'101','1001',
 sysdate,0,0,0,1,1,'' from dual connect by level<=10;
-select * from NOTE;
+select n.*,rownum from NOTE n where rownum <=5 order by nnum desc;--根据评论数量排序
 
 
 
@@ -174,3 +174,12 @@ create table secret(
     sstate NUMBER DEFAULT 1 CONSTRAINT secret_sstate CHECK(sstate IN(0,1)),--是否删除，已读
     sremark varchar2(20)
 );
+
+
+select * from note;
+select * from TYPES;
+bbssbqnc
+
+
+
+
