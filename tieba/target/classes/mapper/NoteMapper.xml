@@ -31,7 +31,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 
-	<select id="getnote" resultType="NoteInfo">
+  <resultMap type="NoteInfo" id="NoteInfoMap">
+	  	<id column="nid" property="nid"/>
+	  <result column="ntitle" property="ntitle"/><!--column为取到的值的名字 property为类中的名称  -->
+	  <result column="ncontent" property="ncontent"/>
+	  <result column="ntimes" property="ntimes"/>
+	  <result column="nnum" property="nnum"/>
+	  <result column="naccess" property="naccess"/>
+	  <result column="ngood" property="ngood"/>
+	  <result column="nstatus" property="nstatus"/>
+	  <result column="nstates" property="nstates"/>
+	  <association property="types" column="tid" javaType="Types">
+	  	<id column="tid" property="tid"/>
+	  	<id column="tname" property="tname"/>
+	  </association>
+	  <association property="users" column="userid" javaType="Users">
+	  	<id column="userid" property="userid"/>
+	  	<id column="uname" property="uname"/>
+	  </association>
+	  </resultMap>
+	  
+		<select id="getnote"  resultMap="NoteInfoMap">
+		select * from
+		(select n.*, rownum rn from
+		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
+		o.nstatus in (0,1)
+		<if test="options!=null">
+			and (o.nid like '%${options}%'
+			or o.ntitle like '%${options}%'
+			or o.ncontent like '%${options}%'
+			or o.ntimes like '%${options}%'
+			)
+		</if>
+		and o.userid=u.userid and o.tid = t.tid
+		) n
+		where ${pageSize}* ${currPage} >= rownum)
+		where
+		rn>(${currPage}-1)*${pageSize}
+	</select>
+
+
+
+
+
+
+
+
+
+	<!-- <select id="getnote" resultType="NoteInfo">
 		select * from
 		(select n.*, rownum rn from
 		(select * from note where
@@ -47,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ${pageSize}* ${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
-	</select>
+	</select> -->
 	
 	
 	<!--    通过tid查找     -->
@@ -62,9 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 		</if>
 	</select>
-	
-	
-	
+
 	<resultMap type="PaginationBean" id="PaginationBeanMap02">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
@@ -84,29 +129,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		from note where nstatus in (0,1) and nstates  in (0,1)
 		<if test="options!=null">
-			and tid like '${options}%'
+			and  note.tid = '${options}'
 		</if>
 	</select>
 
-	<select id="getnote02" resultType="NoteInfo">
+		<select id="getnote02"  resultMap="NoteInfoMap">
 		select * from
 		(select n.*, rownum rn from
-		(select * from note where
+		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
+		o.nstatus in (0,1)
 		<if test="options!=null">
-		 tid like '${options}%'
+			and o.tid = '${options}'
 		</if>
+		and o.userid=u.userid and o.tid = t.tid
 		) n
 		where ${pageSize}* ${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
+
 	
 	<!-- 通过userid查找 -->
 	<select id="findUsId" parameterType="String" resultType="int">
 	select userid from users where
 		status in (0,1) 
 		<if test="_parameter !=null">
-			and (name like '%${_parameter}%'
+			and (uname like '%${_parameter}%'
 			or userid like '%${_parameter}%'
 			or sex like '%${_parameter}%'
 			or telephone like '%${_parameter}%'
@@ -134,23 +182,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		from note where nstatus in (0,1) and nstates  in (0,1)
 		<if test="options!=null">
-			and userid like '${options}%'
+			and userid ='${options}'
 		</if>
 	</select>
 
-	<select id="getnote03" resultType="NoteInfo">
+	<select id="getnote03"  resultMap="NoteInfoMap">
 		select * from
 		(select n.*, rownum rn from
-		(select * from note where
-		nstatus in (0,1) and nstates  in (0,1)
+		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
+		o.nstatus in (0,1)
 		<if test="options!=null">
-			and userid like '${options}%'
+			and  o.userid ='${options}'
 		</if>
+		and o.userid=u.userid and o.tid = t.tid
 		) n
 		where ${pageSize}* ${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
+	
+	
 	
 	
 	

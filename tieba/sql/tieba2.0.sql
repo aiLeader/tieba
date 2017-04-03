@@ -177,3 +177,10 @@ create table secret(
     sstate NUMBER DEFAULT 1 CONSTRAINT secret_sstate CHECK(sstate IN(0,1)),--是否删除，已读
     sremark varchar2(20)
 );
+
+select s.*,t.id tid,t.name tname from student s join teacher t on s.id=1001 and s.tid = t.id 
+
+select count(1) total, ceil(count(1) /10) totalPage, 10 pageSize,1 currPage ,'101' options from note where nstatus in (0,1) and nstates in (0,1) and tid = '101'
+
+ select * from (select n.*, rownum rn from (select o.*,u.uname uname,t.tname tname from note o,users u,types t where o.nstatus in (0,1) and o.tid = '101' and o.userid=u.userid and o.tid = t.tid ) n where 10* 1 >= rownum) where rn>(1-1)*10
+

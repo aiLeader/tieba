@@ -1,4 +1,2 @@
-$("#topcontent"){
-	
-}
+
 UE.getEditor('topcontent');
