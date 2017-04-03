@@ -4,7 +4,7 @@ UE.getEditor('topcontent');
 function listNoteOderByNum(url){
 	$.post(url,function(data){
 		for (var i = 0; i < data.length; i++) {
-			$("#hot").append("<li><a href='#'>"+data[i].ntitle+"</a></li>");
+			$("#hot").append("<li><a href='page/noteDetail.jsp'>"+data[i].ntitle+"</a></li>");
 		}
 	},"json");
 }
