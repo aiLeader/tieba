@@ -45,8 +45,6 @@
 			<div title="用户管理" data-options="iconCls:'icon-mini-add'">
 				<ul class="treeNav">
 					<li><span>用户信息</span></li>
-					<li><span>用户编辑</span></li>
-					<li><span>用户添加</span></li>
 				</ul>
 			</div>
 			<div title="板块管理" data-options="iconCls:'icon-mini-add'">
@@ -58,8 +56,6 @@
 			<div title="帖子管理" data-options="iconCls:'icon-mini-add'">
 				<ul class="treeNav">
 					<li><span>帖子信息</span></li>
-					<li><span>帖子编辑</span></li>
-					<li><span>帖子添加</span></li>
 				</ul>
 			</div>
 			<div title="评论管理" data-options="iconCls:'icon-mini-add'">
