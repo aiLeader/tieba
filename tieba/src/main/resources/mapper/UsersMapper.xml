@@ -106,7 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		</set>
 		where
-			email=#{email}
+			userid=#{userid}
 	</update>
 	<!-- 用户自己注册信息 -->
 	<insert id="insertUser" parameterType="Users">
