@@ -86,9 +86,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="telephone!=null">
 			telephone=#{telephone},
 		</if>
-		<if test="email!=null">
-			email=#{email},
-		</if>
 		<if test="address!=null">
 			address=#{address},
 		</if>
@@ -109,7 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		</set>
 		where
-		userid=#{userid}
+			email=#{email}
 	</update>
 	<!-- 用户自己注册信息 -->
 	<insert id="insertUser" parameterType="Users">
