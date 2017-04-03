@@ -42,8 +42,10 @@ public class TypesHandler {
 	
 	@RequestMapping(value="findNote",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public PaginationBean<NoteInfo> deleteTypes(String page, String rows,String typesName){ 
-		return typesService.findNotes(page,rows,typesName);
+	public PaginationBean<NoteInfo>  findTypesNote(String page, String rows,String typesName){ 
+		System.out.println("  page  : "+page+"   rows  : "+"typesName   :  "+typesName);
+		return null;
+		//return typesService.findNotes(page,rows,typesName);
 	}
 	
 	
