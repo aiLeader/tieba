@@ -2,8 +2,6 @@ package com.yc.tieba.entity;
 
 import java.sql.Date;
 
-import org.apache.ibatis.type.NStringTypeHandler;
-
 public class NoteInfo {
 //帖子信息表
 	private String nid;
