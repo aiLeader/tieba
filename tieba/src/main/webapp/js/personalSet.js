@@ -1,3 +1,5 @@
+var userid=$("#userid").val();
+
 $('.choose').click(function () {
 	$('.choose').addClass('active');
 	$('.choose > .icon').addClass('active');
@@ -11,6 +13,7 @@ $('.choose').click(function () {
 	$('#line').removeClass('two');
 	$('#line').removeClass('three');
 	$('#line').removeClass('four');
+	loadUserInfo(userid);
 });
 $('.pay').click(function () {
 	$('.pay').addClass('active');
@@ -25,6 +28,8 @@ $('.pay').click(function () {
 	$('#line').removeClass('one');
 	$('#line').removeClass('three');
 	$('#line').removeClass('four');
+	loadUserInfo(userid);
+	
 });
 $('.wrap').click(function () {
 	$('.wrap').addClass('active');
@@ -81,16 +86,9 @@ $('.ship').click(function () {
 
 
 
-var email=null;
-//var username=document.getElementById("userid");
-var userid=$("#userid").val();
-alert(userid);
 loadUserInfo(userid);
 function loadUserInfo(userid){
 	$.get("../user/list",{options:userid}, function(data){
-		email=data.rows[0].email;
-		//alert(email);
-		//alert(data.rows[0].birthday);
 		if(data.rows[0].sex=='男'){
 			$(":radio[name='sex'][value='男']").attr("checked","true");
 		}else{
@@ -98,12 +96,12 @@ function loadUserInfo(userid){
 		}
 		$("#birthday").val(data.rows[0].birthday);
 		$("#telephone").val(data.rows[0].telephone);
-		$("#email").val(email);
+		$("#email").val(data.rows[0].email);
 		$("#address").val(data.rows[0].address);
 		$("#signs").val(data.rows[0].signs);
-
+		//alert(data.rows[0].picPath);
 		if(data.rows[0].picPath){
-			$("#pic").attr("src",data.rows[0]);
+			$("#pic").attr("src",data.rows[0].picPath);
 		}else{
 			$("#pic").attr("src", "../images/not_pic.jpg");
 		}
@@ -115,7 +113,7 @@ $("#PerInfoForm").form({
 	success:function(data){
 		$.messager.show({
 			title:'修改个人信息',
-			msg:'修改个人信息' + (data ? "成功..." : "失败!!!"),
+			msg:'修改个人信息' + (data=="true" ? "成功..." : "失败!!!"),
 			showType:'show',
 			style:{
 				top:document.body.scrollTop+document.documentElement.scrollTop,
@@ -127,7 +125,7 @@ $("#PerInfoForm").form({
 
 
 $("#updatePic").form({
-	url:"../user/update",
+	url:"../user/updatePic",
 	success:function(data){
 		$.messager.show({
 			title:'修改个人图片信息',
@@ -139,6 +137,7 @@ $("#updatePic").form({
 		});
 	}
 })
+
 
 function chgPic(obj){
 	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));

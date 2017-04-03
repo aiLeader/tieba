@@ -56,10 +56,13 @@
 				</form>
 			</div>
 			<div id="second">
-				<form method="post" id="updatePic">
-					<input id="upicPath" type="file" name="picPath"
-						onchange="chgPic(this)" /><br> <img name="picPath" id="pic"
-						src="../images/not_pic.jpg" onchange="chgPic(this)">
+				<form method="post" id="updatePic" enctype="multipart/form-data">
+					<input id="upicPath" type="file" name="picData"
+						onchange="chgPic(this)"/><br> 
+					<img id="pic" src="../images/xh.jpg">
+					<input name="userid" type="hidden" value="${loginUser.userid}">
+					<input name="uname"  type="hidden" value="${loginUser.uname}"/>
+					<input type="hidden" name="signs" value="${loginUser.signs}">
 					<button type="submit">保存</button>
 				</form>
 			</div>

@@ -9,4 +9,5 @@ public interface UsersService {
 	boolean updateUser(Users users);
 	int insertUser(Users users);
 	Users login(Users user);
+	boolean updateUserPic(Users users);
 }
