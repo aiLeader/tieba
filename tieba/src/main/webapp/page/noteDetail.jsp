@@ -122,30 +122,6 @@
 		<div class="col-md-3 column" >
 			<p id="pstyle">贴吧分类</p>
 			<ul id="ulstyle">
-				<li>
-					<a href="#">王俊凯艺考</a>
-				</li>
-				<li>
-					<a href="#">大唐荣耀</a>
-				</li>
-				<li>
-					<a href="#">三生三世</a>
-				</li>
-				<li>
-					<a href="#">韩国萨德</a>
-				</li>
-				<li>
-					<a href="#">因为遇见你</a>
-				</li>
-				<li>
-					<a href="#">王牌对王牌</a>
-				</li>
-				<li>
-					<a href="#">高能少年团</a>
-				</li>
-				<li>
-					<a href="#">花儿与少年</a>
-				</li>
 			</ul>
 		</div>
 		<!-- <div class="col-md-6 column"> -->
@@ -230,22 +206,7 @@
 		<div class="col-md-3 column">
 			<p id="pstyle">贴吧热议榜</p>
 			<div id="olstyle">
-				<ol>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
-					<li>
-						<a href="#">易烊千玺</a>
-					</li>
+				<ol id="hot">
 				</ol>
 			</div>
 			
@@ -287,7 +248,7 @@
 </div>
 <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../js/noteDetail.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#toggle").click(function() {

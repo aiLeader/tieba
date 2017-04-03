@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.tieba.entity.NoteInfo;
-import com.yc.tieba.mapper.NoteMapper;
 import com.yc.tieba.service.NoteService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,15 +21,15 @@ public class NoteServiceTest {
 	@Test
 	public void testFindNote() {
 		
-		System.out.println(noteService.findNote("10", "1",null));
-		assertNotNull(noteService.findNote("10", "1", null));
+		System.out.println(noteService.findNote("1", "10",null));
+		assertNotNull(noteService.findNote("1", "10", null));
 	}
 	
 	@Test
 	public void testFindNoteTyID() {
 		
-		System.out.println(noteService.findNote("10", "1","贴主莱因哈特"));
-		assertNotNull(noteService.findNote("10", "1", "贴主莱因哈特"));
+		System.out.println(noteService.findNote("1", "10","贴主莱因哈特"));
+		assertNotNull(noteService.findNote("1", "10", "贴主莱因哈特"));
 	}
 	
 	@Test
@@ -38,8 +37,13 @@ public class NoteServiceTest {
 		NoteInfo rowData = new NoteInfo();
 		rowData.setNstatus(0);
 		rowData.setNstates(0);
-		rowData.setNid("100");
+		rowData.setNid("10004");
 		noteService.updateNote(rowData);
 	}
-
+	
+	@Test
+	public void testListNoteByNum() {
+		System.out.println(noteService.listNoteOrderByNum());
+		assertNotNull(noteService.listNoteOrderByNum());
+	}
 }
