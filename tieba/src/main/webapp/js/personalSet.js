@@ -78,3 +78,71 @@ $('.ship').click(function () {
 	$('#third').removeClass('active');
 	$('#fourth').addClass('active');
 });
+var email=null;
+var username=document.getElementById("username");
+var uname=$("#username").val();
+//alert(uname);
+loadUserInfo(uname);
+function loadUserInfo(uname){
+	$.get("../user/list",{options:uname}, function(data){
+		email=data.rows[0].email;
+		//alert(email);
+		//alert(data.rows[0].birthday);
+		if(data.rows[0].sex=='男'){
+			$(":radio[name='sex'][value='男']").attr("checked","true");
+		}else{
+			$(":radio[name='sex'][value='女']").attr("checked","true");
+		}
+		$("#birthday").val(data.rows[0].birthday);
+		$("#telephone").val(data.rows[0].telephone);
+		$("#email").val(email);
+		$("#address").val(data.rows[0].address);
+		$("#signs").val(data.rows[0].signs);
+
+		if(data.rows[0].picPath){
+			$("#pic").attr("src",data.rows[0]);
+		}else{
+			$("#pic").attr("src", "../images/not_pic.jpg");
+		}
+	},"json")
+}
+
+$("#PerInfoForm").form({
+	url:"../user/update",
+	success:function(data){
+		alert(data);
+		$.messager.show({
+			title:'修改个人信息',
+			msg:'修改个人信息' + (data ? "成功..." : "失败!!!"),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+	}
+})
+
+
+$("#updatePic").form({
+	url:"../user/update",
+	success:function(data){
+		alert(data);
+		$.messager.show({
+			title:'修改个人图片信息',
+			msg:'修改个人图片信息' + (data=="true" ? "成功..." : "失败!!!"),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+	}
+})
+
+function chgPic(obj){
+	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
+
+
+
+
+
