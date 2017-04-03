@@ -1,0 +1,4 @@
+$("#topcontent"){
+	
+}
+UE.getEditor('topcontent');

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
+<mapper namespace="com.yc.tieba.mapper.TypesMapper">
+	<!-- <select id="listTypes" resultType="Types">
+		select * from types where tstate in(1,-1) order by tid
+	</select> -->
+	<insert id="addTypes" parameterType="Types">
+		insert into types(tid,tname,tnum,tdesc,tstate) values(types_id.nextval,#{tname},0,#{tdesc},1)
+	</insert>
+	<update id="modifyTypes" parameterType="Types">
+		update types 
+		<set>
+			<if test="tname != null">tname=#{tname},</if>
+			<if test="tdesc != null">tdesc=#{tdesc},</if>
+			<if test="tstate != null">tstate=#{tstate}</if>
+		</set>
+		where tid=#{tid}
+	</update>
+	<!-- <update id="deleteTypes" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+		        update types
+		        <set>
+		            tstate=0
+		        </set>
+		        where tid = ${item.tid}
+	    </foreach>  
+	</update> -->
+	<update id="deleteTypes" parameterType="Types">
+        update types
+        <set>
+            tstate=0
+        </set>
+        where tid in (${tid})
+	</update>
+	
+	<!-- 嵌套查询的分页处理 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="Types"
+			select="getPaginationTypes" />
+	</resultMap>
+	<select id="listTypes" resultMap="PaginationBeanMap"
+		parameterType="PaginationBean">
+		select count(1) total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from types 
+	</select>
+	<select id="getPaginationTypes" resultType="Types">
+		select * from
+		(select n.*,rownum rn from
+		(select * from types where tstate in(1,-1) order by tid) n where #{pageSize} *
+		#{currPage}>=rownum)
+		where rn > #{pageSize} * (#{currPage}-1)
+	</select>
+</mapper>
