@@ -11,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,7 +38,7 @@ public class UsersHandler {
 			return "redirect:../index.jsp";
 		}else{
 			map.addAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!");
-			return "redirect:login.jsp";
+			return "redirect:../login.jsp";
 		}
 	}
 	
@@ -67,7 +66,6 @@ public class UsersHandler {
 	}
 	
 	
-	@SuppressWarnings("unused")
 	@Autowired
 	private JavaMailSender mailSender;
 	@RequestMapping("sendMail")
