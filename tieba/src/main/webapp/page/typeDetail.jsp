@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" isELIgnored="false"%>
+    pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>首页</title>
+<base href="${deployName }">
+<meta content="text/html; charset=utf-8">
+<title>板块详情</title>
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
 
@@ -119,37 +120,12 @@
 		</div>
 	</div>
 	<div class="row clearfix" style="margin-top:40px">
-		<div class="col-md-3 column" >
-			<p id="pstyle">贴吧分类</p>
-			<ul id="ulstyle">
-				<!-- <li>
-					<a href="#">王俊凯艺考</a>
-				</li>
-				<li>
-					<a href="#">大唐荣耀</a>
-				</li>
-				<li>
-					<a href="#">三生三世</a>
-				</li>
-				<li>
-					<a href="#">韩国萨德</a>
-				</li>
-				<li>
-					<a href="#">因为遇见你</a>
-				</li>
-				<li>
-					<a href="#">王牌对王牌</a>
-				</li>
-				<li>
-					<a href="#">高能少年团</a>
-				</li>
-				<li>
-					<a href="#">花儿与少年</a>
-				</li> -->
-			</ul>
-		</div>
 		<!-- <div class="col-md-6 column"> -->
-		<div class="col-md-6 column" id="center">
+		<div class="col-md-9 column" id="center">
+			<div id="top">
+				<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
+				<button>发送</button>
+			</div>
 			<div id="content">
 			<p>
 				<a id="title" href="page/noteDetail.jsp" style="padding-right:21px">Heading</a>
@@ -168,6 +144,12 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
+				<a  href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
+				<!-- 点击评论 -->
+				<div id="comm" style="display: none;">
+					<textarea rows="4" cols="80"></textarea><br>
+					<button>提交</button>
+				</div>
 			</p>
 			<p>
 				 <a class="btn" href="page/noteDetail.jsp">View details »</a>
@@ -192,6 +174,7 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
+				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="#">View details »</a>
@@ -216,6 +199,7 @@
 				2017-2-28 20:20
 				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
+				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
 			</p>
 			<p>
 				 <a class="btn" href="#">View details »</a>
@@ -290,6 +274,19 @@
 </div>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="js/typeDetail.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#toggle").click(function() {
+		$(this).text($("#comm").is(":hidden") ? "收起" : "评论");
+		$("#comm").slideToggle();
+	});
+});
+</script>	
 </body>
 </html>

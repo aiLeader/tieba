@@ -13,8 +13,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
@@ -45,14 +47,11 @@ public class UsersHandler {
 	@RequestMapping(value="list")
 	@ResponseBody
 	private PaginationBean<Users> doFindUser(String page,String rows,String options) throws IOException {
-		System.out.println("page==>"+page+" options==>"+options+"  rows==>"+rows);
-
 		return usersService.listuser(rows,page,options);
 	}
 	@RequestMapping(value="/{userid}",method=RequestMethod.GET)
 	@ResponseBody
 	private boolean doDeleteUser(@PathVariable("userid") String userid) throws IOException {
-		System.out.println("===>"+userid);
 		return usersService.deleteUser(userid);
 	}
 	
@@ -66,13 +65,35 @@ public class UsersHandler {
 			return false;
 		}
 	}
+	@RequestMapping(value="updatePic",method=RequestMethod.POST)
+	@ResponseBody
+	private boolean doUpdateUserPic(Users users,ModelMap map,@RequestParam("picData")MultipartFile picData) throws IOException {
+		String picPath=null;
+		System.out.println("uid==>"+users);
+		if(picData!=null&& !picData.isEmpty()){//判断是否有文件上传
+			//上传文件
+			try {
+				picData.transferTo(ServletUtil.getUploadFile(picData.getOriginalFilename()));
+				picPath=ServletUtil.VIRTUAL_UPLOAD_DIR+picData.getOriginalFilename();
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		users.setPicPath(picPath);
+		if(usersService.updateUserPic(users)){
+			map.addAttribute(ServletUtil.LOGIN_USER, users);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 	
 	
 	@Autowired
 	private JavaMailSender mailSender;
 	@RequestMapping("sendMail")
 	public void sendMail(ModelMap map,String email,PrintWriter out,HttpServletRequest request){
-		//System.out.println("email==>"+email);
 		LogManager.getLogger().debug(email);
 		Integer yzm = RandomNumUtil.getRandomNumber();//生成六位不重复随机数
 		request.getSession().setAttribute("yzm",yzm.toString());
@@ -86,7 +107,6 @@ public class UsersHandler {
 	
 	@RequestMapping(value="register")
 	public String register(Users users){
-		//System.out.println("re我进来了");
 		if(usersService.insertUser(users)>0){
 			return "redirect:/login.jsp"; //重定向
 		}else{
