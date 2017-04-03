@@ -59,6 +59,7 @@ public class UsersServiceImpl implements UsersService {
 	//注册用户
 	@Override
 	public int  insertUser(Users users) {
+		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertUser(users);
 	}
 	
