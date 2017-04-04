@@ -24,7 +24,7 @@
 		</ol>
 	</div>
 	<div id="wrapper">
-		<div id="left-side">
+		<div id="left-side"> 
 			<ul>
 				<li class="choose active">基本资料</li>
 				<li class="pay">头像设置</li>
@@ -40,11 +40,12 @@
 		<div id="right-side">
 			<div id="first" class="active">
 				<form method="post" id="PerInfoForm">
-					账号:<input name="userid" id="userid" value="${loginUser.userid}" readonly="readonly"><br/>
-					 姓名:<input name="uname" id="username" value="${loginUser.uname}" ><br />
-					性别:<input type="radio" name="sex" value="男">男<input
-						type="radio" name="sex" value="女">女<br /> 生日:<input
-						id="birthday" name="birthday" type="text" class="easyui-datebox"
+					账号:<input name="userid" id="userid" value="${loginUser.userid}"
+						readonly="readonly"><br /> 姓名:<input name="uname"
+						id="username" value="${loginUser.uname}"><br /> 性别:<input
+						type="radio" name="sex" value="男">男<input type="radio"
+						name="sex" value="女">女<br /> 生日:<input id="birthday"
+						name="birthday" type="text" class="easyui-datebox"
 						required="required"></input><br /> 电话:<input type="text"
 						name="telephone" id="telephone"> <br /> 邮箱:<input
 						type="email" name="email" id="email" readonly="readonly">
@@ -52,28 +53,31 @@
 					<br /> 签名:
 					<textarea id="signs" name="signs"></textarea>
 					<br />
+					<input name="picPath" type="hidden" value="${loginUser.picPath}"> 
 					<button type="submit">保存</button>
 				</form>
 			</div>
 			<div id="second">
 				<form method="post" id="updatePic" enctype="multipart/form-data">
 					<input id="upicPath" type="file" name="picData"
-						onchange="chgPic(this)"/><br> 
-					<img id="pic" src="../images/xh.jpg" width="100" height="100" >
-					<input name="userid" type="hidden" value="${loginUser.userid}">
-					<input name="uname"  type="hidden" value="${loginUser.uname}"/>
-					<input type="hidden" name="signs" value="${loginUser.signs}">
+						onchange="chgPic(this)" /><br> <img id="pic"
+						src="../images/xh.jpg" width="100" height="100"> <input
+						name="userid" type="hidden" value="${loginUser.userid}"> <input
+						name="uname" type="hidden" value="${loginUser.uname}" /> <input
+						name="sex" type="hidden" value="${loginUser.sex}" /> <input
+						type="hidden" name="signs" value="${loginUser.signs}">
 					<button type="submit">保存</button>
 				</form>
 			</div>
 			<div id="third">
 				<form>
-					请输入密码：<input type="password" name="password"><br />
-					请输入新密码：<input type="password" name="password"><br />
-					请再次输入新密码：<input type="password" name="password"><br /> <input
-						type="button" value="保存">
+					请输入密码：<input type="password" name="password" id="pwd"
+						required="required"> <br /> 
+					请输入新密码：<input type="password"
+						name="npassword" required="required" id="ypwd"><br /> 
+					请再次输入新密码：<input type="password" id="npwd" name="anpassword" required="required"><br />
+					<input type="button" onclick="insertPwd()" value="保存">
 				</form>
-
 			</div>
 			<div id="fourth">
 				<h1>Ship it</h1>
@@ -88,8 +92,7 @@
 	</div>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript"
-		src="../easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../js/personalSet.js"></script>
 
 </body>
