@@ -13,4 +13,5 @@ public interface UsersMapper {
 	int insertUser(Users users);
 	Users login(Users user);
 	int updateUserPic(Users users);
+	int insertnpwd(Users users);
 }
