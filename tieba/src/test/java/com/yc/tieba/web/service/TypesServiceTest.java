@@ -37,10 +37,10 @@ public class TypesServiceTest {
 	@Test
 	public void testModifyTypes() {
 		Types types = new Types();
-		types.setTid("104");
-		types.setTname("国足");
-		types.setTdesc("中国1:0韩国");
-		types.setTstate(-1);
+		types.setTid("100");
+		types.setTname("三生三世");
+		types.setTdesc("杨洋");
+		types.setTstate(1);
 		int t = typesService.modifyTypes(types);
 		System.out.println(t);
 		assertEquals(1, t);

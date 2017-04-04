@@ -27,6 +27,7 @@ public class TypesHandler {
 	@RequestMapping(value="add",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public boolean addTypes(Types types){
+		System.out.println(types);
 		return typesService.addTypes(types)>0;
 	}
 	@RequestMapping(value="modify",produces="application/json;charset=utf-8")
