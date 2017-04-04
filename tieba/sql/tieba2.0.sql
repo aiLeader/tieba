@@ -14,7 +14,7 @@ drop sequence users_id;
 drop sequence note_id;
 drop sequence comments_id;
 
-
+select nid,ntitle,ncontent,note.tid,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark ,uname,tname  from note inner join users on note.userid=users.userid inner join types on note.tid=types.tid and note.tid = '101'
 
 --管理员
 create table admin(
@@ -179,6 +179,3 @@ create table secret(
 
 select * from note;
 select * from TYPES;
-bbssbqnc
-
-select * from types;

@@ -23,11 +23,11 @@ public class TypesSericeImpl implements TypesService {
 		PaginationBean<Types> pb=null;
 		int pageSize = 30;
 		int currPage = 1;
-		
+
 		if(rows != null){
 			pageSize = Integer.parseInt(rows);
 		}
-		
+
 		if(page != null){
 			currPage = Integer.parseInt(page);
 			if(currPage <= 0){
@@ -43,7 +43,7 @@ public class TypesSericeImpl implements TypesService {
 
 	@Override
 	public int addTypes(Types types) {
-		
+
 		return typesMapper.addTypes(types);
 	}
 
@@ -59,7 +59,7 @@ public class TypesSericeImpl implements TypesService {
 
 	@Override
 	public PaginationBean<NoteInfo> findNotes(String page, String rows,String typesName) {
-		
+
 		int pageSize=10; //条数
 		int currPage=1; //当前页
 		if(rows!=null){
@@ -79,6 +79,29 @@ public class TypesSericeImpl implements TypesService {
 		}
 		int typesId = typesMapper.findId(typesName);
 		map.put("typesId", String.valueOf(typesId));
+		return typesMapper.findNotes(map);
+	}
+
+	@Override
+	public PaginationBean<NoteInfo> findNotesByTid(String tid, String page) {
+		int pageSize=5; //条数
+		int currPage=1; //当前页
+		if(page!=null){
+			currPage=Integer.parseInt(page);
+			if(currPage<=0){
+				currPage=1;
+			}
+		}	
+		Map<String ,String> map = new HashMap<String, String>();
+		map.put("pageSize", String.valueOf(pageSize));
+		map.put("currPage",String.valueOf(currPage));
+		map.put("typesId", tid);
+		PaginationBean<NoteInfo> noteInfo = typesMapper.findNotes(map);
+		int totalPage = noteInfo.getTotalPage();
+		if(currPage>totalPage){
+			currPage = totalPage;
+			map.put("currPage",String.valueOf(currPage));
+		}
 		return typesMapper.findNotes(map);
 	}
 
