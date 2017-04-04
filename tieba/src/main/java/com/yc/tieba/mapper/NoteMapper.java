@@ -21,5 +21,7 @@ public interface NoteMapper {
 
 	int updateNote(NoteInfo rowData);
 
+	PaginationBean<NoteInfo> indexListNote(PaginationBean<NoteInfo> pb);
+	
 	List<NoteInfo> listNoteOrderByNum();
 }

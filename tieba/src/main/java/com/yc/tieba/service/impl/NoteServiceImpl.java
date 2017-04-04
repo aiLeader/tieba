@@ -66,6 +66,23 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
+	public PaginationBean<NoteInfo> indexfindNote(String page, String rows) {
+		int pageSize = 5;
+		int currPage = 1;
+		if(rows!=null){
+			pageSize=Integer.parseInt(rows);
+		}
+		if(page!=null&&!page.equals("nop")){
+			currPage=Integer.parseInt(page);
+			if(currPage<=0){
+				currPage=1;
+			}
+		}
+		PaginationBean<NoteInfo> pb= new PaginationBean<NoteInfo>();
+		pb.setCurrPage(currPage);
+		pb.setPageSize(pageSize);
+		return noteMapper.indexListNote(pb);
+	}
 	public List<NoteInfo> listNoteOrderByNum() {
 		return noteMapper.listNoteOrderByNum();
 	}
