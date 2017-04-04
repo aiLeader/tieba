@@ -195,6 +195,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update note set nstatus
 		=#{nstatus},nstates=#{nstates} where nid = #{nid}
 	</update>
+	
 	<!-- 主页显示note -->
 	<resultMap type="PaginationBean" id="PaginationBeanMapLs">
 		<result property="pageSize" column="PageSize" />

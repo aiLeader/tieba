@@ -2,13 +2,13 @@ package com.yc.tieba.web.service;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Types;
 import com.yc.tieba.service.TypesService;
@@ -62,4 +62,13 @@ public class TypesServiceTest {
 		System.out.println(typesService.findNotes("1","10","bbssbqnc"));
 		assertNotNull(typesService.findNotes("1","10","bbssbqnc"));
 	}
+	
+	
+	@Test
+	public void testTFindNoteBytid() {
+		PaginationBean<NoteInfo> pb = typesService.findNotesByTid("101", "1");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
+	
 }

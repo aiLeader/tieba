@@ -16,4 +16,6 @@ public interface TypesService {
 
 	PaginationBean<NoteInfo> findNotes(String page, String rows,String typesName);
 
+	PaginationBean<NoteInfo> findNotesByTid(String tid, String page);
+
 }

@@ -127,23 +127,8 @@
 				<button>发送</button>
 			</div>
 			<div id="content"></div>
-		
-			<!-- 分页 -->
-			<ul class="pagination">
-			<li>
-					 <a href="#">首页</a>
-					 </li>
-				<li>
-					 <a href="#">上一页</a>
-					 </li>
-				<li>
-					 <a href="#">下一页</a>
-				</li>
-				<li>
-					 <a href="#">尾页</a>
-					 </li>
-			</ul>
 		</div>
+			
 		<div class="col-md-3 column">
 			<p id="pstyle">帖子热议榜</p>
 			<div id="olstyle">

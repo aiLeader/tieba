@@ -21,6 +21,4 @@ public interface TypesMapper {
 	int findId(String typesName);
 
 	PaginationBean<NoteInfo> findNotes(Map<String, String> map);
-
-
 }

@@ -3,7 +3,9 @@ package com.yc.tieba.web.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -42,10 +44,9 @@ public class TypesHandler {
 	
 	@RequestMapping(value="findNote",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public PaginationBean<NoteInfo>  findTypesNote(String page, String rows,String typesName){ 
-		System.out.println("  page  : "+page+"   rows  : "+"typesName   :  "+typesName);
-		return null;
-		//return typesService.findNotes(page,rows,typesName);
+	public PaginationBean<NoteInfo>  findTypesNote(String page, String tid){ 
+		System.out.println("  page  : "+page+" tid   :  "+tid);
+		return typesService.findNotesByTid(tid,page);
 	}
 	
 	
