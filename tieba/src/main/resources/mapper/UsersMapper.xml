@@ -105,11 +105,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 			userid=#{userid}
 	</update>
+	<!-- 用户更新图片信息 -->
 	<update id="updateUserPic"  parameterType="Users">
 	update users
 	<set>
 		<if test="picPath!=null">
 			picPath=#{picPath}
+		</if>
+		where
+			userid=#{userid}
+	</set>
+	</update>
+	<!-- 用户修改密码 -->
+	<update id="insertnpwd" parameterType="Users">
+		update users
+	<set>
+		<if test="password!=null">
+			password=#{password}
 		</if>
 		where
 			userid=#{userid}

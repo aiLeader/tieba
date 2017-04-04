@@ -123,8 +123,11 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-9 column" id="center">
 			<div id="top">
-				<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
-				<button>发送</button>
+				<form>
+					标题：<input name="ntitle">
+					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
+					<button>发送</button>
+				</form>
 			</div>
 			<div id="content"></div>
 		</div>
