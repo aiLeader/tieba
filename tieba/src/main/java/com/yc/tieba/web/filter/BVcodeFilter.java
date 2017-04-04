@@ -40,7 +40,7 @@ public class BVcodeFilter extends AbstractFilter {
 		} else {
 			LogManager.getLogger().debug("验证码失败...");
 			session.setAttribute("emailError", "验证码错误");
-			((HttpServletResponse) response).sendRedirect("register1.jsp");
+			((HttpServletResponse) response).sendRedirect("register.jsp");
 		}
 	}
 

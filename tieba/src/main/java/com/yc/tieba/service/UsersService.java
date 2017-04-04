@@ -10,4 +10,5 @@ public interface UsersService {
 	int insertUser(Users users);
 	Users login(Users user);
 	boolean updateUserPic(Users users);
+	boolean insertnpwd(Users user);
 }
