@@ -178,4 +178,5 @@ create table secret(
 
 
 select * from note;
-select * from TYPES;
+select * from TYPES where tid=101;
+
