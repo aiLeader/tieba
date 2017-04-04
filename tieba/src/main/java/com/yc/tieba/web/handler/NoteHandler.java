@@ -56,5 +56,18 @@ public class NoteHandler {
 	public List<NoteInfo> listNoteOrderByNum(){
 		return noteService.listNoteOrderByNum();
 	}
-	//显示
+	//显示用户的全部帖子
+	@RequestMapping(value="showByUserid")
+	@ResponseBody
+	public PaginationBean<NoteInfo> listFind(String userid,String page){
+		System.out.println(noteService.showByUserid(userid,page,"5"));
+		return noteService.showByUserid(userid,page,"5");
+	}
+	
+	//存入帖子
+	@RequestMapping(value="insertNote")
+	@ResponseBody
+	public boolean insertNote(String title,String userid,String tid,String nconent){
+		return noteService.insertNote(title,userid,tid,nconent)>0;
+	}
 }

@@ -27,6 +27,7 @@
 					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="../images/mr.jpg">
 				</c:otherwise>
 			</c:choose>
+			<input type="hidden" value="${loginUser.userid}" id="userid">
 			<p id="uname">${loginUser.uname}</p>
 			<p id="sex">${loginUser.sex}</p>
 			&nbsp;&nbsp;个性签名：<p id="sign">${loginUser.signs}</p>

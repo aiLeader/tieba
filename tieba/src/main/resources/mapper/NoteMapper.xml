@@ -120,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		uname,t.tname tname from note o,users u,types t where
 		o.nstatus in
 		(0,1)
-		<if test="options!=null"> tid like '${options}%' and o.tid = '${options}'
+		<if test="options!=null"> and o.tid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
@@ -169,18 +169,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getnote03" resultMap="NoteInfoMap">
 		select * from
-		(select n.*, rownum rn from (select * from note where
-		nstatus in (0,1) and nstates in (0,1) (select o.*,u.uname
+		(select n.*, rownum rn from
+		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
 		o.nstatus in
 		(0,1)
-		<if test="options!=null">
-			and o.userid ='${options}'
+		<if test="options!=null"> and o.userid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}*
-		${currPage} >= rownum)
+		where ${pageSize}* ${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
@@ -252,5 +250,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select n.*,rownum
 		from NOTE n where 5>=rownum order by nnum desc
 	</select>
+	
+	<!-- 显示用户的所有帖子 -->
+	
+	
+	
+	<!-- 添加帖子 -->
+	<insert id="insertNote" parameterType="map">
+	insert into note 
+	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
+	values(note_id.nextval,'${title}','${nconcent}','${tid}','${userid}',sysdate,0,0,0,1,1)
+	</insert>
 </mapper>
 

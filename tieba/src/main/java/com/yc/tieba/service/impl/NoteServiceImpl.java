@@ -86,4 +86,40 @@ public class NoteServiceImpl implements NoteService {
 	public List<NoteInfo> listNoteOrderByNum() {
 		return noteMapper.listNoteOrderByNum();
 	}
+
+	@Override
+	public PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows) {
+		int pageSize=10; //条数
+		int currPage=1; //当前页
+		if(rows!=null){
+			pageSize=Integer.parseInt(rows);
+		} 
+		if(page!=null){
+			currPage=Integer.parseInt(page);
+			if(currPage<=0){
+				currPage=1;
+			}
+		}
+		rows=String.valueOf(pageSize);
+		page=String.valueOf(currPage);
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("pageSize", String.valueOf(pageSize));
+		map.put("currPage",String.valueOf(currPage));
+		map.put("options", userid);
+		return noteMapper.findNoteUs(map);
+	}
+
+	@Override
+	public int insertNote(String title,String userid, String tid, String nconent) {
+		Map<String,String> map=new HashMap<String,String>();
+		if(title!=null && userid!=null && tid!=null && nconent!=null ){
+			map.put("title", title);
+			map.put("userid", userid);
+			map.put("tid",tid);
+			map.put("noconent", nconent);
+			return noteMapper.insertNote(map);
+		}else{
+			return -1;
+		}
+	}
 }
