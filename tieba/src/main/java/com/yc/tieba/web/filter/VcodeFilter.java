@@ -39,6 +39,5 @@ public class VcodeFilter extends AbstractFilter{
 			((HttpServletResponse) response).sendRedirect("/tieba/login.jsp");
 		}
 		
-		
-	}
+	}                                     
 }

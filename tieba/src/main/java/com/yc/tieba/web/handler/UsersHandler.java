@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,7 @@ import com.yc.tieba.util.ServletUtil;
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
-	
+	 
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(Users user,ModelMap map){
 		user= usersService.login(user);
@@ -43,7 +44,6 @@ public class UsersHandler {
 			return "redirect:../login.jsp";
 		}
 	}
-	
 	@RequestMapping(value="list")
 	@ResponseBody
 	private PaginationBean<Users> doFindUser(String page,String rows,String options) throws IOException {
@@ -69,7 +69,6 @@ public class UsersHandler {
 	@ResponseBody
 	private boolean doUpdateUserPic(Users users,ModelMap map,@RequestParam("picData")MultipartFile picData) throws IOException {
 		String picPath=null;
-		System.out.println("uid==>"+users);
 		if(picData!=null&& !picData.isEmpty()){//判断是否有文件上传
 			//上传文件
 			try {
@@ -113,6 +112,21 @@ public class UsersHandler {
 			return "/register.jsp"; //转发
 		}
 	}
-
+	@RequestMapping(value="updatepwd",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean updatePwd(@RequestBody Users user){
+		user= usersService.login(user);
+		if(user!=null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	@RequestMapping(value="insertpwd",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean insertPwd(@RequestBody Users user){
+		LogManager.getLogger().debug("修改密码。。。user==>"+user);
+		return usersService.insertnpwd(user);
+	}
 		
 }

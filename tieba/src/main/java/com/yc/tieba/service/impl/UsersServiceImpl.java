@@ -64,5 +64,10 @@ public class UsersServiceImpl implements UsersService {
 	public boolean updateUserPic(Users users) {
 		return usersMapper.updateUserPic(users)>0;
 	}
+	@Override
+	public boolean insertnpwd(Users users) {
+		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
+		return usersMapper.insertnpwd(users)>0;
+	}
 	
 }
