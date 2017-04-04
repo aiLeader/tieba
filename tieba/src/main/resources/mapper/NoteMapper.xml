@@ -246,7 +246,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据评论数量显示前五条帖子 -->
 	<select id="listNoteOrderByNum" resultType="NoteInfo">
 		select n.*,rownum
-		from NOTE n where 5>=rownum order by nnum desc
+		from NOTE n where n.nstatus=1 and 5>=rownum order by nnum desc
 	</select>
 	
 	

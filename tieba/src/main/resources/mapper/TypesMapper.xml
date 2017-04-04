@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="typesId==null">
 			,'' typesId
 		</if>
-		from note where nstatus in (0,1) and nstates in (0,1)
+		from note where nstatus =1 and nstates in (0,1)
 		<if test="typesId!=null">
 			and tid = #{typesId}
 		</if>
@@ -110,8 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in
-		(0,1)
+		o.nstatus =1
 		<if test="typesId!=null">
 			and o.tid=#{typesId}
 		</if>
