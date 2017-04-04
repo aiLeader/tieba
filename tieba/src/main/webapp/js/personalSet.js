@@ -1,5 +1,5 @@
 var userid=$("#userid").val();
-
+var password=null;
 $('.choose').click(function () {
 	$('.choose').addClass('active');
 	$('.choose > .icon').addClass('active');
@@ -29,7 +29,7 @@ $('.pay').click(function () {
 	$('#line').removeClass('three');
 	$('#line').removeClass('four');
 	loadUserInfo(userid);
-	
+
 });
 $('.wrap').click(function () {
 	$('.wrap').addClass('active');
@@ -44,6 +44,7 @@ $('.wrap').click(function () {
 	$('#line').removeClass('two');
 	$('#line').removeClass('one');
 	$('#line').removeClass('four');
+	loadUserInfo(userid);
 });
 $('.ship').click(function () {
 	$('.ship').addClass('active');
@@ -89,6 +90,7 @@ $('.ship').click(function () {
 loadUserInfo(userid);
 function loadUserInfo(userid){
 	$.get("../user/list",{options:userid}, function(data){
+		password=data.rows[0].password;
 		if(data.rows[0].sex=='男'){
 			$(":radio[name='sex'][value='男']").attr("checked","true");
 		}else{
@@ -99,7 +101,6 @@ function loadUserInfo(userid){
 		$("#email").val(data.rows[0].email);
 		$("#address").val(data.rows[0].address);
 		$("#signs").val(data.rows[0].signs);
-		//alert(data.rows[0].picPath);
 		if(data.rows[0].picPath){
 			$("#pic").attr("src",data.rows[0].picPath);
 		}else{
@@ -137,6 +138,66 @@ $("#updatePic").form({
 		});
 	}
 })
+var mima=document.getElementById("pwd");
+mima.onblur=function(){
+	if($('#pwd').val()==null ||$('#pwd').val()==""){
+		$.messager.alert('警告','请输入原密码！！！');    
+	}else{
+		var pwd=$('#pwd').val();
+		var param={password:pwd,userid:userid}; //创建一个javascript对象
+		$.ajax({
+			type:"post",
+			url:"../user/updatepwd",
+			async:false, //进行同步请求
+			data:JSON.stringify(param), //json格式的请求参数
+			dataType:"json", //指定返回的数据为json格式
+			contentType:"application/json;charset=utf-8",//指定请求数据为json格式
+			success:function(data){
+				if(data){
+				}else{
+					$.messager.alert('提示','原密码不正确，请重新输入！！'); 
+				}
+
+			}
+		});
+	}
+}
+var pwd=document.getElementById("npwd");
+pwd.onblur=function(){
+	var ypwd=$("#ypwd").val();
+	var npwd=$("#npwd").val();
+	if(ypwd!==npwd){
+		$.messager.alert('提示','两次密码输入不一致'); 
+	}else{
+		
+
+	}
+}
+function insertPwd(){
+	var yypwd=$("#ypwd").val();
+	var param={password:yypwd,userid:userid}; //创建一个javascript对象
+	if($("#ypwd").val()!=$("#npwd").val()){
+		$.messager.alert('提示','两次密码输入不一致'); 
+	}else{
+		$.ajax({
+			type:"post",
+			url:"../user/insertpwd",
+			async:false, //进行同步请求
+			data:JSON.stringify(param), //json格式的请求参数
+			dataType:"json", //指定返回的数据为json格式
+			contentType:"application/json;charset=utf-8",//指定请求数据为json格式
+			success:function(data){
+				if(data){
+					$.messager.alert('提示','密码修改成功...');
+				}else{
+					$.messager.alert('提示','密码修改失败！！'); 
+				}
+
+			}
+		});
+	}
+	
+}
 
 
 function chgPic(obj){
