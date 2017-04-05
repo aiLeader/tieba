@@ -56,4 +56,9 @@ public class NoteHandler {
 	public List<NoteInfo> listNoteOrderByNum(){
 		return noteService.listNoteOrderByNum();
 	}
+	@RequestMapping("getNoteById")
+	@ResponseBody
+	public NoteInfo findNoteById(@RequestParam("nid")String nid){
+		return noteService.findNoteById(nid);
+	}
 }

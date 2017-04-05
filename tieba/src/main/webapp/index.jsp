@@ -128,6 +128,7 @@
 		<div class="col-md-6 column" id="center">
 		<!-- 主页的帖子显示div -->
 		<div id="indexNoteContent"></div>
+		</div>
 		<div class="col-md-3 column">
 			<p id="pstyle">帖子热议榜</p>
 			<div id="olstyle">
@@ -136,22 +137,6 @@
 			
 			<p id="pstyle">帖子推荐</p>
 			<ul id="ulstyle">
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王源吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王源吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王源吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王源吧</a>
-				</li>
 				<li>
 					<image id="picPath" src="images/mr.jpg">
 					<a href="#">王源吧</a>

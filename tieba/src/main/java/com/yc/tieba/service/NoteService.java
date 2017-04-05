@@ -18,4 +18,6 @@ public interface NoteService {
 
 	List<NoteInfo> listNoteOrderByNum();
 
+	NoteInfo findNoteById(String nid);
+
 }

@@ -86,4 +86,9 @@ public class NoteServiceImpl implements NoteService {
 	public List<NoteInfo> listNoteOrderByNum() {
 		return noteMapper.listNoteOrderByNum();
 	}
+
+	@Override
+	public NoteInfo findNoteById(String nid) {
+		return noteMapper.findNoteById(nid);
+	}
 }

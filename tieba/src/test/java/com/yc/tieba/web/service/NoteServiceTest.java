@@ -55,4 +55,11 @@ public class NoteServiceTest {
 		System.out.println(noteService.listNoteOrderByNum());
 		assertNotNull(noteService.listNoteOrderByNum());
 	}
+	
+	@Test
+	public void testNoteById() {
+		NoteInfo pb = noteService.findNoteById("10020");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
 }

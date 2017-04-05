@@ -24,4 +24,6 @@ public interface NoteMapper {
 	PaginationBean<NoteInfo> indexListNote(PaginationBean<NoteInfo> pb);
 	
 	List<NoteInfo> listNoteOrderByNum();
+
+	NoteInfo findNoteById(String nid);
 }
