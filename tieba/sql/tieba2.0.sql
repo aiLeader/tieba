@@ -128,6 +128,7 @@ update note set ntitle='王源表情包',ncontent='茫茫人海中遇见你 如�
 update note set ntitle='超少年密码',ncontent='茫茫人海中遇见你 如同阳光照进心底 最美的时光有你相依' where nid='10006';
 update note set ntitle='最美的时光 因为遇见你',ncontent='茫茫人海中遇见你 如同阳光照进心底 最美的时光有你相依' where nid='10007';
 update note set ntitle='王源天黑黑',ncontent='茫茫人海中遇见你 如同阳光照进心底 最美的时光有你相依' where nid='10008';
+update note set nstatus =1 where nstatus=0;
 --查询用户的所有帖子
 select n.ntitle,n.ncontent,n.ngood,n.ntimes,u.uname from note n join users u on n.userid = u.userid where u.userid='1001';
 
@@ -156,14 +157,20 @@ sysdate,0,1,0,'' from dual connect by level<=10;
 select * from comments;
 
 --收藏表
-
- create table store(
-    userid varchar2(5) constraint fk_store_userid references users(userid),--用户id 外键 
-    tid varchar2(5) constraint fk_store_tid references types(tid),--版块id  外键
+drop table store;
+create table store(
+    storeuserid varchar2(5) constraint fk_store_userid references users(userid),--用户id 外键 
+    nid varchar2(5) constraint fk_store_nid references note(nid),--帖子id  外键
     sttimes date,
     status NUMBER DEFAULT 1 CONSTRAINT store_status CHECK(status IN(0,1)),--是否删除   0删除
     stremark varchar2(20)
 );
+insert into store values('1001','10021',sysdate,1,'');
+insert into store values('1001','10020',sysdate,1,'');
+--显示用户收藏的帖子
+select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid;
+
+select * from store;
 
 --关注表
 

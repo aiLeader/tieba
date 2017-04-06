@@ -14,7 +14,6 @@ function IndexListNote(url){
 		$("#indexNoteContent").empty();
 		for(var i=0;i<data.rows.length;i++){
 			$("#indexNoteContent").append('<div id="content"><p><a id="title" href="page/noteDetail.jsp" style="padding-right:21px">'+data.rows[i].ntitle+'</a>'
-			+'<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink"><span class="glyphicon glyphicon-plus"></span>关注</button>'
 			+'</p><p>'+data.rows[i].ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="#" style="padding-right:30px">'+data.rows[i].users.uname+'</a>'
 			+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.rows[i].ntimes+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">'+data.rows[i].ngood+'</a>'
 			+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>'

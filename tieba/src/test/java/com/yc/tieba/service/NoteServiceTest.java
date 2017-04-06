@@ -1,4 +1,4 @@
-package com.yc.tieba.web.service;
+package com.yc.tieba.service;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +17,7 @@ import com.yc.tieba.service.NoteService;
 public class NoteServiceTest {
 
 	@Autowired
-	NoteService noteService;
+	private NoteService noteService;
 	
 	@Test
 	public void testFindNote() {
