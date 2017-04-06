@@ -3,6 +3,7 @@ package com.yc.tieba.service;
 import java.util.List;
 
 import com.yc.tieba.entity.Comments;
+import com.yc.tieba.entity.PaginationBean;
 
 public interface CommentsService {
 	List<Comments> listAllComm();
@@ -18,4 +19,6 @@ public interface CommentsService {
 	boolean banCommn(String cid);
 
 	boolean letComm(String cid);
+
+	PaginationBean<Comments> findComByNid(String nid, String page);
 }

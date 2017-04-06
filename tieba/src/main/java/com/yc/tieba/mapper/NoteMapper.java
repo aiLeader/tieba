@@ -26,4 +26,7 @@ public interface NoteMapper {
 	List<NoteInfo> listNoteOrderByNum();
 
 	NoteInfo findNoteById(String nid);
+	
+	int insertNote(Map<String, String> map);
+
 }

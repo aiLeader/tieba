@@ -4,14 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.TypesMapper">
-	<!-- <select id="listTypes" resultType="Types">
-		select * from types where tstate in(1,-1) order by tid
-	</select> -->
+	<!-- <select id="listTypes" resultType="Types"> select * from types where 
+		tstate in(1,-1) order by tid </select> -->
 	<insert id="addTypes" parameterType="Types">
-		insert into types(tid,tname,tnum,tdesc,tstate) values(types_id.nextval,#{tname},0,#{tdesc},1)
+		insert into
+		types(tid,tname,tnum,tdesc,tstate)
+		values(types_id.nextval,#{tname},0,#{tdesc},1)
 	</insert>
 	<update id="modifyTypes" parameterType="Types">
-		update types 
+		update types
 		<set>
 			<if test="tname != null">tname=#{tname},</if>
 			<if test="tdesc != null">tdesc=#{tdesc},</if>
@@ -19,23 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where tid=#{tid}
 	</update>
-	<!-- <update id="deleteTypes" parameterType="java.util.List">
-		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
-		        update types
-		        <set>
-		            tstate=0
-		        </set>
-		        where tid = ${item.tid}
-	    </foreach>  
-	</update> -->
+	<!-- <update id="deleteTypes" parameterType="java.util.List"> <foreach collection="list" 
+		item="item" index="index" open="" close="" separator=";"> update types <set> 
+		tstate=0 </set> where tid = ${item.tid} </foreach> </update> -->
 	<update id="deleteTypes" parameterType="Types">
-        update types
-        <set>
-            tstate=0
-        </set>
-        where tid in (${tid})
+		update types
+		<set>
+			tstate=0
+		</set>
+		where tid in (${tid})
 	</update>
-	
+
 	<!-- 嵌套查询的分页处理 -->
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
@@ -45,31 +40,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listTypes" resultMap="PaginationBeanMap"
 		parameterType="PaginationBean">
 		select count(1) total,ceil(count(1)/${pageSize})
-		totalPage,${pageSize} pageSize,${currPage} currPage from types 
+		totalPage,${pageSize} pageSize,${currPage} currPage from types
 	</select>
 	<select id="getPaginationTypes" resultType="Types">
 		select * from
-		(select n.*,rownum rn from
-		(select * from types where tstate in(1,-1) order by tid) n where #{pageSize} *
+		(select
+		n.*,rownum rn from
+		(select * from types where tstate in(1,-1) order by
+		tid) n where #{pageSize} *
 		#{currPage}>=rownum)
-		where rn > #{pageSize} * (#{currPage}-1)
+		where rn > #{pageSize} *
+		(#{currPage}-1)
 	</select>
-	
+
 	<!-- 通过types名字查询typesid -->
 	<select id="findId" parameterType="String" resultType="int">
-		select tid from types where tname = #{typesName}
+		select tid
+		from types where tname = #{typesName}
 	</select>
-	
+
 	<!-- 通过typesid查询到note数据 -->
 	<resultMap type="PaginationBean" id="PaginationBeanMap02">
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage,typesId=typesId}"
-		 select="getnote" />
+			select="getnote" />
 	</resultMap>
+	
+	
+	<!-- 查询数据 -->
 	<select id="findNotes" parameterType="map" resultMap="PaginationBeanMap02">
-	select count(1) total, ceil(count(1) /${pageSize}) totalPage,
+		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
 		${pageSize} pageSize,${currPage} currPage
 		<if test="typesId!=null">
 			,'${typesId}' typesId
@@ -77,43 +79,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="typesId==null">
 			,'' typesId
 		</if>
-		from note where nstatus in (0,1) and nstates  in (0,1)
+		from note where nstatus =1 and nstates in (0,1)
 		<if test="typesId!=null">
 			and tid = #{typesId}
 		</if>
 	</select>
-	
-	 <resultMap type="NoteInfo" id="NoteInfoMap">
-	  	<id column="nid" property="nid"/>
-	  <result column="ntitle" property="ntitle"/><!--column为取到的值的名字 property为类中的名称  -->
-	  <result column="ncontent" property="ncontent"/>
-	  <result column="ntimes" property="ntimes"/>
-	  <result column="nnum" property="nnum"/>
-	  <result column="naccess" property="naccess"/>
-	  <result column="ngood" property="ngood"/>
-	  <result column="nstatus" property="nstatus"/>
-	  <result column="nstates" property="nstates"/>
-	  <association property="types" column="tid" javaType="Types">
-	  	<id column="tid" property="tid"/>
-	  	<id column="tname" property="tname"/>
-	  </association>
-	  <association property="users" column="userid" javaType="Users">
-	  	<id column="userid" property="userid"/>
-	  	<id column="uname" property="uname"/>
-	  </association>
-	  </resultMap>
-	
-	<select id="getnote"  resultMap="NoteInfoMap">
+
+	<resultMap type="NoteInfo" id="NoteInfoMap">
+		<id column="nid" property="nid" />
+		<result column="ntitle" property="ntitle" /><!--column为取到的值的名字 property为类中的名称 -->
+		<result column="ncontent" property="ncontent" />
+		<result column="ntimes" property="ntimes" />
+		<result column="nnum" property="nnum" />
+		<result column="naccess" property="naccess" />
+		<result column="ngood" property="ngood" />
+		<result column="nstatus" property="nstatus" />
+		<result column="nstates" property="nstates" />
+		<association property="types" column="tid" javaType="Types">
+			<id column="tid" property="tid" />
+			<result column="tname" property="tname" />
+		</association>
+		<association property="users" column="userid" javaType="Users">
+			<id column="userid" property="userid" />
+			<result  column="uname" property="uname" />
+		</association>
+	</resultMap>
+
+	<select id="getnote" resultMap="NoteInfoMap">
 		select * from
 		(select n.*, rownum rn from
-		(select o.*,u.uname uname,t.tname tname from note o,users u,types t  where
-		o.nstatus in (0,1)
+		(select o.*,u.uname
+		uname,t.tname tname from note o,users u,types t where
+		o.nstatus =1
 		<if test="typesId!=null">
-			and o.tid=#{typesId} 
+			and o.tid=#{typesId}
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}* ${currPage} >= rownum)
+		where ${pageSize}*
+		${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>

@@ -110,7 +110,8 @@ $("#typesinfo").datagrid({
 	        	  //endEdit该方法触发此事件
 	        	  if(flag==1){
 	        		  addTypes(rowData);//添加新板块
-	        	  }else if(flag==-1){
+	        	  }
+	        	  if(flag==-1){
 	        		  saveModifyTypes(rowData);//保存修改板块
 	        	  }
 	        	  
@@ -127,6 +128,7 @@ $("#typesinfo").datagrid({
 	        		  $("#typesinfo").datagrid("beginEdit", rowIndex);
 	        		  editRow = rowIndex;
 	        	  }
+	        	  flag=-1;
 	          }
 });
 //添加新板块
@@ -135,6 +137,7 @@ function addTypes(rowData){
 	$.ajax({
 		url: "types/add",
 		data: rowData,
+		type: "post",
 		success: function(msg){//msg 为 true
 			//alert( "Data Saved: " + msg );
 			if(msg){
@@ -148,10 +151,10 @@ function addTypes(rowData){
 }
 //保存修改板块
 function saveModifyTypes(rowData){
-	//alert(JSON.stringify(rowData));
 	$.ajax({
 		url: "types/modify",
 		data: rowData,
+		type: "post",
 		success: function(msg){//msg 为 true
 			//alert( "Data Saved: " + msg );
 			if(msg){

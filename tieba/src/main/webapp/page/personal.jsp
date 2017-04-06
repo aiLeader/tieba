@@ -27,6 +27,7 @@
 					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="../images/mr.jpg">
 				</c:otherwise>
 			</c:choose>
+			<input type="hidden" value="${loginUser.userid}" id="userid">
 			<p id="uname">${loginUser.uname}</p>
 			<p id="sex">${loginUser.sex}</p>
 			&nbsp;&nbsp;个性签名：<p id="sign">${loginUser.signs}</p>
@@ -47,7 +48,7 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane  active" id="panel-all">
-						<div id="note">
+						<!-- <div id="note">
 							<p>
 								<a id="title" href="page/noteDetail.html" style="padding-right:21px">Heading</a>
 							</p>
@@ -62,14 +63,13 @@
 								<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
 								<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
 								<a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-							<!-- 点击评论 -->
+							点击评论
 							<div id="comm" style="display: none;">
 								<textarea rows="4" cols="80"></textarea><br>
 								<button>提交</button>
 							</div>
 							</p>
-						</div>
-						
+						</div> -->
 					</div>
 					<div class="tab-pane" id="panel-store">
 						<div id="note">

@@ -62,4 +62,15 @@ public class NoteServiceTest {
 		System.out.println(pb);
 		assertNotNull(pb);
 	}
+	@Test
+	public void testShowByUserid() {
+		System.out.println(noteService.showByUserid("1001", "1", "5"));
+		assertNotNull(noteService.showByUserid("1001", "1", "5"));
+	}
+	//添加帖子的测试
+	@Test
+	public void testInsertNote() {
+		System.out.println(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"));
+		assertEquals(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"), 1);
+	}
 }

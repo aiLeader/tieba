@@ -19,5 +19,9 @@ public interface NoteService {
 	List<NoteInfo> listNoteOrderByNum();
 
 	NoteInfo findNoteById(String nid);
+	
+	PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows);
+
+	int insertNote(String title,String userid, String tid, String nconent);
 
 }

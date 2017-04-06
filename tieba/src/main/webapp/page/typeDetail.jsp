@@ -123,113 +123,15 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-9 column" id="center">
 			<div id="top">
-				<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
-				<button>发送</button>
+				<form>
+					标题：<input name="ntitle">
+					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
+					<button>发送</button>
+				</form>
 			</div>
-			<div id="content">
-			<p>
-				<a id="title" href="page/noteDetail.jsp" style="padding-right:21px">Heading</a>
-				<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
-				    <span class="glyphicon glyphicon-plus"></span>
-				    关注
-				</button>
-			</p>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				<a href="#" style="padding-right:30px">@sh</a>
-				<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>
-				2017-2-28 20:20
-				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
-				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a  href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-				<!-- 点击评论 -->
-				<div id="comm" style="display: none;">
-					<textarea rows="4" cols="80"></textarea><br>
-					<button>提交</button>
-				</div>
-			</p>
-			<p>
-				 <a class="btn" href="page/noteDetail.jsp">View details »</a>
-			</p>
-			</div>
-			
-			<div id="content">
-			<p>
-				<a id="title" href="#" style="padding-right:21px">Heading</a>
-				<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
-				    <span class="glyphicon glyphicon-plus"></span>
-				    关注
-				</button>
-			</p>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				<a href="#" style="padding-right:30px">@sh</a>
-				<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>
-				2017-2-28 20:20
-				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
-				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-			</div>
-			
-			<div id="content">
-			<p>
-				<a id="title" href="#" style="padding-right:21px">Heading</a>
-				<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
-				    <span class="glyphicon glyphicon-plus"></span>
-				    关注
-				</button>
-			</p>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				<a href="#" style="padding-right:30px">@sh</a>
-				<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>
-				2017-2-28 20:20
-				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
-				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="#" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-			</p>
-			<p>
-				 <a class="btn" href="#">View details »</a>
-			</p>
-			</div>
-			<!-- 分页 -->
-			<ul class="pagination">
-				<li>
-					 <a href="#">Prev</a>
-				</li>
-				<li>
-					 <a href="#">1</a>
-				</li>
-				<li>
-					 <a href="#">2</a>
-				</li>
-				<li>
-					 <a href="#">3</a>
-				</li>
-				<li>
-					 <a href="#">4</a>
-				</li>
-				<li>
-					 <a href="#">5</a>
-				</li>
-				<li>
-					 <a href="#">Next</a>
-				</li>
-			</ul>
+			<div id="content"></div>
 		</div>
+			
 		<div class="col-md-3 column">
 			<p id="pstyle">帖子热议榜</p>
 			<div id="olstyle">

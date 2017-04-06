@@ -14,7 +14,7 @@ drop sequence users_id;
 drop sequence note_id;
 drop sequence comments_id;
 
-
+select nid,ntitle,ncontent,note.tid,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark ,uname,tname  from note inner join users on note.userid=users.userid inner join types on note.tid=types.tid and note.tid = '101'
 
 --管理员
 create table admin(
@@ -113,7 +113,7 @@ create table note(
     nremark varchar2(20)
 );
 
---insert into note(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) values(note_id.nextval,'巧克力赛高!','我最喜欢巧克力不服来辨,','10000','1000',sysdate,3,1,0,1,1);、
+--insert into note(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) values(note_id.nextval,'巧克力赛高!','我最喜欢巧克力不服来辨,','10000','1000',sysdate,3,1,0,1,1);
 
 insert into  note 
 select note_id.nextval,dbms_random.string('l',6) ,
@@ -121,7 +121,8 @@ dbms_random.string('l',6),'101','1001',
 sysdate,0,0,0,1,1,'' from dual connect by level<=10;
 select n.*,rownum from NOTE n where rownum <=5 order by nnum desc;--根据评论数量排序
 
-
+--查询用户的所有帖子
+select n.ntitle,n.ncontent,n.ngood,n.ntimes,u.uname from note n join users u on n.userid = u.userid where u.userid='1001';
 
 create sequence comments_id start with 10000;--评论ID
 --评论表
@@ -177,9 +178,5 @@ create table secret(
 
 
 select * from note;
-select * from TYPES;
-bbssbqnc
-
-
-
+select * from TYPES where tid=101;
 

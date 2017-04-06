@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus in (0,1) and nstates in (0,1)
+		from note where nstatus =1 and nstates in (0,1)
 		<if test="options!=null">
 			and (nid like '${options}%'
 			or ntitle like '%${options}%'
@@ -56,8 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in
-		(0,1)
+		o.nstatus =1
 		<if test="options!=null">
 			and (o.nid like '%${options}%'
 			or o.ntitle like
@@ -107,7 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus in (0,1) and nstates in (0,1)
+		from note where nstatus =1 and nstates in (0,1)
 		<if test="options!=null">
 			and note.tid = '${options}'
 		</if>
@@ -118,9 +117,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in
-		(0,1)
-		<if test="options!=null"> tid like '${options}%' and o.tid = '${options}'
+		o.nstatus =1
+		<if test="options!=null"> and o.tid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
@@ -161,7 +159,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus in (0,1) and nstates in (0,1)
+		from note where nstatus =1 and nstates in (0,1)
 		<if test="options!=null">
 			and userid ='${options}'
 		</if>
@@ -169,18 +167,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getnote03" resultMap="NoteInfoMap">
 		select * from
-		(select n.*, rownum rn from (select * from note where
-		nstatus in (0,1) and nstates in (0,1) (select o.*,u.uname
+		(select n.*, rownum rn from
+		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in
-		(0,1)
-		<if test="options!=null">
-			and o.userid ='${options}'
+		o.nstatus =1
+		<if test="options!=null"> and o.userid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}*
-		${currPage} >= rownum)
+		where ${pageSize}* ${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
@@ -195,6 +190,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update note set nstatus
 		=#{nstatus},nstates=#{nstates} where nid = #{nid}
 	</update>
+	
 	<!-- 主页显示note -->
 	<resultMap type="PaginationBean" id="PaginationBeanMapLs">
 		<result property="pageSize" column="PageSize" />
@@ -232,7 +228,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultMap="PaginationBeanMapLs">
 		select count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
-		pageSize ,${currPage} currPage from note
+		pageSize ,${currPage} currPage from note where nstatus=1
 	</select>
 	<select id="getNoteinfo" resultMap="indexNoteInfoMap">
 		select * from (
@@ -242,7 +238,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
-		types on types.tid=note.tid order by nid desc ) n
+		types on types.tid=note.tid where note.nstatus=1 order by nid desc ) n
 		where ${pageSize}* ${currPage}>=rownum )
 		where rn
 		>(${currPage}-1)*${pageSize}
@@ -250,7 +246,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据评论数量显示前五条帖子 -->
 	<select id="listNoteOrderByNum" resultType="NoteInfo">
 		select n.*,rownum
-		from NOTE n where 5>=rownum order by nnum desc
+		from NOTE n where n.nstatus=1 and 5>=rownum order by nnum desc
 	</select>
 	
 	<select id="findNoteById" parameterType="String" resultMap="indexNoteInfoMap">
@@ -259,5 +255,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from note inner join users on note.userid = users.userid inner join
 		types on types.tid=note.tid where nid=10020
 	</select>
+	
+	<!-- 添加帖子 -->
+	<insert id="insertNote" parameterType="map">
+	insert into note 
+	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
+	values(note_id.nextval,'${title}','${nconcent}','${tid}','${userid}',sysdate,0,0,0,1,1)
+	</insert>
 </mapper>
 
