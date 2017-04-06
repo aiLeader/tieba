@@ -1,4 +1,4 @@
-package com.yc.tieba.web.service;
+package com.yc.tieba.service;
 
 import static org.junit.Assert.assertNotNull;
 

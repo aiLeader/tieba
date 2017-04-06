@@ -141,6 +141,22 @@
 					<image id="picPath" src="images/mr.jpg">
 					<a href="#">王源吧</a>
 				</li>
+				<li>
+					<image id="picPath" src="images/mr.jpg">
+					<a href="#">王俊凯吧</a>
+				</li>
+				<li>
+					<image id="picPath" src="images/mr.jpg">
+					<a href="#">易烊千玺吧</a>
+				</li>
+				<li>
+					<image id="picPath" src="images/mr.jpg">
+					<a href="#">TFBOYS吧</a>
+				</li>
+				<li>
+					<image id="picPath" src="images/mr.jpg">
+					<a href="#">四叶草吧</a>
+				</li>
 			</ul>
 		</div>
 	</div>
