@@ -5,26 +5,71 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.CommentsMapper">
 	<select id="findAllComment" resultType="Comments">
-		select * from comments where cstatus = 1
+		select * from comments
+		where cstatus = 1
 	</select>
 	<select id="findCommById" parameterType="String" resultType="Comments">
 		select * from comments where cid = ${_parameter} and cstatus = 1
 	</select>
-	<select id="findCommByUid" parameterType="QueryEntity" resultType="Comments">
+	<select id="findCommByUid" parameterType="QueryEntity"
+		resultType="Comments">
 		select * from comments where cstatus = #{status}
 		<if test="param != null and param != ''"> and userid=#{param}</if>
 	</select>
-	<select id="findCommByNid" parameterType="QueryEntity"  resultType="Comments">
+	<select id="findCommByNid" parameterType="QueryEntity"
+		resultType="Comments">
 		select * from comments where cstatus = #{status}
 		<if test="param != null and param != ''"> and nid=#{param}</if>
 	</select>
 	<select id="findBanComm" resultType="Comments">
-		select * from comments where cstatus = 0
+		select * from comments where
+		cstatus = 0
 	</select>
 	<update id="banComm" parameterType="int">
-		update comments set cstatus=0 where cid = ${_parameter}
+		update comments set cstatus=0
+		where cid = ${_parameter}
 	</update>
 	<update id="letComm" parameterType="int">
-		update comments set cstatus=1 where cid = ${_parameter}
+		update comments set cstatus=1
+		where cid = ${_parameter}
 	</update>
+	<resultMap type="Comments" id="noteIndexComments">
+		<id column="cid" property="cid" />
+		<result column="pcid" property="pcid" />
+		<result column="ccontent" property="ccontent" />
+		<result column="ctime" property="ctime" />
+		<result column="cgood" property="cgood" />
+		<result column="cstatus" property="cstatus" />
+		<result column="cstates" property="cstates" />
+		<result column="cremark" property="cremark" />
+		<association property="noteInfo" javaType="NoteInfo">
+			<id column="nid" property="nid" />
+			<result column="ntitle" property="ntitle" />
+		</association>
+		<association property="users" javaType="Users">
+			<id column="userid" property="userid" />
+			<result column="uname" property="uname" />
+		</association>
+	</resultMap>
+	<resultMap type="PaginationBean" id="PBMNoteIndexCom">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage,noteid=noteid}" ofType="Comments"
+			select="findComByNidSecond" />
+	</resultMap>
+	<select id="findComByNid" parameterType="Map" resultMap="PBMNoteIndexCom">
+		select count(1) total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize}
+		pageSize ,${currPage} currPage , #{noteid} noteid from comments where nid=#{noteid}
+	</select>
+	<select id="findComByNidSecond"  resultMap="noteIndexComments">
+		select * from (
+		select n.* , rownum rn from (
+		select cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
+		from comments inner join users on comments.userid=users.userid inner
+		join note on note.nid=comments.nid where comments.nid=${noteid} order
+		by ctime desc ) n where  ${pageSize}* ${currPage} >=rownum )
+		where rn>(${currPage}-1)*${pageSize}
+	</select>
 </mapper>

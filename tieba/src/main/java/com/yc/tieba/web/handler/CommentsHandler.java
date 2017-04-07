@@ -1,6 +1,9 @@
 package com.yc.tieba.web.handler;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.yc.tieba.entity.Comments;
+import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.service.CommentsService;
 import com.yc.tieba.util.ServletUtil;
 
@@ -56,5 +60,10 @@ public class CommentsHandler {
 	@ResponseBody
 	public boolean letComById(@RequestParam("cid")String cid){
 		return commentsService.letComm(cid);
+	}
+	@RequestMapping(value="findComByNid",method=RequestMethod.POST)
+	@ResponseBody
+	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page){
+		return commentsService.findComByNid(nid,page);
 	}
 }

@@ -88,6 +88,9 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
+	public NoteInfo findNoteById(String nid) {
+		return noteMapper.findNoteById(nid);
+	}
 	public PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows) {
 		int pageSize=10; //条数
 		int currPage=1; //当前页
