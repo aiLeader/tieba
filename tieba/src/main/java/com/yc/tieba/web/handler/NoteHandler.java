@@ -44,8 +44,8 @@ public class NoteHandler {
 	
 	@RequestMapping("listindex")
 	@ResponseBody
-	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page){
-		return noteService.indexfindNote(page,"5");
+	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page,@RequestParam("totalPage")String totalpage){
+		return noteService.indexfindNote(page,totalpage,"5");
 	}
 	/**
 	 * sh

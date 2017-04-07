@@ -61,12 +61,19 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public PaginationBean<Comments> findComByNid(String nid, String page) {
+	public PaginationBean<Comments> findComByNid(String nid, String page,String totalPage) {
 		int currPage=1;
+		int tpage=-1;
+		if(totalPage!=null&&!totalPage.equals("nop")){
+			tpage=Integer.parseInt(totalPage);
+		}
 		if(page!=null){
 			currPage=Integer.parseInt(page);
 			if(currPage<=0){
 				currPage=1;
+			}
+			if(tpage!=-1&&currPage>tpage){
+				currPage=tpage;
 			}
 		}
 		Map<String,String> map = new HashMap<String,String>();

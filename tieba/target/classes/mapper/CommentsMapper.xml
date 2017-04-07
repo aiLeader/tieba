@@ -70,6 +70,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from comments inner join users on comments.userid=users.userid inner
 		join note on note.nid=comments.nid where comments.nid=${noteid} order
 		by ctime desc ) n where  ${pageSize}* ${currPage} >=rownum )
-		where rn>=(${currPage}-1)*${pageSize}
+		where rn>(${currPage}-1)*${pageSize}
 	</select>
 </mapper>

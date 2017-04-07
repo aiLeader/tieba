@@ -34,24 +34,26 @@ $.post("../note/getNoteById"+hrefStr.substr(hrefStr.indexOf("?")),function(data)
 	}
 },"json");
 function findNoteCom(url){
-$.post("../"+url,function(data){
-	$("#comment-list").empty();
-	for(var i=0;i<data.rows.length;i++){
-		var headPic="../images/xh.jpg";
-		if(data.rows[i].users.picPath!=""&&data.rows[i].users.picPath!=null){
-			headPic=data.rows[i].users.picPath;
+	$.post("../"+url,function(data){
+		$("#comment-list").empty();
+		for(var i=0;i<data.rows.length;i++){
+			var headPic="../images/xh.jpg";
+			if(data.rows[i].users.picPath!=""&&data.rows[i].users.picPath!=null){
+				headPic=data.rows[i].users.picPath;
+			}
+			$("#comment-list").append('<div id="comment" userid="'+data.rows[i].users.userid+'"><p>'
+					+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="#" id="uname">'+data.rows[i].users.uname+'</a>'
+					+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
+					+'<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit" style="padding-left: 30px">评论</a>'
+					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p><div id="comm1" style="display: none;"><textarea rows="4" cols="80"></textarea><br><button>提交</button></div></div>');
 		}
-		$("#comment-list").append('<div id="comment" userid="'+data.rows[i].users.uname+'"><p>'
-				+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="#" id="uname">'+data.rows[i].users.uname+'</a>'
-				+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
-				+'<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit" style="padding-left: 30px">评论</a>'
-				+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p><div id="comm1" style="display: none;"><textarea rows="4" cols="80"></textarea><br><button>提交</button></div></div>');
-	}
-	$("#comment-list").append('<ul class="pagination">'
-			+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page=1")>首页</a></li>'
-			+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+(data.currPage-1)+'")>上一页</a></li>'
-			+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+(data.currPage+1)+'")>下一页</a></li>'
-			+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+data.totalPage+'")>末页</a></li></ul>');
-},"json");
+		if(data.totalPage>1){
+			$("#comment-list").append('<ul class="pagination">'
+					+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page=1&totalPage='+data.totalPage+'")>首页</a></li>'
+					+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+(data.currPage-1)+'&totalPage='+data.totalPage+'")>上一页</a></li>'
+					+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+(data.currPage+1)+'&totalPage='+data.totalPage+'")>下一页</a></li>'
+					+'<li><a href="javascript:void(0)" onclick=findNoteCom("comments/findComByNid'+hrefStr.substr(hrefStr.indexOf("?"))+'&page='+data.totalPage+'&totalPage='+data.totalPage+'")>末页</a></li></ul>');
+		}
+	},"json");
 }
-findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1");
+findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");

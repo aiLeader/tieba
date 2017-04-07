@@ -253,7 +253,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
-		types on types.tid=note.tid where nid=10020
+		types on types.tid=note.tid where nid=#{nid}
 	</select>
 	
 	<!-- 添加帖子 -->

@@ -36,7 +36,7 @@ public class NoteServiceTest {
 	@Test
 	public void testIndexListNote() {
 		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
-		pb = noteService.indexfindNote("1", "5");
+		pb = noteService.indexfindNote("1","nop" ,"5");
 		System.out.println(pb);
 		assertNotNull(pb);
 	}

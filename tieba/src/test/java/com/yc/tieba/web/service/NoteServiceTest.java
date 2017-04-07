@@ -34,14 +34,6 @@ public class NoteServiceTest {
 	}
 	
 	@Test
-	public void testIndexListNote() {
-		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
-		pb = noteService.indexfindNote("1", "5");
-		System.out.println(pb);
-		assertNotNull(pb);
-	}
-	
-	@Test
 	public void testUpdateNote() {
 		NoteInfo rowData = new NoteInfo();
 		rowData.setNstatus(0);
