@@ -168,7 +168,7 @@ create table store(
 insert into store values('1001','10021',sysdate,1,'');
 insert into store values('1001','10020',sysdate,1,'');
 --显示用户收藏的帖子
-select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid;
+select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid where storeuserid='1001' union
 
 select * from store;
 

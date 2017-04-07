@@ -45,7 +45,7 @@ public class Store {
 	}
 	@Override
 	public String toString() {
-		return "Store [users=" + users + ", notes=" + notes + ", sttimes=" + sttimes + ", status=" + status + "]";
+		return "\nStore [users=" + users + ", notes=" + notes + ", sttimes=" + sttimes + ", status=" + status + "]";
 	}
 	
 }
