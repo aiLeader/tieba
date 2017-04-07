@@ -126,82 +126,8 @@
 		</div>
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-6 column" id="center">
-			<div id="content">
-			<p>
-				<a id="title" href="page/noteDetail.html" style="padding-right:21px">Heading</a>
-				<button id="concern" type="button" class="btn btn-default btn-sm" style="background:pink">
-				    <span class="glyphicon glyphicon-plus"></span>
-				    关注
-				</button>
-			</p>
-			<p>
-				Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-			</p>
-			<p>
-				<span class="glyphicon glyphicon-user"></span>
-				<a href="#" style="padding-right:30px">@sh</a>
-				<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>
-				2017-2-28 20:20
-				<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">10</a>
-				<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>
-				<a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>
-				<!-- 点击评论 -->
-				<div id="comm" style="display: none;">
-					<textarea rows="4" cols="80"></textarea><br>
-					<button>提交</button>
-				</div>
-			</p>
-			</div>
-			<hr/>
-			<div id="comment">
-				<p>
-					<img class="img-circle" id="picPath" src="../images/xh.jpg"/>
-					<a href="#" id="uname">sh</a>
-					<a href="#" class="glyphicon glyphicon-thumbs-up"
-						style="padding-left: 30px">10</a>
-					<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit"
-						style="padding-left: 30px">评论</a>
-					
-				</p>
-				<p id="ccontent">lalala</p>
-					<!-- 点击评论 -->
-					<div id="comm1" style="display: none;">
-						<textarea rows="4" cols="80"></textarea><br>
-						<button>提交</button>
-					</div>
-				<p id="moreComment">
-					<a href="javascript:;" id="toggle2" target="_self">查看更多回复&gt;&gt;</a>
-						<div id="comm2" style="display: none;">
-							<p>
-								<img class="img-circle" id="picPath" src="../images/xh.jpg"/>
-								<a href="#" id="uname">sh</a>
-								<a href="#" class="glyphicon glyphicon-thumbs-up"
-									style="padding-left: 30px">10</a>
-							</p>
-							<p id="ccontent">lalala</p>
-						</div>
-				</p>
-				<p>
-					<img class="img-circle" id="picPath" src="../images/om_3.jpg"/>
-					<a href="#" id="uname">z</a>
-					<a href="#" class="glyphicon glyphicon-thumbs-up"
-						style="padding-left: 30px">10</a>
-					<a href="#" class="glyphicon glyphicon-edit"
-						style="padding-left: 30px">评论</a>
-				</p>
-				<p id="ccontent">lalala</p>
-				<p id="moreComment"><a href="#">查看更多回复&gt;&gt;</a></p>
-					
-				<p>
-					<img class="img-circle" id="picPath" src="../images/om_1.jpg"/>
-					<a href="#">s</a>
-					<a href="#" class="glyphicon glyphicon-thumbs-up"
-						style="padding-left: 30px">10</a>
-					<a href="#" class="glyphicon glyphicon-edit"
-						style="padding-left: 30px">评论</a>
-				</p>
-				<p id="ccontent">lalala</p>
-			</div>
+		<div id="noteDetailContent"></div>
+		<div id="comment-list"></div>
 		</div>
 		<div class="col-md-3 column">
 			<p id="pstyle">贴吧热议榜</p>

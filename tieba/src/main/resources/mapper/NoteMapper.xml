@@ -249,6 +249,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from NOTE n where n.nstatus=1 and 5>=rownum order by nnum desc
 	</select>
 	
+	<select id="findNoteById" parameterType="String" resultMap="indexNoteInfoMap">
+		select nid,ntitle,ncontent,types.tid
+		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		from note inner join users on note.userid = users.userid inner join
+		types on types.tid=note.tid where nid=10020
+	</select>
 	
 	<!-- 添加帖子 -->
 	<insert id="insertNote" parameterType="map">
