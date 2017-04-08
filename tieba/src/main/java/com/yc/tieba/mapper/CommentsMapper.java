@@ -25,4 +25,6 @@ public interface CommentsMapper {
 	PaginationBean<Comments> findComByNid(Map<String, String> map);
 
 	int addNewComm(Comments comments);
+	
+	int addAComnum(String nid);
 }
