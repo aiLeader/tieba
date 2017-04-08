@@ -23,4 +23,6 @@ public interface CommentsMapper {
 	int letComm(String cid);
 
 	PaginationBean<Comments> findComByNid(Map<String, String> map);
+
+	int addNewComm(Comments comments);
 }

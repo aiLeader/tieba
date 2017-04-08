@@ -1,7 +1,8 @@
 package com.yc.tieba.service;
 
-import static org.junit.Assert.*;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,16 @@ public class CommentsServiceTest {
 		PaginationBean<Comments> pb = cs.findComByNid("10019", "1","nop");
 		System.out.println(pb);
 		assertNotNull(pb);
+	}
+	@Test
+	public void testAddComm() {
+		Comments comments=new Comments();
+		comments.setNid("10020");
+		comments.setUserid("1000");
+		comments.setCcontent("o");
+		boolean sn =cs.addNewComm(comments);
+		System.out.println(sn);
+		assertEquals(sn,true);
 	}
 
 }

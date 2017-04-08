@@ -66,4 +66,9 @@ public class CommentsHandler {
 	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page,@RequestParam("totalPage")String totalPage){
 		return commentsService.findComByNid(nid,page,totalPage);
 	}
+	@RequestMapping("addComm")
+	public String AddComment(Comments comments){
+		commentsService.addNewComm(comments);
+		return "redirect:../page/noteDetail.jsp?nid="+comments.getNid();
+	}
 }
