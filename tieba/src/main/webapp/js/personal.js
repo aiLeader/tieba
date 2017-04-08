@@ -11,7 +11,7 @@ function showNote(url){
 			noteStr +="<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].ntimes;
 			noteStr +="<a href='#' class='glyphicon glyphicon-thumbs-up' style='padding-left:30px'>"+data.rows[i].ngood+"</a>";
 			noteStr +="<a href='#' class='glyphicon glyphicon-heart' style='padding-left:30px'>收藏</a>";
-			noteStr +="<a href='javascript:;' id='toggle' target='_self' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a>";
+			noteStr +="<a href='javascript:;' id='toggle1' target='_self' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a>";
 			noteStr +="<div id='comm' style='display: none;'><textarea rows='4' cols='80'></textarea><br><button>提交</button></div></p></div>";
 		}
 		
@@ -50,3 +50,33 @@ function showStoreNote(url){
 	},"json");
 }
 showStoreNote("../store/showStoreByUserid?page=1");
+
+
+/* @author:Romey
+ * 动态点赞
+ * 此效果包含css3，部分浏览器不兼容（如：IE10以下的版本）
+*/
+//js生效
+$(function(){
+$(document).on('click',"#praise",function(e){
+	var praise_img = $("#praise-img");
+	var text_box = $("#add-num");
+	var praise_txt = $("#praise-txt");
+	var num=parseInt(praise_txt.text());
+	if(praise_img.attr("src") == ("../images/yizan.png")){
+		$(this).html("<img src='../images/zan.png' id='praise-img' class='animation' />");
+		praise_txt.removeClass("hover");
+		text_box.show().html("<em class='add-animation'>-1</em>");
+		$(".add-animation").removeClass("hover");
+		num -=1;
+		praise_txt.text(num)
+	}else{
+		$(this).html("<img src='../images/yizan.png' id='praise-img' class='animation' />");
+		praise_txt.addClass("hover");
+		text_box.show().html("<em class='add-animation'>+1</em>");
+		$(".add-animation").addClass("hover");
+		num +=1;
+		praise_txt.text(num)
+	}
+});
+})

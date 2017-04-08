@@ -197,3 +197,4 @@ create table secret(
 select * from note;
 select * from TYPES where tid=101;
 
+select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )

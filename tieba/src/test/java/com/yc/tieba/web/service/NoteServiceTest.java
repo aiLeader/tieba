@@ -60,9 +60,16 @@ public class NoteServiceTest {
 		assertNotNull(noteService.showByUserid("1001", "1", "5"));
 	}
 	//添加帖子的测试
-	@Test
+/*	@Test
 	public void testInsertNote() {
 		System.out.println(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"));
 		assertEquals(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"), 1);
+	}*/
+	
+	@Test
+	public void testFindNoteByUserid() {
+		PaginationBean<NoteInfo>  pb =noteService.findNote("1", "3", "usernamea");
+		System.out.println(pb);
+		assertNotNull(pb);
 	}
 }

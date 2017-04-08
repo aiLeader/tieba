@@ -7,7 +7,9 @@
 <meta charset="utf-8">
 <title>${loginUser.uname}的个人主页</title>
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/personal.css">
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
@@ -64,7 +66,7 @@
 			<p>邮箱：shdufnchdd@163.com   联系方式：111</p>
 		</div>
 	</div>
-<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/personal.js"></script>
 <script type="text/javascript">

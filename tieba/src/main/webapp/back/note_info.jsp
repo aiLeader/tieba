@@ -9,9 +9,9 @@
 <body>
 	<div class="top-searcher">
 		根据条件查找：<select name="title">
-		<option value="板块">板块</option>
-		<option value="贴主">贴主</option>
-		<option value="其他">其他</option>
+		<option value="typesname">板块</option>
+		<option value="username">贴主</option>
+		<option value="other">其他</option>
 		</select><input id="inputt" type="text" name="condition" style="width: 150px" />
 		&nbsp;&nbsp; <a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-search'" onclick="obj.search()">查询</a>

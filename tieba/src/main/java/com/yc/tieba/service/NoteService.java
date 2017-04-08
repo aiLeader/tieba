@@ -22,6 +22,8 @@ public interface NoteService {
 	
 	PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows);
 
-	int insertNote(String title,String userid, String tid, String nconent);
+	Integer insertNote(String title,String userid, String tid, String nconent);
+
+	boolean plusNum(String nid);
 
 }
