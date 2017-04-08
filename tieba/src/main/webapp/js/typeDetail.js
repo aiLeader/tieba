@@ -33,8 +33,8 @@ function  findNote(url){
 					}
 					$("#tname").html(tname);
 					$("#tdesc").html(tdesc);
-					$("#content").append("<p align='right'> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
-							+"<a href='javascript:void(0)' onclick=findNote('types/findNote?page=1')>首页</a> </p>&nbsp;&nbsp;"
+					$("#content").append("<p> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
+							+"<a href='javascript:void(0)' onclick=findNote('types/findNote?page=1')>首页</a>&nbsp;&nbsp;"
 							+" <a href='javascript:void(0)' onclick=findNote('types/findNote?page="+(data.currPage-1)+"')>上一页</a>&nbsp;&nbsp; "
 							+" <a href='javascript:void(0)' onclick=findNote('types/findNote?page="+(data.currPage+1)+"')>下一页</a>&nbsp;&nbsp; " +
 							"<a href='javascript:void(0)' onclick=findNote('types/findNote?page="+data.totalPage+"')>末页</a> </p>");
