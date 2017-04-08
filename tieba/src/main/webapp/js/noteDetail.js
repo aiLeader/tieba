@@ -30,12 +30,15 @@ $.post("../note/getNoteById"+hrefStr.substr(hrefStr.indexOf("?")),function(data)
 				+'</p><p>'+data.ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="#" style="padding-right:30px">'+data.users.uname+'</a>'
 				+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.ntimes+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">'+data.ngood+'</a>'
 				+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a><a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>'
-				+'<div id="comm" style="display: none;"><textarea rows="4" cols="80"></textarea><br><button>提交</button></div></p></div><hr/>');
+				+'<form action="../comments/addComm"><div id="comm" style="display: none;"><input type="hidden" name="userid" value="'+data.users.userid+'"><input type="hidden" name="nid" value="'+data.nid+'"><textarea name="ccontent" rows="4" cols="80"></textarea><br><button>提交</button></div></p></div></form><hr/>'
+				+'<script type="text/javascript">$(function(){$("#toggle").click(function() {  $(this).text($("#comm").is(":hidden") ? "收起" : "评论");$("#comm").slideToggle();});});</script>');
 	}
 },"json");
 function findNoteCom(url){
 	$.post("../"+url,function(data){
-		$("#comment-list").empty();
+		if(data.rows.length>0){
+			$("#comment-list").empty();
+		}
 		for(var i=0;i<data.rows.length;i++){
 			var headPic="../images/xh.jpg";
 			if(data.rows[i].users.picPath!=""&&data.rows[i].users.picPath!=null){
@@ -45,7 +48,8 @@ function findNoteCom(url){
 					+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="#" id="uname">'+data.rows[i].users.uname+'</a>'
 					+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
 					+'<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit" style="padding-left: 30px">评论</a>'
-					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p><div id="comm1" style="display: none;"><textarea rows="4" cols="80"></textarea><br><button>提交</button></div></div>');
+					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p></div>');
+			
 		}
 		if(data.totalPage>1){
 			$("#comment-list").append('<ul class="pagination">'
@@ -57,3 +61,16 @@ function findNoteCom(url){
 	},"json");
 }
 findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");
+
+//function addCom(){
+//	$("#comForm").form("submit",{
+//		url:"comments/addComm",
+//		success:function(data){
+//			if(data){
+//			findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");
+//			}else{
+//				alert("未知的错误!评论失败！");
+//			}
+//		}
+//	});
+//}
