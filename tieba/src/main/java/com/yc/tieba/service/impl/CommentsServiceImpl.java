@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.tieba.entity.Comments;
 import com.yc.tieba.entity.PaginationBean;
@@ -83,8 +84,10 @@ public class CommentsServiceImpl implements CommentsService {
 		return commentsMapper.findComByNid(map);
 	}
 
+	@Transactional
 	@Override
 	public boolean addNewComm(Comments comments) {
+		commentsMapper.addAComnum(comments.getNid());
 		return commentsMapper.addNewComm(comments)>0;
 		
 	}

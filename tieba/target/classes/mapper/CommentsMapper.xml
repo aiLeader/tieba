@@ -82,4 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		comments(cid,nid,userid,ccontent,ctime,cgood,cstatus,cstates)
 		values(comments_id.nextval,#{nid},#{userid},#{ccontent},to_char(sysdate,'yyyy--mm-dd hh24:mi:ss'),0,1,0)
 	</insert>
+	<update id="addAComnum">
+		update note set nnum=nnum+1 where nid=#{nid}
+	</update>
 </mapper>
