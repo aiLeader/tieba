@@ -49,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="users" javaType="Users">
 			<id column="userid" property="userid" />
 			<result column="uname" property="uname" />
+			<result column="picPath" property="picPath"/>
 		</association>
 	</resultMap>
 	<resultMap type="PaginationBean" id="PBMNoteIndexCom">
