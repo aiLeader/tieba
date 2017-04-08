@@ -262,5 +262,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
 	values(note_id.nextval,'${title}','${nconcent}','${tid}','${userid}',sysdate,0,0,0,1,1)
 	</insert>
+	<!-- 点赞+1 -->
+	<update id="plusNum" parameterType="string">
+		update note set ngood=ngood+1 where nid=#{nid}
+	</update>
 </mapper>
 

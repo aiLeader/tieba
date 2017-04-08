@@ -46,7 +46,6 @@ public class TypesHandler {
 	@RequestMapping(value="findNote",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public PaginationBean<NoteInfo>  findTypesNote(String page, String tid){ 
-		System.out.println("  page  : "+page+" tid   :  "+tid);
 		return typesService.findNotesByTid(tid,page);
 	}
 	

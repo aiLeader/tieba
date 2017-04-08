@@ -9,7 +9,7 @@
 <title>板块详情</title>
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
-
+<link type="text/css" rel="stylesheet" href="css/typeDetail.css"/>
 </head>
 <body>
 	<div class="container">
@@ -123,6 +123,9 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-9 column" id="center">
 			<div id="top">
+				<image id="tpicPath" src="images/mr.jpg">
+				<a href="#" id="tname"></a>
+				<span id="tdesc"></span>
 				<form>
 					标题：<input name="ntitle">
 					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>

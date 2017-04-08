@@ -22,6 +22,8 @@ function  findNote(url){
 			success:function(data){
 					$("#content").empty();
 					for(var i=0;i<data.rows.length; i++){
+						var tname=data.rows[i].types.tname;
+						var tdesc=data.rows[i].types.tdesc;
 						$("#content").append("<a id='title' href='#' style='padding-right:21px'>"+data.rows[i].ntitle);
 						$("#content").append("<p>"+data.rows[i].ncontent+"</p><p><span class='glyphicon glyphicon-user'></span><a href='#' style='padding-right:30px'>"+data.rows[i].users.uname+"</a>"
 								+"<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].ntimes+"<a href='#'  class='glyphicon glyphicon-thumbs-up' style='padding-left:30px'>10</a>"
@@ -29,6 +31,8 @@ function  findNote(url){
 								+"<a href='#' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a></p>"
 								+"<p><a class='btn' href='#'>View details »</a></p>");
 					}
+					$("#tname").html(tname);
+					$("#tdesc").html(tdesc);
 					$("#content").append("<p align='right'> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
 							+"<a href='javascript:void(0)' onclick=findNote('types/findNote?page=1')>首页</a> </p>&nbsp;&nbsp;"
 							+" <a href='javascript:void(0)' onclick=findNote('types/findNote?page="+(data.currPage-1)+"')>上一页</a>&nbsp;&nbsp; "

@@ -125,4 +125,9 @@ public class NoteServiceImpl implements NoteService {
 			return -1;
 		}
 	}
+
+	@Override
+	public boolean plusNum(String nid) {
+		return noteMapper.plusNum(nid)>0;
+	}
 }

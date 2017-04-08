@@ -29,4 +29,6 @@ public interface NoteMapper {
 	
 	int insertNote(Map<String, String> map);
 
+	int plusNum(String nid);
+
 }

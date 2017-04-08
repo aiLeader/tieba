@@ -24,4 +24,6 @@ public interface NoteService {
 
 	int insertNote(String title,String userid, String tid, String nconent);
 
+	boolean plusNum(String nid);
+
 }
