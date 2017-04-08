@@ -58,7 +58,7 @@ public class UsersServiceTest {
 	public void testTelUsers() {
 		Users user=new Users();
 		user.setUname("wrt");
-		user.setPassword("aa");
+		user.setPassword("a");
 		user.setTelephone("18804474987");
 		int users=userService.insertUser1(user);
 		System.out.println(users);

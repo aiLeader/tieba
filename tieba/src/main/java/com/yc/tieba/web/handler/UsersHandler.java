@@ -33,7 +33,7 @@ import com.yc.tieba.util.sendMobileCode;
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
-	private Integer code;
+	private int code;
 
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(Users user,ModelMap map){
@@ -130,11 +130,10 @@ public class UsersHandler {
 		LogManager.getLogger().debug("获取输入的验证码===="+jihuo);
 		Integer code1=Integer.parseInt(jihuo);
 		if(code1==code){
-			System.out.println(usersService.insertUser1(users));
-			return true;
-		}else{
-			return false;
+			return usersService.insertUser1(users)>0;
 		}
+		
+		return false;
 	}
 
 
