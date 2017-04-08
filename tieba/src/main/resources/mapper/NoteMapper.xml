@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus =1 and nstates in (0,1)
+		from note where nstatus in (0,1) and nstates in (0,1)
 		<if test="options!=null">
 			and (nid like '${options}%'
 			or ntitle like '%${options}%'
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus =1
+		o.nstatus in (0,1)
 		<if test="options!=null">
 			and (o.nid like '%${options}%'
 			or o.ntitle like
@@ -76,16 +76,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- 通过tid查找 -->
-	<select id="findTyId" parameterType="String" resultType="int">
+	<select id="findTyId" parameterType="String" resultType="String">
 		select tid from types where
 		tstate in (0,1)
 		<if test="_parameter!=null">
-			and (tid like '%${_parameter}%'
-			or tname like
-			'%${_parameter}%'
-			or tnum like '%${_parameter}%'
-			or tdesc like
-			'%${_parameter}%'
+			and (tid  ='${_parameter}'
+			or tname  ='${_parameter}'
 			)
 		</if>
 	</select>
@@ -106,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus =1 and nstates in (0,1)
+		from note where nstatus  in (0,1) and nstates in (0,1)
 		<if test="options!=null">
 			and note.tid = '${options}'
 		</if>
@@ -117,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus =1
+		o.nstatus in (0,1)
 		<if test="options!=null"> and o.tid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
@@ -126,19 +122,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
+	
 	<!-- 通过userid查找 -->
-	<select id="findUsId" parameterType="String" resultType="int">
+	<select id="findUsId" parameterType="String" resultType="String">
 		select userid from users where
 		status in (0,1)
-		<if test="_parameter !=null"> and (name like '%${_parameter}%'
-			or userid like
-			'%${_parameter}%' and (uname like '%${_parameter}%'
-			or userid like
-			'%${_parameter}%' or sex like '%${_parameter}%'
-			or telephone like
-			'%${_parameter}%'
-			or email like '%${_parameter}%'
-			)
+		<if test="_parameter !=null"> and (uname='${_parameter}'
+			or userid = '${_parameter}')
 		</if>
 	</select>
 
@@ -159,7 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus =1 and nstates in (0,1)
+		from note where nstatus in (0,1) and nstates in (0,1)
 		<if test="options!=null">
 			and userid ='${options}'
 		</if>
@@ -254,7 +244,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertNote" parameterType="map">
 	insert into note 
 	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
-	values(note_id.nextval,'${title}','${nconcent}','${tid}','${userid}',sysdate,0,0,0,1,1)
+	values(note_id.nextval,'${title}','${nconent}','${tid}','${userid}',sysdate,0,0,0,1,1)
 	</insert>
 </mapper>
 

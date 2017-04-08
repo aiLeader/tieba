@@ -7,6 +7,9 @@
 <base href="${deployName }">
 <meta content="text/html; charset=utf-8">
 <title>板块详情</title>
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
 
@@ -43,7 +46,7 @@
 										</c:otherwise>
 										</c:choose>
 									</li>
-									<li><a href="#">${loginUser.uname}</a></li>
+									<li><a id="uname" href="#">${loginUser.uname}</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="register.jsp">注册</a></li>
@@ -123,10 +126,12 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-9 column" id="center">
 			<div id="top">
-				<form>
-					标题：<input name="ntitle">
+				<form method="post"  id="sendForm"  enctype="multipart/form-data"  >
+				<input type="hidden" id="tid" name="tid" value="${tid}">
+				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
+					标题：<input name="ntitle" id="ntitle">
 					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
-					<button>发送</button>
+					<a id="send" href="javascript:void(0)" onclick="return sendNote()">发送</a>
 				</form>
 			</div>
 			<div id="content"></div>
@@ -173,8 +178,11 @@
 			</p>
 		</div>
 	</div>
-</div>
+</div>]
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
