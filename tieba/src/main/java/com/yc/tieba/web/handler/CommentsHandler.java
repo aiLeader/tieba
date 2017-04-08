@@ -63,7 +63,7 @@ public class CommentsHandler {
 	}
 	@RequestMapping(value="findComByNid",method=RequestMethod.POST)
 	@ResponseBody
-	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page){
-		return commentsService.findComByNid(nid,page);
+	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page,@RequestParam("totalPage")String totalPage){
+		return commentsService.findComByNid(nid,page,totalPage);
 	}
 }

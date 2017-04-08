@@ -127,7 +127,11 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-6 column" id="center">
 		<div id="noteDetailContent"></div>
-		<div id="comment-list"></div>
+		<div id="comment-list">
+			<div class="noComment">
+				<p>暂时还没有人评论！快来抢楼吧！</p>
+			</div>
+		</div>
 		</div>
 		<div class="col-md-3 column">
 			<p id="pstyle">贴吧热议榜</p>
