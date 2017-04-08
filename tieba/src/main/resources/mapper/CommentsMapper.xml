@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
 		pageSize ,${currPage} currPage , #{noteid} noteid from comments where
-		nid=#{noteid}
+		nid=#{noteid} and cstatus=1
 	</select>
 	<select id="findComByNidSecond" resultMap="noteIndexComments">
 		select * from (
@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
 		from comments inner join users on comments.userid=users.userid inner
-		join note on note.nid=comments.nid where comments.nid=${noteid} order
+		join note on note.nid=comments.nid where comments.nid=${noteid} and comments.cstatus=1 order
 		by ctime asc ) n where ${pageSize}* ${currPage} >=rownum )
 		where
 		rn>(${currPage}-1)*${pageSize}

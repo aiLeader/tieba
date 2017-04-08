@@ -20,7 +20,7 @@ public class CommentsServiceTest {
 
 	@Test
 	public void testFindComByNid() {
-		PaginationBean<Comments> pb = cs.findComByNid("10019", "1","nop");
+		PaginationBean<Comments> pb = cs.findComByNid("10020", "1","nop");
 		System.out.println(pb);
 		assertNotNull(pb);
 	}

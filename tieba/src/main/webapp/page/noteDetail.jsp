@@ -12,6 +12,7 @@
 <link type="text/css" rel="stylesheet" href="../css/noteDetail.css" />
 </head>
 <body>
+<input type="hidden" id="LoginUserId" value="${loginUser.userid}"/>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">

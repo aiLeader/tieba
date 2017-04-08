@@ -68,7 +68,12 @@ public class CommentsHandler {
 	}
 	@RequestMapping(value="addComm",produces=("application/json; charset=UTF-8"))
 	public String AddComment(Comments comments){
-		commentsService.addNewComm(comments);
-		return "redirect:../page/noteDetail.jsp?nid="+comments.getNid();
+		System.out.println("==>  "+ comments);
+		if(comments.getUserid().trim()==""||comments.getUserid()==null){
+			return "redirect:../page/loginJugle.jsp";
+		}else{
+			commentsService.addNewComm(comments);
+			return "redirect:../page/noteDetail.jsp?nid="+comments.getNid();
+		}
 	}
 }
