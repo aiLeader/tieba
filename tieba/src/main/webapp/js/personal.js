@@ -5,7 +5,7 @@ function showNote(url){
 		var noteStr="";
 		for (var i = 0; i < data.rows.length; i++) {
 			noteStr += "<div id='note'>";
-			noteStr +="<p><a id='title' href='page/noteDetail.html' style='padding-right:21px'>"+data.rows[i].ntitle+"</a></p>";
+			noteStr +="<p><a id='title' href='../page/noteDetail.jsp?nid="+data.rows[i].nid+"' style='padding-right:21px'>"+data.rows[i].ntitle+"</a></p>";
 			noteStr +="<p>"+data.rows[i].ncontent+"</p>";
 			noteStr +="<p><span class='glyphicon glyphicon-user'></span><a href='#' style='padding-right:30px'>"+uname+"</a>";
 			noteStr +="<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].ntimes;
