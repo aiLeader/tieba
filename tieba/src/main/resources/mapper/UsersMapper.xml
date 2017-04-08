@@ -137,6 +137,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 values
 		(users_id.nextval||'',#{uname},#{password},#{email},sysdate)
 	</insert>
+	
+	<!-- 手机注册 用户自己注册信息 -->
+	<insert id="telinsertUser" parameterType="Users">
+		insert into users
+		(userid,uname,password,telephone,regDate)
+		 values
+		(users_id.nextval||'',#{uname},#{password},#{telephone},sysdate)
+	</insert>
 
 
 

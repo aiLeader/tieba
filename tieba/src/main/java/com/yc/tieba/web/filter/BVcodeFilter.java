@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 
-@WebFilter("/user/register")
+@WebFilter("/user/emailregister")
 public class BVcodeFilter extends AbstractFilter {
 
 	@Override

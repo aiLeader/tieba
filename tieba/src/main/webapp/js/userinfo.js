@@ -94,7 +94,7 @@ $(function () {
 		        		  //endEdit该方法触发此事件
 		        		  console.info(rowData);
 		        		  editRow = undefined;
-		        		  alert(JSON.stringify(rowData));
+		        		//  alert(JSON.stringify(rowData));
 		        		  updateUser(rowData);
 		        	  },
 		        	  onDblClickRow: function (rowIndex, rowData) {
@@ -131,7 +131,6 @@ Date.prototype.format = function(format) {
 		"s+": this.getSeconds(), // second
 		"q+": Math.floor((this.getMonth() + 3) / 3), // quarter
 		"S": this.getMilliseconds()
-		// millisecond
 	}
 	if (/(y+)/.test(format))
 		format = format.replace(RegExp.$1, (this.getFullYear() + "")

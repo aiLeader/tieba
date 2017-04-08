@@ -96,7 +96,7 @@ function loadUserInfo(userid){
 		}else{
 			$(":radio[name='sex'][value='女']").attr("checked","true");
 		}
-		$("#birthday").val(data.rows[0].birthday);
+		$("#birthday").datebox('setValue',data.rows[0].birthday);
 		$("#telephone").val(data.rows[0].telephone);
 		$("#email").val(data.rows[0].email);
 		$("#address").val(data.rows[0].address);
@@ -203,6 +203,27 @@ function insertPwd(){
 function chgPic(obj){
 	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
 }
+
+
+
+// 修改用户名 判断姓名是否已注册
+var username=document.getElementById("username");
+username.onblur=function(){
+	var uname=$("#username").val();
+	if(uname=="" || uname==null){
+		$.messager.alert('警告','请输入用户名');
+	}else{
+		$.post("../user/list",{"options":uname}, function(data){
+			//alert(JSON.stringify(data.rows[0].uname));
+			if(data.total!=0 && uname!=data.rows[0].uname){
+				$.messager.alert('警告','该用户名已存在,请重新输入');
+			}else{
+				//$.messager.alert('提示','请输入用户名');
+			}
+		},"json");
+	}
+}
+
 
 
 

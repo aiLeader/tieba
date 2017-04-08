@@ -60,6 +60,12 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertUser(users);
 	}
+	//手机注册用户
+	@Override
+	public int insertUser1(Users users) {
+		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
+		return usersMapper.telinsertUser(users);
+	}
 	@Override
 	public boolean updateUserPic(Users users) {
 		return usersMapper.updateUserPic(users)>0;
@@ -69,5 +75,6 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertnpwd(users)>0;
 	}
+	
 	
 }

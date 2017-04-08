@@ -82,4 +82,10 @@ public class CommentsServiceImpl implements CommentsService {
 		map.put("noteid", nid);
 		return commentsMapper.findComByNid(map);
 	}
+
+	@Override
+	public boolean addNewComm(Comments comments) {
+		return commentsMapper.addNewComm(comments)>0;
+		
+	}
 }

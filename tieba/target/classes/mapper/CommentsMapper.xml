@@ -59,17 +59,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select="findComByNidSecond" />
 	</resultMap>
 	<select id="findComByNid" parameterType="Map" resultMap="PBMNoteIndexCom">
-		select count(1) total,ceil(count(1)/${pageSize})
+		select
+		count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
-		pageSize ,${currPage} currPage , #{noteid} noteid from comments where nid=#{noteid}
+		pageSize ,${currPage} currPage , #{noteid} noteid from comments where
+		nid=#{noteid}
 	</select>
-	<select id="findComByNidSecond"  resultMap="noteIndexComments">
+	<select id="findComByNidSecond" resultMap="noteIndexComments">
 		select * from (
-		select n.* , rownum rn from (
-		select cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
+		select
+		n.* , rownum rn from (
+		select
+		cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
 		from comments inner join users on comments.userid=users.userid inner
 		join note on note.nid=comments.nid where comments.nid=${noteid} order
-		by ctime desc ) n where  ${pageSize}* ${currPage} >=rownum )
-		where rn>(${currPage}-1)*${pageSize}
+		by ctime asc ) n where ${pageSize}* ${currPage} >=rownum )
+		where
+		rn>(${currPage}-1)*${pageSize}
 	</select>
+	<insert id="addNewComm" parameterType="Comments">
+		insert into
+		comments(cid,nid,userid,ccontent,ctime,cgood,cstatus,cstates)
+		values(comments_id.nextval,#{nid},#{userid},#{ccontent},to_char(sysdate,'yyyy--mm-dd hh24:mi:ss'),0,1,0)
+	</insert>
 </mapper>
