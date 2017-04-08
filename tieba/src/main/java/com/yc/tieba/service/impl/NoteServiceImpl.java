@@ -134,6 +134,7 @@ public class NoteServiceImpl implements NoteService {
 			map.put("userid", userid);
 			map.put("tid",tid);
 			map.put("nconent", nconent);
+			noteMapper.addNoteNum(tid);
 			return noteMapper.insertNote(map);
 			//return 1;
 		}else{

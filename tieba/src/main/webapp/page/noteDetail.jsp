@@ -24,7 +24,7 @@
 								class="icon-bar"></span><span class="icon-bar"></span><span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">我们的贴吧</a>
+						<a class="navbar-brand" href="#">爱贴就上贴吧</a>
 					</div>
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
@@ -165,13 +165,13 @@
 				</div>
 			</div>
 			<div class="col-md-3 column">
-				<p id="pstyle">贴吧热议榜</p>
+				<p id="pstyle">帖子热议榜</p>
 				<div id="olstyle">
 					<ol id="hot">
 					</ol>
 				</div>
 
-				<p id="pstyle">贴吧推荐</p>
+				<p id="pstyle">帖子推荐</p>
 				<ul id="ulstyle">
 					<li><image id="picPath" src="../images/mr.jpg"> <a
 							href="#">王源吧</a></li>

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="logo">
-		<img src="images/logo-tieba.png" />
+		<img src="images/logo1.png" />
 	</div>
 	<div id="content">
 		<div id="con1">
