@@ -1,6 +1,7 @@
 package com.yc.tieba.web.handler;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.yc.tieba.service.NoteService;
 
 
 @Controller("noteHandler")
-@RequestMapping("note")
+@RequestMapping("/note")
 public class NoteHandler {
 	
 	@Autowired
@@ -26,7 +27,9 @@ public class NoteHandler {
 	//查询
 	@RequestMapping(value="find")
 	@ResponseBody
-	public PaginationBean<NoteInfo> listFind(String page, String rows,String options){
+	public PaginationBean<NoteInfo> listFind(String page, String rows,@RequestParam("options")String options) throws UnsupportedEncodingException{
+		options = new String(options.getBytes("ISO-8859-1"),"UTF-8");
+		System.out.println("page==>"+page+"rows==>"+rows+"options===>"+options);
 		return noteService.findNote(page,rows,options);
 	}
 	
@@ -44,8 +47,8 @@ public class NoteHandler {
 	
 	@RequestMapping("listindex")
 	@ResponseBody
-	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page){
-		return noteService.indexfindNote(page,"5");
+	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page,@RequestParam("totalPage")String totalpage){
+		return noteService.indexfindNote(page,totalpage,"5");
 	}
 	/**
 	 * sh
@@ -55,6 +58,11 @@ public class NoteHandler {
 	@ResponseBody
 	public List<NoteInfo> listNoteOrderByNum(){
 		return noteService.listNoteOrderByNum();
+	}
+	@RequestMapping("getNoteById")
+	@ResponseBody
+	public NoteInfo findNoteById(@RequestParam("nid")String nid){
+		return noteService.findNoteById(nid);
 	}
 	//显示用户的全部帖子
 	@RequestMapping(value="showByUserid")
@@ -69,5 +77,11 @@ public class NoteHandler {
 	@ResponseBody
 	public boolean insertNote(String title,String userid,String tid,String nconent){
 		return noteService.insertNote(title,userid,tid,nconent)>0;
+	}
+	//点赞+1
+	@RequestMapping(value="plusNum")
+	@ResponseBody
+	public boolean plus(String nid){
+		return noteService.plusNum(nid);
 	}
 }

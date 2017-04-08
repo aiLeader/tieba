@@ -9,11 +9,11 @@ import com.yc.tieba.entity.PaginationBean;
 public interface NoteMapper {
 	PaginationBean<NoteInfo> findNote(Map<String, String> map);
 
-	int findTyId(String options);
+	String findTyId(String options);
 
 	PaginationBean<NoteInfo> findNoteTy(Map<String, String> map);
 
-	int findUsId(String options);
+	String findUsId(String options);
 
 	PaginationBean<NoteInfo> findNoteUs(Map<String, String> map);
 
@@ -25,6 +25,10 @@ public interface NoteMapper {
 	
 	List<NoteInfo> listNoteOrderByNum();
 
+	NoteInfo findNoteById(String nid);
+	
 	int insertNote(Map<String, String> map);
+
+	int plusNum(String nid);
 
 }

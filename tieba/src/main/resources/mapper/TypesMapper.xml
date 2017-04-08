@@ -98,6 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="types" column="tid" javaType="Types">
 			<id column="tid" property="tid" />
 			<result column="tname" property="tname" />
+			<result column="tdesc" property="tdesc"/>
 		</association>
 		<association property="users" column="userid" javaType="Users">
 			<id column="userid" property="userid" />
@@ -109,7 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from
 		(select n.*, rownum rn from
 		(select o.*,u.uname
-		uname,t.tname tname from note o,users u,types t where
+		uname,t.tname tname,t.tdesc tdesc from note o,users u,types t where
 		o.nstatus =1
 		<if test="typesId!=null">
 			and o.tid=#{typesId}

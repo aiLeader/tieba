@@ -1,6 +1,7 @@
 package com.yc.tieba.web.handler;
 
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Types;
+import com.yc.tieba.service.NoteService;
 import com.yc.tieba.service.TypesService;
 
 @Controller
@@ -19,6 +21,8 @@ public class TypesHandler {
 	@Autowired
 	private TypesService typesService;
 	
+	@Autowired
+	private NoteService noteService;
 	@RequestMapping(value="")
 	@ResponseBody
 	public PaginationBean<Types> list(String rows,String page){
@@ -46,9 +50,20 @@ public class TypesHandler {
 	@RequestMapping(value="findNote",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public PaginationBean<NoteInfo>  findTypesNote(String page, String tid){ 
-		System.out.println("  page  : "+page+" tid   :  "+tid);
 		return typesService.findNotesByTid(tid,page);
 	}
 	
+	@RequestMapping(value="insertNote",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public Integer  insetIntoNote(String ntitle, String topcontent,String userid,String tid){ 
+		
+		
+		if(userid.isEmpty()){
+			return null;
+		}
+		return noteService.insertNote(ntitle,userid,tid,topcontent);
+		//return noteService.insertNote(ntitle,userid,tid,topcontent);
+		//return false;
+	}
 	
 }

@@ -1,4 +1,4 @@
-package com.yc.tieba.web.service;
+package com.yc.tieba.service;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +17,7 @@ import com.yc.tieba.service.NoteService;
 public class NoteServiceTest {
 
 	@Autowired
-	NoteService noteService;
+	private NoteService noteService;
 	
 	@Test
 	public void testFindNote() {
@@ -34,6 +34,14 @@ public class NoteServiceTest {
 	}
 	
 	@Test
+	public void testIndexListNote() {
+		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
+		pb = noteService.indexfindNote("1","nop" ,"5");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
+	
+	@Test
 	public void testUpdateNote() {
 		NoteInfo rowData = new NoteInfo();
 		rowData.setNstatus(0);
@@ -47,29 +55,23 @@ public class NoteServiceTest {
 		System.out.println(noteService.listNoteOrderByNum());
 		assertNotNull(noteService.listNoteOrderByNum());
 	}
-	
-	@Test
-	public void testNoteById() {
-		NoteInfo pb = noteService.findNoteById("10020");
-		System.out.println(pb);
-		assertNotNull(pb);
-	}
 	@Test
 	public void testShowByUserid() {
 		System.out.println(noteService.showByUserid("1001", "1", "5"));
 		assertNotNull(noteService.showByUserid("1001", "1", "5"));
 	}
 	//添加帖子的测试
-/*	@Test
-	public void testInsertNote() {
-		System.out.println(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"));
-		assertEquals(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"), 1);
-	}*/
-	
 	@Test
-	public void testFindNoteByUserid() {
-		PaginationBean<NoteInfo>  pb =noteService.findNote("1", "3", "usernamea");
-		System.out.println(pb);
-		assertNotNull(pb);
+	public void testInsertNote() {
+		int b = noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了");
+		System.out.println(b);
+		assertEquals(b, 1);
+	}
+	//点赞+1
+	@Test
+	public void testPlusNum(){
+		boolean b = noteService.plusNum("10020");
+		System.out.println(b);
+		assertEquals(b,1);
 	}
 }
