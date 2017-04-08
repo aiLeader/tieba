@@ -36,7 +36,7 @@ public class NoteServiceTest {
 	@Test
 	public void testIndexListNote() {
 		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
-		pb = noteService.indexfindNote("1", "5");
+		pb = noteService.indexfindNote("1","nop" ,"5");
 		System.out.println(pb);
 		assertNotNull(pb);
 	}
@@ -63,8 +63,9 @@ public class NoteServiceTest {
 	//添加帖子的测试
 	@Test
 	public void testInsertNote() {
-		System.out.println(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"));
-		assertEquals(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"), 1);
+		int b = noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了");
+		System.out.println(b);
+		assertEquals(b, 1);
 	}
 	//点赞+1
 	@Test

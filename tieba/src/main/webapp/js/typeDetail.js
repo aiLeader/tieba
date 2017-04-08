@@ -43,3 +43,34 @@ function  findNote(url){
 }
 findNote("types/findNote?");
 
+/*action="types/insertNote"*/
+function sendNote(){
+	alert("12");
+	$("#sendForm").submit();
+	
+}
+$("#sendForm").form({
+		url:"types/insertNote",
+		onSubmit: function(param){    
+	        param.tid = tid;
+	    },    
+		success:function(data){
+			$("#ntitle").val("");
+document.getElementById("topcontent").value="";
+			//添加帖子结果信息
+	
+			$.messager.show({
+				title:'添加帖子信息',
+				msg:'添加帖子' + (data ? "成功..." : "失败!!!"),
+				showType:'show',
+				style:{
+					top:document.body.scrollTop+document.documentElement.scrollTop,
+				}
+			});
+			
+			//重新加载帖子信息
+			findNote("types/findNote?");
+		}
+	
+});
+
