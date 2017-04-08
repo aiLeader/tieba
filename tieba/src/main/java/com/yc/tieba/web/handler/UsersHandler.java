@@ -25,6 +25,7 @@ import com.yc.tieba.service.UsersService;
 import com.yc.tieba.util.RandomNumUtil;
 import com.yc.tieba.util.SendMailutil;
 import com.yc.tieba.util.ServletUtil;
+import com.yc.tieba.util.sendMobileCode;
 
 @Controller("usersHandler")
 @RequestMapping("user")
@@ -32,7 +33,8 @@ import com.yc.tieba.util.ServletUtil;
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
-	 
+	private Integer code;
+
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(Users user,ModelMap map){
 		user= usersService.login(user);
@@ -54,7 +56,7 @@ public class UsersHandler {
 	private boolean doDeleteUser(@PathVariable("userid") String userid) throws IOException {
 		return usersService.deleteUser(userid);
 	}
-	
+
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody
 	private boolean doUpdateUser(Users users,ModelMap map) throws IOException {
@@ -86,9 +88,9 @@ public class UsersHandler {
 			return false;
 		}
 	}
-	
-	
-	
+
+
+
 	@Autowired
 	private JavaMailSender mailSender;
 	@RequestMapping("sendMail")
@@ -96,22 +98,55 @@ public class UsersHandler {
 		LogManager.getLogger().debug(email);
 		Integer yzm = RandomNumUtil.getRandomNumber();//生成六位不重复随机数
 		request.getSession().setAttribute("yzm",yzm.toString());
-		SendMailutil.activeAccountMail(mailSender,"贴吧注册验证信息",
+		SendMailutil.activeAccountMail(mailSender,"注册验证信息",
 				"您的验证码是："+yzm+",请认真确认后在是您的操作之后，在执行操作","18273474977@163.com",email);
 		out.print(yzm);
 		out.flush();
 		out.close();
 	}
-	
-	
-	@RequestMapping(value="register")
-	public String register(Users users){
+
+
+	@RequestMapping(value="sendTel",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean sendTele(String telephone){
+		LogManager.getLogger().debug("发送的手机号码为："+telephone);
+		sendMobileCode sendcode;
+		try {
+			sendcode = new sendMobileCode();
+			sendcode.sendMobileCoder(telephone);
+			code = sendcode.getCode();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+
+	@RequestMapping(value="telregister")
+	@ResponseBody
+	public boolean tregister(Users users,String jihuo){
+		LogManager.getLogger().debug("用户注册信息users===="+users);
+		LogManager.getLogger().debug("获取输入的验证码===="+jihuo);
+		Integer code1=Integer.parseInt(jihuo);
+		if(code1==code){
+			System.out.println(usersService.insertUser1(users));
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	@RequestMapping(value="emailregister")
+	public String eregister(Users users){
 		if(usersService.insertUser(users)>0){
 			return "redirect:/login.jsp"; //重定向
 		}else{
 			return "/register.jsp"; //转发
 		}
 	}
+
 	@RequestMapping(value="updatepwd",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean updatePwd(@RequestBody Users user){
@@ -128,5 +163,5 @@ public class UsersHandler {
 		LogManager.getLogger().debug("修改密码。。。user==>"+user);
 		return usersService.insertnpwd(user);
 	}
-		
+
 }
