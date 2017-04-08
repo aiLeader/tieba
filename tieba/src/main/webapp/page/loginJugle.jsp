@@ -10,17 +10,17 @@
 </head>
 <link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="easyui/themes/default/easyui.css">
-<link type="text/css" rel="stylesheet" href="css/exit.css">
+<link type="text/css" rel="stylesheet" href="css/loginJugle.css">
 <body>
-	<c:remove var="loginUser" scope="session" />
 	<div id="loginDiv">
 		<div id="MsgForm" onclick="index.jsp">
 			<h2>请登录之后再进行操作！！</h2>
-			<a href=”javascript:void(0);” onClick="javascript :history.back(-1);" id="returnBu">返回上一页</a>
+			<a href="../login.jsp" id="returnBu">点击跳转到登录界面..</a>
 		</div>
 	</div>
 	<script type="text/javascript" src="easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="js/loginJugle.js"></script>
 </body>
 </html>

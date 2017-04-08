@@ -62,7 +62,7 @@
 											<li><a href="#">消息中心</a></li>
 											<li><a href="#">系统消息</a></li>
 											<li class="divider"></li>
-											<li><a href="exit.jsp">退出登录</a></li>
+											<li><a href="../exit.jsp">退出登录</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="#">个人中心</a></li>
