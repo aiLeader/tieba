@@ -13,16 +13,7 @@
 <body class="easyui-layout" style="width: 1366px; margin: 0px auto;">
 	<div data-options="region:'north'" style="height: 138px;width: 1366px;">
 		<div id="header">
-			<div id="top_login">
-				<%-- <label> 欢迎【<span>${loginUser.uname}</span>】进入贴吧后台管理
-				</label> --%> <!-- <img src="images/friend_logo.gif" alt="Google" id="friend_logo" /> -->
-			</div>
-			<div id="nav">
-				<div>
-					<img src="images/a.jpg" alt="" id="picstyle"/>
-				</div>
-				<!--mainnav end-->
-			</div>
+			<img src="images/logo1.png" alt="" id="picstyle"/>
 		</div>
 	</div>
 	<div data-options="region:'south'" style="height: 130px;">

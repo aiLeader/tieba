@@ -28,6 +28,8 @@ public interface NoteMapper {
 	NoteInfo findNoteById(String nid);
 	
 	int insertNote(Map<String, String> map);
+	
+	int addNoteNum(String tid);
 
 	int plusNum(String nid);
 

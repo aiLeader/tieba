@@ -18,7 +18,8 @@ body{
 	opacity: 1;
 }
 #logo img{
-	margin-top:40px ;
+	margin:0px auto;
+	height:150px;
 }
 #content{
 	width:900px ;

@@ -122,4 +122,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
+	
+	<select id="showTypesinfo" resultType="Types">
+		select * from types where tid=#{tid}
+	</select>
 </mapper>

@@ -40,7 +40,7 @@ function findNoteCom(url){
 			$("#comment-list").empty();
 		}
 		for(var i=0;i<data.rows.length;i++){
-			var headPic="../images/xh.jpg";
+			var headPic="../images/mr.jpg";
 			if(data.rows[i].users.picPath!=""&&data.rows[i].users.picPath!=null){
 				headPic=data.rows[i].users.picPath;
 			}
