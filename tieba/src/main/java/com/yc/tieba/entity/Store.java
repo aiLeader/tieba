@@ -3,30 +3,33 @@ package com.yc.tieba.entity;
 import java.util.Date;
 
 public class Store {
-	private String userid;
-	private String tid;
+	private Users users;
+	private NoteInfo notes;
 	private Date sttimes;
 	private Integer status;
 	public Store() {
 		// TODO Auto-generated constructor stub
 	}
-	public Store(String userid, String tid, Date sttimes, Integer status) {
-		this.userid = userid;
-		this.tid = tid;
+	
+	public Store(Users users, NoteInfo notes, Date sttimes, Integer status) {
+		super();
+		this.users = users;
+		this.notes = notes;
 		this.sttimes = sttimes;
 		this.status = status;
 	}
-	public String getUserid() {
-		return userid;
+
+	public Users getUsers() {
+		return users;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
-	public String getTid() {
-		return tid;
+	public NoteInfo getNotes() {
+		return notes;
 	}
-	public void setTid(String tid) {
-		this.tid = tid;
+	public void setNotes(NoteInfo notes) {
+		this.notes = notes;
 	}
 	public Date getSttimes() {
 		return sttimes;
@@ -42,7 +45,7 @@ public class Store {
 	}
 	@Override
 	public String toString() {
-		return "\nStore [userid=" + userid + ", tid=" + tid + ", sttimes=" + sttimes + ", status=" + status + "]";
+		return "\nStore [users=" + users + ", notes=" + notes + ", sttimes=" + sttimes + ", status=" + status + "]";
 	}
 	
 }

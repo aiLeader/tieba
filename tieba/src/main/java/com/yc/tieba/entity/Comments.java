@@ -11,8 +11,29 @@ public class Comments {
 	private Integer cstatus;
 	private Integer cstates;
 	private String cremark;
+	private NoteInfo noteInfo;
+	private Users users;
 	
-	
+	public NoteInfo getNoteInfo() {
+		return noteInfo;
+	}
+
+
+	public void setNoteInfo(NoteInfo noteInfo) {
+		this.noteInfo = noteInfo;
+	}
+
+
+	public Users getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+
 	public String getCid() {
 		return cid;
 	}
@@ -119,8 +140,7 @@ public class Comments {
 	public String toString() {
 		return "Comments [cid=" + cid + ", nid=" + nid + ", userid=" + userid + ", pcid=" + pcid + ", ccontent="
 				+ ccontent + ", ctime=" + ctime + ", cgood=" + cgood + ", cstatus=" + cstatus + ", cstates=" + cstates
-				+ ", cremark=" + cremark + "]\n";
+				+ ", cremark=" + cremark + ", noteInfo=" + noteInfo + ", users=" + users + "]";
 	}
-
-
+	
 }

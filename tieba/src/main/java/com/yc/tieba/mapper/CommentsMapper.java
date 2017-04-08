@@ -1,8 +1,10 @@
 package com.yc.tieba.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yc.tieba.entity.Comments;
+import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.QueryEntity;
 
 public interface CommentsMapper {
@@ -19,4 +21,6 @@ public interface CommentsMapper {
 	int banComm(String cid);
 	
 	int letComm(String cid);
+
+	PaginationBean<Comments> findComByNid(Map<String, String> map);
 }

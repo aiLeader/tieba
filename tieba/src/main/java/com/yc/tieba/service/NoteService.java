@@ -10,7 +10,7 @@ public interface NoteService {
 	//管理员界面的全帖子打印
 	PaginationBean<NoteInfo> findNote(String page, String rows, String options);
 	
-	PaginationBean<NoteInfo> indexfindNote(String page, String rows);
+	PaginationBean<NoteInfo> indexfindNote(String page,String totalPage, String rows);
 
 	int deleteNote(String ids);
 
@@ -18,6 +18,8 @@ public interface NoteService {
 
 	List<NoteInfo> listNoteOrderByNum();
 
+	NoteInfo findNoteById(String nid);
+	
 	PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows);
 
 	Integer insertNote(String title,String userid, String tid, String nconent);

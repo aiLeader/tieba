@@ -47,8 +47,8 @@ public class NoteHandler {
 	
 	@RequestMapping("listindex")
 	@ResponseBody
-	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page){
-		return noteService.indexfindNote(page,"5");
+	public PaginationBean<NoteInfo> listIndexNote(@RequestParam("page")String page,@RequestParam("totalPage")String totalpage){
+		return noteService.indexfindNote(page,totalpage,"5");
 	}
 	/**
 	 * sh
@@ -58,6 +58,11 @@ public class NoteHandler {
 	@ResponseBody
 	public List<NoteInfo> listNoteOrderByNum(){
 		return noteService.listNoteOrderByNum();
+	}
+	@RequestMapping("getNoteById")
+	@ResponseBody
+	public NoteInfo findNoteById(@RequestParam("nid")String nid){
+		return noteService.findNoteById(nid);
 	}
 	//显示用户的全部帖子
 	@RequestMapping(value="showByUserid")

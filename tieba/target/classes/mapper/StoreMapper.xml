@@ -4,5 +4,60 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.StoreMapper">
-	
+	<!-- 显示用户收藏的帖子 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result column="pageSize" property="pageSize" />
+		<result column="currPage" property="currPage" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage,options=options}"
+			select="getStoreNote" />
+	</resultMap>
+	<select id="findStoreNoteByUserid" parameterType="Map" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
+		${pageSize} pageSize,${currPage} currPage
+		<if test="options!=null">
+			,'${options}' options
+		</if>
+		<if test="options==null">
+			,'' options
+		</if>
+		from store where status =1
+		<if test="options!=null">
+			and storeuserid = '${options}'
+		</if>
+		
+	</select>
+	<resultMap type="Store" id="StoreMap">
+		<result column="sttimes" property="sttimes" />
+		<result column="status" property="status" />
+		<association property="users" column="userid" javaType="Users">
+			<id column="storeuserid" property="userid" /><!-- 谁收藏帖子 -->
+			<result column="uname" property="uname" />
+		</association>
+		<association property="notes" column="nid" javaType="NoteInfo" >
+			<id column="nid" property="nid" />
+			<!-- <id column="userid" property="userid" /> --><!-- 发帖人 -->
+			<result column="ntitle" property="ntitle" />
+			<result column="ncontent" property="ncontent" />
+			<result column="ntimes" property="ntimes" />
+			<result column="ngood" property="ngood"/>
+			<collection property="users"
+			column="{userid=userid}"
+			select="getUserid" />
+		</association>
+	</resultMap>
+	<select id="getStoreNote" resultMap="StoreMap">
+		select * from(
+		select n.*,rownum rn from
+		(select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  
+		from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid where
+		storeuserid = '${options}'
+		) n
+		where ${pageSize}* ${currPage}>=rownum )
+		where rn
+		>(${currPage}-1)*${pageSize}
+	</select>
+	<select id="getUserid" resultType="com.yc.tieba.entity.Users">
+		select u.* from users u where userid=#{userid}
+	</select>
 </mapper>

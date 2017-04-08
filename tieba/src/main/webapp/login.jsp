@@ -27,7 +27,7 @@
 				<div id="loginDiv">
 					<form id="loginForm" action="user/login" method="post">
 						<p><label>${errorMsg }&nbsp;</label></p><c:remove var="errorMsg" scope="session"/>
-						<p><input name="userid" placeholder="请输入用户名" required="required"/></p>
+						<p><input name="userid" placeholder="请用账号或邮箱登录" required="required"/></p>
 						<p><input type="password" name="password" placeholder="请输入密码"  required="required"/></p>
 						<p><img src="vcode.jpg" title="看不清，换一张"/><input name="vcode" placeholder="请输入验证码" id="vcode"  required="required"/></p>
 						<p><a id="btnRegister" href="register.jsp">没有账号注册一个</a><a id="btnLogin" href="javascript:void(0)">登录</a></p>

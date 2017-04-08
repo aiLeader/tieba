@@ -71,9 +71,13 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public PaginationBean<NoteInfo> indexfindNote(String page, String rows) {
+	public PaginationBean<NoteInfo> indexfindNote(String page,String totalPage,String rows) {
 		int pageSize = 5;
 		int currPage = 1;
+		int tpage=-1;
+		if(totalPage!=null&&!totalPage.equals("nop")){
+			tpage=Integer.parseInt(totalPage);
+		}
 		if(rows!=null){
 			pageSize=Integer.parseInt(rows);
 		}
@@ -81,6 +85,9 @@ public class NoteServiceImpl implements NoteService {
 			currPage=Integer.parseInt(page);
 			if(currPage<=0){
 				currPage=1;
+			}
+			if(tpage!=-1&&currPage>tpage){
+				currPage=tpage;
 			}
 		}
 		PaginationBean<NoteInfo> pb= new PaginationBean<NoteInfo>();
@@ -93,6 +100,9 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
+	public NoteInfo findNoteById(String nid) {
+		return noteMapper.findNoteById(nid);
+	}
 	public PaginationBean<NoteInfo> showByUserid(String userid, String page, String rows) {
 		int pageSize=10; //条数
 		int currPage=1; //当前页
