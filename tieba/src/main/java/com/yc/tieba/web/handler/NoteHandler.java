@@ -79,9 +79,9 @@ public class NoteHandler {
 		return noteService.insertNote(title,userid,tid,nconent)>0;
 	}
 	//点赞+1
-	@RequestMapping(value="plusNum")
+	/*@RequestMapping(value="plusNum")
 	@ResponseBody
 	public boolean plus(String nid){
 		return noteService.plusNum(nid);
-	}
+	}*/
 }

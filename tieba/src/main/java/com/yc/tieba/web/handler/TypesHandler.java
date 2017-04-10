@@ -54,7 +54,9 @@ public class TypesHandler {
 	@ResponseBody
 	public Integer  insetIntoNote(String ntitle, String topcontent,String userid,String tid){ 
 		if(userid.isEmpty()){
-			return null;
+			return 9;
+		}else if(ntitle.isEmpty()||topcontent.isEmpty()){
+			return 8;
 		}
 		return noteService.insertNote(ntitle,userid,tid,topcontent);
 	}

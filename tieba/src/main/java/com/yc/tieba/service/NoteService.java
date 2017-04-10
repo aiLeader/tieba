@@ -24,6 +24,6 @@ public interface NoteService {
 
 	Integer insertNote(String title,String userid, String tid, String nconent);
 
-	boolean plusNum(String nid);
+	//boolean plusNum(String nid);
 
 }
