@@ -1,18 +1,25 @@
 var hrefStr = location.href;
 var userid=hrefStr.substr(hrefStr.indexOf("=")+1);
-
-function showPersonal(){
-	
-	
+var uname="";
+showPersonal("../user/userinfo")
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			$("#picPath").attr("src", "../images/mr.jpg");
+		}
+		uname=data.uname;
+		$("#uname").html(data.uname);
+		$("#sex").html(data.sex);
+		$("#sign").html(data.signs);	
+	},"json");
 }
+ document.title=uname+"的个人主页";
 
 
-
-
-
-
-var uname=$("#uname").html();
 function showNote(url){
+	//alert(uname);
 	$.post(url+"&userid="+userid,function(data){
 		var noteStr="";
 		for (var i = 0; i < data.rows.length; i++) {
