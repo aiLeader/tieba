@@ -52,7 +52,7 @@ create table users(
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 select * from users;
-delete from users where userid='1040'
+delete from users where userid='1129'
 
 insert into users
 select users_id.nextval||'',dbms_random.string('l',4),'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',
@@ -189,7 +189,10 @@ create table concern(
     cstatus NUMBER DEFAULT 0 CONSTRAINT concern_cstatus CHECK(cstatus IN(0,1)),--是否取消关注  1取消关注
     coremark varchar2(20)
 );
-
+select * from concern;
+insert into concern values('1001','1100',sysdate,0,'');
+select c.userida,c.useridb,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
+where n.nstatus=1;
 --私信表
 
 create table secret(

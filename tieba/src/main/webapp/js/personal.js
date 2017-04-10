@@ -2,6 +2,26 @@ var userid=$("#userid").val();
 var uname=$("#uname").html(); 
 var currPage="";
 var nid="";
+
+showPersonal("../user/userinfo")
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			$("#picPath").attr("src", "../images/mr.jpg");
+		}
+		uname=data.uname;
+		document.title=uname+"的个人主页";
+		$("#uname").html(data.uname);
+		$("#sex").html(data.sex);
+		$("#sign").html(data.signs);	
+	},"json");
+}
+
+
+
+
 function showNote(url){
 	$.post(url+"&userid="+userid,function(data){
 		var noteStr="";

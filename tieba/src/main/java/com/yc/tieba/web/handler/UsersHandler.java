@@ -138,7 +138,8 @@ public class UsersHandler {
 		Integer yzm = RandomNumUtil.getRandomNumber();//生成六位不重复随机数
 		request.getSession().setAttribute("yzm",yzm.toString());
 		SendMailutil.activeAccountMail(mailSender,"注册验证信息",
-				"您的验证码是："+yzm+",请认真确认后在是您的操作之后，在执行操作","18273474977@163.com",email);
+				"您的验证码是："+yzm+",请认真确认后在是您的操作之后，再执行操作","18273474977@163.com",email);
+		System.out.println(yzm);
 		out.print(yzm);
 		out.flush();
 		out.close();

@@ -10,16 +10,16 @@ function showPersonal(url){
 			$("#picPath").attr("src", "../images/mr.jpg");
 		}
 		uname=data.uname;
+		document.title=uname+"的个人主页";
 		$("#uname").html(data.uname);
 		$("#sex").html(data.sex);
 		$("#sign").html(data.signs);	
 	},"json");
 }
- document.title=uname+"的个人主页";
+
 
 
 function showNote(url){
-	//alert(uname);
 	$.post(url+"&userid="+userid,function(data){
 		var noteStr="";
 		for (var i = 0; i < data.rows.length; i++) {

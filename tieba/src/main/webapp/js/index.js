@@ -1,5 +1,6 @@
 var currPage="";
 var userid=$("#userid").val();
+var href="page/otherpersonal.jsp?userid=";
 //异步加载左边板块信息
 function listType(url){
 	$.post(url,function(data){
@@ -17,9 +18,14 @@ function IndexListNote(url){
 		if(data.rows.length<=0){
 			$("#indexNoteContent").append()
 		}
+		
 		for(var i=0;i<data.rows.length;i++){
+			var userid2=data.rows[i].users.userid;
+			if(userid2==userid){
+				href="page/personal.jsp?userid=";
+			}
 			$("#indexNoteContent").append('<div id="content"><p><a id="title" href="page/noteDetail.jsp?nid='+data.rows[i].nid+'" style="padding-right:21px">'+data.rows[i].ntitle+'</a>'
-					+'</p><p>'+data.rows[i].ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="page/otherpersonal.jsp?userid='+data.rows[i].users.userid+'" style="padding-right:30px">'+data.rows[i].users.uname+'</a>'
+					+'</p><p>'+data.rows[i].ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="'+href+data.rows[i].users.userid+'" style="padding-right:30px">'+data.rows[i].users.uname+'</a>'
 					+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.rows[i].ntimes+'<a href="javascript:void(0);" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px" onclick="dianzan('+data.rows[i].nid+')">'+data.rows[i].ngood+'</a>'
 					+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>'
 					+'</p><p><a class="btn" href="page/noteDetail.jsp?nid='+data.rows[i].nid+'">进入帖子 »</a></p></div>');
