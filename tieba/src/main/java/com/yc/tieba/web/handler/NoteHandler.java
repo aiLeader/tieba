@@ -92,4 +92,5 @@ public class NoteHandler {
 		return noteService.collectNote(userid,nid);
 		//return 1;
 		}
+
 }

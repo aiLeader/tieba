@@ -15,3 +15,40 @@
 	width:1360px;
 	height:107px;
 }
+#logo{
+	width:350px;
+	height:110px;
+	padding:15px 0 0 0px;
+}
+
+#footer {
+	clear: both;
+	width: 947px;
+	margin: 14px auto 0;
+	text-align: center;
+}
+
+#footer p.copyright {
+	font: 14px/24px Arial;
+	color: #999;
+	margin-top: 15px;
+}
+
+#modifyForm p {
+	text-align: right;
+	margin-right: 20px;
+}
+
+#modifyForm p a {
+	margin-right: 20px;
+}
+
+.dialog-button {
+	background-color: white;
+	border-top-color: white;
+}
+
+.messager-body {
+	font-size: 18px;
+	padding-top: 40px;
+}

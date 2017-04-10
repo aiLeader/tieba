@@ -1,12 +1,9 @@
 package com.yc.tieba.web.handler;
 
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -50,21 +47,23 @@ public class TypesHandler {
 	@RequestMapping(value="findNote",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public PaginationBean<NoteInfo>  findTypesNote(String page, String tid){ 
-		//System.out.println("  page  : "+page+" tid   :  "+tid);
 		return typesService.findNotesByTid(tid,page);
 	}
 	
 	@RequestMapping(value="insertNote",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Integer  insetIntoNote(String ntitle, String topcontent,String userid,String tid){ 
-		
-		
 		if(userid.isEmpty()){
-			return null;
+			return 9;
+		}else if(ntitle.isEmpty()||topcontent.isEmpty()){
+			return 8;
 		}
 		return noteService.insertNote(ntitle,userid,tid,topcontent);
-		//return noteService.insertNote(ntitle,userid,tid,topcontent);
-		//return false;
 	}
-	
+	//根据板块id显示板块名字和板块格言
+	@RequestMapping(value="showTypesinfo")
+	@ResponseBody
+	public Types showTypesinfo(String tid){
+		return typesService.showTypesinfo(tid);
+	}
 }

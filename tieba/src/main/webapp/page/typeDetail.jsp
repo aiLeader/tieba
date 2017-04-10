@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
-
+<link type="text/css" rel="stylesheet" href="css/typeDetail.css"/>
 </head>
 <body>
 	<div class="container">
@@ -20,7 +20,7 @@
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">我们的贴吧</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">爱贴就上贴吧</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
@@ -47,6 +47,7 @@
 										</c:choose>
 									</li>
 									<li><a id="uname" href="#">${loginUser.uname}</a></li>
+									<input id="userid" type="hidden" value="${loginUser.userid}">
 								</c:when>
 								<c:otherwise>
 									<li><a href="register.jsp">注册</a></li>
@@ -62,7 +63,7 @@
 											<li><a href="#">消息中心</a></li>
 											<li><a href="#">系统消息</a></li>
 											<li class="divider"></li>
-											<li><a href="exit.jsp">退出登录</a></li>
+											<li><a href="../exit.jsp">退出登录</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="#">个人中心</a></li>
@@ -126,11 +127,14 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-9 column" id="center">
 			<div id="top">
+				<image id="tpicPath" src="images/mr.jpg">
+				<a href="#" id="tname"></a>
+				<span id="tdesc"></span>
 				<form method="post"  id="sendForm"  enctype="multipart/form-data"  >
 				<input type="hidden" id="tid" name="tid" value="${tid}">
 				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
 					标题：<input name="ntitle" id="ntitle">
-					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
+					<textarea rows="4" cols="85" id="topcontent" name="topcontent" ></textarea><br>
 					<a id="send" href="javascript:void(0)" onclick="return sendNote()">发送</a>
 				</form>
 			</div>

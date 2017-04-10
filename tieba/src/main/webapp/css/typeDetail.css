@@ -1,0 +1,14 @@
+#tpicPath{
+	width:100px;
+	height:100px;
+}
+#tname{
+	font-size:24px;
+	font-family:"Comic Sans MS", cursive;
+}
+#tdesc{
+	padding-left:20px;
+}
+#top form{
+	margin-top:10px;
+}

@@ -18,7 +18,8 @@ body{
 	opacity: 1;
 }
 #logo img{
-	margin-top:40px ;
+	margin:0px auto;
+	height:150px;
 }
 #content{
 	width:900px ;
@@ -155,7 +156,7 @@ body{
 	float: left;
 	position: relative;
 }
-#content form #e-mail ,#username{
+#content form #e-mail ,#username,#username1{
 	width: 193px;
 	height: 30px;
 	position: absolute;
@@ -191,7 +192,7 @@ body{
 	position: relative;
 	margin-top: 20px;
 }
-#content form #pwd,#pwd2,#content form #pwdd{
+#content form #pwd,#pwd2,#pwd3,#pwd4,#content form #pwdd{
 	width: 193px;
 	height: 30px;
 	margin: 7px 7px;
@@ -205,7 +206,20 @@ body{
 	border: 1px solid #ffb941;
 }
 
-#content form #mimats1,#content form #mimats2,#content form #mimats3,#content form #mimats4,#content form #mimats5,#content form #mimats6,#content form #mimats7,#content form #mimats8{
+#content form #mimats1,#content form #mimats16,#content form #mimats17,#content form #mimats2,#content form #mimatss,#content form #mimats3,#content form #mimats4,#content form #mimats41,#content form #mimats5,#content form #mimats6,#content form #mimats7,#content form #mimats8,#content form #shouji1,#content form #shouji2,#content form #shouji3{
+	width: 198px;
+	height: 20px;
+	float: left;
+	padding-left: 25px;
+	position: absolute;
+	line-height: 20px;
+	color: red;
+	top:12px;
+	left: 380px;
+	background: url(../images/tanhao.png) no-repeat;
+	display: inline-block;
+}
+#content form #mimats9,#content form #mimats8,#content form #mimats10,#content form #mimats11,#content form #mimats12,#content form #mimats13,#content form #mimats14,#content form #mimats15,#content form #mimats16,#content form #mimats17{
 	width: 198px;
 	height: 20px;
 	float: left;
@@ -237,7 +251,7 @@ body{
 	color: white;
 	border-radius:5px;
 }
-#content form #jihuo{
+#content form #jihuo,#content form #telcode{
 	width: 53px;
 	height: 30px;
 	margin: 7px 5px;
@@ -366,4 +380,43 @@ body{
 #footer select{
 	width: 90px;
 	margin-left: 15px;
+}
+
+
+#content form #shoujidiv{
+	width: 600px;
+	height: 46px;
+	float: left;
+	position: relative;
+	
+}
+
+#content form #shoujits1,#content form #shoujits2,#content form #shoujits3,#content form #shoujits4{
+	width: 198px;
+	height: 20px;
+	float: left;
+	padding-left: 25px;
+	position: absolute;
+	line-height: 20px;
+	color: red;
+	top:12px;
+	left: 380px;
+	background: url(../images/tanhao.png) no-repeat;
+	display: inline-block;
+}
+#content form #shoujits2,#content form #shoujits3{
+	background: url(../images/redtanhao.png) no-repeat;
+	color: red;
+}
+#content form #shoujits4,#content form #mimats5,#content form #mimats11,#content form #mimats14,#content form #mimats8,#content form #mimats17{
+	background: url(../images/gouhao.png) no-repeat;
+	color:green;
+}
+#content form #shouji{
+	width:110px ;
+	height: 30px;
+	position: absolute;
+	top: 0px;
+	border: none;
+	padding-left:5px ;
 }

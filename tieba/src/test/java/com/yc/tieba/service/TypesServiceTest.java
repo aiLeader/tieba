@@ -71,4 +71,11 @@ public class TypesServiceTest {
 		assertNotNull(pb);
 	}
 	
+	@Test
+	public void testShowTypesinfo(){
+		Types result = typesService.showTypesinfo("101");
+		System.out.println(result);
+		assertNotNull(result);
+	}
+	
 }

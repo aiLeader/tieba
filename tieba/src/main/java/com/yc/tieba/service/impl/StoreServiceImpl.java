@@ -35,6 +35,12 @@ public class StoreServiceImpl implements StoreService {
 		map.put("pageSize", String.valueOf(pageSize));
 		map.put("currPage",String.valueOf(currPage));
 		map.put("options", userid);
+		PaginationBean<NoteInfo> noteInfo = storeMapper.findStoreNoteByUserid(map);
+		int totalPage = noteInfo.getTotalPage();
+		if(currPage>totalPage){
+			currPage = totalPage;
+			map.put("currPage",String.valueOf(currPage));
+		}
 		return storeMapper.findStoreNoteByUserid(map);
 	}
 

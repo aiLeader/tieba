@@ -121,6 +121,12 @@ public class NoteServiceImpl implements NoteService {
 		map.put("pageSize", String.valueOf(pageSize));
 		map.put("currPage",String.valueOf(currPage));
 		map.put("options", userid);
+		PaginationBean<NoteInfo> noteInfo = noteMapper.findNoteUs(map);
+		int totalPage = noteInfo.getTotalPage();
+		if(currPage>totalPage){
+			currPage = totalPage;
+			map.put("currPage",String.valueOf(currPage));
+		}
 		return noteMapper.findNoteUs(map);
 	}
 
@@ -134,6 +140,7 @@ public class NoteServiceImpl implements NoteService {
 			map.put("userid", userid);
 			map.put("tid",tid);
 			map.put("nconent", nconent);
+			noteMapper.addNoteNum(tid);
 			return noteMapper.insertNote(map);
 			//return 1;
 		}else{
@@ -182,6 +189,7 @@ public class NoteServiceImpl implements NoteService {
 	}
 	
 	
+
 }
 
 

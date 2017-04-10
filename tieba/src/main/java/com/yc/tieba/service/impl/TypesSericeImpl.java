@@ -105,4 +105,9 @@ public class TypesSericeImpl implements TypesService {
 		return typesMapper.findNotes(map);
 	}
 
+	@Override
+	public Types showTypesinfo(String tid) {
+		return typesMapper.showTypesinfo(tid);
+	}
+
 }

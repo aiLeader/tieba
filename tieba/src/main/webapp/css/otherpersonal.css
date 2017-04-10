@@ -1,0 +1,86 @@
+*{
+	padding:0px;
+	margin:0px auto;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+
+body{
+	background: url(../images/reg_repeat_bg.png) repeat-x;
+}
+#top{
+	margin-top:10px;
+	width:850px;
+	height:270px;
+	background:url(../images/bg3.jpg);
+	
+}
+.breadcrumb{
+	background:#BEE1F5; 
+}
+#content{
+	margin-top:20px;
+	width:850px;
+	height:700px;
+}
+#left{
+	width:180px;
+	height:300px;
+	float:left;
+	background: #8b84;
+}
+#uname,#sex,#sign{
+	padding-left:10px;
+	color:blue;
+}
+#more{
+	padding-left:10px;
+	color:black;
+	font-size:14px;
+}
+#right{
+	width:650px;
+	height:690px;
+	float:right;
+	background: white;
+}
+#right li:hover{
+	background:#b6b4b4;
+}
+.tab-content{
+	width:650px;
+	height:595px;
+	padding:10px 5px 5px 10px;
+}
+#noteUserPic{
+	width:55px;
+	height:55px;
+	border-radius:50%;
+	float:left;
+}
+#noteName{
+	float:left;
+	padding-top:35px;
+}
+#title{
+	font-family:"Comic Sans MS", cursive;
+	font-size:25px;
+}
+
+
+
+#footer{
+	height:200px;
+	background:#BEE1F5;
+}
+#fcontent{
+	width:850px;
+	height:110px;
+	text-align:center;
+	padding-top:30px;
+	background: #8b84;
+}

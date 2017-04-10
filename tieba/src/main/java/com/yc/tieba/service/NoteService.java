@@ -26,4 +26,5 @@ public interface NoteService {
 
 	Integer collectNote(String userid, String nid);
 
+
 }

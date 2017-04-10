@@ -41,14 +41,15 @@
 			<div id="first" class="active">
 				<form method="post" id="PerInfoForm">
 					账号:<input name="userid" id="userid" value="${loginUser.userid}"
-						readonly="readonly"><br /> 姓名:<input name="uname"
-						id="username" value="${loginUser.uname}"><br /> 性别:<input
-						type="radio" name="sex" value="男">男<input type="radio"
+						readonly="readonly"><br /> 
+					姓名:<input name="uname"
+						id="username" value="${loginUser.uname}"><br />
+						 性别:<input type="radio" name="sex" value="男">男<input type="radio"
 						name="sex" value="女">女<br /> 生日:<input id="birthday"
 						name="birthday" type="text" class="easyui-datebox"
-						required="required"></input><br /> 电话:<input type="text"
+						></input><br /> 电话:<input type="text"
 						name="telephone" id="telephone"> <br /> 邮箱:<input
-						type="email" name="email" id="email" readonly="readonly">
+						type="email" name="email" id="email" >
 					<br /> 地址:<input type="text" name="address" id="address"><br />
 					<br /> 签名:
 					<textarea id="signs" name="signs"></textarea>
@@ -72,10 +73,10 @@
 			<div id="third">
 				<form>
 					请输入密码：<input type="password" name="password" id="pwd"
-						required="required"> <br /> 
+						> <br /> 
 					请输入新密码：<input type="password"
-						name="npassword" required="required" id="ypwd"><br /> 
-					请再次输入新密码：<input type="password" id="npwd" name="anpassword" required="required"><br />
+						name="npassword"  id="ypwd"><br /> 
+					请再次输入新密码：<input type="password" id="npwd" name="anpassword" ><br />
 					<input type="button" onclick="insertPwd()" value="保存">
 				</form>
 			</div>

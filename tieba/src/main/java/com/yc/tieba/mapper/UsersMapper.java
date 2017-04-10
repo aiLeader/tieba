@@ -12,6 +12,11 @@ public interface UsersMapper {
 	int updateUser(Users users);
 	int insertUser(Users users);
 	Users login(Users user);
-	int updateUserPic(Users users);
+ 	int updateUserPic(Users users);
 	int insertnpwd(Users users);
+	int telinsertUser(Users users);
+	Users telselect(Users user);
+	int insertTel(Users user);
+	Users tellogin(Users user);
+	Users selectUserById(String userid);
 }

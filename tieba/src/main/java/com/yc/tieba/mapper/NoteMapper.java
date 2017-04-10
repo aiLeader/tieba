@@ -30,6 +30,7 @@ public interface NoteMapper {
 	
 	int insertNote(Map<String, String> map);
 
+
 	int collectNote(Map<String, String> map);
 
 	List<String> findCollectNid(String userid);
@@ -41,4 +42,9 @@ public interface NoteMapper {
 	Integer addCollectNote(Map<String, String> dmap);
 
 	
+	
+	int addNoteNum(String tid);
+
+	int plusNum(String nid);
+
 }

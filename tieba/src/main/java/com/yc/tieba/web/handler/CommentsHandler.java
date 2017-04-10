@@ -66,4 +66,14 @@ public class CommentsHandler {
 	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page,@RequestParam("totalPage")String totalPage){
 		return commentsService.findComByNid(nid,page,totalPage);
 	}
+	@RequestMapping(value="addComm",produces=("application/json; charset=UTF-8"))
+	public String AddComment(Comments comments){
+		System.out.println("==>  "+ comments);
+		if(comments.getUserid().trim()==""||comments.getUserid()==null){
+			return "redirect:../page/loginJugle.jsp";
+		}else{
+			commentsService.addNewComm(comments);
+			return "redirect:../page/noteDetail.jsp?nid="+comments.getNid();
+		}
+	}
 }

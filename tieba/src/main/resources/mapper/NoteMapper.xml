@@ -236,7 +236,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据评论数量显示前五条帖子 -->
 	<select id="listNoteOrderByNum" resultType="NoteInfo">
 		select n.*,rownum
-		from NOTE n where n.nstatus=1 and 5>=rownum order by nnum desc
+		from NOTE n where n.nstatus=1 and 5>=rownum order by n.nnum desc
 	</select>
 	
 	<select id="findNoteById" parameterType="String" resultMap="indexNoteInfoMap">
@@ -252,6 +252,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
 	values(note_id.nextval,'${title}','${nconent}','${tid}','${userid}',sysdate,0,0,0,1,1)
 	</insert>
+
 	
 	<!-- 查询是否已经添加 -->
 	<select id="findCollectNid" parameterType="String" resultType="String">
@@ -279,6 +280,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		=1  where storeuserid = '${userid}' and nid='${nid}'
 	</update>
 	
+
+
+	<!-- 添加帖子时板块帖子+1 -->
+	<update id="addNoteNum" parameterType="String">
+		update types set tnum =tnum+1 where tid=#{tid}
+	</update>
 	
+	<!-- 点赞+1 -->
+	<!-- <update id="DeleteNoteDz" parameterType="string">
+		update note set ngood=ngood+1 where nid=#{nid}
+	</update> -->
 </mapper>
+
 
