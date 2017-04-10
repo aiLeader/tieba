@@ -100,6 +100,10 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertnpwd(users)>0;
 	}
+	@Override
+	public Users selectuser(String userid) {
+		return usersMapper.selectUserById(userid);
+	}
 
 
 	

@@ -3,7 +3,6 @@ $("#loginDiv").dialog({
 	width:380,
 	title:"",
 	border:false,
-	modal:true,	
 });
 
 

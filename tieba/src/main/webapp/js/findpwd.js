@@ -63,7 +63,6 @@ function timeCode(){
 $('#btnLogin').linkbutton({    
     iconCls: 'icon-man',
     onClick: function(){
-    	alert("开始登录");
     	$("#findForm").submit();
     }
 }); 

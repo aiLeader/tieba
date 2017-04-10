@@ -49,6 +49,7 @@ public class UsersHandler {
 			return "redirect:../login.jsp";
 		}
 	}
+	
 	@RequestMapping(value="codelogin",method=RequestMethod.POST)
 	public String codelogin(Users user,ModelMap map){
 		int code1=Integer.parseInt(user.getPassword());
@@ -86,6 +87,14 @@ public class UsersHandler {
 	private boolean doDeleteUser(@PathVariable("userid") String userid) throws IOException {
 		return usersService.deleteUser(userid);
 	}
+	
+	
+	@RequestMapping(value="/userinfo",method=RequestMethod.POST)
+	@ResponseBody
+	private Users doSelectUser(String userid) throws IOException {
+		return usersService.selectuser(userid);
+	}
+	
 
 	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody

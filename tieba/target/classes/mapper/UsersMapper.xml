@@ -59,6 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" parameterType="Users" resultType="Users">
 		select * from users where (userid=#{userid} or email = #{userid} or telephone=#{userid}) and password=#{password}
 	</select>
+	
+	<select id="selectUserById" parameterType="string" resultType="Users">
+			select * from users where userid=#{userid}
+	</select>
 	<select id="tellogin"  parameterType="Users" resultType="Users">
 		select * from users where telephone=#{telephone} and password=#{password}
 	</select>

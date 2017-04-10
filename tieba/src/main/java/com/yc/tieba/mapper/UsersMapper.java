@@ -18,4 +18,5 @@ public interface UsersMapper {
 	Users telselect(Users user);
 	int insertTel(Users user);
 	Users tellogin(Users user);
+	Users selectUserById(String userid);
 }
