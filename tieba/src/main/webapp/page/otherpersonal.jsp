@@ -22,7 +22,7 @@
 	<div id="content">
 		<div id="left">
 			<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" >
-			<p>&nbsp;&nbsp;<a>私信</a>&nbsp;&nbsp;<a>关注</a></p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-envelope">私信</a>&nbsp;&nbsp;<a class="glyphicon glyphicon-plus">关注</a></p>
 			<p id="uname"></p>
 			<p id="sex"></p>
 			&nbsp;&nbsp;个性签名：<p id="sign"></p>

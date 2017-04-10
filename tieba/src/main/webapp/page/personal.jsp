@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>${loginUser.uname}的个人主页</title>
+<title></title>
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/personal.css">
@@ -21,18 +21,11 @@
 	</div>
 	<div id="content">
 		<div id="left">
-			<c:choose>
-				<c:when test="${loginUser.picPath !=null}">
-					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="${loginUser.picPath}">
-				</c:when>
-				<c:otherwise>
-					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="../images/mr.jpg">
-				</c:otherwise>
-			</c:choose>
+					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" >
 			<input type="hidden" value="${loginUser.userid}" id="userid">
-			<p id="uname">${loginUser.uname}</p>
-			<p id="sex">${loginUser.sex}</p>
-			&nbsp;&nbsp;个性签名：<p id="sign">${loginUser.signs}</p>
+			<p id="uname"></p>
+			<p id="sex"></p>
+			&nbsp;&nbsp;个性签名：<p id="sign"></p>
 			<p id="more"><a href="personalSet.jsp" target="_blank">查看更多资料&gt;&gt;</a></p>
 		</div>
 		<div id="right">
