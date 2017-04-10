@@ -13,7 +13,7 @@
     /* 图片上传路径：physicsPath + imagePathFormat 
                    图片访问路径：imageUrlPrefix + imagePathFormat
     */
-    "physicsPath": "F:\\apache-tomcat-7.0.47\\webapps",/* 图片上传路径前缀  如果为空就在发布名目录路径下开始*/
+    "physicsPath": "D:\apache-tomcat-7.0.47\webapps",/* 图片上传路径前缀  如果为空就在发布名目录路径下开始*/
     "imagePathFormat": "/upload30/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
                                 /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */
                                 /* {rand:6} 会替换成随机数,后面的数字是随机数的位数 */

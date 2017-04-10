@@ -22,10 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.UsersService;
+import com.yc.tieba.util.Encrypt;
 import com.yc.tieba.util.RandomNumUtil;
 import com.yc.tieba.util.SendMailutil;
 import com.yc.tieba.util.ServletUtil;
 import com.yc.tieba.util.sendMobileCode;
+import com.yc.tieba.util.sendMobileCode1;
 
 @Controller("usersHandler")
 @RequestMapping("user")
@@ -34,6 +36,7 @@ public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
 	private int code;
+	private int code2;
 
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(Users user,ModelMap map){
@@ -43,6 +46,33 @@ public class UsersHandler {
 			return "redirect:../index.jsp";
 		}else{
 			map.addAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!");
+			return "redirect:../login.jsp";
+		}
+	}
+	@RequestMapping(value="codelogin",method=RequestMethod.POST)
+	public String codelogin(Users user,ModelMap map){
+		int code1=Integer.parseInt(user.getPassword());
+		if(code1==code2){
+			//1.该手机号码在数据库则表示已经注册，直接登录 
+			//2.手机号不在数据库 则创建一个账号 密码为发送的验证码 登录
+			Users users= usersService.codelogin(user);
+			if(users!=null){ //手机号在数据库中存在 直接登录
+				map.addAttribute(ServletUtil.LOGIN_USER, users);
+				return "redirect:../index.jsp";
+			}else{  //创建账号 将验证码当密码登录
+				int result=usersService.fastregister(user);
+				if(result==1){ //如果注册成功 直接手机号登录
+					user= usersService.tellogin(user);
+					if(user!=null){
+						map.addAttribute(ServletUtil.LOGIN_USER, user);
+						return "redirect:../index.jsp";
+					}else{
+						return "redirect:../login.jsp";
+					}
+				}
+				return "redirect:../login.jsp";			
+			}
+		}else{
 			return "redirect:../login.jsp";
 		}
 	}
@@ -121,6 +151,22 @@ public class UsersHandler {
 			return false;
 		}
 	}
+	//手机快速登录
+	@RequestMapping(value="sendTel1",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean sendTele1(String telephone){
+		LogManager.getLogger().debug("发送的手机号码为："+telephone);
+		sendMobileCode1 sendcode1;
+		try {
+			sendcode1 = new sendMobileCode1();
+			sendcode1.sendMobileCoder(telephone);
+			code2 = sendcode1.getCode();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 
 	@RequestMapping(value="telregister")
@@ -132,7 +178,7 @@ public class UsersHandler {
 		if(code1==code){
 			return usersService.insertUser1(users)>0;
 		}
-		
+
 		return false;
 	}
 
