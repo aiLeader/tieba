@@ -15,4 +15,5 @@ public interface UsersService {
 	Users codelogin(Users user);
 	int fastregister(Users user);
 	Users tellogin(Users user);
+	Users selectuser(String userid);
 }

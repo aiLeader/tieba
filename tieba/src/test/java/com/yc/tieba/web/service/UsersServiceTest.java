@@ -28,6 +28,13 @@ public class UsersServiceTest {
 		System.out.println(user);
 		assertNotNull(user);
 	}
+	
+	@Test
+	public void testSelectUsers() {
+		Users user=userService.selectuser("1141");
+		System.out.println(user);
+		assertNotNull(user);
+	}
 	@Test
 	public void testUpdateUsers() {
 		Users users=new Users();

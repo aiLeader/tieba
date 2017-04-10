@@ -207,3 +207,4 @@ select * from TYPES where tid=101;
 
 select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )
 select status from dianzan where userid ='1000' and nid='10040' 
+select * from note where userid in

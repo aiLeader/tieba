@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>${loginUser.uname}的个人主页</title>
+<title></title>
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/otherpersonal.css">
@@ -21,24 +21,17 @@
 	</div>
 	<div id="content">
 		<div id="left">
-					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="${loginUser.picPath}">
-					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" src="../images/mr.jpg">
-			<input type="hidden" value="${loginUser.userid}" id="userid">
-			<p id="uname">${loginUser.uname}</p>
-			<p id="sex">${loginUser.sex}</p>
-			&nbsp;&nbsp;个性签名：<p id="sign">${loginUser.signs}</p>
+			<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" >
+			<p>&nbsp;&nbsp;<a>私信</a>&nbsp;&nbsp;<a>关注</a></p>
+			<p id="uname"></p>
+			<p id="sex"></p>
+			&nbsp;&nbsp;个性签名：<p id="sign"></p>
 		</div>
 		<div id="right">
 			<div class="tabbable" id="tabs-692685">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-all" data-toggle="tab">全部</a>
-					</li>
-					<li>
-						 <a href="#panel-store" data-toggle="tab">收藏</a>
-					</li>
-					<li>
-						 <a href="#panel-concern" data-toggle="tab">关注</a>
+						 <a href="#panel-all" data-toggle="tab">全部帖子</a>
 					</li>
 				</ul>
 				<div class="tab-content">

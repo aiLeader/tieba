@@ -27,7 +27,7 @@
 				<div id="youxiangdiv">
 					<span id="span1"><i id="spani2">*</i>邮箱：</span> <input type="email"
 						name="email" placeholder="使用邮箱注册" id="e-mail" class="color1"
-						required="required" /> <span id="mimats3" style="display: none;">请你输入邮箱</span>
+						 /> <span id="mimats3" style="display: none;">请你输入邮箱</span>
 					<span id="mimats4" style="display: none;">该邮箱已注册，请换个邮箱</span> <span
 						id="mimats41" style="display: none;">请输入正确的邮箱格式</span> <span
 						id="mimats5" style="display: none;">该邮箱可以注册</span>
@@ -39,7 +39,7 @@
 				</div>
 				<div id="mimadiv">
 					<span id="span3"><i>*</i>用户名：</span> <input type="text"
-						name="uname" id="username" class="color1" required="required" />
+						name="uname" id="username" class="color1" />
 					<span id="mimats6" style="display: none;">请你输入用户名</span> <span
 						id="mimats7" style="display: none;">该用户名已经存在，请换个用户名</span> <span
 						id="mimats8" style="display: none;">该用户名可用</span>
@@ -47,7 +47,7 @@
 				</div>
 				<div id="mimadiv1">
 					<span id="span2"><i>*</i>请输入密码：</span> <input type="password"
-						name="password" id="pwd" class="color1" required="required" /> <span
+						name="password" id="pwd" class="color1"  /> <span
 						id="mimats1" style="display: none;">请输入6-16位数字、字母，字母区分大小写</span> <span
 						id="mimats16" style="display: none;">你输入的密码强度有点低哦</span> <span
 						id="mimats17" style="display: none;">你输入的密码很安全哦</span>
@@ -55,13 +55,13 @@
 				</div>
 				<div id="mimadiv2">
 					<span id="span21"><i>*</i>请确认密码：</span> <input type="password"
-						name="pwd2" id="pwd2" class="color1" required="required" /> <span
+						name="pwd2" id="pwd2" class="color1" /> <span
 						id="mimats2" style="display: none;">你输入的密码与第一次输入的密码不一样哦</span>
 				</div>
 				<div id="jihuomadiv">
 					<span id="span3"><i>*</i>验证码：</span> <a href="javascript:void(0)"
 						id="jihuoma" class="sendMail" onclick="getnumber()">发送邮箱验证码</a> <input
-						type="text" name="vcode" id="jihuo" required="required" />
+						type="text" name="vcode" id="jihuo"  />
 				</div>
 				<div>
 					<input type="submit" value="立即注册" id="sub" />
