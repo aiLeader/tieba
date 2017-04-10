@@ -16,6 +16,7 @@ public class RandomNumUtil {
 		int result = 0;
 		for(int i = 0; i < 6; i++)
 		result = result * 10 + array[i];
+		System.out.println(result);
 		return result;
 	}
 

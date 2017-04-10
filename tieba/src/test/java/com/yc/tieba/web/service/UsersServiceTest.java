@@ -64,4 +64,21 @@ public class UsersServiceTest {
 		System.out.println(users);
 		assertNotNull(users);
 	}
+	@Test
+	public void testselectUsers() {
+		Users user=new Users();
+		user.setTelephone("18804474987");
+		Users users=userService.codelogin(user);
+		System.out.println(users);
+		assertNotNull(users);
+	}
+	@Test
+	public void testtelinsertUsers() {
+		Users user=new Users();
+		user.setTelephone("18804474977");
+		user.setPassword("a");
+		int users=userService.fastregister(user);
+		System.out.println(users);
+		assertNotNull(users);
+	}
 }
