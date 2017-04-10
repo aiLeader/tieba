@@ -57,6 +57,20 @@ $(".treeNav").tree({
 				iconCls:"icon-mini-add",
 				closable:true,
 			});
+		}else if(nodeContent == "帖子推送"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/tuisong_info.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
+		}else if(nodeContent == "当前推送"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/currTuisong_info.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
 		}else{
 			$("#main").tabs('add',{
 				title: nodeContent,

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.yc.tieba.entity.Users;
 import com.yc.tieba.util.ServletUtil;
 
 /**
@@ -28,14 +29,13 @@ public class isLoginFilter extends AbstractFilter{
 	}
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
-		String userid = (String) session.getAttribute("loginUser");
-		System.out.println("user==>"+userid);
-		if(userid == null){
+		Users users =(Users)session.getAttribute(ServletUtil.LOGIN_USER);
+		System.out.println("users==>"+users);
+		if(users == null){
 			System.out.println("=============》进来了。。。");
 			//((HttpServletResponse) response).sendRedirect("/tieba/login.jsp");
 			//((HttpServletResponse) response).sendRedirect("../login.jsp");
-			((HttpServletRequest)request).getRequestDispatcher("../index.jsp").forward(request,response);
-			return ;
+			((HttpServletResponse) response).sendRedirect(ServletUtil.DEPLOY_NAME+"/page/loginJugle.jsp");
 		}
 	}
 }

@@ -33,4 +33,16 @@ public interface NoteMapper {
 
 	int plusNum(String nid);
 
+	PaginationBean<NoteInfo> manageFindNote(Map<String, String> map);
+
+	int sendNote(String nid);
+
+	PaginationBean<Object> getCountSendNote();
+	
+	PaginationBean<Object> noteSendJugle(String nid);
+
+	int cancelSend(String nid);
+
+	List<NoteInfo> findSendNotes();
+
 }

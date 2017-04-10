@@ -34,8 +34,8 @@ public class NoteServiceImpl implements NoteService {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("pageSize", String.valueOf(pageSize));
 		map.put("currPage",String.valueOf(currPage));
-		
-		 if(options.startsWith("username")){
+
+		if(options.startsWith("username")){
 			options =  options.replace("username", "");
 			options = noteMapper.findUsId(options);
 			if(options != null){
@@ -145,5 +145,61 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public boolean plusNum(String nid) {
 		return noteMapper.plusNum(nid)>0;
+	}
+
+	@Override
+	public PaginationBean<NoteInfo> ManagerfindNote(String page, String rows, String ftype, String fparem) {
+		int pageSize=10;
+		int currPage=1;
+		if(rows!=null){
+			pageSize=Integer.parseInt(rows);
+		} 
+		if(page!=null){
+			currPage=Integer.parseInt(page);
+			if(currPage<=0){
+				currPage=1;
+			}
+		}	
+		try {
+			Integer.parseInt(fparem);
+		} catch (Exception e) {
+			fparem="";
+		}
+		if(ftype.equals("nop")){
+			ftype="";
+		}
+		System.out.println("====>"+ftype+"===>"+fparem);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("pageSize",String.valueOf(pageSize));
+		map.put("currPage",String.valueOf(currPage));
+		map.put("ftype", ftype);
+		map.put("fparem",String.valueOf(fparem));
+		return noteMapper.manageFindNote(map);
+	}
+
+	@Override
+	public int sendNote(String nid) {
+		System.out.println("countSendNote==>"+noteMapper.getCountSendNote().getTotal());
+		if(noteMapper.getCountSendNote().getTotal()<10){
+			System.out.println("noteSendJugle==>"+noteMapper.noteSendJugle(nid).getTotal());
+			if(noteMapper.noteSendJugle(nid).getTotal()<=0){
+				return noteMapper.sendNote(nid);
+			}else{
+				return 2;
+			}
+		}else{
+			return 3;
+		}
+
+	}
+
+	@Override
+	public boolean CanclesendNote(String nid) {
+		return noteMapper.cancelSend(nid)>0;
+	}
+
+	@Override
+	public List<NoteInfo> findSendNotes() {
+		return noteMapper.findSendNotes();
 	}
 }

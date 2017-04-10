@@ -218,7 +218,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultMap="PaginationBeanMapLs">
 		select count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
-		pageSize ,${currPage} currPage from note where nstatus=1
+		pageSize ,${currPage} currPage 
+		from note where nstatus=1
 	</select>
 	<select id="getNoteinfo" resultMap="indexNoteInfoMap">
 		select * from (
@@ -243,7 +244,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
-		types on types.tid=note.tid where nid=#{nid}
+		types on types.tid=note.tid where nid=#{nid} and nstatus=1
 	</select>
 	
 	<!-- 添加帖子 -->
@@ -261,5 +262,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="plusNum" parameterType="string">
 		update note set ngood=ngood+1 where nid=#{nid}
 	</update>
+	<resultMap type="PaginationBean" id="PBMMfinnote">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage,ftype=ftype,fparem=fparem}" ofType="NoteInfo"
+			select="manegeGetNoteinfo" />
+	</resultMap>
+	<select id="manageFindNote" resultMap="PBMMfinnote" parameterType="map">
+		select count(1) total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize}
+		pageSize ,${currPage} currPage 
+		<choose>
+			<when test="ftype!=null and ftype!=''">, '${ftype}' ftype
+			</when>
+			<otherwise>, '' ftype 
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="fparem!=null and fparem!=''">, '${fparem}' fparem
+			</when>
+			<otherwise>, '' fparem 
+			</otherwise>
+		</choose>
+		from note where nstatus=1
+	</select>
+	<select id="manegeGetNoteinfo" resultMap="indexNoteInfoMap">
+		select * from (
+		select
+		nid,ntitle,ncontent,tid,tname,userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		, rownum rn from
+		(select nid,ntitle,ncontent,types.tid
+		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		from note inner join users on note.userid = users.userid inner join
+		types on types.tid=note.tid where note.nstatus=1 and note.nremark != 'send'  or  note.nremark is null
+		<if test="ftype!=null and ftype!='' and fparem!=null and fparem!=''"> and note.${ftype} = ${fparem}
+		</if>	
+		order by nid desc ) n
+		where ${pageSize}* ${currPage}>=rownum )
+		where rn
+		>(${currPage}-1)*${pageSize}
+	</select>
+	<update id="sendNote" parameterType="String">
+		update note set nremark='send' where nid=#{nid}
+	</update>
+	
+	<select id="getCountSendNote" resultType="PaginationBean">
+		select count(1) total from note where nremark='send' and nstatus=1
+	</select>
+	<select id="noteSendJugle" resultType="PaginationBean">
+		select count(1) total from note where nremark='send' and nid=#{nid} and nstatus=1
+	</select>
+	<update id="cancelSend" parameterType="String">
+		update note set nremark='' where nid=#{nid}
+	</update>
+	<select id="findSendNotes" resultMap="indexNoteInfoMap">
+		select nid,ntitle,ncontent,types.tid
+		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		from note inner join users on note.userid = users.userid inner join
+		types on types.tid=note.tid where nremark='send' and note.nstatus=1
+	</select>
 </mapper>
 

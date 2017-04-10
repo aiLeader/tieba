@@ -41,3 +41,14 @@ function listNoteOderByNum(url){
 	},"json");
 }
 listNoteOderByNum("note/listOrderByNum");
+
+//异步加载右下角的管理员推荐贴
+$.post("note/findSendNote",function(data){
+	$("#sendNotes").empty();
+	var strSendNote='<ul id="ulstyle">';
+	for (var i = 0; i < data.length; i++) {
+		strSendNote+='<li><a href="page/noteDetail.jsp?nid='+data[i].nid+'">'+data[i].ntitle+'</a></li>';
+	}
+	strSendNote+='</ul>';
+	$("#sendNotes").append(strSendNote);
+},"json");
