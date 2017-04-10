@@ -140,4 +140,53 @@ public class NoteServiceImpl implements NoteService {
 			return null;
 		}
 	}
+
+	//收藏帖子
+	@Override
+	public Integer collectNote(String userid, String nid) {
+		boolean nidHave = false;
+			List<String> tnids  = noteMapper.findCollectNid(userid);
+			for(String tnid:tnids){
+				if(tnid.equals(nid)){
+					nidHave = true;
+					break;
+				}
+			}
+			if(nidHave){
+				System.out.println("已经有记录了");
+					Map<String,String> smap=new HashMap<String,String>();
+					smap.put("userid", userid);
+					smap.put("nid", nid);
+					int status = noteMapper.findCollectStatus(smap);
+					if(status == 1){//已经收藏
+						System.out.println("已经收藏,取消收藏");
+						Map<String,String> dmap=new HashMap<String,String>();
+						dmap.put("userid", userid);
+						dmap.put("nid", nid);
+						int a= noteMapper.deleteCollectNote(dmap);
+						return 2;
+					}else{//还没有收藏
+						System.out.println("还没有收藏,点击收藏");
+						Map<String,String> dmap=new HashMap<String,String>();
+						dmap.put("userid", userid);
+						dmap.put("nid", nid);
+						int b =  noteMapper.addCollectNote(dmap);
+						return 3;
+					}
+			}else{
+				Map<String,String> map=new HashMap<String,String>();
+				map.put("userid", userid);
+				map.put("nid", nid);
+				return noteMapper.collectNote(map);
+			}
+	}
+	
+	
 }
+
+
+
+
+
+
+

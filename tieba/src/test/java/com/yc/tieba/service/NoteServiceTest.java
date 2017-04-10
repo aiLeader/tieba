@@ -66,4 +66,10 @@ public class NoteServiceTest {
 		System.out.println(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"));
 		assertEquals(noteService.insertNote("沈慧", "1000", "101", "我不知道说什么了"), 1);
 	}*/
+	
+	//收藏的测试
+	@Test
+	public void testcollectNote() {
+		System.out.println(noteService.collectNote("1002", "10004"));
+	}
 }

@@ -28,7 +28,7 @@ create table admin(
 
 create sequence admin_id start with 1000;--管理员ID序列
 
-
+insert into admin(aid,aname,apassword,asex,aemail,apic) values(admin_id.nextval||'','莱因哈特02',default,'男','1554131546@qq.com','aa');
 --用户(板块管理员，普通用户)
 
 create table users(
@@ -158,6 +158,7 @@ select * from comments;
 
 --收藏表
 drop table store;
+select * from STORE;
 create table store(
     storeuserid varchar2(5) constraint fk_store_userid references users(userid),--用户id 外键 
     nid varchar2(5) constraint fk_store_nid references note(nid),--帖子id  外键
@@ -171,7 +172,8 @@ insert into store values('1001','10020',sysdate,1,'');
 select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid where storeuserid='1001' union
 
 select * from store;
-
+delete from store where storeuserid ='1002';
+ 
 --关注表
 
 create table concern(
@@ -196,5 +198,7 @@ create table secret(
 
 select * from note;
 select * from TYPES where tid=101;
-
+select * from admin;
+select * from store;
 select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )
+select status from store where storeuserid ='1001' and  nid='10004' ;

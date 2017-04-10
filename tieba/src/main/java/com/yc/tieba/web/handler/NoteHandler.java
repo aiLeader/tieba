@@ -78,4 +78,18 @@ public class NoteHandler {
 	public boolean insertNote(String title,String userid,String tid,String nconent){
 		return noteService.insertNote(title,userid,tid,nconent)>0;
 	}
+	
+	//收藏帖子
+		@RequestMapping(value="collectNote")
+		@ResponseBody
+		public Integer collectNote(String userid,String nid){
+		System.out.println("userid:"+userid+"      nid:"+nid);
+		if(userid.isEmpty()){
+			return 9;
+		}else if(nid.isEmpty()||nid==null){
+			return 8;
+		}
+		return noteService.collectNote(userid,nid);
+		//return 1;
+		}
 }

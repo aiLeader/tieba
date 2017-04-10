@@ -134,6 +134,9 @@
 					<a id="send" href="javascript:void(0)" onclick="return sendNote()">发送</a>
 				</form>
 			</div>
+			<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
+				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
+			</form>
 			<div id="content"></div>
 		</div>
 			

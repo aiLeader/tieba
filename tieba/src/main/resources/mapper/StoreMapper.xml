@@ -51,6 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select n.*,rownum rn from
 		(select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttimes  
 		from store s join note n on s.nid=n.nid join users u on s.storeuserid=u.userid where
+		s.status =1  and
 		storeuserid = '${options}'
 		) n
 		where ${pageSize}* ${currPage}>=rownum )
