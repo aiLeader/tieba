@@ -43,6 +43,7 @@
 										</c:choose>
 									</li>
 									<li><a href="#">${loginUser.uname}</a></li>
+									<input id="userid" type="hidden" value="${loginUser.userid}">
 								</c:when>
 								<c:otherwise>
 									<li><a href="register.jsp">注册</a></li>

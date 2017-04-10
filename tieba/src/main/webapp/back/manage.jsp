@@ -12,18 +12,25 @@
 </head>
 <body class="easyui-layout" style="width: 1366px; margin: 0px auto;">
 	<div data-options="region:'north'" style="height: 138px;width: 1366px;">
-		<div id="header">
-			<img src="images/logo1.png" alt="" id="picstyle"/>
+		<img style="padding-left: 20px;" height="80px" width="337px" class="mainpage_head_img"
+			alt="公司logo" src="images/logo1.png" id="logo"/>
+
+		<div style="float: right; margin-top: 40px; margin-right: 20px; color: #082C5A;">
+			<div>
+				管理员：[<strong style="font-size: 120%; color: green;">sh</strong>]，欢迎您进入贴吧系统
+			</div>
+			<div style="margin-top: 8px;">
+				<a href="javascript:void(0);" class="easyui-menubutton"
+					data-options="menu:'#layout_north_kzmbMenu',iconCls:'icon-help'">信息中心</a> <a
+					href="javascript:void(0);" class="easyui-menubutton"
+					data-options="menu:'#layout_north_zxMenu',iconCls:'icon-back'">注销</a>
+			</div>
 		</div>
 	</div>
-	<div data-options="region:'south'" style="height: 130px;">
+	<div data-options="region:'south'" style="height: 80px;">
 		<div id="footer">
-			<p class="">
-				24小时客户服务热线：010-68988888 &#160;&#160;&#160;&#160; <a href="#">常见问题解答</a> &#160;&#160;&#160;&#160;
-				新闻热线：010-627488888 <br /> 文明办网文明上网举报电话：010-627488888 &#160;&#160;&#160;&#160; 举报邮箱： <a href="#">jubao@jb-aptech.com.cn</a>
-			</p>
 			<p class="copyright">
-				Copyright &copy; 1999-2009 News China gov, All Right Reserver <br /> 贴吧 版权所有
+				Copyright &copy; 2017-2020 Front Back Template, All Right Reserver <br /> 贴吧系统  版权所有
 			</p>
 		</div>
 	</div>
@@ -80,6 +87,29 @@
 				</h1>
 			</div>
 		</div>
+	</div>
+	
+	<!-- 下拉信息中心菜单 -->
+	<div id="layout_north_kzmbMenu" style="width: 100px; display: none;">
+		<div onclick="userInfoFun();">修改密码</div>
+		<div class="menu-sep"></div>
+		<div onclick="aboutUs();">联系我们</div>
+	</div>
+	<!-- 下拉信息菜单 -->
+	<div id="layout_north_zxMenu" style="width: 100px; display: none;">
+		<div onclick="reLogin();">切换用户</div>
+		<div class="menu-sep"></div>
+		<div onclick="logoutFun();">退出系统</div>
+	</div>
+	<!-- 修改密码 -->
+	<div id="personalInfo">
+		<form id="modifyForm" method="post">
+			<input name="username" type="hidden" value="${username }"/>
+			<p>原密码:<input type="password" name="username" placeholder="请输入原密码" required="required"/></p>
+			<p>新密码:<input type="password" name="password" placeholder="请输入新密码"  required="required"/></p>
+			<p>重复新密码:<input type="password" id="repassword" placeholder="请重复输入新密码"  required="required"/></p>
+			<p><a id="modifyBtn" href="javascript:void(0)">修 改</a><a id="closeBtn" href="javascript:void(0)">关 闭</a></p>
+		</form>
 	</div>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>

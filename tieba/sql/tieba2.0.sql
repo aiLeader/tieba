@@ -172,6 +172,14 @@ select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttim
 
 select * from store;
 
+
+--点赞
+create table dianzan(
+	userid varchar2(5) constraint fk_dianzan_userid references users(userid),
+	nid varchar2(5) constraint fk_dianzan_nid references note(nid),
+	dstatus NUMBER DEFAULT 1 CONSTRAINT dianzan_dstatus CHECK(dstatus IN(0,1)) --1赞0取消赞
+);
+select * from dianzan;
 --关注表
 
 create table concern(
@@ -198,3 +206,4 @@ select * from note;
 select * from TYPES where tid=101;
 
 select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )
+select status from dianzan where userid ='1000' and nid='10040' 

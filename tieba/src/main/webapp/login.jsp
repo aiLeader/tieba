@@ -34,7 +34,7 @@
 						</p>
 						<c:remove var="errorMsg" scope="session" />
 						<p>
-								<input class="easyui-textbox" name="userid" prompt="请用账号/邮箱/手机号码登录" data-options="iconCls:'icon-man',iconAlign:'left'" style="width:300px"> 
+							<input class="easyui-textbox" name="userid" prompt="请用账号/邮箱/手机号码登录" data-options="iconCls:'icon-man',iconAlign:'left'" style="width:300px"> 
 						</p>
 						<p>
 						<input class="easyui-textbox"type="password" name="password" prompt="请输入密码" data-options="iconCls:'icon-lock',iconAlign:'left'" style="width:300px"> 
@@ -44,9 +44,9 @@
 								placeholder="请输入验证码" id="vcode" required="required" />
 						</p>
 						<p>
+							<a id="btnRegister" href="register.jsp">没有账号?注册一个>></a>
 							<a id="btnLogin" href="javascript:void(0)">登录</a>
 						</p>
-						<a id="btnRegister" href="register.jsp">没有账号?注册一个>></a>
 					</form>
 				</div>
 			</div>
