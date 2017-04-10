@@ -28,6 +28,13 @@ public class UsersServiceTest {
 		System.out.println(user);
 		assertNotNull(user);
 	}
+	
+	@Test
+	public void testSelectUsers() {
+		Users user=userService.selectuser("1141");
+		System.out.println(user);
+		assertNotNull(user);
+	}
 	@Test
 	public void testUpdateUsers() {
 		Users users=new Users();
@@ -61,6 +68,23 @@ public class UsersServiceTest {
 		user.setPassword("a");
 		user.setTelephone("18804474987");
 		int users=userService.insertUser1(user);
+		System.out.println(users);
+		assertNotNull(users);
+	}
+	@Test
+	public void testselectUsers() {
+		Users user=new Users();
+		user.setTelephone("18804474987");
+		Users users=userService.codelogin(user);
+		System.out.println(users);
+		assertNotNull(users);
+	}
+	@Test
+	public void testtelinsertUsers() {
+		Users user=new Users();
+		user.setTelephone("18804474977");
+		user.setPassword("a");
+		int users=userService.fastregister(user);
 		System.out.println(users);
 		assertNotNull(users);
 	}

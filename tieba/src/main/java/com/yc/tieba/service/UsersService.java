@@ -12,4 +12,8 @@ public interface UsersService {
 	boolean updateUserPic(Users users);
 	boolean insertnpwd(Users user);
 	int insertUser1(Users users);
+	Users codelogin(Users user);
+	int fastregister(Users user);
+	Users tellogin(Users user);
+	Users selectuser(String userid);
 }

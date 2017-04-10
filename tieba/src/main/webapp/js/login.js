@@ -1,9 +1,8 @@
 $("#loginDiv").dialog({
 	top:80,
-	width:300,
+	width:380,
 	title:"",
 	border:false,
-	modal:true,	
 });
 
 

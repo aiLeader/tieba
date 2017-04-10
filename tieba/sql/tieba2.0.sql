@@ -52,7 +52,7 @@ create table users(
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 select * from users;
-delete from users where userid='1040'
+delete from users where userid='1129'
 
 insert into users
 select users_id.nextval||'',dbms_random.string('l',4),'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',
@@ -172,6 +172,14 @@ select n.nid,n.userid,n.ntitle,n.ncontent,n.ntimes,n.ngood,s.storeuserid,s.sttim
 
 select * from store;
 
+
+--点赞
+create table dianzan(
+	userid varchar2(5) constraint fk_dianzan_userid references users(userid),
+	nid varchar2(5) constraint fk_dianzan_nid references note(nid),
+	dstatus NUMBER DEFAULT 1 CONSTRAINT dianzan_dstatus CHECK(dstatus IN(0,1)) --1赞0取消赞
+);
+select * from dianzan;
 --关注表
 
 create table concern(
@@ -198,3 +206,4 @@ select * from note;
 select * from TYPES where tid=101;
 
 select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )
+select status from dianzan where userid ='1000' and nid='10040' 

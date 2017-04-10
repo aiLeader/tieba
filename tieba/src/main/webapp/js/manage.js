@@ -116,3 +116,61 @@ function full(){
 function unfull(){
 	$("body").layout("unfull");
 }
+
+$("#personalInfo").dialog({	
+	title:"",
+	width:260,
+	border:false,
+	modal:true,
+	closed:true,
+	closable:false,
+});
+
+$('#modifyBtn').linkbutton({    
+    iconCls: 'icon-ok',
+    width: 80,
+    onClick: function(){    	
+    	/*$("#loginForm").submit();*/
+    }
+}); 
+
+$('#closeBtn').linkbutton({    
+    iconCls: 'icon-cancel',
+    width: 80,
+    onClick: function(){    	
+    	$("#personalInfo").dialog("close", true);
+    }
+}); 
+
+$("#personalInfo input[type=password]").textbox({
+	width:160,
+});
+function reLogin(){
+	//显示重新登录确认框
+	$.messager.confirm('', '您是否确定要切换用户吗？', function(r){
+		if (r){
+		    // 切换用户操作;
+			location.href="back/login.jsp";
+		}
+	});
+}
+
+function aboutUs(){
+	//显示关于我们的dialog
+	$.messager.alert('','<table><tr><td align="right">手机：</td><td>18711449775</td></tr><tr><td  align="right">QQ：</td><td>1426855747</td></tr><tr><td align="right">版本所有：</td><td>爱贴就上贴吧</td></tr></table>','info');
+}
+
+function logoutFun() {
+	//显示退出系统确认框
+	$.messager.confirm('', '您确定要退出系统吗？', function(r){
+		if (r){
+		    //退出系统操作;
+			location.replace("back/login.jsp");
+		}
+	});
+}
+
+function userInfoFun() {
+	//显示修改密码框
+	$('#personalInfo').window('open');
+}

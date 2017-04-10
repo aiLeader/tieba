@@ -22,6 +22,22 @@ public class UsersServiceImpl implements UsersService {
 		user.setPassword(Encrypt.md5AndSha(user.getPassword()));
 		return usersMapper.login(user);
 	}
+	@Override
+	public Users tellogin(Users user) {
+		return usersMapper.tellogin(user);
+	}
+	
+	//手机短信快捷登录 手机号码已经注册的直接登录   没注册则直接创建一个账号注册登录
+	@Override
+	public Users codelogin(Users user) {
+		Users users=usersMapper.telselect(user);
+		return users;
+	}
+	
+	
+	
+	
+	
 	//分页操作
 	@Override
 	public PaginationBean<Users> listuser(String rows, String page,String option) {
@@ -66,6 +82,15 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.telinsertUser(users);
 	}
+	//手机快速注册
+	@Override
+	public int fastregister(Users user) {
+		user.setPassword(Encrypt.md5AndSha(user.getPassword()));
+		return usersMapper.insertTel(user);
+	}
+	
+	
+	
 	@Override
 	public boolean updateUserPic(Users users) {
 		return usersMapper.updateUserPic(users)>0;
@@ -75,6 +100,13 @@ public class UsersServiceImpl implements UsersService {
 		users.setPassword(Encrypt.md5AndSha(users.getPassword()));
 		return usersMapper.insertnpwd(users)>0;
 	}
+	@Override
+	public Users selectuser(String userid) {
+		return usersMapper.selectUserById(userid);
+	}
+
+
 	
+
 	
 }

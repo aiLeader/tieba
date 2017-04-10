@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
+<mapper namespace="com.yc.tieba.mapper.DianzanMapper">
+	<insert id="insert" parameterType="Dianzan">
+		insert into dianzan(userid,nid,dstatus) values(${userid},${nid},1)
+	</insert>
+	
+	<!-- 查询nid是否已经添加进去 -->
+	<select id="findDZNid" parameterType="String" resultType="String">
+		select nid  from dianzan where userid ='${_parameter}'
+	</select>
+	
+	<!-- 查询状态 -->
+	<select id="findDZStatus" parameterType="map" resultType="int">
+		select dstatus  from dianzan where userid ='${userid}' and  nid='${nid}'
+	</select>
+	
+	<!-- 修改点赞的关系 -->
+	<update id="deleteDZNote" parameterType="map">
+		update dianzan set dstatus
+		=0  where userid = '${userid}' and nid='${nid}'
+	</update>
+	<update id="addDZNote" parameterType="map">
+		update dianzan set dstatus
+		=1  where userid = '${userid}' and nid='${nid}'
+	</update>
+	
+	<!-- 给帖子的点赞加一 -->
+	<update id="addNoteDz" parameterType="String">
+		update note set ngood=ngood+1 where nid='${_parameter}'
+	</update>
+	
+	<!-- 给帖子的点赞减一 -->
+	<update id="deleteNoteDz" parameterType="String">
+		update note set ngood=ngood-1 where nid='${_parameter}'
+	</update>
+</mapper>

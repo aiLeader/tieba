@@ -57,9 +57,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="login" parameterType="Users" resultType="Users">
-		select * from users where (userid=#{userid} or email = #{userid}) and password=#{password}
+		select * from users where (userid=#{userid} or email = #{userid} or telephone=#{userid}) and password=#{password}
 	</select>
 	
+	<select id="selectUserById" parameterType="string" resultType="Users">
+			select * from users where userid=#{userid}
+	</select>
+	<select id="tellogin"  parameterType="Users" resultType="Users">
+		select * from users where telephone=#{telephone} and password=#{password}
+	</select>
+	
+	<!-- 查询手机号在数据库是否存在 -->
+	<select id="telselect" parameterType="Users" resultType="Users">
+		select * from users where telephone=#{telephone}
+	</select>
 	
 	
 	<!-- 删除用户信息 将用户状态改为2 代表删除 -->
@@ -144,6 +155,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(userid,uname,password,telephone,regDate)
 		 values
 		(users_id.nextval||'',#{uname},#{password},#{telephone},sysdate)
+	</insert>
+	
+	<!-- 手机快速注册 -->
+	<insert id="insertTel"  parameterType="Users">
+		insert into users
+			(userid,uname,password,telephone,regDate)
+		 values
+		(users_id.nextval||'',dbms_random.string('l',8),#{password},#{telephone},sysdate)
 	</insert>
 
 

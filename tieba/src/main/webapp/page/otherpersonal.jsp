@@ -8,7 +8,7 @@
 <title></title>
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="../css/demo1.css">
-<link rel="stylesheet" href="../css/personal.css">
+<link rel="stylesheet" href="../css/otherpersonal.css">
 <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 </head>
 
@@ -21,24 +21,17 @@
 	</div>
 	<div id="content">
 		<div id="left">
-					<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" >
-			<input type="hidden" value="${loginUser.userid}" id="userid">
+			<img style="width:100px;height:100px;border-radius:50%;" class="img-circle" id="picPath" >
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;<a class="glyphicon glyphicon-envelope">私信</a>&nbsp;&nbsp;<a class="glyphicon glyphicon-plus">关注</a></p>
 			<p id="uname"></p>
 			<p id="sex"></p>
 			&nbsp;&nbsp;个性签名：<p id="sign"></p>
-			<p id="more"><a href="personalSet.jsp" target="_blank">查看更多资料&gt;&gt;</a></p>
 		</div>
 		<div id="right">
 			<div class="tabbable" id="tabs-692685">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-all" data-toggle="tab">全部</a>
-					</li>
-					<li>
-						 <a href="#panel-store" data-toggle="tab">收藏</a>
-					</li>
-					<li>
-						 <a href="#panel-concern" data-toggle="tab">关注</a>
+						 <a href="#panel-all" data-toggle="tab">全部帖子</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -61,7 +54,7 @@
 	</div>
 
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/personal.js"></script>
+<script type="text/javascript" src="../js/otherpersonal.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#toggle").click(function() {

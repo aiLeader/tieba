@@ -15,4 +15,8 @@ public interface UsersMapper {
  	int updateUserPic(Users users);
 	int insertnpwd(Users users);
 	int telinsertUser(Users users);
+	Users telselect(Users user);
+	int insertTel(Users user);
+	Users tellogin(Users user);
+	Users selectUserById(String userid);
 }

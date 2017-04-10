@@ -237,7 +237,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据评论数量显示前五条帖子 -->
 	<select id="listNoteOrderByNum" resultType="NoteInfo">
 		select n.*,rownum
-		from NOTE n where n.nstatus=1 and 5>=rownum order by nnum desc
+		from NOTE n where n.nstatus=1 and 5>=rownum order by n.nnum desc
 	</select>
 	
 	<select id="findNoteById" parameterType="String" resultMap="indexNoteInfoMap">
@@ -259,7 +259,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 点赞+1 -->
-	<update id="plusNum" parameterType="string">
+	<update id="DeleteNoteDz" parameterType="string">
 		update note set ngood=ngood+1 where nid=#{nid}
 	</update>
 	<resultMap type="PaginationBean" id="PBMMfinnote">

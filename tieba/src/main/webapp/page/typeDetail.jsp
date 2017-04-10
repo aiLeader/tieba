@@ -47,6 +47,7 @@
 										</c:choose>
 									</li>
 									<li><a id="uname" href="#">${loginUser.uname}</a></li>
+									<input id="userid" type="hidden" value="${loginUser.userid}">
 								</c:when>
 								<c:otherwise>
 									<li><a href="register.jsp">注册</a></li>
@@ -133,7 +134,7 @@
 				<input type="hidden" id="tid" name="tid" value="${tid}">
 				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
 					标题：<input name="ntitle" id="ntitle">
-					<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea><br>
+					<textarea rows="4" cols="85" id="topcontent" name="topcontent" ></textarea><br>
 					<a id="send" href="javascript:void(0)" onclick="return sendNote()">发送</a>
 				</form>
 			</div>
