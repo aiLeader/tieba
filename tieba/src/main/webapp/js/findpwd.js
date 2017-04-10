@@ -13,7 +13,6 @@ var tel=document.getElementById("tel");
 var telephone=null;
 tel.onblur=function(){
 	telephone=$("#tel").val();
-	alert(telephone);
 	if(telephone==""||telephone==null){
 		shouji.style.display="block";
 		shouji1.style.display="none";
@@ -38,7 +37,6 @@ function getTelNumber(){
 		if(telephone.match(reg4)){
 			time=60;
 			$.post("user/sendTel1",{"telephone":telephone},function(data){
-				alert(data);
 				if(data>0){
 					timeObj=window.setInterval(timeCode, 1000);
 					$(".sendTel").attr("disabled","false");
