@@ -31,7 +31,6 @@ showNote("../note/showByUserid?");
 //显示收藏的帖子
 function showStoreNote(url){
 	$.post(url+"&userid="+userid,function(data){
-		alert(data);
 		var noteStr="";
 		for (var i = 0; i < data.rows.length; i++) {
 			noteStr += "<div id='note'>";
