@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="${deployname}">
+<base href="${deployName}">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>退出登录</title>
 </head>

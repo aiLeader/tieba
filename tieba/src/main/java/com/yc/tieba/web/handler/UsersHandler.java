@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.UsersService;
-import com.yc.tieba.util.Encrypt;
 import com.yc.tieba.util.RandomNumUtil;
 import com.yc.tieba.util.SendMailutil;
 import com.yc.tieba.util.ServletUtil;

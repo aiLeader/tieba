@@ -24,6 +24,12 @@ public interface NoteService {
 
 	Integer insertNote(String title,String userid, String tid, String nconent);
 
-	//boolean plusNum(String nid);
+	PaginationBean<NoteInfo> ManagerfindNote(String page, String rows, String ftype, String fparem);
+
+	int sendNote(String nid);
+
+	boolean CanclesendNote(String nid);
+
+	List<NoteInfo> findSendNotes();
 
 }

@@ -19,7 +19,7 @@ public class StoreServiceTest {
 	
 	@Test
 	public void testShowStoreByUserid() {
-		PaginationBean<NoteInfo> pb = storeSerivce.showStoreByUserid("1001", "1", "5");
+		PaginationBean<NoteInfo> pb = storeSerivce.showStoreByUserid("1000", "1", "5");
 		System.out.println(pb);
 		assertNotNull(pb);
 	}
