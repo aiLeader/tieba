@@ -4,6 +4,9 @@ public class QueryEntity {
 	private String param;
 	private int status;
 	
+	public QueryEntity() {
+		
+	}
 	public QueryEntity(String param, int status) {
 		this.param = param;
 		this.status = status;

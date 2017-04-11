@@ -27,4 +27,8 @@ public interface CommentsMapper {
 	int addNewComm(Comments comments);
 	
 	int addAComnum(String nid);
+
+	QueryEntity JBanUser(String userid);
+
+	QueryEntity JBanNote(String nid);
 }
