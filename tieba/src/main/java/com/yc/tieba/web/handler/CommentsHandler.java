@@ -1,5 +1,6 @@
 package com.yc.tieba.web.handler;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import com.yc.tieba.util.ServletUtil;
 
 @Controller("commentsHandler")
 @RequestMapping("/comments")
-@SessionAttributes(ServletUtil.LOGIN_USER)
+@SessionAttributes({ServletUtil.LOGIN_USER,ServletUtil.COMM_SESSION})
 public class CommentsHandler {
 	@Autowired
 	private CommentsService commentsService;
@@ -66,13 +67,13 @@ public class CommentsHandler {
 	public PaginationBean<Comments> findComByNid(@RequestParam("nid")String nid,@RequestParam("page")String page,@RequestParam("totalPage")String totalPage){
 		return commentsService.findComByNid(nid,page,totalPage);
 	}
-	@RequestMapping(value="addComm",produces=("application/json; charset=UTF-8"))
-	public String AddComment(Comments comments){
-		System.out.println("==>  "+ comments);
-		if(comments.getUserid().trim()==""||comments.getUserid()==null){
+	@RequestMapping(value="addComm")
+	public String AddComment(Comments comments,HttpServletRequest req) throws UnsupportedEncodingException{
+		comments.setCcontent(new String(comments.getCcontent().getBytes("iso-8859-1"),"utf-8"));
+		if(comments.getUserid()==""||comments.getUserid()==null){
 			return "redirect:../page/loginJugle.jsp";
 		}else{
-			commentsService.addNewComm(comments);
+			req.getSession().setAttribute(ServletUtil.COMM_SESSION, commentsService.addNewComm(comments));
 			return "redirect:../page/noteDetail.jsp?nid="+comments.getNid();
 		}
 	}

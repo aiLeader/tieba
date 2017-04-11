@@ -22,5 +22,5 @@ public interface CommentsService {
 
 	PaginationBean<Comments> findComByNid(String nid, String page, String totalPage);
 
-	boolean addNewComm(Comments comments);
+	int addNewComm(Comments comments);
 }

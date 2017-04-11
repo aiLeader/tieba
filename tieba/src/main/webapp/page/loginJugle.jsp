@@ -6,16 +6,16 @@
 <head>
 <base href="${deployName}">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>退出登录</title>
+<title>登录跳转</title>
 </head>
 <link type="text/css" rel="stylesheet" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="easyui/themes/default/easyui.css">
 <link type="text/css" rel="stylesheet" href="css/loginJugle.css">
 <body>
 	<div id="loginDiv">
-		<div id="MsgForm" onclick="index.jsp">
+		<div id="MsgForm">
 			<h2>请登录之后再进行操作！！</h2>
-			<a href="../login.jsp" id="returnBu">点击跳转到登录界面..</a>
+			<a href="${deployName }/login.jsp" id="returnBu">点击跳转到登录界面..</a>
 		</div>
 	</div>
 	<script type="text/javascript" src="easyui/jquery.min.js"></script>
