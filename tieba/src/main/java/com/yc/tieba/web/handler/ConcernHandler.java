@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yc.tieba.entity.NoteInfo;
+import com.yc.tieba.entity.Concern;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.service.ConcernService;
 
@@ -16,11 +16,9 @@ public class ConcernHandler {
 	@Autowired
 	private ConcernService concernService;
 	
-	@RequestMapping(value="dfs")
+	@RequestMapping(value="showConcernByUserid")
 	@ResponseBody
-	public PaginationBean<NoteInfo> showConcernById(String userid){
-		
-		
-		return concernService.showConcernById(userid);
+	public PaginationBean<Concern> showConcernById(String userida,String page){
+		return concernService.showConcernById(userida,page,"5");
 	}
 }

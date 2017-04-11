@@ -107,4 +107,3 @@ function dianzan(nid){
 	   }
 	 });
 }
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba

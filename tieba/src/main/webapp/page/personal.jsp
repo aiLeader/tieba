@@ -47,6 +47,8 @@
 					<div class="tab-pane" id="panel-store">
 					</div>
 					<div class="tab-pane" id="panel-concern">
+						<ul id="concernUser">
+						</ul>
 					</div>
 				</div>
 			</div>

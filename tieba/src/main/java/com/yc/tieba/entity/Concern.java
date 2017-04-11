@@ -4,30 +4,36 @@ import java.util.Date;
 
 public class Concern {
 	private String userida;
-	private String useridb;
+	private Users users;
 	private Date cotimes;
 	private Integer cstatus;
 	public Concern() {
 		// TODO Auto-generated constructor stub
 	}
-	public Concern(String userida, String useridb, Date cotimes, Integer cstatus) {
+	
+	public Concern(String userida, Users users, Date cotimes, Integer cstatus) {
+		super();
 		this.userida = userida;
-		this.useridb = useridb;
+		this.users = users;
 		this.cotimes = cotimes;
 		this.cstatus = cstatus;
 	}
+
 	public String getUserida() {
 		return userida;
 	}
 	public void setUserida(String userida) {
 		this.userida = userida;
 	}
-	public String getUseridb() {
-		return useridb;
+	
+	public Users getusers() {
+		return users;
 	}
-	public void setUseridb(String useridb) {
-		this.useridb = useridb;
+
+	public void setusers(Users users) {
+		this.users = users;
 	}
+
 	public Date getCotimes() {
 		return cotimes;
 	}
@@ -40,10 +46,10 @@ public class Concern {
 	public void setCstatus(Integer cstatus) {
 		this.cstatus = cstatus;
 	}
+
 	@Override
 	public String toString() {
-		return "\nConcern [userida=" + userida + ", useridb=" + useridb + ", cotimes=" + cotimes + ", cstatus=" + cstatus
+		return "Concern [userida=" + userida + ", users=" + users + ", cotimes=" + cotimes + ", cstatus=" + cstatus
 				+ "]";
 	}
-	
 }
