@@ -67,15 +67,6 @@ public class NoteServiceTest {
 		System.out.println(b);
 		assertEquals(b, 1);
 	}
-	//点赞+1
-	/*@Test
-	public void testPlusNum(){
-		boolean b = noteService.plusNum("10020");
-		System.out.println(b);
-		assertEquals(b,1);
-<<<<<<< HEAD
-	}
-	
 	@Test
 	public void testManagerfindNote() {
 		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
@@ -89,7 +80,4 @@ public class NoteServiceTest {
 		System.out.println(s);
 		assertNotNull(s);
 	}
-=======
-	}*/
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 }
