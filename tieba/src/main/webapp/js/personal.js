@@ -90,14 +90,14 @@ function dianzan(nid){
 function showConcernUser(url){
 	$.post(url+"&userida="+userid,function(data){
 		for (var i = 0; i < data.rows.length; i++) {
-			$("#concernUser").append("<li><img id='pic' src='"+data.rows[i].users.picPath+"'/>&nbsp;&nbsp;<a href='#' id='name'>"+data.rows[i].users.uname+"</a><button class='glyphicon glyphicon-plus'>取消关注</button></li>");
+			$("#concernUser").append("<li><img id='pic' src='"+data.rows[i].users.picPath+"'/>&nbsp;&nbsp;<a href='otherpersonal.jsp?userid="+data.rows[i].users.userid+"' id='name'>"+data.rows[i].users.uname+"</a><button class='glyphicon glyphicon-plus'>取消关注</button></li>");
 		}
 		currPage=data.currPage;
-		/*$("#panel-concern").append("<p> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
+		$("#panel-concern").append("<p> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
 				+"<a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page=1')>首页</a>&nbsp;&nbsp;"
 				+" <a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+(data.currPage-1)+"')>上一页</a>&nbsp;&nbsp; "
 				+" <a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+(data.currPage+1)+"')>下一页</a>&nbsp;&nbsp; " +
-				"<a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+data.totalPage+"')>末页</a> </p>");*/
+				"<a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+data.totalPage+"')>末页</a> </p>");
 	},"json");
 }
 showConcernUser("../concern/showConcernByUserid?");

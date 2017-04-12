@@ -78,7 +78,9 @@ body{
 #concernUser li{
 	float:left;
 	padding-right:20px;
-	background-color:white; 
+}
+#concernUser li:hover{
+	background-color:white;
 }
 #pic{
 	width:100px;
@@ -87,6 +89,9 @@ body{
 }
 #name{
 	font-size:24px;
+}
+#panel-concern p{
+	clear:both;
 }
 #footer{
 	height:200px;
