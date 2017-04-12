@@ -7,7 +7,6 @@
 <meta charset="utf-8">
 <title></title>
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/personal.css">
 <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 </head>
@@ -75,12 +74,6 @@ $(function() {
 	$("#toggle1").click(function() {
 		$(this).text($("#comm1").is(":hidden") ? "收起" : "评论");
 		$("#comm1").slideToggle();
-	});
-});
-$(function() {
-	$("#toggle2").click(function() {
-		$(this).text($("#comm2").is(":hidden") ? "收起" : "评论");
-		$("#comm2").slideToggle();
 	});
 });
 </script>
