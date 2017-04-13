@@ -28,12 +28,7 @@ $(function () {
 		        	  { field: 'signs', title: '签名', width: 180,align:'center'},      
 		        	  { field: 'num', title: '经验值', width: 50,align:'center'},
 		        	  { field: 'regDate', title: '注册日期', width: 200,align:'center',formatter:formatDatebox},      
-		        	  { field: 'status', title: '是否禁言', width: 100,align:'center', 
-		        		  formatter: function(value,row,index){
-		        			  return "<select  class='easyui-combobox'style='width:40px;'> "+  
-		        			  +"<option value='1'>1</option>" 
-		        			  +"<option value='0'>0</option></select> "
-		        	  }},
+		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',editor:'numberbox' },
 		        	  { field: 'previl', title: '用户权限', width:50,align:'center',editor:'numberbox'},      
 		        	  ]],
 		        	  toolbar: [{ text: '删除', iconCls: 'icon-remove', handler: function () {

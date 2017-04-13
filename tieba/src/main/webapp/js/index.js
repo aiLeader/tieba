@@ -10,13 +10,6 @@ function showPersonal(url){
 		$("#uname").html(data.uname);
 	},"json");
 }
-
-
-
-
-
-
-
 var currPage="";
 
 var href="page/otherpersonal.jsp?userid=";
