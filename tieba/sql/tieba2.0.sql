@@ -189,7 +189,13 @@ create table concern(
     cstatus NUMBER DEFAULT 0 CONSTRAINT concern_cstatus CHECK(cstatus IN(0,1)),--是否取消关注  1取消关注
     coremark varchar2(20)
 );
+select * from concern;
+insert into concern values('1001','1100',sysdate,0,'');
+select c.useridb,c.cstatus,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
+where n.nstatus=1 and c.userida='1001' and c.cstatus=0;
 
+select c.useridb,c.cstatus,u.uname from concern c join users u on c.useridb=u.userid 
+where c.userida='1001' and c.cstatus=0;
 --私信表
 
 create table secret(
@@ -207,3 +213,4 @@ select * from TYPES where tid=101;
 
 select tid from types where   tstate in (0,1)   and ( tid  ='bb'  or  tname   = 'bb'    )
 select status from dianzan where userid ='1000' and nid='10040' 
+select * from note where userid in

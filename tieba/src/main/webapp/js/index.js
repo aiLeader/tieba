@@ -1,5 +1,17 @@
-var currPage="";
 var userid=$("#userid").val();
+showPersonal("user/userinfo")
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			$("#picPath").attr("src", "../images/mr.jpg");
+		}
+		$("#uname").html(data.uname);
+	},"json");
+}
+var currPage="";
+
 var href="page/otherpersonal.jsp?userid=";
 //异步加载左边板块信息
 function listType(url){

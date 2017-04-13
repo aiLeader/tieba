@@ -1,3 +1,5 @@
+var userid=$("#LoginUserId").val();
+
 //异步加载左边板块信息
 function listType(url){
 	$.post(url,function(data){
@@ -17,17 +19,21 @@ function listNoteOderByNum(url){
 	},"json");
 }
 listNoteOderByNum("../note/listOrderByNum");
-
+var href="otherpersonal.jsp?userid=";
 var hrefStr = location.href;
 var LoginUserid= document.getElementById("LoginUserId").value;
 $.post("../note/getNoteById"+hrefStr.substr(hrefStr.indexOf("?")),function(data){
+	var userid2=data.users.userid;
+	if(userid2==userid){
+		href="personal.jsp?userid=";
+	}
 	if(data==null||data==""){
 		alert("该帖子不存在或已被删除！");
 		window.location.href="../index.jsp"
 	}else{
 		$("#noteDetailContent").empty();
 		$("#noteDetailContent").append('<div id="content"><p><a id="title" href="javascript:void(0);" style="padding-right:21px">'+data.ntitle+'</a>'
-				+'</p><p>'+data.ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="#" style="padding-right:30px">'+data.users.uname+'</a>'
+				+'</p><p>'+data.ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="'+href+data.users.userid+'" style="padding-right:30px">'+data.users.uname+'</a>'
 				+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.ntimes+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">'+data.ngood+'</a>'
 				+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a><a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>'
 				+'<form action="../comments/addComm"><div id="comm" style="display: none;"><input type="hidden" name="userid" value="'+LoginUserid+'"><input type="hidden" name="nid" value="'+data.nid+'"><textarea name="ccontent" rows="4" cols="80"></textarea><br><button>提交</button></div></p></div></form><hr/>'

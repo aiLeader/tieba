@@ -4,5 +4,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.ConcernMapper">
-	
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<result column="pageSize" property="pageSize" />
+		<result column="currPage" property="currPage" />
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage,options=options}"
+			select="getConcernNote" />
+	</resultMap>
+	<select id="findConcernNoteByUserid" parameterType="Map" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
+		${pageSize} pageSize,${currPage} currPage
+		<if test="options!=null">
+			,'${options}' options
+		</if>
+		<if test="options==null">
+			,'' options
+		</if>
+		from concern where cstatus =0
+		<if test="options!=null">
+			and userida = '${options}'
+		</if>
+	</select>
+	<resultMap type="Concern" id="ConcernMap">
+		<result column="userida" property="userida"/>
+		<result column="cstatus" property="cstatus"/>
+		<result column="cotimes" property="cotimes"/>
+		<association property="users" column="userid" javaType="Users">
+			<id column="useridb" property="userid"/>
+			<result column="uname" property="uname"/>
+			<result column="picPath" property="picPath"/>
+		</association>
+	</resultMap>
+	<select id="getConcernNote" resultMap="ConcernMap">
+		select * from(
+		select n.*,rownum rn from
+		(select c.useridb useridb,c.cstatus,c.cotimes,u.uname,u.picPath from concern c join users u on c.useridb=u.userid 
+		where 
+		userida = '${options}')	n
+		where ${pageSize}* ${currPage}>=rownum )
+		where rn
+		>(${currPage}-1)*${pageSize}
+	</select>
 </mapper>
