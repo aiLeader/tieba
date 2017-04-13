@@ -185,7 +185,6 @@ create table dianzan(
 	dstatus NUMBER DEFAULT 1 CONSTRAINT dianzan_dstatus CHECK(dstatus IN(0,1)) --1赞0取消赞
 );
 select * from dianzan;
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 --关注表
 
 create table concern(
@@ -229,4 +228,4 @@ select userid,uname,status from users;
 update users set status = 0 where userid=1001;
 select status from users where  userid ='1001'
 select status from dianzan where userid ='1000' and nid='10040' 
-select * from note where userid in
+select * from concern;

@@ -89,7 +89,6 @@ function dianzan(nid){
 	   }
 	 });
 }
-<<<<<<< HEAD
 
 function collectNote(tnid){
 	nid=tnid;
@@ -121,7 +120,6 @@ $("#collectFrom").form({
 
 });
 
-=======
 //显示关注用户
 function showConcernUser(url){
 	$.post(url+"&userida="+userid,function(data){
@@ -137,4 +135,3 @@ function showConcernUser(url){
 	},"json");
 }
 showConcernUser("../concern/showConcernByUserid?");
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba

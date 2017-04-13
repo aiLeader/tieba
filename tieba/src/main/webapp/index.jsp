@@ -9,14 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-<<<<<<< HEAD
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
-=======
-<link type="text/css" rel="stylesheet"
-	href="bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="css/index.css" />
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 
 </head>
 <body>
@@ -166,65 +160,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-	<div class="row clearfix" style="margin-top:40px">
-		<div class="col-md-3 column" >
-			<p id="pstyle">贴吧分类</p>
-			<ul id="ulstyle">
-			</ul>
-		</div>
-		<!-- <div class="col-md-6 column"> -->
-		<div class="col-md-6 column" id="center">
-		<!-- 主页的帖子显示div -->
-		<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
-				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
-			</form>
-		<div id="indexNoteContent"></div>
-		</div>
-		<div class="col-md-3 column">
-			<p id="pstyle">帖子热议榜</p>
-			<div id="olstyle">
-				<ol id="hot"></ol>
-			</div>
-			
-			<p id="pstyle">帖子推荐</p>
-			<ul id="ulstyle">
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王源吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">王俊凯吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">易烊千玺吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">TFBOYS吧</a>
-				</li>
-				<li>
-					<image id="picPath" src="images/mr.jpg">
-					<a href="#">四叶草吧</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="row clearfix" id="footerstyle">
-		<div class="col-md-12 column" id="footerbody" >
-			<p class="text-center" id="pfooter">
-				 @2017 联系方式：11111111111
-			</p>
-			<p class="text-center" id="pfooter">
-				 邮箱：joy@163.com
-			</p>
-		</div>
-	</div>
-</div>
-
-
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
@@ -234,23 +169,5 @@
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-=======
-
-
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.all.min.js">
-		
-	</script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/lang/zh-cn/zh-cn.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 </body>
 </html>

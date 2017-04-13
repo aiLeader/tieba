@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 var nid ="";
 var sc="收藏";
 var href = window.location.href;
 var currPage="";
-=======
->>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 var userid=$("#userid").val();
 showPersonal("user/userinfo")
 function showPersonal(url){
@@ -17,13 +14,6 @@ function showPersonal(url){
 		$("#uname").html(data.uname);
 	},"json");
 }
-
-
-
-
-
-
-
 var currPage="";
 
 var href="page/otherpersonal.jsp?userid=";
@@ -107,7 +97,6 @@ function collectNote(tnid){
 	alert(nid);
 /*	collectFrom*/
 	$("#collectFrom").submit();
-	
 }
 
 $("#collectFrom").form({

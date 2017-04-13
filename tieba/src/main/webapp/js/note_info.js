@@ -1,3 +1,5 @@
+var nstates= [{ "value": "1", "text": "1可用" },{ "value": "0", "text": "0不可用" }];
+var nstatus= [{ "value": "1", "text": "1可用" },{ "value": "0", "text": "0不可用" }];
 function loadDataGrid(url){
 	$(function () {
 		var datagrid; //定义全局变量datagrid
@@ -41,8 +43,24 @@ function loadDataGrid(url){
 			        	   
 			        	  /*{ field: 'num', title: '经验值', width: 100,align:'center'},
 			        	  { field: 'regDate', title: '注册日期', width: 170,align:'center',formatter:formatDatebox},      */
-			        	  { field: 'nstates', title: '是否锁帖', width: 80,align:'center',editor:'numberbox'},
-			        	  { field: 'nstatus', title: '帖子权限', width:90,align:'center',editor:'numberbox'},      
+			        	  { field: 'nstates', title: '是否锁帖', width: 80,align:'center',editor:'numberbox',editor: { 
+			        		  type: 'combobox', 
+			        		  options: { 
+			        			  data: nstates, 
+			        			  valueField: "value", 
+			        			  textField: "text" 
+			        		 } 
+			        	  }
+			        	  },
+			        	  { field: 'nstatus', title: '是否删除', width:90,align:'center',editor:'numberbox',editor: { 
+			        		  type: 'combobox', 
+			        		  options: { 
+			        			  data: nstatus, 
+			        			  valueField: "value", 
+			        			  textField: "text" 
+			        		 } 
+			        	  }
+			        	  },      
 			        	  ]],
 			        	  toolbar: [{ text: '删除', iconCls: 'icon-remove', handler: function () {
 			        		  //删除时先获取选择行
