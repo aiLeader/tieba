@@ -1,6 +1,18 @@
-var currPage="";
 var userid=$("#userid").val();
-var href="page/otherpersonal.jsp?userid=";
+showPersonal("user/userinfo")
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			$("#picPath").attr("src", "../images/mr.jpg");
+		}
+		$("#uname").html(data.uname);
+	},"json");
+}
+var currPage="";
+
+
 //异步加载左边板块信息
 function listType(url){
 	$.post(url,function(data){
@@ -22,7 +34,9 @@ function IndexListNote(url){
 		for(var i=0;i<data.rows.length;i++){
 			var userid2=data.rows[i].users.userid;
 			if(userid2==userid){
-				href="page/personal.jsp?userid=";
+				var href="page/personal.jsp?userid=";
+			}else{
+				 href="page/otherpersonal.jsp?userid=";
 			}
 			$("#indexNoteContent").append('<div id="content"><p><a id="title" href="page/noteDetail.jsp?nid='+data.rows[i].nid+'" style="padding-right:21px">'+data.rows[i].ntitle+'</a>'
 					+'</p><p>'+data.rows[i].ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="'+href+data.rows[i].users.userid+'" style="padding-right:30px">'+data.rows[i].users.uname+'</a>'

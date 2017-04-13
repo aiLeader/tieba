@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="${deployname}">
+<base href="${deployName}">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>退出登录</title>
 </head>
@@ -13,7 +13,10 @@
 <link type="text/css" rel="stylesheet" href="css/exit.css">
 <body>
 	<c:remove var="loginUser" scope="session" />
-	<jsp:forward page="index.jsp"/>
+	<%-- <jsp:forward page="index.jsp"/> --%>
+	<script type="text/javascript">
+		window.location=${deployName}+"index.jsp";
+	</script>
 	<!-- <div id="loginDiv">
 		<div id="MsgForm">
 			<h2>退出登录成功</h2>

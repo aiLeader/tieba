@@ -28,13 +28,11 @@ public class DianzanServiceImpl implements DianzanService {
 			}
 		}
 		if(nidHave){
-			System.out.println("已经有记录了");
 				Map<String,String> smap=new HashMap<String,String>();
 				smap.put("userid", userid);
 				smap.put("nid", nid);
 				int status = dianzanMapper.findDZStatus(smap);
 				if(status == 1){//已经点赞
-					System.out.println("已经点赞,取消点赞");
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userid", userid);
 					dmap.put("nid", nid);
@@ -42,7 +40,6 @@ public class DianzanServiceImpl implements DianzanService {
 					int c =  dianzanMapper.deleteNoteDz(nid);//给帖子的点赞数减一
 					return 2;
 				}else{//还没有点赞
-					System.out.println("还没有点赞,点击点赞");
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userid", userid);
 					dmap.put("nid", nid);

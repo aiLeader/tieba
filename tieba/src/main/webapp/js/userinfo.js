@@ -28,7 +28,7 @@ $(function () {
 		        	  { field: 'signs', title: '签名', width: 180,align:'center'},      
 		        	  { field: 'num', title: '经验值', width: 50,align:'center'},
 		        	  { field: 'regDate', title: '注册日期', width: 200,align:'center',formatter:formatDatebox},      
-		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',editor:'numberbox'},
+		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',editor:'numberbox' },
 		        	  { field: 'previl', title: '用户权限', width:50,align:'center',editor:'numberbox'},      
 		        	  ]],
 		        	  toolbar: [{ text: '删除', iconCls: 'icon-remove', handler: function () {
@@ -94,7 +94,6 @@ $(function () {
 		        		  //endEdit该方法触发此事件
 		        		  console.info(rowData);
 		        		  editRow = undefined;
-		        		//  alert(JSON.stringify(rowData));
 		        		  updateUser(rowData);
 		        	  },
 		        	  onDblClickRow: function (rowIndex, rowData) {
@@ -153,12 +152,10 @@ function deleteUser(ids){
 }
 function updateUser(rowData){
 	$.ajax({
-		type:"post",
 		url:"user/update",
-		async:false, //进行同步请求
-		data:JSON.stringify(rowData), //json格式的请求参数
-		dataType:"json", //指定返回的数据为json格式
-		contentType:"application/json;charset=utf-8",//指定请求数据为json格式
+		data:rowData, 
+		type:"post",
+		//contentType:"application/json;charset=utf-8", 
 		success:function(data){
 		 $('#userInfo').datagrid('reload');   
 		}
@@ -173,7 +170,7 @@ $(function () {
             });  
         }  
     }  
-})  
+});  
 
 
 

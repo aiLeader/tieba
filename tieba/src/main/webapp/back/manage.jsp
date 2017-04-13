@@ -17,7 +17,7 @@
 
 		<div style="float: right; margin-top: 40px; margin-right: 20px; color: #082C5A;">
 			<div>
-				管理员：[<strong style="font-size: 120%; color: green;">sh</strong>]，欢迎您进入贴吧系统
+				管	理员：[<strong style="font-size: 120%; color: green;">sh</strong>]，欢迎您进入贴吧系统
 			</div>
 			<div style="margin-top: 8px;">
 				<a href="javascript:void(0);" class="easyui-menubutton"
