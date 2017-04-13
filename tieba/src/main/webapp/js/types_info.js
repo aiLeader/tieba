@@ -1,5 +1,16 @@
 var editRow = undefined; //定义全局变量：当前编辑的行
 var flag=0;//1表示添加，-1表示修改
+var tstate= [{ "value": "1", "text": "1可用" },{ "value": "-1", "text": "-1不可用" }];
+function unitformatter(value, rowData, rowIndex) {  
+    if (value == 0) {  
+        return;  
+    }  
+    for (var i = 0; i < tstate.length; i++) {  
+        if (tstate[i].value == value) {  
+            return tstate[i].text;  
+        }  
+    }  
+}
 $("#typesinfo").datagrid({
 	url:'types',
 	fitColumns:true,
@@ -8,13 +19,26 @@ $("#typesinfo").datagrid({
 	checkOnSelect:true,
 	selectOnCheck:true,
 	pagination :true,
+	remoteSort:false,
 	columns:[[
 	          {field:'',title:'全选',width:50,align:'center',checkbox:true}, 
 	          {field:'tid',title:'编号',width:50,align:'center'},    
 	          {field:'tname',title:'板块名称',width:100,align:'center',editor:'text'},    
-	          {field:'tnum',title:'帖子数量',width:50,align:'center'},   
+	          {field:'tnum',title:'帖子数量',width:50,align:'center',sortable:'true',
+	        	  sorte:function(a,b){
+	        		  return (a>b?1:-1);
+	        	  }},   
 	          {field:'tdesc',title:'板块格言',width:100,align:'center',editor:'text'},
-	          {field:'tstate',title:'板块状态',width:50,align:'center',editor:'numberbox'},
+	          {field:'tstate',title:'板块状态',width:50,align:'center',
+	        	  editor: { 
+	        		  type: 'combobox', 
+	        		  options: { 
+	        			  data: tstate, 
+	        			  valueField: "value", 
+	        			  textField: "text" 
+	        		 } 
+	        	  } 
+	          },  
 	          {field:'operator',title:'操作',width:50,align:'center',
 	        	  formatter: function(value,row,index){
 	        		  //alert(row + "==>" + JSON.stringify(row));
@@ -129,8 +153,9 @@ $("#typesinfo").datagrid({
 	        		  editRow = rowIndex;
 	        	  }
 	        	  flag=-1;
-	          }
+	          },
 });
+
 //添加新板块
 function addTypes(rowData){
 	//alert(JSON.stringify(rowData));

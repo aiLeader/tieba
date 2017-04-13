@@ -86,4 +86,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="addAComnum">
 		update note set nnum=nnum+1 where nid=#{nid}
 	</update>
+	<select id="JBanUser" parameterType="String" resultType="QueryEntity">
+		select count(1) status from users where userid=#{userid} and status=0
+	</select>
+	<select id="JBanNote" parameterType="String" resultType="QueryEntity">
+		select count(1) status from note where nid=#{nid} and nstates=1
+	</select>
 </mapper>

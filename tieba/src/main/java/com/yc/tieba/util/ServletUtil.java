@@ -3,6 +3,7 @@ package com.yc.tieba.util;
 import java.io.File;
 
 public class ServletUtil {
+	public static final String COMM_SESSION="addComMsg";
 	public static final String USERINFO ="users";
 	public static final String LOGIN_USER="loginUser";
 	public static final String USER_LIST="userList";
