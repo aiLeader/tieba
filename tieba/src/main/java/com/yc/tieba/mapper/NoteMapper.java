@@ -47,4 +47,6 @@ public interface NoteMapper {
 
 	int plusNum(String nid);
 
+	int findBanPStaus(String userid);
+
 }

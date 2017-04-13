@@ -1,3 +1,6 @@
+var nid ="";
+var sc="收藏";
+var href = window.location.href;
 var currPage="";
 var userid=$("#userid").val();
 var href="page/otherpersonal.jsp?userid=";
@@ -27,7 +30,7 @@ function IndexListNote(url){
 			$("#indexNoteContent").append('<div id="content"><p><a id="title" href="page/noteDetail.jsp?nid='+data.rows[i].nid+'" style="padding-right:21px">'+data.rows[i].ntitle+'</a>'
 					+'</p><p>'+data.rows[i].ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="'+href+data.rows[i].users.userid+'" style="padding-right:30px">'+data.rows[i].users.uname+'</a>'
 					+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.rows[i].ntimes+'<a href="javascript:void(0);" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px" onclick="dianzan('+data.rows[i].nid+')">'+data.rows[i].ngood+'</a>'
-					+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a>'
+					+"<a id='collectNote' href='javascript:void(0)' onclick=collectNote("+data.rows[i].nid+")  class='glyphicon glyphicon-heart' style='padding-left:30px'>"+sc+"</a>"
 					+'</p><p><a class="btn" href="page/noteDetail.jsp?nid='+data.rows[i].nid+'">进入帖子 »</a></p></div>');
 		}
 		currPage=data.currPage;
@@ -63,3 +66,31 @@ function dianzan(nid){
 	   }
 	 });
 }
+
+//收藏
+function collectNote(tnid){
+	nid=tnid;
+	alert(nid);
+/*	collectFrom*/
+	$("#collectFrom").submit();
+	
+}
+
+$("#collectFrom").form({
+	url:"note/collectNote",
+	onSubmit: function(param){    
+        param.nid = nid;
+    },    
+	success:function(data){
+		$.messager.show({
+			title:'收藏信息',
+			msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"失败,请先登录":"")+(data==8?"本帖不能收藏":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+				//重新加载帖子信息
+		IndexListNote("note/listindex?page=nop&totalPage=nop");
+	}
+});

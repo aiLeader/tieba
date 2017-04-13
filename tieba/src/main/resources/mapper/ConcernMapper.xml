@@ -5,4 +5,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.ConcernMapper">
 	
+	<!-- 查询是否已经添加关注记录 -->
+	<select id="findUseridb" parameterType="String" resultType="String">
+		select useridb  from concern where userida ='${_parameter}'
+	</select>
+	
+	<!-- 查询关注状态 -->
+	<select id="findConcernStatus" parameterType="map" resultType="int">
+		select cstatus  from concern where userida ='${userida}' and  useridb='${useridb}'
+	</select>
+	
+	<!-- 添加关注关系 1002 1004 -->
+	<insert id="concernUser" parameterType="map">
+	insert into concern 
+	(userida,useridb,cotimes,cstatus,coremark) 
+	values('${userida}','${useridb}',sysdate,0,'')
+	</insert>
+	
+	<!-- 修改关注的关系 -->
+	<update id="deleteConcernUser" parameterType="map">
+		update concern set cstatus
+		=1  where userida = '${userida}' and useridb='${useridb}'
+	</update>
+	<update id="addConcernUser" parameterType="map">
+		update concern set cstatus
+		=0  where userida = '${userida}' and useridb='${useridb}'
+	</update>
+	
 </mapper>

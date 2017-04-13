@@ -50,11 +50,13 @@ function sendNote(){
 	
 }
 
+//收藏
 function collectNote(tnid){
 	nid=tnid;
 	alert(nid);
 /*	collectFrom*/
 	$("#collectFrom").submit();
+	
 }
 
 $("#collectFrom").form({
@@ -79,7 +81,7 @@ $("#collectFrom").form({
 });
 
 
-
+//发帖
 $("#sendForm").form({
 		url:"types/insertNote",
 		onSubmit: function(param){    
@@ -93,8 +95,8 @@ $("#sendForm").form({
 			//添加帖子结果信息
 	
 			$.messager.show({
-				title:'添加帖子信息',
-				msg:'添加帖子' + (data==1 ? "成功..." : "发送失败，")+(data==9 ? "请先登录":"")+(data==8 ?"标题或内容不为空":""),
+				title:'发送帖子信息',
+				msg:'发送帖子' + (data==1 ? "成功..." : "发送失败，")+(data==5 ?"你已被禁言,不可以发帖":"")+(data==9 ? "请先登录":"")+(data==8 ?"标题或内容不为空":""),
 				showType:'show',
 				style:{
 					top:document.body.scrollTop+document.documentElement.scrollTop,

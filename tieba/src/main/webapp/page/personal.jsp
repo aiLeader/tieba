@@ -4,8 +4,11 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta content="text/html; charset=utf-8">
 <title></title>
+<link rel="stylesheet" type="text/css"
+	href="../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/personal.css">
@@ -41,6 +44,9 @@
 						 <a href="#panel-concern" data-toggle="tab">关注</a>
 					</li>
 				</ul>
+				<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
+				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
+			</form>
 				<div class="tab-content">
 					<div class="tab-pane  active" id="panel-all">
 					</div>
@@ -60,6 +66,10 @@
 		</div>
 	</div>
 
+<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/personal.js"></script>
 <script type="text/javascript">

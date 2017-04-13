@@ -286,7 +286,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="addNoteNum" parameterType="String">
 		update types set tnum =tnum+1 where tid=#{tid}
 	</update>
-	
+
+<!-- 查询用户状态是否被禁言 -->
+	 <select id="findBanPStaus" parameterType="String"  resultType="int">
+				 select status from users where  userid ='${_parameter}'
+ 	</select>
 	<!-- 点赞+1 -->
 	<!-- <update id="DeleteNoteDz" parameterType="string">
 		update note set ngood=ngood+1 where nid=#{nid}

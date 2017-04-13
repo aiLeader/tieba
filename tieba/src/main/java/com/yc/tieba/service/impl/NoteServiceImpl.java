@@ -133,6 +133,11 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
 		Map<String,String> map=new HashMap<String,String>();
+		int status = noteMapper.findBanPStaus(userid);
+		System.out.println("status:"+status);
+		if(status == 1){
+			return 5;
+		}
 		if(title!=null && userid!=null && tid!=null && nconent!=null ){
 			tid = tid.replace(",tid=", "");
 			System.out.println("  ntitle:"+title+"  topcontent:"+nconent+"  userid:"+userid+" tid:"+tid);

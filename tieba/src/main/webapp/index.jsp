@@ -4,8 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta content="text/html; charset=utf-8">
 <title>首页</title>
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
 <link type="text/css" rel="stylesheet" href="css/index.css"/>
 
@@ -128,6 +131,9 @@
 		<!-- <div class="col-md-6 column"> -->
 		<div class="col-md-6 column" id="center">
 		<!-- 主页的帖子显示div -->
+		<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
+				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
+			</form>
 		<div id="indexNoteContent"></div>
 		</div>
 		<div class="col-md-3 column">
@@ -172,7 +178,12 @@
 		</div>
 	</div>
 </div>
+
+
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
