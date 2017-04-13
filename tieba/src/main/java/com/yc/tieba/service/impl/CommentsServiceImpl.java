@@ -18,7 +18,7 @@ import com.yc.tieba.service.CommentsService;
 public class CommentsServiceImpl implements CommentsService {
 	@Autowired
 	private CommentsMapper commentsMapper;
-	
+
 	@Override
 	public List<Comments> listAllComm() {
 		return commentsMapper.findAllComment();
@@ -36,7 +36,7 @@ public class CommentsServiceImpl implements CommentsService {
 
 	@Override
 	public List<Comments> findCommByNid(String param,String status) {
-		
+
 		return commentsMapper.findCommByNid(new QueryEntity(param, Integer.parseInt(status)));
 	}
 
@@ -86,9 +86,21 @@ public class CommentsServiceImpl implements CommentsService {
 
 	@Transactional
 	@Override
-	public boolean addNewComm(Comments comments) {
-		commentsMapper.addAComnum(comments.getNid());
-		return commentsMapper.addNewComm(comments)>0;
-		
+	public int addNewComm(Comments comments) {
+		if(comments.getUserid()==""||comments.getUserid()==null){
+			return 5;
+		}else if(commentsMapper.JBanUser(comments.getUserid()).getStatus()>0){
+			if(commentsMapper.JBanNote(comments.getNid()).getStatus()>0){
+				if(commentsMapper.addAComnum(comments.getNid())>0){
+					return commentsMapper.addNewComm(comments);
+				}else{
+					return 2;
+				}
+			}else{
+				return 3;
+			}
+		}else{
+			return 4;
+		}
 	}
 }

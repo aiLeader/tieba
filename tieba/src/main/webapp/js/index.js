@@ -1,8 +1,31 @@
+<<<<<<< HEAD
 var nid ="";
 var sc="收藏";
 var href = window.location.href;
 var currPage="";
+=======
+>>>>>>> branch 'master' of ssh://git@github.com/joyceshenhui/tieba
 var userid=$("#userid").val();
+showPersonal("user/userinfo")
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			$("#picPath").attr("src", "../images/mr.jpg");
+		}
+		$("#uname").html(data.uname);
+	},"json");
+}
+
+
+
+
+
+
+
+var currPage="";
+
 var href="page/otherpersonal.jsp?userid=";
 //异步加载左边板块信息
 function listType(url){
@@ -53,6 +76,17 @@ function listNoteOderByNum(url){
 	},"json");
 }
 listNoteOderByNum("note/listOrderByNum");
+
+//异步加载右下角的管理员推荐贴
+$.post("note/findSendNote",function(data){
+	$("#sendNotes").empty();
+	var strSendNote='<ul id="ulstyle">';
+	for (var i = 0; i < data.length; i++) {
+		strSendNote+='<li><a href="page/noteDetail.jsp?nid='+data[i].nid+'">'+data[i].ntitle+'</a></li>';
+	}
+	strSendNote+='</ul>';
+	$("#sendNotes").append(strSendNote);
+},"json");
 
 //点赞
 function dianzan(nid){

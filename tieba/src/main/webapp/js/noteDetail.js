@@ -49,7 +49,7 @@ function findNoteCom(url){
 					+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
 					+'<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit" style="padding-left: 30px">评论</a>'
 					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p></div>');
-			
+
 		}
 		if(data.totalPage>1){
 			$("#comment-list").append('<ul class="pagination">'
@@ -62,15 +62,21 @@ function findNoteCom(url){
 }
 findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");
 
-//function addCom(){
-//	$("#comForm").form("submit",{
-//		url:"comments/addComm",
-//		success:function(data){
-//			if(data){
-//			findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");
-//			}else{
-//				alert("未知的错误!评论失败！");
-//			}
-//		}
-//	});
-//}
+//异步加载右下角的管理员推荐贴
+$.post("../note/findSendNote",function(data){
+	$("#sendNotes").empty();
+	var strSendNote='<ul id="ulstyle">';
+	for (var i = 0; i < data.length; i++) {
+		strSendNote+='<li><a href="page/noteDetail.jsp?nid='+data[i].nid+'">'+data[i].ntitle+'</a></li>';
+	}
+	strSendNote+='</ul>';
+	$("#sendNotes").append(strSendNote);
+},"json");
+
+function addCom(){
+	$("#comForm").form("submit",{
+		url:"comments/addComm",
+		success:function(data){
+			findNoteCom("comments/findComByNid"+hrefStr.substr(hrefStr.indexOf("?"))+"&page=1&totalPage=nop");
+		}});
+}

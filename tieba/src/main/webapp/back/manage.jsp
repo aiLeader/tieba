@@ -69,6 +69,12 @@
 					<li><span>File 13</span></li>
 				</ul>
 			</div>
+			<div title="推送管理" data-options="iconCls:'icon-mini-add'">
+				<ul class="treeNav">
+					<li><span>帖子推送</span></li>
+					<li><span>当前推送</span></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div

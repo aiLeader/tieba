@@ -10,7 +10,6 @@
 	href="../easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="../css/demo1.css">
 <link rel="stylesheet" href="../css/personal.css">
 <script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
 </head>
@@ -53,6 +52,8 @@
 					<div class="tab-pane" id="panel-store">
 					</div>
 					<div class="tab-pane" id="panel-concern">
+						<ul id="concernUser">
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -83,12 +84,6 @@ $(function() {
 	$("#toggle1").click(function() {
 		$(this).text($("#comm1").is(":hidden") ? "收起" : "评论");
 		$("#comm1").slideToggle();
-	});
-});
-$(function() {
-	$("#toggle2").click(function() {
-		$(this).text($("#comm2").is(":hidden") ? "收起" : "评论");
-		$("#comm2").slideToggle();
 	});
 });
 </script>

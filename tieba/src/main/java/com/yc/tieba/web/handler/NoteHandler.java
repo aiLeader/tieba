@@ -92,5 +92,32 @@ public class NoteHandler {
 		return noteService.collectNote(userid,nid);
 		//return 1;
 		}
-
+	
+	//点赞+1
+	/*@RequestMapping(value="plusNum")
+	@ResponseBody
+	public boolean plus(String nid){
+		return noteService.plusNum(nid);
+	}*/
+	@RequestMapping(value="findNote")
+	@ResponseBody
+	public PaginationBean<NoteInfo> findNote(String page, String rows,String ftype,String fparem){
+		return noteService.ManagerfindNote(page,rows,ftype,fparem);
+	}
+	
+	@RequestMapping(value="SendNote")
+	@ResponseBody
+	public Integer SendNote(String nid){
+		return noteService.sendNote(nid);
+	}
+	@RequestMapping(value="CancelSendNote")
+	@ResponseBody
+	public boolean CancelSendNote(String nid){
+		return noteService.CanclesendNote(nid);
+	}
+	@RequestMapping(value="findSendNote")
+	@ResponseBody
+	public List<NoteInfo> findSendNotes(){
+		return noteService.findSendNotes();
+	}
 }

@@ -12,7 +12,25 @@
 <link type="text/css" rel="stylesheet" href="../css/noteDetail.css" />
 </head>
 <body>
-<input type="hidden" id="LoginUserId" value="${loginUser.userid}"/>
+	<input type="hidden" id="LoginUserId" value="${loginUser.userid}" />
+	<c:choose>
+		<c:when test="${addComMsg ==4}">
+			<script type="text/javascript">
+				alert("您当前已被禁言,没有发言权限！");
+			</script>
+		</c:when>
+		<c:when test="${addComMsg ==3}" >
+			<script type="text/javascript">
+				alert("该帖子当前禁止评论！");
+			</script>
+		</c:when>
+		<c:when test="${addComMsg ==5}">
+			<script type="text/javascript">
+				alert("请登录后再操作！");
+			</script>
+		</c:when>
+	</c:choose>
+	<c:remove var="addComMsg" scope="session"/>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
@@ -130,8 +148,7 @@
 			</div>
 			<!-- <div class="col-md-6 column"> -->
 			<div class="col-md-6 column" id="center">
-				<div id="noteDetailContent">
-				</div>
+				<div id="noteDetailContent"></div>
 				<div id="comment-list">
 					<!-- <div id="comment" userid="10000">
 						<p>
@@ -172,18 +189,7 @@
 				</div>
 
 				<p id="pstyle">帖子推荐</p>
-				<ul id="ulstyle">
-					<li><image id="picPath" src="../images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-					<li><image id="picPath" src="../images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-					<li><image id="picPath" src="../images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-					<li><image id="picPath" src="../images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-					<li><image id="picPath" src="../images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-				</ul>
+				<div id="sendNotes"></div>
 			</div>
 		</div>
 		<div class="row clearfix" id="footerstyle">

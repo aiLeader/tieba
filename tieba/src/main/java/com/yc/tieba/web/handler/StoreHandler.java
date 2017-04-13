@@ -19,7 +19,6 @@ public class StoreHandler {
 	@RequestMapping(value="showStoreByUserid")
 	@ResponseBody
 	public PaginationBean<NoteInfo> listFind(String userid,String page){
-		System.out.println(storeService.showStoreByUserid(userid,page,"5"));
 		return storeService.showStoreByUserid(userid,page,"5");
 	}
 }

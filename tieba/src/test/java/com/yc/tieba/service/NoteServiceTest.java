@@ -67,17 +67,23 @@ public class NoteServiceTest {
 		System.out.println(b);
 		assertEquals(b, 1);
 	}
-	//点赞+1
-	/*@Test
-	public void testPlusNum(){
-		boolean b = noteService.plusNum("10020");
-		System.out.println(b);
-		assertEquals(b,1);
-	}*/
-	
 	//收藏的测试
 	@Test
 	public void testcollectNote() {
 		System.out.println(noteService.collectNote("1002", "10004"));
+	}
+	
+	@Test
+	public void testManagerfindNote() {
+		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();
+		pb = noteService.ManagerfindNote("1", "3", "nop", "nop");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
+	@Test
+	public void testSendNote() {
+		int s =noteService.sendNote("10000");
+		System.out.println(s);
+		assertNotNull(s);
 	}
 }

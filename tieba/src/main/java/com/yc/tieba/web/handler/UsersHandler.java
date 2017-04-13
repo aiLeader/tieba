@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.UsersService;
-import com.yc.tieba.util.Encrypt;
 import com.yc.tieba.util.RandomNumUtil;
 import com.yc.tieba.util.SendMailutil;
 import com.yc.tieba.util.ServletUtil;
@@ -31,125 +29,125 @@ import com.yc.tieba.util.sendMobileCode1;
 
 @Controller("usersHandler")
 @RequestMapping("user")
-@SessionAttributes({ServletUtil.LOGIN_USER,ServletUtil.ERROR_MESSAGE})
+@SessionAttributes({ ServletUtil.LOGIN_USER, ServletUtil.ERROR_MESSAGE })
 public class UsersHandler {
 	@Autowired
 	private UsersService usersService;
 	private int code;
 	private int code2;
 
-	@RequestMapping(value="login",method=RequestMethod.POST)
-	public String login(Users user,ModelMap map){
-		user= usersService.login(user);
-		if(user!=null){
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(Users user, ModelMap map) {
+		user = usersService.login(user);
+		if (user != null) {
 			map.addAttribute(ServletUtil.LOGIN_USER, user);
 			return "redirect:../index.jsp";
-		}else{
-			map.addAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!");
+		} else {
+			map.addAttribute(ServletUtil.ERROR_MESSAGE, "用户名或密码错误!");
 			return "redirect:../login.jsp";
 		}
 	}
-	
-	@RequestMapping(value="codelogin",method=RequestMethod.POST)
-	public String codelogin(Users user,ModelMap map){
-		int code1=Integer.parseInt(user.getPassword());
-		if(code1==code2){
-			//1.该手机号码在数据库则表示已经注册，直接登录 
-			//2.手机号不在数据库 则创建一个账号 密码为发送的验证码 登录
-			Users users= usersService.codelogin(user);
-			if(users!=null){ //手机号在数据库中存在 直接登录
+
+	@RequestMapping(value = "codelogin", method = RequestMethod.POST)
+	public String codelogin(Users user, ModelMap map) {
+		int code1 = Integer.parseInt(user.getPassword());
+		if (code1 == code2) {
+			// 1.该手机号码在数据库则表示已经注册，直接登录
+			// 2.手机号不在数据库 则创建一个账号 密码为发送的验证码 登录
+			Users users = usersService.codelogin(user);
+			if (users != null) { // 手机号在数据库中存在 直接登录
 				map.addAttribute(ServletUtil.LOGIN_USER, users);
 				return "redirect:../index.jsp";
-			}else{  //创建账号 将验证码当密码登录
-				int result=usersService.fastregister(user);
-				if(result==1){ //如果注册成功 直接手机号登录
-					user= usersService.tellogin(user);
-					if(user!=null){
+			} else { // 创建账号 将验证码当密码登录
+				int result = usersService.fastregister(user);
+				if (result == 1) { // 如果注册成功 直接手机号登录
+					user = usersService.tellogin(user);
+					if (user != null) {
 						map.addAttribute(ServletUtil.LOGIN_USER, user);
 						return "redirect:../index.jsp";
-					}else{
+					} else {
 						return "redirect:../login.jsp";
 					}
 				}
-				return "redirect:../login.jsp";			
+				return "redirect:../login.jsp";
 			}
-		}else{
+		} else {
 			return "redirect:../login.jsp";
 		}
 	}
-	@RequestMapping(value="list")
+
+	@RequestMapping(value = "list")
 	@ResponseBody
-	private PaginationBean<Users> doFindUser(String page,String rows,String options) throws IOException {
-		return usersService.listuser(rows,page,options);
+	private PaginationBean<Users> doFindUser(String page, String rows, String options) throws IOException {
+		return usersService.listuser(rows, page, options);
 	}
-	@RequestMapping(value="/{userid}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{userid}", method = RequestMethod.GET)
 	@ResponseBody
 	private boolean doDeleteUser(@PathVariable("userid") String userid) throws IOException {
 		return usersService.deleteUser(userid);
 	}
-	
-	
-	@RequestMapping(value="/userinfo",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/userinfo", method = RequestMethod.POST)
 	@ResponseBody
 	private Users doSelectUser(String userid) throws IOException {
 		return usersService.selectuser(userid);
 	}
-	
 
-	@RequestMapping(value="update",method=RequestMethod.POST)
+	@RequestMapping(value = "update", method = RequestMethod.POST, produces="application/json;charset=utf-8")
 	@ResponseBody
-	private boolean doUpdateUser(Users users,ModelMap map) throws IOException {
-		if(usersService.updateUser(users)){
+	private boolean doUpdateUser(Users users, ModelMap map) throws IOException {
+		if (usersService.updateUser(users)) {
 			map.addAttribute(ServletUtil.LOGIN_USER, users);
 			return true;
-		}else{
-			return false;
 		}
+		return false;
+
 	}
-	@RequestMapping(value="updatePic",method=RequestMethod.POST)
+
+	@RequestMapping(value = "updatePic", method = RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUserPic(Users users,ModelMap map,@RequestParam("picData")MultipartFile picData) throws IOException {
-		String picPath=null;
-		if(picData!=null&& !picData.isEmpty()){//判断是否有文件上传
-			//上传文件
+	private boolean doUpdateUserPic(Users users, ModelMap map, @RequestParam("picData") MultipartFile picData)
+			throws IOException {
+		String picPath = null;
+		if (picData != null && !picData.isEmpty()) {// 判断是否有文件上传
+			// 上传文件
 			try {
 				picData.transferTo(ServletUtil.getUploadFile(picData.getOriginalFilename()));
-				picPath=ServletUtil.VIRTUAL_UPLOAD_DIR+picData.getOriginalFilename();
+				picPath = ServletUtil.VIRTUAL_UPLOAD_DIR + picData.getOriginalFilename();
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 			}
 		}
 		users.setPicPath(picPath);
-		if(usersService.updateUserPic(users)){
+		if (usersService.updateUserPic(users)) {
 			map.addAttribute(ServletUtil.LOGIN_USER, users);
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
-
-
 	@Autowired
 	private JavaMailSender mailSender;
+
 	@RequestMapping("sendMail")
-	public void sendMail(ModelMap map,String email,PrintWriter out,HttpServletRequest request){
+	public void sendMail(ModelMap map, String email, PrintWriter out, HttpServletRequest request) {
 		LogManager.getLogger().debug(email);
-		Integer yzm = RandomNumUtil.getRandomNumber();//生成六位不重复随机数
-		request.getSession().setAttribute("yzm",yzm.toString());
-		SendMailutil.activeAccountMail(mailSender,"注册验证信息",
-				"您的验证码是："+yzm+",请认真确认后在是您的操作之后，再执行操作","18273474977@163.com",email);
+		Integer yzm = RandomNumUtil.getRandomNumber();// 生成六位不重复随机数
+		request.getSession().setAttribute("yzm", yzm.toString());
+		SendMailutil.activeAccountMail(mailSender, "注册验证信息", "您的验证码是：" + yzm + ",请认真确认后在是您的操作之后，再执行操作",
+				"18273474977@163.com", email);
 		System.out.println(yzm);
 		out.print(yzm);
 		out.flush();
 		out.close();
 	}
 
-
-	@RequestMapping(value="sendTel",method=RequestMethod.POST)
+	@RequestMapping(value = "sendTel", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean sendTele(String telephone){
-		LogManager.getLogger().debug("发送的手机号码为："+telephone);
+	public boolean sendTele(String telephone) {
+		LogManager.getLogger().debug("发送的手机号码为：" + telephone);
 		sendMobileCode sendcode;
 		try {
 			sendcode = new sendMobileCode();
@@ -161,11 +159,12 @@ public class UsersHandler {
 			return false;
 		}
 	}
-	//手机快速登录
-	@RequestMapping(value="sendTel1",method=RequestMethod.POST)
+
+	// 手机快速登录
+	@RequestMapping(value = "sendTel1", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean sendTele1(String telephone){
-		LogManager.getLogger().debug("发送的手机号码为："+telephone);
+	public boolean sendTele1(String telephone) {
+		LogManager.getLogger().debug("发送的手机号码为：" + telephone);
 		sendMobileCode1 sendcode1;
 		try {
 			sendcode1 = new sendMobileCode1();
@@ -178,44 +177,43 @@ public class UsersHandler {
 		}
 	}
 
-
-	@RequestMapping(value="telregister")
+	@RequestMapping(value = "telregister")
 	@ResponseBody
-	public boolean tregister(Users users,String jihuo){
-		LogManager.getLogger().debug("用户注册信息users===="+users);
-		LogManager.getLogger().debug("获取输入的验证码===="+jihuo);
-		Integer code1=Integer.parseInt(jihuo);
-		if(code1==code){
-			return usersService.insertUser1(users)>0;
+	public boolean tregister(Users users, String jihuo) {
+		LogManager.getLogger().debug("用户注册信息users====" + users);
+		LogManager.getLogger().debug("获取输入的验证码====" + jihuo);
+		Integer code1 = Integer.parseInt(jihuo);
+		if (code1 == code) {
+			return usersService.insertUser1(users) > 0;
 		}
 
 		return false;
 	}
 
-
-	@RequestMapping(value="emailregister")
-	public String eregister(Users users){
-		if(usersService.insertUser(users)>0){
-			return "redirect:/login.jsp"; //重定向
-		}else{
-			return "/register.jsp"; //转发
+	@RequestMapping(value = "emailregister")
+	public String eregister(Users users) {
+		if (usersService.insertUser(users) > 0) {
+			return "redirect:/login.jsp"; // 重定向
+		} else {
+			return "/register.jsp"; // 转发
 		}
 	}
 
-	@RequestMapping(value="updatepwd",method=RequestMethod.POST)
+	@RequestMapping(value = "updatepwd", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean updatePwd(@RequestBody Users user){
-		user= usersService.login(user);
-		if(user!=null){
+	public boolean updatePwd(@RequestBody Users user) {
+		user = usersService.login(user);
+		if (user != null) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	@RequestMapping(value="insertpwd",method=RequestMethod.POST)
+
+	@RequestMapping(value = "insertpwd", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean insertPwd(@RequestBody Users user){
-		LogManager.getLogger().debug("修改密码。。。user==>"+user);
+	public boolean insertPwd(@RequestBody Users user) {
+		LogManager.getLogger().debug("修改密码。。。user==>" + user);
 		return usersService.insertnpwd(user);
 	}
 

@@ -41,12 +41,21 @@ public interface NoteMapper {
 
 	Integer addCollectNote(Map<String, String> dmap);
 
-	
-	
 	int addNoteNum(String tid);
 
 	int plusNum(String nid);
 
 	int findBanPStaus(String userid);
 
+	PaginationBean<NoteInfo> manageFindNote(Map<String, String> map);
+
+	int sendNote(String nid);
+
+	PaginationBean<Object> getCountSendNote();
+	
+	PaginationBean<Object> noteSendJugle(String nid);
+
+	int cancelSend(String nid);
+
+	List<NoteInfo> findSendNotes();
 }

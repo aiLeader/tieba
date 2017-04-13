@@ -1,7 +1,12 @@
 package com.yc.tieba.mapper;
 
+
 import java.util.List;
 import java.util.Map;
+
+import com.yc.tieba.entity.Concern;
+import com.yc.tieba.entity.PaginationBean;
+
 
 public interface ConcernMapper {
 
@@ -14,7 +19,7 @@ public interface ConcernMapper {
 	int deleteConcernUser(Map<String, String> dmap);
 
 	int concernUser(Map<String, String> map);
-
 	
+	PaginationBean<Concern> findConcernNoteByUserid(Map<String, String> map);
 
 }
