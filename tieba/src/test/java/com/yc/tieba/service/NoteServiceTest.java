@@ -67,6 +67,12 @@ public class NoteServiceTest {
 		System.out.println(b);
 		assertEquals(b, 1);
 	}
+	//收藏的测试
+	@Test
+	public void testcollectNote() {
+		System.out.println(noteService.collectNote("1002", "10004"));
+	}
+	
 	@Test
 	public void testManagerfindNote() {
 		PaginationBean<NoteInfo> pb = new PaginationBean<NoteInfo>();

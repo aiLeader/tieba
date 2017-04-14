@@ -1,3 +1,6 @@
+var tid ="";
+var nid ="";
+var sc="收藏";
 var hrefStr = location.href;
 var userid=hrefStr.substr(hrefStr.indexOf("=")+1);
 var uname="";
@@ -29,7 +32,7 @@ function showNote(url){
 			noteStr +="<p><span class='glyphicon glyphicon-user'></span><a href='#' style='padding-right:30px'>"+uname+"</a>";
 			noteStr +="<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].ntimes;
 			noteStr +="<a href='#' class='glyphicon glyphicon-thumbs-up' style='padding-left:30px'>"+data.rows[i].ngood+"</a>";
-			noteStr +="<a href='#' class='glyphicon glyphicon-heart' style='padding-left:30px'>收藏</a>";
+			noteStr +="<a id='collectNote' href='javascript:void(0)' onclick=collectNote("+data.rows[i].nid+")  class='glyphicon glyphicon-heart' style='padding-left:30px'>"+sc+"</a>";
 			noteStr +="<a href='javascript:;' id='toggle1' target='_self' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a>";
 			noteStr +="<div id='comm' style='display: none;'><textarea rows='4' cols='80'></textarea><br><button>提交</button></div></p></div>";
 		}
@@ -55,7 +58,7 @@ function showStoreNote(url){
 			noteStr +="<p><span class='glyphicon glyphicon-user'></span><a href='#' style='padding-right:30px'>"+data.rows[i].notes.users.uname+"</a>";
 			noteStr +="<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].notes.ntimes;
 			noteStr +="<a href='#' class='glyphicon glyphicon-thumbs-up' style='padding-left:30px'>"+data.rows[i].notes.ngood+"</a>";
-			noteStr +="<a href='#' class='glyphicon glyphicon-heart' style='padding-left:30px'>收藏</a>";
+			noteStr +="<a id='collectNote' href='javascript:void(0)' onclick=collectNote("+data.rows[i].nid+")  class='glyphicon glyphicon-heart' style='padding-left:30px'>"+sc+"</a>";
 			noteStr +="<a href='javascript:;' id='toggle1' target='_self' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a>";
 			noteStr +="<div id='comm1' style='display: none;'><textarea rows='4' cols='80'></textarea><br><button>提交</button></div></p></div>";
 		}
@@ -99,3 +102,56 @@ $(document).on('click',"#praise",function(e){
 	}
 });
 })
+
+//收藏
+function collectNote(tnid){
+	nid=tnid;
+	alert(nid);
+/*	collectFrom*/
+	$("#collectFrom").submit();
+	
+}
+
+$("#collectFrom").form({
+	url:"../note/collectNote",
+	onSubmit: function(param){    
+        param.nid = nid;
+    },    
+	success:function(data){
+		$.messager.show({
+			title:'收藏信息',
+			msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"失败,请先登录":"")+(data==8?"本帖不能收藏":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+		
+		//重新加载帖子信息
+	}
+
+});
+
+//关注
+function attentionUs(){
+	$("#attentionFrom").submit();
+}
+
+$("#attentionFrom").form({
+	url:"../concern/attentionUs",
+	onSubmit: function(param){    
+        param.useridb = userid;
+    },    
+	success:function(data){
+		$.messager.show({
+			title:'关注信息',
+			msg:(data==1 ? "关注成功..." : "")+(data==2 ? "取消关注成功..." : "")+(data==3 ? "关注成功..." : "")+(data==9?"失败,请先登录":"")+(data==8?"本人错误显示不能收藏":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+		
+	}
+
+});
