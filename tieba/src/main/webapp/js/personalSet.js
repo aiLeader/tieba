@@ -189,6 +189,9 @@ function insertPwd(){
 			success:function(data){
 				if(data){
 					$.messager.alert('提示','密码修改成功...');
+					$("#ypwd").val("");
+					$("#npwd").val("");
+					$('#pwd').val("");
 				}else{
 					$.messager.alert('提示','密码修改失败！！'); 
 				}
