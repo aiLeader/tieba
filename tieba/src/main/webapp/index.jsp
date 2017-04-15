@@ -9,9 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-<link type="text/css" rel="stylesheet"
-	href="bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="css/index.css" />
+<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="css/index.css"/>
 
 </head>
 <body>
@@ -140,18 +139,7 @@
 				</div>
 
 				<p id="pstyle">帖子推荐</p>
-				<ul id="ulstyle">
-					<li><image id="picPath" src="images/mr.jpg"> <a
-							href="#">王源吧</a></li>
-					<li><image id="picPath" src="images/mr.jpg"> <a
-							href="#">王俊凯吧</a></li>
-					<li><image id="picPath" src="images/mr.jpg"> <a
-							href="#">易烊千玺吧</a></li>
-					<li><image id="picPath" src="images/mr.jpg"> <a
-							href="#">TFBOYS吧</a></li>
-					<li><image id="picPath" src="images/mr.jpg"> <a
-							href="#">四叶草吧</a></li>
-				</ul>
+				<div id="sendNotes"></div>
 			</div>
 		</div>
 		<div class="row clearfix" id="footerstyle">
@@ -161,21 +149,14 @@
 			</div>
 		</div>
 	</div>
-
-
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.all.min.js">
-		
-	</script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/lang/zh-cn/zh-cn.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

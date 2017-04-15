@@ -130,9 +130,15 @@ public class NoteServiceImpl implements NoteService {
 		return noteMapper.findNoteUs(map);
 	}
 
+	//发帖
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
 		Map<String,String> map=new HashMap<String,String>();
+		int status = noteMapper.findBanPStaus(userid);
+		System.out.println("status:"+status);
+		if(status == 1){
+			return 5;
+		}
 		if(title!=null && userid!=null && tid!=null && nconent!=null ){
 			tid = tid.replace(",tid=", "");
 			System.out.println("  ntitle:"+title+"  topcontent:"+nconent+"  userid:"+userid+" tid:"+tid);
@@ -147,6 +153,51 @@ public class NoteServiceImpl implements NoteService {
 			return null;
 		}
 	}
+
+
+	//收藏帖子
+	@Override
+	public Integer collectNote(String userid, String nid) {
+		boolean nidHave = false;
+			List<String> tnids  = noteMapper.findCollectNid(userid);
+			for(String tnid:tnids){
+				if(tnid.equals(nid)){
+					nidHave = true;
+					break;
+				}
+			}
+			if(nidHave){
+				System.out.println("已经有记录了");
+					Map<String,String> smap=new HashMap<String,String>();
+					smap.put("userid", userid);
+					smap.put("nid", nid);
+					int status = noteMapper.findCollectStatus(smap);
+					if(status == 1){//已经收藏
+						System.out.println("已经收藏,取消收藏");
+						Map<String,String> dmap=new HashMap<String,String>();
+						dmap.put("userid", userid);
+						dmap.put("nid", nid);
+						int a= noteMapper.deleteCollectNote(dmap);
+						return 2;
+					}else{//还没有收藏
+						System.out.println("还没有收藏,点击收藏");
+						Map<String,String> dmap=new HashMap<String,String>();
+						dmap.put("userid", userid);
+						dmap.put("nid", nid);
+						int b =  noteMapper.addCollectNote(dmap);
+						return 3;
+					}
+			}else{
+				Map<String,String> map=new HashMap<String,String>();
+				map.put("userid", userid);
+				map.put("nid", nid);
+				return noteMapper.collectNote(map);
+			}
+	}
+	
+	
+
+
 
 	@Override
 	public PaginationBean<NoteInfo> ManagerfindNote(String page, String rows, String ftype, String fparem) {
@@ -191,7 +242,6 @@ public class NoteServiceImpl implements NoteService {
 		}else{
 			return 3;
 		}
-
 	}
 
 	@Override
@@ -204,3 +254,10 @@ public class NoteServiceImpl implements NoteService {
 		return noteMapper.findSendNotes();
 	}
 }
+
+
+
+
+
+
+

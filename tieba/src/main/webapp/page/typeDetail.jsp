@@ -138,6 +138,9 @@
 					<a id="send" href="javascript:void(0)" onclick="return sendNote()">发送</a>
 				</form>
 			</div>
+			<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
+				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
+			</form>
 			<div id="content"></div>
 		</div>
 			
@@ -161,7 +164,7 @@
 			</p>
 		</div>
 	</div>
-</div>]
+</div>
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>

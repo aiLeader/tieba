@@ -2,10 +2,25 @@ package com.yc.tieba.service.impl;
 
 
 
-import com.yc.tieba.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-//@Service("adminService")
+import com.yc.tieba.entity.Admin;
+import com.yc.tieba.mapper.AdminMapper;
+import com.yc.tieba.service.AdminService;
+import com.yc.tieba.util.Encrypt;
+
+@Service("adminService")
 public class AdminSericeImpl implements AdminService {
+	
+	@Autowired
+	private AdminMapper adminMapper;
+	
+	@Override
+	public Admin login(Admin admin) {
+		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
+		return adminMapper.login(admin);
+	}
 //	@Autowired
 //	private AdminMapper adminMapper;
 
