@@ -50,6 +50,7 @@ public class TypesHandler {
 		return typesService.findNotesByTid(tid,page);
 	}
 	
+	//发帖
 	@RequestMapping(value="insertNote",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public Integer  insetIntoNote(String ntitle, String topcontent,String userid,String tid){ 
