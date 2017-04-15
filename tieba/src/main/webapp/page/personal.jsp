@@ -58,10 +58,6 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane  active" id="panel-all"></div>
-					<div class="tab-pane" id="panel-store"></div>
-					<div class="tab-pane" id="panel-concern"></div>
-					<div class="tab-pane  active" id="panel-all">
-					</div>
 					<div class="tab-pane" id="panel-store">
 					</div>
 					<div class="tab-pane" id="panel-concern">

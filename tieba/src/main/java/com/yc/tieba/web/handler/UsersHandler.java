@@ -94,9 +94,9 @@ public class UsersHandler {
 		return usersService.selectuser(userid);
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST, produces="application/json;charset=utf-8")
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUser(Users users, ModelMap map) throws IOException {
+	private boolean doUpdateUser(@RequestBody Users users, ModelMap map) throws IOException {
 		if (usersService.updateUser(users)) {
 			map.addAttribute(ServletUtil.LOGIN_USER, users);
 			return true;

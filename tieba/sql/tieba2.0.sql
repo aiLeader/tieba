@@ -190,7 +190,7 @@ create table concern(
     coremark varchar2(20)
 );
 select * from concern;
-insert into concern values('1001','1100',sysdate,0,'');
+insert into concern values('1000','1200',sysdate,0,'');
 select c.useridb,c.cstatus,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
 where n.nstatus=1 and c.userida='1001' and c.cstatus=0;
 
