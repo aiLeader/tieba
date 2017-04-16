@@ -2,6 +2,8 @@ package com.yc.tieba.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class UsersServiceTest {
 		Users users=new Users();
 		users.setNum(10);
 		users.setUname("hh");
-		users.setUserid("1000");
+		users.setUserid("1083");
 		Boolean user=userService.updateUser(users);
 		System.out.println(user);
 		assertNotNull(user);
@@ -53,5 +55,12 @@ public class UsersServiceTest {
 		int users=userService.insertUser(user);
 		System.out.println(users);
 		assertNotNull(users);
+	}
+	//统计用户地址
+	@Test
+	public void testSelectAddress(){
+		List<Users> r = userService.selectAddress();
+		System.out.println(r);
+		assertNotNull(r);
 	}
 }

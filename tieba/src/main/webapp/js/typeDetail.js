@@ -113,8 +113,8 @@ $("#sendForm").form({
 //显示板块的名字和格言
 function showTypesinfo(url){
 	$.post(url+"&"+tid,function(data){
-		var tname=data.tname;
-		var tdesc=data.tdesc;
+		var tname=data[0].tname;
+		var tdesc=data[0].tdesc;
 		$("#tname").html(tname);
 		$("#tdesc").html(tdesc);
 	},"json");

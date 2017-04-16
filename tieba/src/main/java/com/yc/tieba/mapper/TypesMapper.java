@@ -2,6 +2,7 @@ package com.yc.tieba.mapper;
 
 
 
+import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.NoteInfo;
@@ -22,5 +23,7 @@ public interface TypesMapper {
 
 	PaginationBean<NoteInfo> findNotes(Map<String, String> map);
 
-	Types showTypesinfo(String tid);
+	List<Types> showTypesinfo(String tid);
+
+	List<Types> typeCompare();
 }

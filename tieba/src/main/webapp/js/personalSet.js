@@ -90,6 +90,7 @@ $('.ship').click(function () {
 loadUserInfo(userid);
 function loadUserInfo(userid){
 	$.get("../user/list",{options:userid}, function(data){
+		$("#username").val(data.rows[0].uname);
 		password=data.rows[0].password;
 		$("#username").val(data.rows[0].uname);
 		if(data.rows[0].sex=='男'){

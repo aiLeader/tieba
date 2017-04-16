@@ -2,6 +2,8 @@ package com.yc.tieba.service;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +75,14 @@ public class TypesServiceTest {
 	
 	@Test
 	public void testShowTypesinfo(){
-		Types result = typesService.showTypesinfo("101");
+		List<Types> result = typesService.showTypesinfo("101");
 		System.out.println(result);
 		assertNotNull(result);
 	}
-	
+	@Test
+	public void testTypeCompare(){
+		List<Types> r = typesService.typeCompare();
+		System.out.println(r);
+		assertNotNull(r);
+	}
 }

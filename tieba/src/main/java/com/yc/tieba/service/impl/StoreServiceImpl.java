@@ -1,6 +1,7 @@
 package com.yc.tieba.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class StoreServiceImpl implements StoreService {
 			map.put("currPage",String.valueOf(currPage));
 		}
 		return storeMapper.findStoreNoteByUserid(map);
+	}
+
+	@Override
+	public List<NoteInfo> getStoreByUserid(String userid) {
+		return storeMapper.getStoreByUid(userid);
 	}
 
 }

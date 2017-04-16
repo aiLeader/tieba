@@ -1,6 +1,5 @@
 package com.yc.tieba.entity;
 
-import java.util.Date;
 
 public class Users { 
 	private String userid;
@@ -19,9 +18,11 @@ public class Users {
 	private Integer previl;     //权限 0 1 2
 	public Users() {
 	}
+	
 	public Users(String userid, String uname, String password, String sex, String email, String address,
 			String telephone, String birthday, String picPath, String signs, Integer num, String regDate, Integer status,
 			Integer previl) {
+		super();
 		this.userid = userid;
 		this.uname = uname;
 		this.password = password;
@@ -37,6 +38,7 @@ public class Users {
 		this.status = status;
 		this.previl = previl;
 	}
+
 	public String getUserid() {
 		return userid;
 	}
@@ -103,12 +105,15 @@ public class Users {
 	public void setNum(Integer num) {
 		this.num = num;
 	}
-	public String getRegDate() {
+	
+	public String getregDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+
+	public void setregDate(String regDate) {
 		this.regDate = regDate;
 	}
+
 	public Integer getStatus() {
 		return status;
 	}
