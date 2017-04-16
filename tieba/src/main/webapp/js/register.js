@@ -350,7 +350,7 @@ function senTele(){
 	$("#form2").form("submit",{
 		url:"user/telregister",
 		success:function(data){
-			alert(data);
+			//alert(data);
 			if(data){
 				$.messager.alert('提示','手机注册成功,即将跳转到登录页面...');
 				window.location.href="login.jsp";

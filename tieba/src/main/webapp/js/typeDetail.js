@@ -97,7 +97,7 @@ $("#sendForm").form({
 	
 			$.messager.show({
 				title:'发送帖子信息',
-				msg:'发送帖子' + (data==1 ? "成功..." : "发送失败，")+(data==5 ?"你已被禁言,不可以发帖":"")+(data==9 ? "请先登录":"")+(data==8 ?"标题或内容不为空":""),
+				msg:'发送帖子' + (data==1 ? "成功..." : "发送失败，")+(data==5 ?"你已被禁言,不可以发帖":"")+(data==6?"发送失败,帖子内容有敏感词汇":"")+(data==9 ? "请先登录":"")+(data==8 ?"标题或内容不为空":""),
 				showType:'show',
 				style:{
 					top:document.body.scrollTop+document.documentElement.scrollTop,

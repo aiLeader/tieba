@@ -153,9 +153,9 @@ function deleteUser(ids){
 function updateUser(rowData){
 	$.ajax({
 		url:"user/update",
-		data:rowData, 
+		data:JSON.stringify(rowData), 
 		type:"post",
-		//contentType:"application/json;charset=utf-8", 
+		contentType:"application/json;charset=utf-8", 
 		success:function(data){
 		 $('#userInfo').datagrid('reload');   
 		}

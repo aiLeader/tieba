@@ -35,7 +35,7 @@ public class UsersServiceTest {
 		Users users=new Users();
 		users.setNum(10);
 		users.setUname("hh");
-		users.setUserid("1000");
+		users.setUserid("1083");
 		Boolean user=userService.updateUser(users);
 		System.out.println(user);
 		assertNotNull(user);

@@ -53,7 +53,7 @@ create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 select * from users;
 select u.address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address;
-delete from users where userid='1129'
+delete from users where userid='1083'
 update users set address='重庆市' where address='重庆南岸'
 
 insert into users
@@ -135,7 +135,7 @@ update note set nstatus =1 where nstatus=0;
 --查询用户的所有帖子
 select n.ntitle,n.ncontent,n.ngood,n.ntimes,u.uname from note n join users u on n.userid = u.userid where u.userid='1001';
 
-
+delete from note where nid='10144';
 
 
 create sequence comments_id start with 10000;--评论ID
@@ -198,7 +198,7 @@ create table concern(
     coremark varchar2(20)
 );
 select * from concern;
-insert into concern values('1001','1100',sysdate,0,'');
+insert into concern values('1000','1200',sysdate,0,'');
 select c.useridb,c.cstatus,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
 where n.nstatus=1 and c.userida='1001' and c.cstatus=0;
 

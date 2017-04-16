@@ -14,14 +14,16 @@ public class Users {
 	private String picPath; //头像路径
 	private String signs;  //签名
 	private Integer num;  //经验值
-	private String regDate;  //注册日期
+	private Date regDate;  //注册日期
 	private Integer status;  //是否被禁言 0 1
 	private Integer previl;     //权限 0 1 2
 	public Users() {
 	}
+	
 	public Users(String userid, String uname, String password, String sex, String email, String address,
-			String telephone, String birthday, String picPath, String signs, Integer num, String regDate, Integer status,
+			String telephone, String birthday, String picPath, String signs, Integer num, Date regDate, Integer status,
 			Integer previl) {
+		super();
 		this.userid = userid;
 		this.uname = uname;
 		this.password = password;
@@ -37,6 +39,7 @@ public class Users {
 		this.status = status;
 		this.previl = previl;
 	}
+
 	public String getUserid() {
 		return userid;
 	}
@@ -103,12 +106,15 @@ public class Users {
 	public void setNum(Integer num) {
 		this.num = num;
 	}
-	public String getRegDate() {
+	
+	public Date getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
 	public Integer getStatus() {
 		return status;
 	}

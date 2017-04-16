@@ -3,6 +3,7 @@ package com.yc.tieba.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.mapper.NoteMapper;
 import com.yc.tieba.service.NoteService;
+import com.yc.tieba.util.SensitivewordFilter;
 
 @Service("noteService")
 public class NoteServiceImpl implements NoteService {
@@ -133,6 +135,17 @@ public class NoteServiceImpl implements NoteService {
 	//发帖
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
+		SensitivewordFilter filter = new SensitivewordFilter();
+		  long beginTime = System.currentTimeMillis();
+	        Set<String> set = filter.getSensitiveWord(nconent, 1);
+	        Set<String> settitle = filter.getSensitiveWord(title, 1);
+	        long endTime = System.currentTimeMillis();
+	        if(set.isEmpty()&&settitle.isEmpty()){
+	        	System.out.println("没有敏感词");
+			}else{
+				System.out.println("有敏感词");
+				return 6;
+			}
 		Map<String,String> map=new HashMap<String,String>();
 		int status = noteMapper.findBanPStaus(userid);
 		System.out.println("status:"+status);

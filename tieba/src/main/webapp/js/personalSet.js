@@ -89,7 +89,8 @@ $('.ship').click(function () {
 
 loadUserInfo(userid);
 function loadUserInfo(userid){
-	$.get("../user/list",{options:userid}, function(data){
+	$.post("../user/list",{options:userid}, function(data){
+		$("#username").val(data.rows[0].uname);
 		password=data.rows[0].password;
 		if(data.rows[0].sex=='男'){
 			$(":radio[name='sex'][value='男']").attr("checked","true");
@@ -189,6 +190,9 @@ function insertPwd(){
 			success:function(data){
 				if(data){
 					$.messager.alert('提示','密码修改成功...');
+					$("#ypwd").val("");
+					$("#npwd").val("");
+					$('#pwd').val("");
 				}else{
 					$.messager.alert('提示','密码修改失败！！'); 
 				}
