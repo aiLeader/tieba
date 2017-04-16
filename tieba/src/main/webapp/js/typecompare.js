@@ -1,5 +1,5 @@
 $(function () {
-    var chart = Highcharts.chart('container', {
+    var chart = Highcharts.chart('container2', {
         title: {
             text: '板块统计'
         },

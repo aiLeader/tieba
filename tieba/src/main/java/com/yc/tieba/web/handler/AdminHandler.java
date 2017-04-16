@@ -7,16 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yc.tieba.entity.Admin;
-import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.AdminService;
 import com.yc.tieba.util.ServletUtil;
 
 @Controller("adminHandler")
 @RequestMapping("admin")
 public class AdminHandler {
-	/*@Autowired
-	private AdminService adminService;
-	admin/login*/
 	@Autowired
 	private AdminService adminService;
 	
