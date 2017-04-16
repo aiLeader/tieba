@@ -1,4 +1,4 @@
-UE.getEditor('topcontent');
+var editorBox =UE.getEditor('topcontent');
 var tid ="";
 var nid ="";
 var sc="收藏";
@@ -92,7 +92,7 @@ $("#sendForm").form({
 			$("#ntitle").val("");
 			//$("#topcontent").html("<textarea rows='4' cols='85' id='topcontent' name='topcontent'></textarea><script type='text/javascript'>UE.getEditor('topcontent')</script>");
 			
-			document.getElementById("topcontent").value="";
+			editorBox.setContent('') 
 			//添加帖子结果信息
 	
 			$.messager.show({
@@ -103,7 +103,6 @@ $("#sendForm").form({
 					top:document.body.scrollTop+document.documentElement.scrollTop,
 				}
 			});
-			
 			//重新加载帖子信息
 			findNote("types/findNote?");
 		}
