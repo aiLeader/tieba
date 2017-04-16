@@ -89,14 +89,17 @@ $('.ship').click(function () {
 
 loadUserInfo(userid);
 function loadUserInfo(userid){
-	$.post("../user/list",{options:userid}, function(data){
+	$.get("../user/list",{options:userid}, function(data){
 		$("#username").val(data.rows[0].uname);
 		password=data.rows[0].password;
+		$("#username").val(data.rows[0].uname);
 		if(data.rows[0].sex=='男'){
 			$(":radio[name='sex'][value='男']").attr("checked","true");
 		}else{
 			$(":radio[name='sex'][value='女']").attr("checked","true");
 		}
+		
+		
 		$("#birthday").datebox('setValue',data.rows[0].birthday);
 		$("#telephone").val(data.rows[0].telephone);
 		$("#email").val(data.rows[0].email);

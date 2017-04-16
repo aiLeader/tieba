@@ -97,7 +97,7 @@ public class UsersHandler {
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
-	private boolean doUpdateUser(@RequestBody Users users, ModelMap map) throws IOException {
+	private boolean doUpdateUser(Users users, ModelMap map) throws IOException {
 		if (usersService.updateUser(users)) {
 			map.addAttribute(ServletUtil.LOGIN_USER, users);
 			return true;
@@ -200,7 +200,7 @@ public class UsersHandler {
 		}
 	}
 
-	@RequestMapping(value = "updatepwd", method = RequestMethod.POST)
+	@RequestMapping(value ="updatepwd", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updatePwd(@RequestBody Users user) {
 		user = usersService.login(user);
