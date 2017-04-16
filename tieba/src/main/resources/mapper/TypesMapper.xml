@@ -126,4 +126,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="showTypesinfo" resultType="Types">
 		select * from types where tid=#{tid}
 	</select>
+	<!-- 统计板块的帖子数量 -->
+	<select id="typeCompare" resultType="Types">
+		select tname,tnum from (select tname,tnum from types order by tnum desc) where 10>rownum
+	</select>
 </mapper>

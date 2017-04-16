@@ -73,8 +73,14 @@ ul>li{
 }
 
 #topnav{
-	background: #E6CAFF;
+	background: #ECFFFF;
 }
 #footerstyle,#olstyle,#ulstyle,#pstyle,#center{
-	background: #E6CAFF;
+	background: #ECFFFF;
+}
+#olstyle li a,#ulstyle li a{
+	color:black;
+}
+#indexNoteContent #content p a,#indexNoteContent .pagination li a{
+	color:black;
 }

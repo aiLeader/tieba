@@ -2,6 +2,7 @@ package com.yc.tieba.web.handler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -216,5 +217,11 @@ public class UsersHandler {
 		LogManager.getLogger().debug("修改密码。。。user==>" + user);
 		return usersService.insertnpwd(user);
 	}
-
+	
+	//统计用户地址
+	@RequestMapping(value="countusers")
+	@ResponseBody
+	public List<Users> selectAddress(){
+		return usersService.selectAddress();
+	}
 }

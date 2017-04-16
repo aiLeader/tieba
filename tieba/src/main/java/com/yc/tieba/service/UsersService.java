@@ -1,5 +1,7 @@
 package com.yc.tieba.service;
 
+import java.util.List;
+
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 
@@ -16,4 +18,5 @@ public interface UsersService {
 	int fastregister(Users user);
 	Users tellogin(Users user);
 	Users selectuser(String userid);
+	List<Users> selectAddress();
 }

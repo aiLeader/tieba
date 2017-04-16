@@ -8,7 +8,7 @@
 <title>帖子详情</title>
 <link type="text/css" rel="stylesheet"
 	href="../bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="../css/index0.css" />
+<link type="text/css" rel="stylesheet" href="../css/index0.css"/>
 <link type="text/css" rel="stylesheet" href="../css/noteDetail.css" />
 </head>
 <body>

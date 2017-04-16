@@ -1,6 +1,8 @@
 package com.yc.tieba.web.handler;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,7 +65,13 @@ public class TypesHandler {
 	//根据板块id显示板块名字和板块格言
 	@RequestMapping(value="showTypesinfo")
 	@ResponseBody
-	public Types showTypesinfo(String tid){
+	public List<Types> showTypesinfo(String tid){
 		return typesService.showTypesinfo(tid);
+	}
+	//统计板块帖子数量
+	@RequestMapping(value="compare")
+	@ResponseBody
+	public List<Types> typeCompare(){
+		return typesService.typeCompare();
 	}
 }

@@ -71,6 +71,20 @@ $(".treeNav").tree({
 				iconCls:"icon-mini-add",
 				closable:true,
 			});
+		}else if(nodeContent == "用户统计"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/userscount.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
+		}else if(nodeContent == "板块统计"){
+			$("#main").tabs('add',{
+				title: nodeContent,
+				href:"back/typecompare.jsp",
+				iconCls:"icon-mini-add",
+				closable:true,
+			});
 		}else{
 			$("#main").tabs('add',{
 				title: nodeContent,

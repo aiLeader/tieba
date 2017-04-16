@@ -29,7 +29,7 @@
 					</div>
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav" id="shouye">
 							<li class="active"><a href="#">首页</a></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
@@ -74,7 +74,7 @@
 								<ul class="dropdown-menu" id="skin">
 									<li id="index0" title="经典" class="selected"><a href="#">经典主题</a></li>
 									<li id="index1" title="粉色" ><a href="#">粉色主题</a></li>
-									<li id="index2" title="紫色" ><a href="#">紫色主题</a></li>
+									<li id="index2" title="蓝色" ><a href="#">蓝色主题</a></li>
 								</ul>
 							</li>
 						</ul>

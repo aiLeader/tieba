@@ -2,6 +2,7 @@ package com.yc.tieba.service.impl;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,8 +107,13 @@ public class TypesSericeImpl implements TypesService {
 	}
 
 	@Override
-	public Types showTypesinfo(String tid) {
+	public List<Types> showTypesinfo(String tid) {
 		return typesMapper.showTypesinfo(tid);
+	}
+
+	@Override
+	public List<Types> typeCompare() {
+		return typesMapper.typeCompare();
 	}
 
 }

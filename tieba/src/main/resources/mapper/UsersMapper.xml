@@ -165,7 +165,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(users_id.nextval||'',dbms_random.string('l',8),#{password},#{telephone},sysdate)
 	</insert>
 
-
+	<!-- 查询用户地址 -->
+	<resultMap type="UsersAddressRatio" id="usermap">
+		<result column="address" property="address"/>
+		<result column="ratio" property="ratio"/>
+	</resultMap>
+	<select id="selectAddress" resultMap="usermap">
+		select u.address address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address
+	</select>
 
 
 

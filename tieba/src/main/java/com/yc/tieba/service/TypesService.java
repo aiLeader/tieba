@@ -1,5 +1,7 @@
 package com.yc.tieba.service;
 
+import java.util.List;
+
 import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Types;
@@ -18,6 +20,8 @@ public interface TypesService {
 
 	PaginationBean<NoteInfo> findNotesByTid(String tid, String page);
 
-	Types showTypesinfo(String tid);
+	List<Types> showTypesinfo(String tid);
+
+	List<Types> typeCompare();
 
 }
