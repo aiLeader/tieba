@@ -6,6 +6,7 @@
 <head>
 <meta content="text/html; charset=utf-8">
 <title>首页</title>
+<base href="${deployName}">
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
@@ -40,8 +41,8 @@
 						</form>
 						<ul class="nav navbar-nav navbar-right">
 							<c:choose>
-								<c:when test="${loginUser !=null}">
-									<li><img class="img-circle" id="picPath"></li>
+								<c:when test="${loginUser!=null}">
+									<li><img class="img-circle" id="picPath" src="images/mr.jpg"></li>
 									<li><a href="#" id="uname"></a></li>
 									<input id="userid" type="hidden" value="${loginUser.userid}">
 								</c:when>

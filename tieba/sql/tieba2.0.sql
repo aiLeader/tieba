@@ -55,6 +55,7 @@ select * from users;
 select u.address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address;
 delete from users where userid='1083'
 update users set address='重庆市' where address='重庆南岸'
+delete from users where userid='1200'
 
 insert into users
 select users_id.nextval||'',dbms_random.string('l',4),'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',
