@@ -83,6 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="typesId!=null">
 			and tid = #{typesId}
 		</if>
+		order by nid desc
 	</select>
 
 	<resultMap type="NoteInfo" id="NoteInfoMap">
@@ -115,8 +116,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="typesId!=null">
 			and o.tid=#{typesId}
 		</if>
-		and o.userid=u.userid and o.tid = t.tid
-		) n
+		and o.userid=u.userid and o.tid = t.tid 
+		order by nid desc) n
 		where ${pageSize}*
 		${currPage} >= rownum)
 		where
