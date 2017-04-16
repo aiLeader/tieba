@@ -2,6 +2,8 @@ package com.yc.tieba.service;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,10 @@ public class StoreServiceTest {
 		System.out.println(pb);
 		assertNotNull(pb);
 	}
-
+	@Test
+	public void testgetStoreByUserid() {
+		List<NoteInfo> pb =storeSerivce.getStoreByUserid("1000");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
 }

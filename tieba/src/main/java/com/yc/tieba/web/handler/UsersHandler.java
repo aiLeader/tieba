@@ -95,9 +95,10 @@ public class UsersHandler {
 		return usersService.selectuser(userid);
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value ="update", method = RequestMethod.POST)
 	@ResponseBody
 	private boolean doUpdateUser(Users users, ModelMap map) throws IOException {
+		System.out.println(users);
 		if (usersService.updateUser(users)) {
 			map.addAttribute(ServletUtil.LOGIN_USER, users);
 			return true;
