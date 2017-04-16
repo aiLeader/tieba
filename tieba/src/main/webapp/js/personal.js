@@ -2,6 +2,7 @@ var nid ="";
 var sc="收藏";
 var href = window.location.href;
 var userid=$("#userid").val();
+var useridb ="";
 var uname=$("#uname").html(); 
 var currPage="";
 var nid="";
@@ -123,11 +124,13 @@ $("#collectFrom").form({
 //显示关注用户
 function showConcernUser(url){
 	$.post(url+"&userida="+userid,function(data){
+		$("#concernUser").empty();
+		$("#pagenation").empty();
 		for (var i = 0; i < data.rows.length; i++) {
-			$("#concernUser").append("<li><img id='pic' src='"+data.rows[i].users.picPath+"'/>&nbsp;&nbsp;<a href='otherpersonal.jsp?userid="+data.rows[i].users.userid+"' id='name'>"+data.rows[i].users.uname+"</a><button class='glyphicon glyphicon-plus'>取消关注</button></li>");
+			$("#concernUser").append("<li><img id='pic' src='"+data.rows[i].users.picPath+"'/>&nbsp;&nbsp;<a href='otherpersonal.jsp?userid="+data.rows[i].users.userid+"' id='name'>"+data.rows[i].users.uname+"</a><button onclick=attentionUs("+data.rows[i].users.userid+") class='glyphicon glyphicon-plus' >取消关注</button></li>");
 		}
 		currPage=data.currPage;
-		$("#panel-concern").append("<p> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
+		$("#panel-concern").append("<p id='pagenation'> 当前页数:["+data.currPage+"/"+data.totalPage+"]&nbsp;&nbsp;&nbsp;&nbsp;"
 				+"<a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page=1')>首页</a>&nbsp;&nbsp;"
 				+" <a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+(data.currPage-1)+"')>上一页</a>&nbsp;&nbsp; "
 				+" <a href='javascript:void(0)' onclick=showStoreNote('../note/showStoreByUserid?page="+(data.currPage+1)+"')>下一页</a>&nbsp;&nbsp; " +
@@ -135,3 +138,28 @@ function showConcernUser(url){
 	},"json");
 }
 showConcernUser("../concern/showConcernByUserid?");
+
+//关注
+function attentionUs(useridbc){
+	alert(useridbc);
+	useridb=useridbc;
+	$("#attentionFrom").submit();
+}
+
+$("#attentionFrom").form({
+	url:"../concern/attentionUs",
+	onSubmit: function(param){    
+        param.useridb = useridb;
+    },    
+	success:function(data){
+		$.messager.show({
+			title:'关注信息',
+			msg:(data==1 ? "关注成功..." : "")+(data==2 ? "取消关注成功..." : "")+(data==3 ? "关注成功..." : "")+(data==9?"失败,请先登录":"")+(data==8?"本人错误显示不能关注":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+		showConcernUser("../concern/showConcernByUserid?");
+	}
+});

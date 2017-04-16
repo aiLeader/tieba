@@ -136,7 +136,7 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
 		SensitivewordFilter filter = new SensitivewordFilter();
-		  long beginTime = System.currentTimeMillis();
+		 long beginTime = System.currentTimeMillis();
 	        Set<String> set = filter.getSensitiveWord(nconent, 1);
 	        Set<String> settitle = filter.getSensitiveWord(title, 1);
 	        long endTime = System.currentTimeMillis();

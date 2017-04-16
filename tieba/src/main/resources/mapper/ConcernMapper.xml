@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from(
 		select n.*,rownum rn from
 		(select c.useridb useridb,c.cstatus,c.cotimes,u.uname,u.picPath from concern c join users u on c.useridb=u.userid 
-		where 
+		where cstatus=0 and
 		userida = '${options}')	n
 		where ${pageSize}* ${currPage}>=rownum )
 		where rn
