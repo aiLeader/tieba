@@ -57,7 +57,7 @@
 				<form method="post" id="PerInfoForm">
 					账号:<input name="userid" id="userid" value="${loginUser.userid}"
 						readonly="readonly"><br /> 姓名:<input name="uname"
-						id="username" value="${loginUser.uname}"><br /> 性别:<input
+						id="username"><br /> 性别:<input
 						type="radio" name="sex" value="男">男<input type="radio"
 						name="sex" value="女">女<br /> 生日:<input id="birthday"
 						name="birthday" type="text" class="easyui-datebox"></input><br />
@@ -66,8 +66,8 @@
 					地址:<input type="text" name="address" id="address"><br /> <br />
 					签名:
 					<textarea id="signs" name="signs"></textarea>
-					<br /> <input name="picPath" type="hidden"
-						value="${loginUser.picPath}">
+					<br /><%--  <input  type="hidden"
+						value="${loginUser.picPath}"> --%>
 					<button type="submit">保存</button>
 				</form>
 			</div>

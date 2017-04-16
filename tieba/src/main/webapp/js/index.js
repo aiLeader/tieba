@@ -9,7 +9,7 @@ function showPersonal(url){
 		if(data.picPath){
 			$("#picPath").attr("src",data.picPath);
 		}else{
-			$("#picPath").attr("src", "../images/mr.jpg");
+			//$("#picPath").attr("src", "images/mr.jpg");
 		}
 		$("#uname").html(data.uname);
 	},"json");

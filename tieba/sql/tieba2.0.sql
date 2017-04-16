@@ -46,13 +46,13 @@ create table users(
     regDate date,--注册日期
     status NUMBER DEFAULT 0 CONSTRAINT users_status CHECK(status IN(0,1,2)),--是否被禁言 1禁言 2删除
     previl NUMBER DEFAULT 0 CONSTRAINT users_previl CHECK(previl IN(0,1)), --权限（0用户,1板块管理员）
-    uremark varchar2(20)
+    uremark varchar2(20) 
 );
 
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 select * from users;
-delete from users where userid='1129'
+delete from users where userid='1200'
 
 insert into users
 select users_id.nextval||'',dbms_random.string('l',4),'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',
