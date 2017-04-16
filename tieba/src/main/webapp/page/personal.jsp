@@ -59,6 +59,9 @@
 				<form  method="post"  id="collectFrom"  enctype="multipart/form-data">
 				<input type="hidden" id="userid" name="userid" value="${loginUser.userid}">
 			</form>
+			<form  method="post"  id="attentionFrom"  enctype="multipart/form-data">
+				<input type="hidden" id="userida" name="userida" value="${loginUser.userid}">
+			</form>
 				<div class="tab-content">
 					<div class="tab-pane  active" id="panel-all">
 					</div>

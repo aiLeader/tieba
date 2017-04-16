@@ -27,7 +27,7 @@ public class ConcernServiceTest {
 	
 	@Test
 	public void testShowConcernById() {
-		PaginationBean<Concern> pb = concernService.showConcernById("1001", "1", "5");
+		PaginationBean<Concern> pb = concernService.showConcernById("1002", "1", "5");
 		System.out.println(pb);
 		assertNotNull(pb);
 	}

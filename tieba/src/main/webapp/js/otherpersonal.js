@@ -151,7 +151,5 @@ $("#attentionFrom").form({
 				top:document.body.scrollTop+document.documentElement.scrollTop,
 			}
 		});
-		
 	}
-
 });
