@@ -1,6 +1,7 @@
 package com.yc.tieba.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,10 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public Users selectuser(String userid) {
 		return usersMapper.selectUserById(userid);
+	}
+	@Override
+	public List<Users> selectAddress() {
+		return usersMapper.selectAddress();
 	}
 
 

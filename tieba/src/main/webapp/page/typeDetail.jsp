@@ -11,7 +11,7 @@
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="css/index.css"/>
+<link type="text/css" rel="stylesheet" href="css/index0.css"/>
 <link type="text/css" rel="stylesheet" href="css/typeDetail.css"/>
 </head>
 <body>

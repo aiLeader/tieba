@@ -62,11 +62,11 @@
 					<li><span>被禁评论</span></li>
 				</ul>
 			</div>
-			<div title="主题管理" data-options="iconCls:'icon-mini-add'">
+			<div title="统计管理" data-options="iconCls:'icon-mini-add'">
 				<ul class="treeNav">
-					<li><span>File 11</span></li>
-					<li><span>File 12</span></li>
-					<li><span>File 13</span></li>
+					<li><span>用户统计</span></li>
+					<li><span>板块统计</span></li>
+					<li><span>帖子统计</span></li>
 				</ul>
 			</div>
 			<div title="推送管理" data-options="iconCls:'icon-mini-add'">

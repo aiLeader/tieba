@@ -151,15 +151,14 @@ function deleteUser(ids){
 	}, "json");
 }
 function updateUser(rowData){
-	$.ajax({
-		url:"user/update",
-		data:JSON.stringify(rowData), 
-		type:"post",
-		contentType:"application/json;charset=utf-8", 
-		success:function(data){
-		 $('#userInfo').datagrid('reload');   
+	$.post("user/update",rowData,function(data){
+		if(data){
+			$('#userInfo').datagrid('reload');   
 		}
-	});
+	},"json");
+	
+	
+	
 }
 
 $(function () {  

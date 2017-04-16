@@ -11,14 +11,14 @@
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-<link type="text/css" rel="stylesheet" href="css/index.css"/>
+<link type="text/css" rel="stylesheet" href="css/index0.css" id="cssfile"/>
 
 </head>
 <body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<nav class="navbar navbar-default" role="navigation">
+				<nav class="navbar navbar-default" role="navigation" id="topnav">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target="#bs-example-navbar-collapse-1">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav" id="shouye">
 							<li class="active"><a href="#">首页</a></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
@@ -69,6 +69,15 @@
 										</c:otherwise>
 									</c:choose>
 								</ul></li>
+							<!-- 一键换肤 -->	
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">一键换肤<strong class="caret"></strong></a>
+								<ul class="dropdown-menu" id="skin">
+									<li id="index0" title="经典" class="selected"><a href="#">经典主题</a></li>
+									<li id="index1" title="粉色" ><a href="#">粉色主题</a></li>
+									<li id="index2" title="蓝色" ><a href="#">蓝色主题</a></li>
+								</ul>
+							</li>
 						</ul>
 
 					</div>
@@ -150,7 +159,6 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
@@ -159,5 +167,6 @@
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
 </body>
 </html>

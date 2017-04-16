@@ -121,7 +121,6 @@ function IndexListNote(url){
 		/*	collectFrom*/
 		$("#collectFrom").submit();
 	}
-
 	$("#collectFrom").form({
 		url:"note/collectNote",
 		onSubmit: function(param){    
@@ -140,3 +139,26 @@ function IndexListNote(url){
 			IndexListNote("note/listindex?page=nop&totalPage=nop");
 		}
 	});
+
+//一键换肤
+var $li = $("#skin li");
+$li.click(function () {
+ $("#"+this.id).addClass("selected")
+  .siblings().removeClass("selected");
+ $("#cssfile").attr("href","css/"+this.id+".css");
+});
+//将皮肤保存进cookie
+$.cookie("myCssSkin",this.id,{path:'/',expires:10});
+//获取Cookie中的皮肤
+var cookie_skin = $.cookie("myCssSkin");
+//判断皮肤存不存在
+if (cookie_skin){
+ switchSkin(cookie_skin);
+}
+//设置cookid中的皮肤
+function switchSkin(skinName) {
+ $("#"+skinName).addClass("selected")
+  .siblings().removeClass("selected");
+ $("#cssfile").attr("href","css/"+skinName+".css");
+ $.cookie("myCssSkin",skinName,{path:'/',expires:10});
+}

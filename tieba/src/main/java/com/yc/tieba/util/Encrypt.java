@@ -23,7 +23,7 @@ public class Encrypt {
 		String sha_2 = sha("abc");*/
 		//System.out.println(sha_1 + "\n" + sha_2);
 
-		System.out.println(Encrypt.md5AndSha("a"));
+		System.out.println(Encrypt.md5AndSha("837140"));
 		//System.out.println(Encrypt.md5("12345678"));
 		//System.out.println(Encrypt.sha("aaaaaaaa"));
 		

@@ -1,5 +1,6 @@
 package com.yc.tieba.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.PaginationBean;
@@ -19,4 +20,5 @@ public interface UsersMapper {
 	int insertTel(Users user);
 	Users tellogin(Users user);
 	Users selectUserById(String userid);
+	List<Users> selectAddress();
 }

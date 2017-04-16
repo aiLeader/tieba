@@ -136,13 +136,16 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
 		SensitivewordFilter filter = new SensitivewordFilter();
-		  long beginTime = System.currentTimeMillis();
+		 long beginTime = System.currentTimeMillis();
 	        Set<String> set = filter.getSensitiveWord(nconent, 1);
 	        Set<String> settitle = filter.getSensitiveWord(title, 1);
 	        long endTime = System.currentTimeMillis();
-		if(set != null||settitle == null){
-			return 6;
-		}
+	        if(set.isEmpty()&&settitle.isEmpty()){
+	        	System.out.println("没有敏感词");
+			}else{
+				System.out.println("有敏感词");
+				return 6;
+			}
 		Map<String,String> map=new HashMap<String,String>();
 		int status = noteMapper.findBanPStaus(userid);
 		System.out.println("status:"+status);
