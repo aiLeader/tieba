@@ -91,11 +91,14 @@ loadUserInfo(userid);
 function loadUserInfo(userid){
 	$.get("../user/list",{options:userid}, function(data){
 		password=data.rows[0].password;
+		$("#username").val(data.rows[0].uname);
 		if(data.rows[0].sex=='男'){
 			$(":radio[name='sex'][value='男']").attr("checked","true");
 		}else{
 			$(":radio[name='sex'][value='女']").attr("checked","true");
 		}
+		
+		
 		$("#birthday").datebox('setValue',data.rows[0].birthday);
 		$("#telephone").val(data.rows[0].telephone);
 		$("#email").val(data.rows[0].email);
@@ -189,6 +192,9 @@ function insertPwd(){
 			success:function(data){
 				if(data){
 					$.messager.alert('提示','密码修改成功...');
+					$("#ypwd").val("");
+					$("#npwd").val("");
+					$('#pwd').val("");
 				}else{
 					$.messager.alert('提示','密码修改失败！！'); 
 				}

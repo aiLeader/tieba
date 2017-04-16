@@ -94,7 +94,7 @@ public class UsersHandler {
 		return usersService.selectuser(userid);
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST, produces="application/json;charset=utf-8")
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	@ResponseBody
 	private boolean doUpdateUser(Users users, ModelMap map) throws IOException {
 		if (usersService.updateUser(users)) {
@@ -199,7 +199,7 @@ public class UsersHandler {
 		}
 	}
 
-	@RequestMapping(value = "updatepwd", method = RequestMethod.POST)
+	@RequestMapping(value ="updatepwd", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean updatePwd(@RequestBody Users user) {
 		user = usersService.login(user);

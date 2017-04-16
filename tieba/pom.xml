@@ -131,9 +131,16 @@
 		</dependency>
 
 		<!-- 淘宝网 用户手机注册 -->
-		<!-- <dependency> <groupId>org.taobao.sdkjava</groupId> <artifactId>taobao</artifactId> 
-			<version>1.0</version> </dependency> <dependency> <groupId>org.taobao.sdkjava</groupId> 
-			<artifactId>taobao-source</artifactId> <version>1.0</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>org.taobao.sdkjava</groupId>
+			<artifactId>taobao</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.taobao.sdkjava</groupId>
+			<artifactId>taobao-source</artifactId>
+			<version>1.0</version>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<finalName>tieba</finalName>

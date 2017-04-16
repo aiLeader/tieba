@@ -17,6 +17,14 @@ public class ConcernServiceTest {
 
 	@Autowired
 	private ConcernService concernService;
+	
+	@Test
+	public void testAttentionUserb() {
+		int attention =concernService.attentionUserb("1002", "1001");
+		System.out.println("attention: "+attention);
+	}
+	
+	
 	@Test
 	public void testShowConcernById() {
 		PaginationBean<Concern> pb = concernService.showConcernById("1001", "1", "5");
