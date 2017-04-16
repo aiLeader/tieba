@@ -19,13 +19,15 @@ function listNoteOderByNum(url){
 	},"json");
 }
 listNoteOderByNum("../note/listOrderByNum");
-var href="otherpersonal.jsp?userid=";
+
 var hrefStr = location.href;
 var LoginUserid= document.getElementById("LoginUserId").value;
 $.post("../note/getNoteById"+hrefStr.substr(hrefStr.indexOf("?")),function(data){
 	var userid2=data.users.userid;
 	if(userid2==userid){
-		href="personal.jsp?userid=";
+		var href="personal.jsp?userid=";
+	}else{
+		href="otherpersonal.jsp?userid=";
 	}
 	if(data==null||data==""){
 		alert("该帖子不存在或已被删除！");
@@ -50,8 +52,14 @@ function findNoteCom(url){
 			if(data.rows[i].users.picPath!=""&&data.rows[i].users.picPath!=null){
 				headPic=data.rows[i].users.picPath;
 			}
+			var userid3=data.rows[i].users.userid;
+			if(userid3==userid){
+				var href1="personal.jsp?userid=";
+			}else{
+				href1="otherpersonal.jsp?userid=";
+			}
 			$("#comment-list").append('<div id="comment" userid="'+data.rows[i].users.userid+'"><p>'
-					+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="#" id="uname">'+data.rows[i].users.uname+'</a>'
+					+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="'+href1+data.rows[i].users.userid+'" id="uname">'+data.rows[i].users.uname+'</a>'
 					+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
 					+'<a href="javascript:;" id="toggle1" target="_self" class="glyphicon glyphicon-edit" style="padding-left: 30px">评论</a>'
 					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p></div>');

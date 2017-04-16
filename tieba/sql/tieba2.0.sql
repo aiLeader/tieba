@@ -46,7 +46,7 @@ create table users(
     regDate date,--注册日期
     status NUMBER DEFAULT 0 CONSTRAINT users_status CHECK(status IN(0,1,2)),--是否被禁言 1禁言 2删除
     previl NUMBER DEFAULT 0 CONSTRAINT users_previl CHECK(previl IN(0,1)), --权限（0用户,1板块管理员）
-    uremark varchar2(20)
+    uremark varchar2(20) 
 );
 
 create sequence users_id start with 1000;--用户ID
