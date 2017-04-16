@@ -1,5 +1,7 @@
 package com.yc.tieba.web.handler;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +16,17 @@ import com.yc.tieba.service.StoreService;
 public class StoreHandler {
 	@Autowired
 	private StoreService storeService;
-	
+
 	//显示用户收藏的帖子
 	@RequestMapping(value="showStoreByUserid")
 	@ResponseBody
 	public PaginationBean<NoteInfo> listFind(String userid,String page){
 		return storeService.showStoreByUserid(userid,page,"5");
+	}
+	//显示用户收藏的帖子
+	@RequestMapping(value="GetStoreByUserid")
+	@ResponseBody
+	public List<NoteInfo> listFindUS(String userid){
+		return storeService.getStoreByUserid(userid);
 	}
 }

@@ -61,4 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getUserid" resultType="com.yc.tieba.entity.Users">
 		select u.* from users u where userid=#{userid}
 	</select>
+	<select id="getStoreByUid" resultType="NoteInfo">
+		select nid from store where storeuserid=#{userid}
+	</select>
 </mapper>

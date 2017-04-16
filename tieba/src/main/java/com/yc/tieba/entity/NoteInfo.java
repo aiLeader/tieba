@@ -114,10 +114,4 @@ public class NoteInfo {
 				+ nstatus + ", nstates=" + nstates + ", nremark=" + nremark
 				+ ", types=" + types + ", users=" + users + "]\n";
 	}
-	
-	
-	
-
-	
-	
 }
