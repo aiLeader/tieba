@@ -160,6 +160,7 @@
 		</div>
 	</div>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -167,6 +168,6 @@
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script src="js/jquery.cookie.js" type="text/javascript"></script>
+
 </body>
 </html>

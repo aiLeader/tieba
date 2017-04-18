@@ -38,9 +38,7 @@ function IndexListNote(url){
 		var jubuStore=storeData;
 		for(var i=0;i<data.rows.length;i++){
 			var store="收藏";
-			if(jubuStore==null||jubuStore==undefined||jubuStore==""){
-				
-			}else{
+			if(jubuStore!=null&&jubuStore!=undefined&&jubuStore!=""){
 				for(var j=0;j<jubuStore.length;j++){
 					if(jubuStore[j].nid==data.rows[i].nid){
 						store="取消收藏";
@@ -117,7 +115,6 @@ function IndexListNote(url){
 //	收藏
 	function collectNote(tnid){
 		nid=tnid;
-		alert(nid);
 		/*	collectFrom*/
 		$("#collectFrom").submit();
 	}
