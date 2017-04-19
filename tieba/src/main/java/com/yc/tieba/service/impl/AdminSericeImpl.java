@@ -21,15 +21,16 @@ public class AdminSericeImpl implements AdminService {
 		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
 		return adminMapper.login(admin);
 	}
-//	@Autowired
-//	private AdminMapper adminMapper;
 
-	/*@Override
-	public int modifyAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return 0;
-	}*/
+	@Override
+	public boolean updatePwd(Admin admin) {
+		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
+		return adminMapper.updatePwd(admin);
+	}
 
-	
+	@Override
+	public Admin selectPwd(Admin admin) {
+		return adminMapper.selectPwd(admin);
+	}
 
 }

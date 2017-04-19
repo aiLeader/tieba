@@ -23,12 +23,14 @@ create table admin(
   apassword varchar2(40) default '6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',
   asex  CHAR(3) DEFAULT '男'  CONSTRAINT admin_asex CHECK(asex IN('男','女')),
   aemail varchar2(40) unique,
+  aphone varchar2(40) unique,
   apic varchar2(100)
 );
 
 create sequence admin_id start with 1000;--管理员ID序列
+select * from admin;
 
-insert into admin(aid,aname,apassword,asex,aemail,apic) values(admin_id.nextval||'','莱因哈特02',default,'男','1554131546@qq.com','aa');
+insert into admin(aid,aname,apassword,asex,aemail,aphone,apic) values(admin_id.nextval||'','sh',default,'女','joyceshenhui@qq.com','18711449775','');
 --用户(板块管理员，普通用户)
 
 create table users(

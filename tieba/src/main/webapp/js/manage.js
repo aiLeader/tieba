@@ -144,9 +144,80 @@ $('#modifyBtn').linkbutton({
     iconCls: 'icon-ok',
     width: 80,
     onClick: function(){    	
-    	/*$("#loginForm").submit();*/
+    	$("#modifyForm").submit();
     }
 }); 
+$("#modifyForm").form({
+	url:"admin/updatePwd",
+	success:function(data){
+		/*$("#personalInfo").dialog("close", true);
+		$.messager.show({
+			title:'修改密码',
+			msg:'修改密码' + (data ? "成功..." : "失败!!!"),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});*/
+	}
+})
+var aid=$("#aid").val();
+var pwd=document.getElementById("pwd");
+pwd.onblur=function(){
+	if($('#pwd').val()==null ||$('#pwd').val()==""){
+		$.messager.alert('警告','请输入原密码！！！');    
+	}else{
+		var pwd=$('#pwd').val();
+		var param={apassword:pwd,aid:aid}; //创建一个javascript对象
+		$.ajax({
+			type:"post",
+			url:"admin/selectPwd",
+			async:false, //进行同步请求
+			data:JSON.stringify(param), //json格式的请求参数
+			dataType:"json", //指定返回的数据为json格式
+			contentType:"application/json;charset=utf-8",//指定请求数据为json格式
+			success:function(data){
+				if(data){
+				}else{
+					$.messager.alert('提示','原密码不正确，请重新输入！！'); 
+				}
+			}
+		});
+	}
+}
+
+
+function updatePwd(){
+	alert(aid);
+	var rpwd=$("#rpwd").val();
+	var param={apassword:rpwd,aid:aid}; //创建一个javascript对象
+	if($("#rpwd").val()!=$("#npwd").val()){
+		$.messager.alert('提示','两次密码输入不一致'); 
+	}else{
+		$.ajax({
+			type:"post",
+			url:"admin/updatePwd",
+			async:false, //进行同步请求
+			data:JSON.stringify(param), //json格式的请求参数
+			dataType:"json", //指定返回的数据为json格式
+			contentType:"application/json;charset=utf-8",//指定请求数据为json格式
+			success:function(data){
+				if(data){
+					$.messager.alert('提示','密码修改成功...');
+					$("#pwd").val("");
+					$("#npwd").val("");
+					$('#rpwd').val("");
+					$("#personalInfo").dialog("close", true);
+				}else{
+					$.messager.alert('提示','密码修改失败！！'); 
+				}
+			}
+		});
+	}
+	
+}
+
+
 
 $('#closeBtn').linkbutton({    
     iconCls: 'icon-cancel',
@@ -164,7 +235,7 @@ function reLogin(){
 	$.messager.confirm('', '您是否确定要切换用户吗？', function(r){
 		if (r){
 		    // 切换用户操作;
-			location.href="back/login.jsp";
+			location.href="adminlogin.jsp";
 		}
 	});
 }
@@ -179,7 +250,7 @@ function logoutFun() {
 	$.messager.confirm('', '您确定要退出系统吗？', function(r){
 		if (r){
 		    //退出系统操作;
-			location.replace("back/login.jsp");
+			location.replace("adminlogin.jsp");
 		}
 	});
 }

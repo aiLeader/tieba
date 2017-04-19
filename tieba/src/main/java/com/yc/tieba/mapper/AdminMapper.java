@@ -6,4 +6,8 @@ public interface AdminMapper {
 	int modifyAdmin(Admin admin);
 
 	Admin login(Admin admin);
+
+	boolean updatePwd(Admin admin);
+
+	Admin selectPwd(Admin admin);
 }
