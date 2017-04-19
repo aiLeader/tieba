@@ -53,8 +53,6 @@ create table users(
 
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
-select * from users;
-select u.address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address;
 delete from users where userid='1083'
 update users set address='重庆市' where address='重庆南岸'
 delete from users where userid='1200'
@@ -126,7 +124,7 @@ insert into  note
 select note_id.nextval,dbms_random.string('l',6) ,
 dbms_random.string('l',6),'101','1001',
 sysdate,0,0,0,1,1,'' from dual connect by level<=10;
-select n.*,rownum from NOTE n where rownum <=5 order by nnum desc;--根据评论数量排序
+--select n.*,rownum from NOTE n where rownum <=5 order by nnum desc;--根据评论数量排序
 
 select * from note;
 update note set ntitle='唯爱王源',ncontent='茫茫人海中遇见你 如同阳光照进心底 最美的时光有你相依' where nid='10021';
@@ -160,11 +158,11 @@ insert into  comments
 select comments_id.nextval||'','10001','1001','',
 dbms_random.string('l',6),
 sysdate,0,1,0,'' from dual connect by level<=10;
-select * from comments;
+--select * from comments;
 
 --收藏表
-drop table store;
-select * from STORE;
+--drop table store;
+--select * from STORE;
 create table store(
     storeuserid varchar2(5) constraint fk_store_userid references users(userid),--用户id 外键 
     nid varchar2(5) constraint fk_store_nid references note(nid),--帖子id  外键
@@ -190,7 +188,7 @@ create table dianzan(
 	nid varchar2(5) constraint fk_dianzan_nid references note(nid),
 	dstatus NUMBER DEFAULT 1 CONSTRAINT dianzan_dstatus CHECK(dstatus IN(0,1)) --1赞0取消赞
 );
-select * from dianzan;
+--select * from dianzan;
 --关注表
 
 create table concern(
@@ -200,13 +198,13 @@ create table concern(
     cstatus NUMBER DEFAULT 0 CONSTRAINT concern_cstatus CHECK(cstatus IN(0,1)),--是否取消关注  1取消关注
     coremark varchar2(20)
 );
-select * from concern;
+--select * from concern;
 insert into concern values('1000','1200',sysdate,0,'');
-select c.useridb,c.cstatus,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
-where n.nstatus=1 and c.userida='1001' and c.cstatus=0;
+--select c.useridb,c.cstatus,u.uname,n.nid,n.ntitle,n.ncontent,n.ntimes,n.ngood from concern c join users u on c.useridb=u.userid join note n on n.userid=u.userid
+--where n.nstatus=1 and c.userida='1001' and c.cstatus=0;
 
-select c.useridb,c.cstatus,u.uname from concern c join users u on c.useridb=u.userid 
-where c.userida='1001' and c.cstatus=0;
+--select c.useridb,c.cstatus,u.uname from concern c join users u on c.useridb=u.userid 
+--where c.userida='1001' and c.cstatus=0;
 --私信表
 
 create table secret(
@@ -234,4 +232,6 @@ select userid,uname,status from users;
 update users set status = 0 where userid=1001;
 select status from users where  userid ='1001'
 select status from dianzan where userid ='1000' and nid='10040' 
-select * from concern;
+select * from concern where useridb in (select userid from users);
+select u.address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address;
+select * from users;
