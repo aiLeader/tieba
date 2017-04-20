@@ -33,9 +33,10 @@
 						<ul class="nav navbar-nav" id="shouye">
 							<li class="active"><a href="#">首页</a></li>
 						</ul>
-						<form class="navbar-form navbar-left" role="search">
+						<form id="searchForm" action="searchPage.jsp" class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input class="form-control" type="text" style="width: 400px" />
+								<input name="page" id="page" type="hidden" value="1"/>
+								<input name="param" id="param" class="form-control" type="text" style="width: 400px" />
 							</div>
 							<button type="submit" class="btn btn-default">搜索</button>
 						</form>
@@ -160,6 +161,7 @@
 		</div>
 	</div>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -167,6 +169,5 @@
 <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script src="js/jquery.cookie.js" type="text/javascript"></script>
 </body>
 </html>

@@ -120,4 +120,11 @@ public class NoteHandler {
 	public List<NoteInfo> findSendNotes(){
 		return noteService.findSendNotes();
 	}
+	
+	@RequestMapping(value="searchNote")
+	@ResponseBody
+	public PaginationBean<NoteInfo> searchNote(String page , String param){
+		return noteService.searchNote(page,param);
+	}
+	
 }

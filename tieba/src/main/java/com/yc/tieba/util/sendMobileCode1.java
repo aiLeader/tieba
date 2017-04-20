@@ -1,5 +1,7 @@
 package com.yc.tieba.util;
 
+import org.apache.logging.log4j.LogManager;
+
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
@@ -22,7 +24,6 @@ public class sendMobileCode1 {
 	}
 
 	public void sendMobileCoder(String num) {
-		String result = null;
 		String product = "贴吧";
 		code = RandomNumUtil.getRandomNumber();//生成六位不重复随机数
 		//request.getSession().setAttribute("code",code.toString());
@@ -37,8 +38,7 @@ public class sendMobileCode1 {
 		req.setSmsTemplateCode("SMS_60855273");
 		try {
 			AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
-			System.out.println("rsp.getBody()"+rsp.getBody());
-			result = rsp.getSubMsg();
+			LogManager.getLogger().debug("rsp.getBody()"+rsp.getBody());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

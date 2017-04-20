@@ -1,7 +1,5 @@
 package com.yc.tieba.service.impl;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,7 @@ import com.yc.tieba.service.AdminService;
 import com.yc.tieba.util.Encrypt;
 
 @Service("adminService")
-public class AdminSericeImpl implements AdminService {
+public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminMapper adminMapper;
@@ -21,15 +19,4 @@ public class AdminSericeImpl implements AdminService {
 		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
 		return adminMapper.login(admin);
 	}
-//	@Autowired
-//	private AdminMapper adminMapper;
-
-	/*@Override
-	public int modifyAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return 0;
-	}*/
-
-	
-
 }

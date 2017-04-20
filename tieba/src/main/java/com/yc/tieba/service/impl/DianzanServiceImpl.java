@@ -36,20 +36,20 @@ public class DianzanServiceImpl implements DianzanService {
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userid", userid);
 					dmap.put("nid", nid);
-					int a= dianzanMapper.deleteDZNote(dmap);
-					int c =  dianzanMapper.deleteNoteDz(nid);//给帖子的点赞数减一
+					dianzanMapper.deleteDZNote(dmap);
+					dianzanMapper.deleteNoteDz(nid);//给帖子的点赞数减一
 					return 2;
 				}else{//还没有点赞
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userid", userid);
 					dmap.put("nid", nid);
-					int b =  dianzanMapper.addDZNote(dmap);//点赞
-					int c =  dianzanMapper.addNoteDz(nid);//给帖子的点赞数加一
+					dianzanMapper.addDZNote(dmap);//点赞
+					dianzanMapper.addNoteDz(nid);//给帖子的点赞数加一
 					return 3;
 				}
 		}else{//还没有记录，添加记录并记录点赞
 			
-			int c =  dianzanMapper.addNoteDz(nid);//给帖子的点赞数加一
+			dianzanMapper.addNoteDz(nid);//给帖子的点赞数加一
 			Dianzan dianzan = new Dianzan();
 			dianzan.setNid(nid);
 			dianzan.setuserid(userid);

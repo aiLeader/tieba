@@ -4,7 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.AdminMapper">
-		<select id="login" parameterType="com.yc.tieba.entity.Admin" resultType="com.yc.tieba.entity.Admin">
-		select * from admin where (aid=#{aid} or aemail = #{aid}) and apassword=#{apassword}
+	<select id="login" parameterType="Admin" resultType="Admin">
+		select *
+		from admin where (aid=#{aid} or aemail = #{aid}) and
+		apassword=#{apassword}
 	</select>
 </mapper>
