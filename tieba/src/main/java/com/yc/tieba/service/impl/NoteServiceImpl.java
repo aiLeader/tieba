@@ -136,10 +136,8 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public Integer insertNote(String title,String userid, String tid, String nconent) {
 		SensitivewordFilter filter = new SensitivewordFilter();
-		 long beginTime = System.currentTimeMillis();
 	        Set<String> set = filter.getSensitiveWord(nconent, 1);
 	        Set<String> settitle = filter.getSensitiveWord(title, 1);
-	        long endTime = System.currentTimeMillis();
 	        if(set.isEmpty()&&settitle.isEmpty()){
 	        	System.out.println("没有敏感词");
 			}else{
@@ -190,14 +188,14 @@ public class NoteServiceImpl implements NoteService {
 						Map<String,String> dmap=new HashMap<String,String>();
 						dmap.put("userid", userid);
 						dmap.put("nid", nid);
-						int a= noteMapper.deleteCollectNote(dmap);
+						noteMapper.deleteCollectNote(dmap);
 						return 2;
 					}else{//还没有收藏
 						System.out.println("还没有收藏,点击收藏");
 						Map<String,String> dmap=new HashMap<String,String>();
 						dmap.put("userid", userid);
 						dmap.put("nid", nid);
-						int b =  noteMapper.addCollectNote(dmap);
+						noteMapper.addCollectNote(dmap);
 						return 3;
 					}
 			}else{
@@ -265,6 +263,15 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public List<NoteInfo> findSendNotes() {
 		return noteMapper.findSendNotes();
+	}
+
+	@Override
+	public PaginationBean<NoteInfo> searchNote(String page, String param) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("currPage", page);
+		map.put("pageSize", "5");
+		map.put("param", param);
+		return noteMapper.searchNotes(map);
 	}
 }
 

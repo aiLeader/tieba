@@ -56,7 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in (0,1)
+		o.nstatus in
+		(0,1)
 		<if test="options!=null">
 			and (o.nid like '%${options}%'
 			or o.ntitle like
@@ -80,8 +81,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select tid from types where
 		tstate in (0,1)
 		<if test="_parameter!=null">
-			and (tid  ='${_parameter}'
-			or tname  ='${_parameter}'
+			and (tid ='${_parameter}'
+			or tname ='${_parameter}'
 			)
 		</if>
 	</select>
@@ -102,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="options==null">
 			,'' options
 		</if>
-		from note where nstatus  in (0,1) and nstates in (0,1)
+		from note where nstatus in (0,1) and nstates in (0,1)
 		<if test="options!=null">
 			and note.tid = '${options}'
 		</if>
@@ -113,16 +114,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select o.*,u.uname
 		uname,t.tname tname from note o,users u,types t where
-		o.nstatus in (0,1)
+		o.nstatus in
+		(0,1)
 		<if test="options!=null"> and o.tid = '${options}'
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}* ${currPage} >= rownum)
+		where ${pageSize}*
+		${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
-	
+
 	<!-- 通过userid查找 -->
 	<select id="findUsId" parameterType="String" resultType="String">
 		select userid from users where
@@ -165,7 +168,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		and o.userid=u.userid and o.tid = t.tid
 		) n
-		where ${pageSize}* ${currPage} >= rownum)
+		where ${pageSize}*
+		${currPage} >= rownum)
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
@@ -180,7 +184,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update note set nstatus
 		=#{nstatus},nstates=#{nstates} where nid = #{nid}
 	</update>
-	
+
 	<!-- 主页显示note -->
 	<resultMap type="PaginationBean" id="PaginationBeanMapLs">
 		<result property="pageSize" column="PageSize" />
@@ -218,8 +222,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultMap="PaginationBeanMapLs">
 		select count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
-		pageSize ,${currPage} currPage 
-		from note where nstatus=1
+		pageSize ,${currPage} currPage
+		from note where
+		nstatus=1
 	</select>
 	<select id="getNoteinfo" resultMap="indexNoteInfoMap">
 		select * from (
@@ -239,59 +244,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select n.*,rownum
 		from NOTE n where n.nstatus=1 and 5>=rownum order by n.nnum desc
 	</select>
-	
+
 	<select id="findNoteById" parameterType="String" resultMap="indexNoteInfoMap">
 		select nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
 		types on types.tid=note.tid where nid=#{nid} and nstatus=1
 	</select>
-	
+
 	<!-- 添加帖子 -->
 	<insert id="insertNote" parameterType="map">
-	insert into note 
-	(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates) 
-	values(note_id.nextval,'${title}','${nconent}','${tid}','${userid}',sysdate,0,0,0,1,1)
+		insert into note
+		(nid,ntitle,ncontent,tid,userid,ntimes,nnum,naccess,ngood,nstatus,nstates)
+		values(note_id.nextval,'${title}','${nconent}','${tid}','${userid}',sysdate,0,0,0,1,1)
 	</insert>
 
-	
+
 	<!-- 查询是否已经添加 -->
 	<select id="findCollectNid" parameterType="String" resultType="String">
-		select nid  from store where storeuserid ='${_parameter}'
+		select nid from store where storeuserid ='${_parameter}'
 	</select>
-	
+
 	<!-- 查询状态 -->
 	<select id="findCollectStatus" parameterType="map" resultType="int">
-		select status  from store where storeuserid ='${userid}' and  nid='${nid}'
+		select status from store where storeuserid ='${userid}' and
+		nid='${nid}'
 	</select>
 	<!-- 添加收藏关系 1002 1004 -->
 	<insert id="collectNote" parameterType="map">
-	insert into store 
-	(storeuserid,nid,sttimes,status,stremark) 
-	values('${userid}','${nid}',sysdate,1,'')
+		insert into store
+		(storeuserid,nid,sttimes,status,stremark)
+		values('${userid}','${nid}',sysdate,1,'')
 	</insert>
-	
+
 	<!-- 修改收藏的关系 -->
 	<update id="deleteCollectNote" parameterType="map">
-		update store set status
-		=0  where storeuserid = '${userid}' and nid='${nid}'
+		update store set
+		status
+		=0 where storeuserid = '${userid}' and nid='${nid}'
 	</update>
 	<update id="addCollectNote" parameterType="map">
-		update store set status
-		=1  where storeuserid = '${userid}' and nid='${nid}'
+		update store set
+		status
+		=1 where storeuserid = '${userid}' and nid='${nid}'
 	</update>
-	
+
 
 
 	<!-- 添加帖子时板块帖子+1 -->
 	<update id="addNoteNum" parameterType="String">
-		update types set tnum =tnum+1 where tid=#{tid}
+		update types set tnum
+		=tnum+1 where tid=#{tid}
 	</update>
 
-<!-- 查询用户状态是否被禁言 -->
-	 <select id="findBanPStaus" parameterType="String"  resultType="int">
-				 select status from users where  userid ='${_parameter}'
- 	</select>
+	<!-- 查询用户状态是否被禁言 -->
+	<select id="findBanPStaus" parameterType="String" resultType="int">
+		select status from users where userid ='${_parameter}'
+	</select>
 
 
 
@@ -299,23 +308,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="pageSize" column="PageSize" />
 		<result property="currPage" column="currPage" />
 		<collection property="rows"
-			column="{pageSize=PageSize,currPage=currPage,ftype=ftype,fparem=fparem}" ofType="NoteInfo"
-			select="manegeGetNoteinfo" />
+			column="{pageSize=PageSize,currPage=currPage,ftype=ftype,fparem=fparem}"
+			ofType="NoteInfo" select="manegeGetNoteinfo" />
 	</resultMap>
-	<select id="manageFindNote" resultMap="PBMMfinnote" parameterType="map">
+	<select id="manageFindNote" resultMap="PBMMfinnote"
+		parameterType="map">
 		select count(1) total,ceil(count(1)/${pageSize})
 		totalPage,${pageSize}
-		pageSize ,${currPage} currPage 
+		pageSize ,${currPage} currPage
 		<choose>
 			<when test="ftype!=null and ftype!=''">, '${ftype}' ftype
 			</when>
-			<otherwise>, '' ftype 
+			<otherwise>, '' ftype
 			</otherwise>
 		</choose>
 		<choose>
 			<when test="fparem!=null and fparem!=''">, '${fparem}' fparem
 			</when>
-			<otherwise>, '' fparem 
+			<otherwise>, '' fparem
 			</otherwise>
 		</choose>
 		from note where nstatus=1
@@ -328,32 +338,70 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
-		types on types.tid=note.tid where note.nstatus=1 and note.nremark != 'send'  or  note.nremark is null
+		types on types.tid=note.tid where note.nstatus=1 and note.nremark !=
+		'send' or note.nremark is null
 		<if test="ftype!=null and ftype!='' and fparem!=null and fparem!=''"> and note.${ftype} = ${fparem}
-		</if>	
+		</if>
 		order by nid desc ) n
 		where ${pageSize}* ${currPage}>=rownum )
 		where rn
 		>(${currPage}-1)*${pageSize}
 	</select>
 	<update id="sendNote" parameterType="String">
-		update note set nremark='send' where nid=#{nid}
+		update note set
+		nremark='send' where nid=#{nid}
 	</update>
-	
+
 	<select id="getCountSendNote" resultType="PaginationBean">
-		select count(1) total from note where nremark='send' and nstatus=1
+		select count(1) total
+		from note where nremark='send' and nstatus=1
 	</select>
 	<select id="noteSendJugle" resultType="PaginationBean">
-		select count(1) total from note where nremark='send' and nid=#{nid} and nstatus=1
+		select count(1) total from
+		note where nremark='send' and nid=#{nid} and nstatus=1
 	</select>
 	<update id="cancelSend" parameterType="String">
-		update note set nremark='' where nid=#{nid}
+		update note set nremark=''
+		where nid=#{nid}
 	</update>
 	<select id="findSendNotes" resultMap="indexNoteInfoMap">
-		select nid,ntitle,ncontent,types.tid
+		select
+		nid,ntitle,ncontent,types.tid
 		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
 		from note inner join users on note.userid = users.userid inner join
 		types on types.tid=note.tid where nremark='send' and note.nstatus=1
+	</select>
+
+	<resultMap type="PaginationBean" id="PBMMSearchNote">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage,param=param}" ofType="NoteInfo"
+			select="getSearchNotes" />
+	</resultMap>
+	<select id="searchNotes" parameterType="Map" resultMap="PBMMSearchNote">
+		select
+		count(1) total,
+		ceil(count(1)/#{pageSize}) totalPage,
+		#{pageSize}
+		pageSize ,
+		#{currPage} currPage ,
+		#{param} param
+		from note where( nid=#{param}
+		or ntitle like '%${param}%' ) and nstatus=1
+	</select>
+	<select id="getSearchNotes" resultMap="indexNoteInfoMap">
+		select * from (
+		select
+		nid,ntitle,ncontent,tid,tname,userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		, rownum rn from
+		(select nid,ntitle,ncontent,types.tid
+		tid,tname,note.userid,ntimes,nnum,naccess,ngood,nstatus,nstates,nremark,uname,password,birthday,sex,telephone,email,address,picpath,signs,num,regdate,status,previl,uremark
+		from note inner join users on note.userid = users.userid inner join
+		types on types.tid=note.tid where ( note.nid=#{param} or note.ntitle like '%${param}%' ) and note.nstatus=1 order by nid desc ) n
+		where ${pageSize}* ${currPage}>=rownum )
+		where rn
+		>(${currPage}-1)*${pageSize}
 	</select>
 </mapper>
 

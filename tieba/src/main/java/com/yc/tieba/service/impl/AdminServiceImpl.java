@@ -11,7 +11,7 @@ import com.yc.tieba.service.AdminService;
 import com.yc.tieba.util.Encrypt;
 
 @Service("adminService")
-public class AdminSericeImpl implements AdminService {
+public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminMapper adminMapper;

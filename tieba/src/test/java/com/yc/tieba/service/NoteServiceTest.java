@@ -86,4 +86,11 @@ public class NoteServiceTest {
 		System.out.println(s);
 		assertNotNull(s);
 	}
+	
+	@Test
+	public void testSearchNote() {
+		PaginationBean<NoteInfo>  s =noteService.searchNote("1", "巧克力");
+		System.out.println(s);
+		assertNotNull(s);
+	}
 }
