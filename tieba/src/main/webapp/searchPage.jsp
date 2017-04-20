@@ -1,25 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
-<base href="${deployName }">
 <meta content="text/html; charset=utf-8">
-<title>板块详情</title>
+<title>首页</title>
+<base href="${deployName}">
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-<link type="text/css" rel="stylesheet"
-	href="bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="css/index0.css" />
-<link type="text/css" rel="stylesheet" href="css/typeDetail.css" />
+<link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="css/index0.css" id="cssfile"/>
+
 </head>
 <body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<nav class="navbar navbar-default" role="navigation">
+				<nav class="navbar navbar-default" role="navigation" id="topnav">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse"
 							data-target="#bs-example-navbar-collapse-1">
@@ -31,28 +30,21 @@
 					</div>
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
+						<ul class="nav navbar-nav" id="shouye">
 							<li class="active"><a href="#">首页</a></li>
 						</ul>
-						<form class="navbar-form navbar-left" role="search">
+						<form id="searchForm" action="searchPage.jsp" class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input class="form-control" type="text" style="width: 400px" />
+								<input name="page" id="page" type="hidden" value="1"/>
+								<input name="param" id="param" class="form-control" type="text" style="width: 400px" />
 							</div>
 							<button type="submit" class="btn btn-default">搜索</button>
 						</form>
 						<ul class="nav navbar-nav navbar-right">
 							<c:choose>
-								<c:when test="${loginUser !=null}">
-									<li><c:choose>
-											<c:when test="${loginUser.picPath !=null}">
-												<img class="img-circle" id="picPath"
-													src="${loginUser.picPath}">
-											</c:when>
-											<c:otherwise>
-												<img class="img-circle" id="picPath" src="images/mr.jpg">
-											</c:otherwise>
-										</c:choose></li>
-									<li><a id="uname" href="#">${loginUser.uname}</a></li>
+								<c:when test="${loginUser!=null}">
+									<li><img class="img-circle" id="picPath" src="images/mr.jpg"></li>
+									<li><a href="#" id="uname"></a></li>
 									<input id="userid" type="hidden" value="${loginUser.userid}">
 								</c:when>
 								<c:otherwise>
@@ -69,7 +61,7 @@
 											<li><a href="#">消息中心</a></li>
 											<li><a href="#">系统消息</a></li>
 											<li class="divider"></li>
-											<li><a href="../exit.jsp">退出登录</a></li>
+											<li><a href="exit.jsp">退出登录</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="#">个人中心</a></li>
@@ -78,6 +70,15 @@
 										</c:otherwise>
 									</c:choose>
 								</ul></li>
+							<!-- 一键换肤 -->	
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">一键换肤<strong class="caret"></strong></a>
+								<ul class="dropdown-menu" id="skin">
+									<li id="index0" title="经典" class="selected"><a href="#">经典主题</a></li>
+									<li id="index1" title="粉色" ><a href="#">粉色主题</a></li>
+									<li id="index2" title="蓝色" ><a href="#">蓝色主题</a></li>
+								</ul>
+							</li>
 						</ul>
 
 					</div>
@@ -128,28 +129,20 @@
 			</div>
 		</div>
 		<div class="row clearfix" style="margin-top: 40px">
+			<div class="col-md-3 column">
+				<p id="pstyle">贴吧分类</p>
+				<ul id="ulstyle">
+				</ul>
+			</div>
 			<!-- <div class="col-md-6 column"> -->
-			<div class="col-md-9 column" id="center">
-				<div id="top">
-					<img id="tpicPath" src="images/mr.jpg"> <a href="#"
-						id="tname"></a> <span id="tdesc"></span>
-					<form method="post" id="sendForm" enctype="multipart/form-data">
-						<input type="hidden" id="tid" name="tid" value="${tid}"> <input
-							type="hidden" id="userid" name="userid"
-							value="${loginUser.userid}"> 标题：<input name="ntitle"
-							id="ntitle">
-						<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea>
-						<br> <a id="send" href="javascript:void(0)"
-							onclick="return sendNote()">发送</a>
-					</form>
-				</div>
+			<div class="col-md-6 column" id="center">
+				<!-- 主页的帖子显示div -->
 				<form method="post" id="collectFrom" enctype="multipart/form-data">
 					<input type="hidden" id="userid" name="userid"
 						value="${loginUser.userid}">
 				</form>
-				<div id="content"></div>
+				<div id="indexNoteContent"></div>
 			</div>
-
 			<div class="col-md-3 column">
 				<p id="pstyle">帖子热议榜</p>
 				<div id="olstyle">
@@ -167,29 +160,14 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.config.js"></script>
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/ueditor.all.min.js">
-		
-	</script>
-	<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-	<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-	<script type="text/javascript" charset="utf-8"
-		src="ueditor/lang/zh-cn/zh-cn.js"></script>
-	<script type="text/javascript" src="js/typeDetail.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$("#toggle").click(function() {
-				$(this).text($("#comm").is(":hidden") ? "收起" : "评论");
-				$("#comm").slideToggle();
-			});
-		});
-	</script>
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="js/searchPage.js"></script>
 </body>
 </html>

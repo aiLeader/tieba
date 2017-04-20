@@ -6,18 +6,37 @@ public class Admin {
 	private String apassword;
 	private String asex;
 	private String aemail;
+	private String aphone;
 	private String apic;
 	public Admin() {
 		// TODO Auto-generated constructor stub
 	}
-	public Admin(String aid, String aname, String apassword, String asex, String aemail, String apic) {
+	
+	public Admin(String aid, String apassword) {
+		super();
+		this.aid = aid;
+		this.apassword = apassword;
+	}
+
+	public Admin(String aid, String aname, String apassword, String asex, String aemail, String aphone, String apic) {
+		super();
 		this.aid = aid;
 		this.aname = aname;
 		this.apassword = apassword;
 		this.asex = asex;
 		this.aemail = aemail;
+		this.aphone = aphone;
 		this.apic = apic;
 	}
+
+	public String getAphone() {
+		return aphone;
+	}
+
+	public void setAphone(String aphone) {
+		this.aphone = aphone;
+	}
+
 	public String getAid() {
 		return aid;
 	}
@@ -54,10 +73,11 @@ public class Admin {
 	public void setApic(String apic) {
 		this.apic = apic;
 	}
+
 	@Override
 	public String toString() {
-		return "\nAdmin [aid=" + aid + ", aname=" + aname + ", apassword=" + apassword + ", asex=" + asex + ", aemail="
-				+ aemail + ", apic=" + apic + "]";
+		return "Admin [aid=" + aid + ", aname=" + aname + ", apassword=" + apassword + ", asex=" + asex + ", aemail="
+				+ aemail + ", aphone=" + aphone + ", apic=" + apic + "]";
 	}
 	
 }

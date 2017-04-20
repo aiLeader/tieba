@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.yc.tieba.entity.Concern;
-import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.mapper.ConcernMapper;
 import com.yc.tieba.service.ConcernService;
@@ -69,14 +68,14 @@ public class ConcernServiceImpl implements ConcernService {
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userida", userida);
 					dmap.put("useridb", useridb);
-					int a= concernMapper.deleteConcernUser(dmap);
+					concernMapper.deleteConcernUser(dmap);
 					return 2;
 				}else{//还没有关注
 					System.out.println("还没有关注,点击关注");
 					Map<String,String> dmap=new HashMap<String,String>();
 					dmap.put("userida", userida);
 					dmap.put("useridb", useridb);
-					int b =  concernMapper.addConcernUser(dmap);
+					concernMapper.addConcernUser(dmap);
 					return 3;
 				}
 		}else{//还没有关注记录，添加关注记录
