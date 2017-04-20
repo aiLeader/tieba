@@ -1,5 +1,34 @@
 var userid=$("#LoginUserId").val();
+var tid ="";
+var nid ="";
+var sc="收藏";
+var href = window.location.href;
+var currPage="";
 
+$("#collectFrom").form({
+	url:"../note/collectNote",
+	onSubmit: function(param){    
+        param.nid = nid;
+    },    
+	success:function(data){
+		$.messager.show({
+			title:'收藏信息',
+			msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"失败,请先登录":"")+(data==8?"本帖不能收藏":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+	}
+});
+
+//收藏
+function collectNote(tnid){
+	nid=tnid;
+	alert(nid);
+	$("#collectFrom").submit();
+	
+}
 //异步加载左边板块信息
 function listType(url){
 	$.post(url,function(data){
@@ -37,7 +66,7 @@ $.post("../note/getNoteById"+hrefStr.substr(hrefStr.indexOf("?")),function(data)
 		$("#noteDetailContent").append('<div id="content"><p><a id="title" href="javascript:void(0);" style="padding-right:21px">'+data.ntitle+'</a>'
 				+'</p><p>'+data.ncontent+'</p><p><span class="glyphicon glyphicon-user"></span><a href="'+href+data.users.userid+'" style="padding-right:30px">'+data.users.uname+'</a>'
 				+'<span class="glyphicon glyphicon-time" style="padding-left:7px"></span>'+data.ntimes+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left:30px">'+data.ngood+'</a>'
-				+'<a href="#" class="glyphicon glyphicon-heart" style="padding-left:30px">收藏</a><a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>'
+				+'<a id="collectNote" href="javascript:void(0)" onclick=collectNote('+data.nid+')  class="glyphicon glyphicon-heart" style="padding-left:30px">'+sc+'</a><a href="javascript:;" id="toggle" target="_self" class="glyphicon glyphicon-edit" style="padding-left:30px">评论</a>'
 				+'<form action="../comments/addComm"><div id="comm" style="display: none;"><input type="hidden" name="userid" value="'+LoginUserid+'"><input type="hidden" name="nid" value="'+data.nid+'"><textarea name="ccontent" rows="4" cols="80"></textarea><br><button>提交</button></div></p></div></form><hr/>'
 				+'<script type="text/javascript">$(function(){$("#toggle").click(function() {  $(this).text($("#comm").is(":hidden") ? "收起" : "评论");$("#comm").slideToggle();});});</script>');
 	}

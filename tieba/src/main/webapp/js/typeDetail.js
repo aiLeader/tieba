@@ -5,6 +5,7 @@ var sc="收藏";
 var href = window.location.href;
 var currPage="";
 var userid=$("#userid").val();
+
 //异步加载右边贴吧热议榜
 function listNoteOderByNum(url){
 	$.post(url,function(data){
@@ -17,7 +18,6 @@ function listNoteOderByNum(url){
 listNoteOderByNum("note/listOrderByNum");
 
 tid=this.href.substr(this.href.indexOf("?")+1);
-
 function  findNote(url){
 		$.ajax({
 			url:url+"&"+tid,
