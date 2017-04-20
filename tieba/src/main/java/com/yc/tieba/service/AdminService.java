@@ -6,4 +6,8 @@ public interface AdminService {
 
 	Admin login(Admin admin);
 
+	Admin selectPwd(Admin admin);
+
+	boolean updatePwd(Admin admin);
+
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +12,27 @@
 <link href="css/manage.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="easyui-layout" style="width: 1366px; margin: 0px auto;">
+	<c:choose>
+		<c:when test="${loginAdmin==null }">
+			<script type="text/javascript">
+			alert("请先登录!");
+			window.location=${deployName}+"adminlogin.jsp";
+		</script>
+		</c:when>
+		<c:when test="${loginAdmin=='' }">
+			<script type="text/javascript">
+			alert("请先登录!");
+			window.location=${deployName}+"adminlogin.jsp";
+		</script>
+		</c:when>
+	</c:choose>
 	<div data-options="region:'north'" style="height: 138px;width: 1366px;">
 		<img style="padding-left: 20px;" height="80px" width="337px" class="mainpage_head_img"
 			alt="公司logo" src="images/logo1.png" id="logo"/>
 
 		<div style="float: right; margin-top: 40px; margin-right: 20px; color: #082C5A;">
 			<div>
-				管	理员：[<strong style="font-size: 120%; color: green;">sh</strong>]，欢迎您进入贴吧系统
+				管	理员：[<strong style="font-size: 120%; color: green;">${loginAdmin.aname}</strong>]，欢迎您进入贴吧系统
 			</div>
 			<div style="margin-top: 8px;">
 				<a href="javascript:void(0);" class="easyui-menubutton"
@@ -88,7 +103,7 @@
 		<div id="main" style="width: 500px;height:900px; height: 250px;">
 			<div title="欢迎">
 				<h1 style="width: 100%; text-align: center; margin-top: 80px">
-					<label> 欢迎【<span>${loginUser.uname}</span>】进入贴吧后台管理
+					<label> 欢迎【<span>${loginAdmin.aname}</span>】进入贴吧后台管理
 					</label>
 				</h1>
 			</div>
@@ -110,16 +125,31 @@
 	<!-- 修改密码 -->
 	<div id="personalInfo">
 		<form id="modifyForm" method="post">
-			<input name="username" type="hidden" value="${username }"/>
-			<p>原密码:<input type="password" name="username" placeholder="请输入原密码" required="required"/></p>
-			<p>新密码:<input type="password" name="password" placeholder="请输入新密码"  required="required"/></p>
-			<p>重复新密码:<input type="password" id="repassword" placeholder="请重复输入新密码"  required="required"/></p>
-			<p><a id="modifyBtn" href="javascript:void(0)">修 改</a><a id="closeBtn" href="javascript:void(0)">关 闭</a></p>
+			<input id="aid" name="aid" type="hidden" value="${loginAdmin.aid }"/>
+			<p>原密码:<input id="pwd" type="password" name="apassword" placeholder="请输入原密码" required="required"/></p>
+			<p>新密码:<input  id="npwd" type="password" name="newapassword" placeholder="请输入新密码"  required="required"/></p>
+			<p>重复新密码:<input id="rpwd" type="password" name="repassword" placeholder="请重复输入新密码"  required="required"/></p>
+			<p><a id="modifyBtn" href="javascript:void(0)" onclick="updatePwd()">修 改</a><a id="closeBtn" href="javascript:void(0)">关 闭</a></p>
 		</form>
 	</div>
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="highchats/highcharts.js"></script>
+<script type="text/javascript" src="highchats/exporting.js"></script>
 <script type="text/javascript" src="js/manage.js"></script>
+<script type="text/javascript">
+
+$('input',$("#rpwd")).blur(function(){
+	var rpwd=$("#rpwd").val();
+	var npwd=$("#npwd").val();
+	alert(rpwd);
+	if(rpwd.equals(npwd)){
+		
+	}else{
+		$.messager.alert('提示','两次密码输入不一致'); 
+	}
+});
+</script>
 </body>
 </html>

@@ -45,13 +45,15 @@ function IndexListNote(url){
 		for(var i=0;i<data.rows.length;i++){
 			var store="收藏";
 			if(jubuStore==null||jubuStore==undefined||jubuStore==""){
-
+				store="收藏";
 			}else{
+			if(jubuStore!=null&&jubuStore!=undefined&&jubuStore!=""){
 				for(var j=0;j<jubuStore.length;j++){
 					if(jubuStore[j].nid==data.rows[i].nid){
 						store="取消收藏";
 						jubuStore.splice(j);
 					}
+				}
 				}
 			}
 			if(data.rows[i].users.userid==userid){
@@ -76,7 +78,6 @@ function IndexListNote(url){
 		}
 	},"json");
 }
-//获取登录用户的收藏信息
 //异步加载右边贴吧热议榜
 function listNoteOderByNum(url){
 	$.post(url,function(data){
@@ -114,7 +115,6 @@ function dianzan(nid){
 //收藏
 function collectNote(tnid){
 	nid=tnid;
-	/*	collectFrom*/
 	$("#collectFrom").submit();
 }
 $("#collectFrom").form({
@@ -135,7 +135,6 @@ $("#collectFrom").form({
 		IndexListNote("note/listindex?page=nop&totalPage=nop");
 	}
 });
-
 //一键换肤
 var $li = $("#skin li");
 $li.click(function () {

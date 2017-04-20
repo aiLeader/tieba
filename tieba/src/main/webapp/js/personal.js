@@ -63,7 +63,7 @@ function showStoreNote(url){
 			noteStr +="<p><span class='glyphicon glyphicon-user'></span><a href='#' style='padding-right:30px'>"+data.rows[i].notes.users.uname+"</a>";
 			noteStr +="<span class='glyphicon glyphicon-time' style='padding-left:7px'></span>"+data.rows[i].notes.ntimes;
 			noteStr +="<a href='javascript:void(0);' class='glyphicon glyphicon-thumbs-up' style='padding-left:30px' onclick='dianzan("+data.rows[i].notes.nid+")'>"+data.rows[i].notes.ngood+"</a>";
-			noteStr +="<a id='collectNote' href='javascript:void(0)' onclick=collectNote("+data.rows[i].notes.nid+")  class='glyphicon glyphicon-heart' style='padding-left:30px'>"+sc+"</a>";
+			noteStr +="<a id='collectNote' href='javascript:void(0)' onclick=collectNote("+data.rows[i].notes.nid+")  class='glyphicon glyphicon-heart' style='padding-left:30px'>取消收藏</a>";
 			noteStr +="<a href='javascript:;' id='toggle1' target='_self' class='glyphicon glyphicon-edit' style='padding-left:30px'>评论</a>";
 			noteStr +="<div id='comm1' style='display: none;'><textarea rows='4' cols='80'></textarea><br><button>提交</button></div></p></div>";
 		}

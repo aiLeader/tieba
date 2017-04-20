@@ -9,4 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from admin where (aid=#{aid} or aemail = #{aid}) and
 		apassword=#{apassword}
 	</select>
+	<update id="updatePwd" parameterType="Admin">
+		update admin set apassword=#{apassword} where aid=#{aid}
+	</update>
+	<select id="selectPwd" parameterType="Admin" resultType="Admin">
+		select apassword from admin where aid=#{aid}
+	</select>
 </mapper>
