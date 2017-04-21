@@ -2,10 +2,8 @@ package com.yc.tieba.mapper;
 
 import java.util.List;
 import java.util.Map;
-
 import com.yc.tieba.entity.NoteInfo;
 import com.yc.tieba.entity.PaginationBean;
-import com.yc.tieba.entity.Store;
 
 public interface NoteMapper {
 	PaginationBean<NoteInfo> findNote(Map<String, String> map);
@@ -29,7 +27,6 @@ public interface NoteMapper {
 	NoteInfo findNoteById(String nid);
 	
 	int insertNote(Map<String, String> map);
-
 
 	int collectNote(Map<String, String> map);
 
@@ -58,4 +55,6 @@ public interface NoteMapper {
 	int cancelSend(String nid);
 
 	List<NoteInfo> findSendNotes();
+
+	PaginationBean<NoteInfo> searchNotes(Map<String, String> map);
 }

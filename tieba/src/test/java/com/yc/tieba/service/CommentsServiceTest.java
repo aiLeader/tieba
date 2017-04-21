@@ -1,6 +1,5 @@
 package com.yc.tieba.service;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -11,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.tieba.entity.Comments;
 import com.yc.tieba.entity.PaginationBean;
-import com.yc.tieba.entity.QueryEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring.xml")

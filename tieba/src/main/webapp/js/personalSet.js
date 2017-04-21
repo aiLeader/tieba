@@ -170,7 +170,7 @@ var pwd=document.getElementById("npwd");
 pwd.onblur=function(){
 	var ypwd=$("#ypwd").val();
 	var npwd=$("#npwd").val();
-	if(ypwd!==npwd){
+	if(ypwd!=npwd){
 		$.messager.alert('提示','两次密码输入不一致'); 
 	}else{
 		
