@@ -30,6 +30,8 @@ create table admin(
 create sequence admin_id start with 1000;--管理员ID序列
 select * from admin;
 
+select count(1) total, ceil(count(1) /10) totalPage, 10 pageSize,1 currPage ,'dw' value from users where status in (0,1) and uname like '%dw%' 
+select * from (select n.*, rownum rn from (select * from users where status in (0,1) and uname like '%dw%' ) ) n where 10* 1 >= rownum) where rn>(1-1)*10 
 insert into admin(aid,aname,apassword,asex,aemail,aphone,apic) values(admin_id.nextval||'','sh',default,'女','joyceshenhui@qq.com','18711449775','');
 --用户(板块管理员，普通用户)
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.UsersService;
@@ -79,9 +80,17 @@ public class UsersHandler {
 
 	@RequestMapping(value = "list")
 	@ResponseBody
-	private PaginationBean<Users> doFindUser(String page, String rows, String options) throws IOException {
-		return usersService.listuser(rows, page, options);
+	private PaginationBean<Users> doFindUser(String page, String rows, String options,String value) throws IOException {
+		return usersService.listuser(rows, page, options,value);
 	}
+	
+	@RequestMapping(value ="findname")
+	@ResponseBody
+	private List<Users> doFindName(String keyword) throws IOException {
+		System.out.println(keyword);
+		return usersService.listusername(keyword);
+	}
+	
 
 	@RequestMapping(value = "/{userid}", method = RequestMethod.GET)
 	@ResponseBody

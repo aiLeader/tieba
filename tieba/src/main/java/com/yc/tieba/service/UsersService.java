@@ -6,7 +6,7 @@ import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 
 public interface UsersService {
-	PaginationBean<Users> listuser(String rows, String page,String options);
+	PaginationBean<Users> listuser(String rows, String page,String options, String value);
 	boolean deleteUser(String userid);
 	boolean updateUser(Users users);
 	int insertUser(Users users);
@@ -19,4 +19,5 @@ public interface UsersService {
 	Users tellogin(Users user);
 	Users selectuser(String userid);
 	List<Users> selectAddress();
+	List<Users> listusername(String keyword);
 }

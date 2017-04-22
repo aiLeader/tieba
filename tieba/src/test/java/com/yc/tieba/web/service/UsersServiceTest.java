@@ -18,7 +18,7 @@ public class UsersServiceTest {
 	private UsersService userService;
 	@Test
 	public void testListUsers() {
-		PaginationBean<Users> users=userService.listuser("10", "1","1000");
+		PaginationBean<Users> users=userService.listuser("10", "1","uname","dw");
 		System.out.println(users);
 		assertNotNull(users);
 	}

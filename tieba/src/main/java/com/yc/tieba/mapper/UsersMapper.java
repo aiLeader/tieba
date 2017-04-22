@@ -21,4 +21,5 @@ public interface UsersMapper {
 	Users tellogin(Users user);
 	Users selectUserById(String userid);
 	List<Users> selectAddress();
+	List<Users> findusername(String keyword);
 }

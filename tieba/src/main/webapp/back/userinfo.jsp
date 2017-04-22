@@ -11,7 +11,15 @@
 </head>
 <body>
 	<div class="top-searcher">
-		<span>根据条件查找(ID、姓名、性别、手机号、邮箱、地址)：</span><input id="inputt" type="text" name="Eq" style="width: 150px;height:30px;" />
+		<select id="option">
+			<option value="uname">根据姓名查找</option>
+			<option value="sex">根据性别查找</option>
+			<option value="telephone">根据手机号查找</option>
+			<option value="email">根据邮箱查找</option>
+			<option value="address">根据地址查找</option>
+		</select>
+		<input id="inputt" list="pasta" type="text" name="Eq" style="width: 150px;height:20px;" />
+		<datalist id="pasta"></datalist>
 		&nbsp;&nbsp; <a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-search'" onclick="obj.search()">查询</a>
 	</div>

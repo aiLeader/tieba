@@ -1,6 +1,6 @@
 var editRow = undefined; //定义全局变量：当前编辑的行
 var flag=0;//1表示添加，-1表示修改
-var tstate= [{ "value": "1", "text": "1可用" },{ "value": "-1", "text": "-1不可用" }];
+var tstate= [{ "value": "1", "text": "可用" },{ "value": "-1", "text": "不可用" }];
 function unitformatter(value, rowData, rowIndex) {  
     if (value == 0) {  
         return;  
