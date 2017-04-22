@@ -6,6 +6,23 @@ var href = window.location.href;
 var currPage="";
 var userid=$("#userid").val();
 
+//加载编辑器
+
+function showEditor(url){
+	$.post(url+"&userid="+userid,function(data){
+	
+		if(data.status==2){
+			$("#toDiv").empty();
+			 $("#toDiv").append("<div>你还没有登录 </div>");
+		}else if(data.status==1){
+			$("#toDiv").empty();
+			 $("#toDiv").append("<div>你已经被禁言 </div>");
+		/*	$("#toDiv").html('');
+		 * $("#toDiv").append("<div>你已经被禁言 </div>");*/
+		}
+	},"json");
+}
+showEditor("user/status?");
 //异步加载右边贴吧热议榜
 function listNoteOderByNum(url){
 	$.post(url,function(data){

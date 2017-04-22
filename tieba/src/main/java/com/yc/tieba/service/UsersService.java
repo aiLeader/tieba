@@ -20,4 +20,6 @@ public interface UsersService {
 	Users selectuser(String userid);
 	List<Users> selectAddress();
 	List<Users> listusername(String keyword);
+	boolean JugleBanUser(String userid);
+	Users showStatus(String userid);
 }

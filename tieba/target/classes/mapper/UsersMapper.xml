@@ -52,6 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserById" parameterType="string" resultType="Users">
 			select * from users where userid=#{userid}
 	</select>
+	
+
 	<select id="tellogin"  parameterType="Users" resultType="Users">
 		select * from users where telephone=#{telephone} and password=#{password}
 	</select>
@@ -167,6 +169,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users where uname like '${_parameter}%'
 	</select>
 
+	<select id="jugleBanUser" parameterType="String" resultType="Users">
+		select * from users where userid=#{userid} and status=0
+	</select>
 
 
 </mapper>

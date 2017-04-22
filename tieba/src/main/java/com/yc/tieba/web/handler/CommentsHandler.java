@@ -26,13 +26,13 @@ public class CommentsHandler {
 	
 	@RequestMapping(value="list",method=RequestMethod.POST)
 	@ResponseBody
-	public List<Comments> listAllComments(){
-		return commentsService.listAllComm();
+	public PaginationBean<Comments> listAllComments(String page,String rows){
+		return commentsService.listAllComm(page,rows);
 	}
 	@RequestMapping(value="banList",method=RequestMethod.POST)
 	@ResponseBody
-	public List<Comments> listBanComments(){
-		return commentsService.findBanComm();
+	public PaginationBean<Comments> listBanComments(String page,String rows){
+		return commentsService.findBanComm(page,rows);
 	}
 	
 	@RequestMapping(value="qnoteid",method=RequestMethod.POST)

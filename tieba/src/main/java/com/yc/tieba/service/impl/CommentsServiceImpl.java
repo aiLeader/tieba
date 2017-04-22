@@ -20,8 +20,21 @@ public class CommentsServiceImpl implements CommentsService {
 	private CommentsMapper commentsMapper;
 
 	@Override
-	public List<Comments> listAllComm() {
-		return commentsMapper.findAllComment();
+	public PaginationBean<Comments> listAllComm(String page,String rows) {
+		int currPage=1;
+		int pageSize=10;
+		if(page!=null){
+			try {
+				int s = Integer.parseInt(page);
+				currPage=s;
+			} catch (NumberFormatException e) {
+				currPage=1;
+			}
+		}
+		PaginationBean<Comments> pb = new PaginationBean<>();
+		pb.setCurrPage(currPage);
+		pb.setPageSize(pageSize);
+		return commentsMapper.findAllComment(pb);
 	}
 
 	@Override
@@ -57,8 +70,21 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public List<Comments> findBanComm() {
-		return commentsMapper.findBanComm();
+	public PaginationBean<Comments> findBanComm(String page, String rows) {
+		int currPage=1;
+		int pageSize=10;
+		if(page!=null){
+			try {
+				int s = Integer.parseInt(page);
+				currPage=s;
+			} catch (NumberFormatException e) {
+				currPage=1;
+			}
+		}
+		PaginationBean<Comments> pb = new PaginationBean<>();
+		pb.setCurrPage(currPage);
+		pb.setPageSize(pageSize);
+		return commentsMapper.findBanComm(pb);
 	}
 
 	@Override

@@ -119,4 +119,12 @@ public class UsersServiceImpl implements UsersService {
 	
 
 	
+	public boolean JugleBanUser(String userid) {
+		return usersMapper.jugleBanUser(userid)!=null;
+	}
+	@Override
+	public Users showStatus(String userid) {
+		
+		return usersMapper.selectUserById(userid);
+	}
 }

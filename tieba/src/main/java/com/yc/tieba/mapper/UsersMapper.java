@@ -22,4 +22,5 @@ public interface UsersMapper {
 	Users selectUserById(String userid);
 	List<Users> selectAddress();
 	List<Users> findusername(String keyword);
+	Users jugleBanUser(String userid);
 }
