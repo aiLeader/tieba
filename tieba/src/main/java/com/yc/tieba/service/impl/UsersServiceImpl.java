@@ -109,6 +109,11 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> selectAddress() {
 		return usersMapper.selectAddress();
 	}
+	@Override
+	public Users showStatus(String userid) {
+		
+		return usersMapper.selectUserById(userid);
+	}
 
 
 	
