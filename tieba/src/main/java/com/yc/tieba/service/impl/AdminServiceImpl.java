@@ -1,5 +1,7 @@
 package com.yc.tieba.service.impl;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,16 @@ public class AdminServiceImpl implements AdminService {
 		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
 		return adminMapper.login(admin);
 	}
+
+	@Override
+	public boolean updatePwd(Admin admin) {
+		admin.setApassword(Encrypt.md5AndSha(admin.getApassword()));
+		return adminMapper.updatePwd(admin);
+	}
+
+	@Override
+	public Admin selectPwd(Admin admin) {
+		return adminMapper.selectPwd(admin);
+	}
+
 }

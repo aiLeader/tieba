@@ -19,4 +19,5 @@ public interface UsersService {
 	Users tellogin(Users user);
 	Users selectuser(String userid);
 	List<Users> selectAddress();
+	boolean JugleBanUser(String userid);
 }

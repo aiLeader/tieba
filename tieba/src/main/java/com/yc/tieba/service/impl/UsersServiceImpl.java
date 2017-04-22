@@ -109,6 +109,10 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> selectAddress() {
 		return usersMapper.selectAddress();
 	}
+	@Override
+	public boolean JugleBanUser(String userid) {
+		return usersMapper.jugleBanUser(userid)!=null;
+	}
 
 
 	

@@ -24,15 +24,15 @@
 			<p>
 				<label> 标题 </label> <input id="TNSntitle" required="required" readonly="readonly"/>
 			</p>
-			<p>
+			<!-- <p>
 				<label> 版块 </label> <input id="TNStid" required="required" readonly="readonly"/>
-			</p>
+			</p> -->
 			<p>
 				<label> 版块名 </label> <input id="TNStname" required="required" readonly="readonly"/>
 			</p>
-			<p>
+			<!-- <p>
 				<label> 用户 </label> <input id="TNSuserid" required="required" readonly="readonly"/>
-			</p>
+			</p> -->
 			<p>
 				<label> 用户名 </label> <input id="TNSuname" required="required" readonly="readonly"/>
 			</p>

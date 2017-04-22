@@ -173,7 +173,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAddress" resultMap="usermap">
 		select u.address address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address
 	</select>
-
+	<select id="jugleBanUser" parameterType="String" resultType="Users">
+		select * from users where userid=#{userid} and status=0
+	</select>
 
 
 </mapper>

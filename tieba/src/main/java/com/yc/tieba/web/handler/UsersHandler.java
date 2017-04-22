@@ -218,11 +218,18 @@ public class UsersHandler {
 		LogManager.getLogger().debug("修改密码。。。user==>" + user);
 		return usersService.insertnpwd(user);
 	}
-	
+
 	//统计用户地址
 	@RequestMapping(value="countusers")
 	@ResponseBody
 	public List<Users> selectAddress(){
 		return usersService.selectAddress();
+	}
+
+	//统计用户地址
+	@RequestMapping(value="jugleBan")
+	@ResponseBody
+	public boolean JugleBanUser(String userid){
+		return usersService.JugleBanUser(userid);
 	}
 }
