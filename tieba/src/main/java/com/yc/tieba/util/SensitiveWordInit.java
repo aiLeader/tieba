@@ -80,7 +80,7 @@ public class SensitiveWordInit {
 	 * @version 1.0
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void addSensitiveWordToHashMap(Set<String> keyWordSet) {
+	private void addSensitiveWordToHashMap(Set<String> keyWordSet) {//keyWordSet 文档
 		sensitiveWordMap = new HashMap(keyWordSet.size());     //初始化敏感词容器，减少扩容操作
 		String key = null;  
 		Map nowMap = null;
@@ -88,12 +88,11 @@ public class SensitiveWordInit {
 		//迭代keyWordSet
 		Iterator<String> iterator = keyWordSet.iterator();
 		while(iterator.hasNext()){
-			key = iterator.next();    //关键字
+			key = iterator.next();    //关键字  key 单独的关键字
 			nowMap = sensitiveWordMap;
 			for(int i = 0 ; i < key.length() ; i++){
 				char keyChar = key.charAt(i);       //转换成char型
-				Object wordMap = nowMap.get(keyChar);       //获取
-				
+				Object wordMap = nowMap.get(keyChar);       //获取在nowMap是否有记录
 				if(wordMap != null){        //如果存在该key，直接赋值
 					nowMap = (Map) wordMap;
 				}
