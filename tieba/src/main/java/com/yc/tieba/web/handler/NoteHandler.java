@@ -123,8 +123,10 @@ public class NoteHandler {
 	
 	@RequestMapping(value="searchNote")
 	@ResponseBody
-	public PaginationBean<NoteInfo> searchNote(String page , String param){
-		return noteService.searchNote(page,param);
+	public PaginationBean<NoteInfo> searchNote(String page , String param) throws UnsupportedEncodingException{
+		String param1 =new String(param.getBytes("iso-8859-1"),"utf-8");
+		System.out.println("===>"+param1);
+		return noteService.searchNote(page,param1);
 	}
 	
 }

@@ -133,7 +133,7 @@
 				<div id="top">
 					<img id="tpicPath" src="images/mr.jpg"> <a href="#"
 						id="tname"></a> <span id="tdesc"></span>
-					<form method="post" id="sendForm" enctype="multipart/form-data">
+					<div id="toDiv"  name="toDiv"><form method="post" id="sendForm" enctype="multipart/form-data">
 						<input type="hidden" id="tid" name="tid" value="${tid}"> <input
 							type="hidden" id="userid" name="userid"
 							value="${loginUser.userid}"> 标题：<input name="ntitle"
@@ -141,7 +141,7 @@
 						<textarea rows="4" cols="85" id="topcontent" name="topcontent"></textarea>
 						<br> <a id="send" href="javascript:void(0)"
 							onclick="return sendNote()">发送</a>
-					</form>
+					</form></div>
 				</div>
 				<form method="post" id="collectFrom" enctype="multipart/form-data">
 					<input type="hidden" id="userid" name="userid"

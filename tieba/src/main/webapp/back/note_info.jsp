@@ -22,6 +22,9 @@
 		<table id="noteInfoTable">
 		</table>
 	</div>
+	<div id="TNoteInfoDetail">
+	<div id="TNSnid" ></div>
+	</div>
 	<script type="text/javascript" src="js/note_info.js"></script>
 </body>
 </html>

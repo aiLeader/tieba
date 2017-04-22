@@ -33,11 +33,12 @@
 						<ul class="nav navbar-nav" id="shouye">
 							<li class="active"><a href="#">首页</a></li>
 						</ul>
-						<form id="searchForm" class="navbar-form navbar-left" role="search">
+						<form id="searchForm" action="searchPage.jsp" class="navbar-form navbar-left" role="search">
 							<div class="form-group">
-								<input id="param" class="form-control" type="text" style="width: 400px" />
+								<input name="page" id="page" type="hidden" value="1"/>
+								<input name="param" id="param" class="form-control" type="text" style="width: 400px" />
 							</div>
-							<button onclick="searchNotes('1')" class="btn btn-default">搜索</button>
+							<button type="submit" class="btn btn-default">搜索</button>
 						</form>
 						<ul class="nav navbar-nav navbar-right">
 							<c:choose>

@@ -20,4 +20,5 @@ public interface UsersService {
 	Users selectuser(String userid);
 	List<Users> selectAddress();
 	boolean JugleBanUser(String userid);
+	Users showStatus(String userid);
 }

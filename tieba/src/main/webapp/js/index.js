@@ -135,6 +135,25 @@ $("#collectFrom").form({
 		IndexListNote("note/listindex?page=nop&totalPage=nop");
 	}
 });
+	
+	$("#collectFrom").form({
+		url:"note/collectNote",
+		onSubmit: function(param){    
+			param.nid = nid;
+		},    
+		success:function(data){
+			$.messager.show({
+				title:'收藏信息',
+				msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"收藏失败,请先登录":"")+(data==8?"本帖不能收藏":""),
+				showType:'show',
+				style:{
+					top:document.body.scrollTop+document.documentElement.scrollTop,
+				}
+			});
+			//重新加载帖子信息
+			IndexListNote("note/listindex?page=nop&totalPage=nop");
+		}
+	});
 //一键换肤
 var $li = $("#skin li");
 $li.click(function () {

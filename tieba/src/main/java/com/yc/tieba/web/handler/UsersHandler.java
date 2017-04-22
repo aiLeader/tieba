@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.service.UsersService;
@@ -225,11 +228,20 @@ public class UsersHandler {
 	public List<Users> selectAddress(){
 		return usersService.selectAddress();
 	}
-
-	//统计用户地址
 	@RequestMapping(value="jugleBan")
 	@ResponseBody
 	public boolean JugleBanUser(String userid){
 		return usersService.JugleBanUser(userid);
+	}
+	//查询用户状态
+	@RequestMapping(value="status")
+	@ResponseBody
+	public Users  showStatus(String userid){
+		if(userid == null||userid==""){
+			Users user = new Users();
+			user.setStatus(2);
+			return user ;
+		}
+		return usersService.showStatus(userid);
 	}
 }
