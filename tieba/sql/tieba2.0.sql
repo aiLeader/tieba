@@ -66,7 +66,8 @@ dbms_random.string('l',dbms_random.value(5, 12))||'@qq.com',
 decode(ceil(dbms_random.value(0, 6)), 1, '湖南', 2, '湖北', 3, '广东', 4, '广西', 5, '北京', '上海'),'',
 dbms_random.string('l',11),0,sysdate,0,0,'' from dual connect by level <= 10; 
 
-
+delete from users where userid='1121'
+select * from users;
 create table typeadmin(
     taid varchar2(5) primary key,--板块
     userid varchar2(5) constraint fk_typeadmin_userid references users(userid),--用户
