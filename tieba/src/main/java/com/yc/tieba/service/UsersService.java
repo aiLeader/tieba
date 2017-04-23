@@ -19,4 +19,7 @@ public interface UsersService {
 	Users tellogin(Users user);
 	Users selectuser(String userid);
 	List<Users> selectAddress();
+	Users selectSkin(String userid);//查询皮肤
+	//更换皮肤
+	int updateSkin(Users users);
 }

@@ -21,4 +21,6 @@ public interface UsersMapper {
 	Users tellogin(Users user);
 	Users selectUserById(String userid);
 	List<Users> selectAddress();
+	Users selectSkin(String userid);
+	int updateSkin(Users users);
 }

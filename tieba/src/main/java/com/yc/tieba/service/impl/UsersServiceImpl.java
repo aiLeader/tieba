@@ -109,6 +109,14 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> selectAddress() {
 		return usersMapper.selectAddress();
 	}
+	@Override  //查询皮肤
+	public Users selectSkin(String userid) {
+		return usersMapper.selectSkin(userid);
+	}
+	@Override
+	public int updateSkin(Users users) {
+		return usersMapper.updateSkin(users);
+	}
 
 
 	

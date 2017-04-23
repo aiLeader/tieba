@@ -160,6 +160,13 @@ $li.click(function () {
 	$("#"+this.id).addClass("selected")
 	.siblings().removeClass("selected");
 	$("#cssfile").attr("href","css/"+this.id+".css");
+	var upskin=this.id.substr(-1);
+	$.ajax({
+		url: "user/updateSkin",
+		data: {"userid":userid,"uskin":upskin},
+		success: function(data){
+		}
+	});
 });
 //将皮肤保存进cookie
 $.cookie("myCssSkin",this.id,{path:'/',expires:10});
@@ -176,3 +183,29 @@ function switchSkin(skinName) {
 	$("#cssfile").attr("href","css/"+skinName+".css");
 	$.cookie("myCssSkin",skinName,{path:'/',expires:10});
 }
+
+//显示用户的皮肤
+function showSkin(){
+	$.ajax({
+		url: "user/showSkin",
+		data: "userid="+userid,
+		success: function(data){//msg 为 true
+			//alert(data);
+			if(data){
+				var uskin=data.uskin;
+				var skin="index"+uskin;
+				$("#"+skin).addClass("selected")
+				.siblings().removeClass("selected");
+				$("#cssfile").attr("href","css/"+skin+".css");
+			}else{
+				var uskin=0;
+				var skin="index"+uskin;
+				$("#"+skin).addClass("selected")
+				.siblings().removeClass("selected");
+				$("#cssfile").attr("href","css/"+skin+".css");
+			}
+			
+		}
+	});
+}
+showSkin();

@@ -225,4 +225,16 @@ public class UsersHandler {
 	public List<Users> selectAddress(){
 		return usersService.selectAddress();
 	}
+	//查询用户的皮肤
+	@RequestMapping(value="showSkin")
+	@ResponseBody
+	public Users showSkin(String userid){
+		return usersService.selectSkin(userid);
+	}
+	//更换皮肤
+	@RequestMapping(value="updateSkin")
+	@ResponseBody
+	public boolean updateSkin(Users users){
+		return usersService.updateSkin(users)>0;
+	}
 }
