@@ -29,8 +29,13 @@ $("#typesinfo").datagrid({
 	        		  return (a>b?1:-1);
 	        	  }},   
 	          {field:'tdesc',title:'板块格言',width:100,align:'center',editor:'text'},
-	          {field:'tstate',title:'板块状态',width:50,align:'center',
-	        	  editor: { 
+	          {field:'tstate',title:'板块状态',width:50,align:'center',formatter: function(value,row,index){
+					if (row.tstate<1){
+						return '不可用';
+					} else {
+						return '可用';
+					}
+				},editor: { 
 	        		  type: 'combobox', 
 	        		  options: { 
 	        			  data: tstate, 
@@ -41,7 +46,6 @@ $("#typesinfo").datagrid({
 	          },  
 	          {field:'operator',title:'操作',width:50,align:'center',
 	        	  formatter: function(value,row,index){
-	        		  //alert(row + "==>" + JSON.stringify(row));
 	        		  return '<a class="detailBtn" href="javascript:void(0)" onclick="showDetail('+ index +')">详情</a>' + 
 	        		  '<script>$(".detailBtn").linkbutton({iconCls: "icon-search"});</script>';
 	        	  }

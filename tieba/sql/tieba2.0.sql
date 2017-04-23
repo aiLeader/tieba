@@ -53,6 +53,13 @@ create table users(
     uremark varchar2(20) 
 );
 
+ALTER TABLE users RENAME COLUMN uremark TO uskin;--修改表的字段名
+ALTER TABLE users MODIFY uskin NUMBER default 0;--修改字段类型
+update users set uskin=0;
+select * from users;
+select uskin from users where userid='1000';
+update users set uskin=1 where userid='1001'
+
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 delete from users where userid='1083'
@@ -79,6 +86,7 @@ create table typeadmin(
 create  sequence typeadmin_id start with 10000;--版块ID
 
 --板块信息表
+
 create table types(
     tid varchar2(5) primary key,   --版块id
     tname varchar2(50) unique not null,  --版名

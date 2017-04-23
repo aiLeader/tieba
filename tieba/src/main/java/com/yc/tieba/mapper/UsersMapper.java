@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 
@@ -21,6 +22,9 @@ public interface UsersMapper {
 	Users tellogin(Users user);
 	Users selectUserById(String userid);
 	List<Users> selectAddress();
+	Types showtypeById(String tid);
+	Users selectSkin(String userid);
+	int updateSkin(Users users);
 	List<Users> findusername(String keyword);
 	Users jugleBanUser(String userid);
 }

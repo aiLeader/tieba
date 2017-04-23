@@ -3,6 +3,7 @@ package com.yc.tieba.service;
 import java.util.List;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 public interface UsersService {
@@ -19,7 +20,11 @@ public interface UsersService {
 	Users tellogin(Users user);
 	Users selectuser(String userid);
 	List<Users> selectAddress();
+	Users selectSkin(String userid);//查询皮肤
+	//更换皮肤
+	int updateSkin(Users users);
 	List<Users> listusername(String keyword);
 	boolean JugleBanUser(String userid);
 	Users showStatus(String userid);
+	Types showtypeSatus(String tid);
 }

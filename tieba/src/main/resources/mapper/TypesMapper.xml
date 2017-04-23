@@ -52,6 +52,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn > #{pageSize} *
 		(#{currPage}-1)
 	</select>
+	
+	<!-- 嵌套查询的分页处理 2-->
+	<resultMap type="PaginationBean" id="PaginationBeanMap2">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="Types"
+			select="getPaginationTypes2" />
+	</resultMap>
+	<select id="listTypes2" resultMap="PaginationBeanMap2"
+		parameterType="PaginationBean">
+		select count(1) total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from types where tstate =1
+	</select>
+	<select id="getPaginationTypes2" resultType="Types">
+		select * from
+		(select
+		n.*,rownum rn from
+		(select * from types where tstate =1 order by
+		tid) n where #{pageSize} *
+		#{currPage}>=rownum)
+		where rn > #{pageSize} *
+		(#{currPage}-1)
+	</select>
 
 	<!-- 通过types名字查询typesid -->
 	<select id="findId" parameterType="String" resultType="int">

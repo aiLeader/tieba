@@ -1,6 +1,6 @@
 package com.yc.tieba.service;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -63,12 +63,29 @@ public class UsersServiceTest {
 		System.out.println(r);
 		assertNotNull(r);
 	}
+	//查询皮肤
+	@Test
+	public void testSelectSkin(){
+		Users r = userService.selectSkin("1001");
+		System.out.println(r);
+		assertNotNull(r);
+	}
+	//更换皮肤
+	@Test
+	public void testUpdateSkin(){
+		Users user=new Users();
+		user.setUserid("1000");
+		user.setUskin(2);
+		int r = userService.updateSkin(user);
+		System.out.println(r);
+		assertEquals(r,1);
+	}
 	
 	//查找用户姓名
-		@Test
-		public void testfindName(){
-			List<Users> r = userService.listusername("dw");
-			System.out.println(r);
-			assertNotNull(r);
-		}
+	@Test
+	public void testfindName(){
+		List<Users> r = userService.listusername("dw");
+		System.out.println(r);
+		assertNotNull(r);
+	}
 }

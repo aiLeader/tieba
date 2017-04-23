@@ -53,6 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select * from users where userid=#{userid}
 	</select>
 	
+	<select id="showtypeById" parameterType="string" resultType="Types">
+			select * from types where tid=#{tid}
+	</select>
+	
 
 	<select id="tellogin"  parameterType="Users" resultType="Users">
 		select * from users where telephone=#{telephone} and password=#{password}
@@ -164,6 +168,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAddress" resultMap="usermap">
 		select u.address address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address
 	</select>
+	<!-- 查询皮肤 -->
+	<select id="selectSkin" parameterType="string" resultType="Users">
+		select uskin from users where userid='${_parameter}'
+	</select>
+	<!-- 更换皮肤 -->
+	<update id="updateSkin" parameterType="Users">
+		update users set uskin=#{uskin} where userid=#{userid}
+	</update>
 	<!-- 提示查询 -->        
 	<select id="findusername" parameterType="string" resultType="Users">
 		select * from users where uname like '${_parameter}%'

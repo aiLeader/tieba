@@ -106,7 +106,6 @@ $(document).on('click',"#praise",function(e){
 //收藏
 function collectNote(tnid){
 	nid=tnid;
-	alert(nid);
 /*	collectFrom*/
 	$("#collectFrom").submit();
 	

@@ -29,6 +29,13 @@ public class TypesHandler {
 		return typesService.listTypes(rows ,page);
 		
 	}
+	@RequestMapping(value="list")
+	@ResponseBody
+	public PaginationBean<Types> listTypes(String rows,String page){
+		//System.out.println(typesService.listTypes());
+		return typesService.listTypes2(rows ,page);
+		
+	}
 	@RequestMapping(value="add",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public boolean addTypes(Types types){

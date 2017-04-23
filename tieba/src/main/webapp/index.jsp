@@ -71,14 +71,18 @@
 									</c:choose>
 								</ul></li>
 							<!-- 一键换肤 -->	
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">一键换肤<strong class="caret"></strong></a>
-								<ul class="dropdown-menu" id="skin">
-									<li id="index0" title="经典" class="selected"><a href="#">经典主题</a></li>
-									<li id="index1" title="粉色" ><a href="#">粉色主题</a></li>
-									<li id="index2" title="蓝色" ><a href="#">蓝色主题</a></li>
-								</ul>
-							</li>
+							<c:choose>
+								<c:when test="${loginUser !=null}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown">一键换肤<strong class="caret"></strong></a>
+										<ul class="dropdown-menu" id="skin">
+											<li id="index0" title="经典" class="selected"><a href="#">经典主题</a></li>
+											<li id="index1" title="粉色" ><a href="#">粉色主题</a></li>
+											<li id="index2" title="蓝色" ><a href="#">蓝色主题</a></li>
+										</ul>
+									</li>
+								</c:when>
+							</c:choose>
 						</ul>
 
 					</div>

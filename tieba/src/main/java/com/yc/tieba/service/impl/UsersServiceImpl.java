@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.mapper.UsersMapper;
 import com.yc.tieba.service.UsersService;
@@ -110,9 +111,22 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> selectAddress() {
 		return usersMapper.selectAddress();
 	}
+	@Override  //查询皮肤
+	public Users selectSkin(String userid) {
+		return usersMapper.selectSkin(userid);
+	}
+	@Override
+	public int updateSkin(Users users) {
+		return usersMapper.updateSkin(users);
+	}
 	@Override
 	public List<Users> listusername(String keyword) {
 		return usersMapper.findusername(keyword);
+	}
+	@Override
+	public Types showtypeSatus(String tid) {
+		
+		return usersMapper.showtypeById(tid);
 	}
 
 

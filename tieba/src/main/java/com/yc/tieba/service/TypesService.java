@@ -24,4 +24,6 @@ public interface TypesService {
 
 	List<Types> typeCompare();
 
+	PaginationBean<Types> listTypes2(String rows, String page);
+
 }
