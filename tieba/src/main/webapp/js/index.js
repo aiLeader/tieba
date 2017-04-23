@@ -24,7 +24,7 @@ function listType(url){
 		}
 	},"json");
 }
-listType("types");
+listType("types/list");
 IndexListNote("note/listindex?page=nop&totalPage=nop");
 //异步加载主页中间的帖子
 function IndexListNote(url){

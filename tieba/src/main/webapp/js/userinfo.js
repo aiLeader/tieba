@@ -29,7 +29,13 @@ $(function () {
 		        	  { field: 'signs', title: '签名', width: 180,align:'center'},      
 		        	  { field: 'num', title: '经验值', width: 50,align:'center'},
 		        	  { field: 'regDate', title: '注册日期', width: 200,align:'center',formatter:formatDatebox},      
-		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',editor: { 
+		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',formatter: function(value,row,index){
+							if (row.status<1){
+								return '可发言';
+							} else {
+								return '禁言';
+							}
+						},editor: { 
 		        		  type: 'combobox', 
 		        		  options: { 
 		        			  data: tstate, 
