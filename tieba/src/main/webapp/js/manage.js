@@ -249,8 +249,13 @@ function logoutFun() {
 	//显示退出系统确认框
 	$.messager.confirm('', '您确定要退出系统吗？', function(r){
 		if (r){
-		    //退出系统操作;
-			location.replace("adminlogin.jsp");
+			$.ajax({
+				url:'admin/unlog',
+				success: function(){
+					//退出系统操作;
+					location.replace("adminlogin.jsp");
+				}
+			});
 		}
 	});
 }

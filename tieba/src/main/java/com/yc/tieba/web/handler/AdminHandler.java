@@ -1,5 +1,8 @@
 package com.yc.tieba.web.handler;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,5 +44,16 @@ public class AdminHandler {
 	@ResponseBody
 	public Admin selectPwd(Admin admin){
 		return adminService.selectPwd(admin);
+	}
+	//退出系统
+	@RequestMapping(value="unlog")
+	@ResponseBody
+	public void unLog(HttpServletRequest request){
+		//防止创建Session 
+		 HttpSession session = request.getSession(false);  
+	        if(session==null){  
+	            return;  
+	        }  
+	     session.removeAttribute("admin");  
 	}
 }
