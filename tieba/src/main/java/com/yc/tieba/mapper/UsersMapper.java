@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 
@@ -21,4 +22,5 @@ public interface UsersMapper {
 	Users tellogin(Users user);
 	Users selectUserById(String userid);
 	List<Users> selectAddress();
+	Types showtypeById(String tid);
 }

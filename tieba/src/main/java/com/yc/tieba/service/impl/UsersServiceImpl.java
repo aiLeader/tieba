@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 import com.yc.tieba.mapper.UsersMapper;
 import com.yc.tieba.service.UsersService;
@@ -113,6 +114,11 @@ public class UsersServiceImpl implements UsersService {
 	public Users showStatus(String userid) {
 		
 		return usersMapper.selectUserById(userid);
+	}
+	@Override
+	public Types showtypeSatus(String tid) {
+		
+		return usersMapper.showtypeById(tid);
 	}
 
 

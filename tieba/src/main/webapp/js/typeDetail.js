@@ -5,11 +5,11 @@ var sc="收藏";
 var href = window.location.href;
 var currPage="";
 var userid=$("#userid").val();
-
+tid=this.href.substr(this.href.indexOf("?")+1);
 //加载编辑器
 
 function showEditor(url){
-	$.post(url+"&userid="+userid,function(data){
+	$.post(url+"&userid="+userid+"&"+tid,function(data){
 	
 		if(data.status==2){
 			$("#toDiv").empty();
@@ -19,6 +19,9 @@ function showEditor(url){
 			 $("#toDiv").append("<div>你已经被禁言 </div>");
 		/*	$("#toDiv").html('');
 		 * $("#toDiv").append("<div>你已经被禁言 </div>");*/
+		}else if(data.status==-1){
+			$("#toDiv").empty();
+			 $("#toDiv").append("<div>板块已经被禁用</div>");
 		}
 	},"json");
 }
@@ -34,7 +37,7 @@ function listNoteOderByNum(url){
 }
 listNoteOderByNum("note/listOrderByNum");
 
-tid=this.href.substr(this.href.indexOf("?")+1);
+
 function  findNote(url){
 		$.ajax({
 			url:url+"&"+tid,

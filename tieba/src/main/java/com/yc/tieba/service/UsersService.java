@@ -3,6 +3,7 @@ package com.yc.tieba.service;
 import java.util.List;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 public interface UsersService {
@@ -20,4 +21,5 @@ public interface UsersService {
 	Users selectuser(String userid);
 	List<Users> selectAddress();
 	Users showStatus(String userid);
+	Types showtypeSatus(String tid);
 }
