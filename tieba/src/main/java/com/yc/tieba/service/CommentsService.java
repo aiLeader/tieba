@@ -6,9 +6,9 @@ import com.yc.tieba.entity.Comments;
 import com.yc.tieba.entity.PaginationBean;
 
 public interface CommentsService {
-	List<Comments> listAllComm();
+	PaginationBean<Comments> listAllComm(String page, String rows);
 
-	List<Comments> findBanComm();
+	PaginationBean<Comments> findBanComm(String page, String rows);
 
 	Comments findCommById(String cid);
 

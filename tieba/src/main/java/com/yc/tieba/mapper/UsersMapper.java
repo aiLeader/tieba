@@ -23,4 +23,6 @@ public interface UsersMapper {
 	List<Users> selectAddress();
 	Users selectSkin(String userid);
 	int updateSkin(Users users);
+	List<Users> findusername(String keyword);
+	Users jugleBanUser(String userid);
 }

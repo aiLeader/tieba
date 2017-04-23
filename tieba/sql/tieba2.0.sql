@@ -30,6 +30,8 @@ create table admin(
 create sequence admin_id start with 1000;--管理员ID序列
 select * from admin;
 
+select count(1) total, ceil(count(1) /10) totalPage, 10 pageSize,1 currPage ,'dw' value from users where status in (0,1) and uname like '%dw%' 
+select * from (select n.*, rownum rn from (select * from users where status in (0,1) and uname like '%dw%' ) ) n where 10* 1 >= rownum) where rn>(1-1)*10 
 insert into admin(aid,aname,apassword,asex,aemail,aphone,apic) values(admin_id.nextval||'','sh',default,'女','joyceshenhui@qq.com','18711449775','');
 --用户(板块管理员，普通用户)
 
@@ -73,7 +75,8 @@ dbms_random.string('l',dbms_random.value(5, 12))||'@qq.com',
 decode(ceil(dbms_random.value(0, 6)), 1, '湖南', 2, '湖北', 3, '广东', 4, '广西', 5, '北京', '上海'),'',
 dbms_random.string('l',11),0,sysdate,0,0,'' from dual connect by level <= 10; 
 
-
+delete from users where userid='1121'
+select * from users;
 create table typeadmin(
     taid varchar2(5) primary key,--板块
     userid varchar2(5) constraint fk_typeadmin_userid references users(userid),--用户

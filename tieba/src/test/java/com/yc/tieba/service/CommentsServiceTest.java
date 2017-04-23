@@ -25,6 +25,20 @@ public class CommentsServiceTest {
 	}
 	
 	@Test
+	public void testlistAllComm() {
+		PaginationBean<Comments> pb = cs.listAllComm("1", "10");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
+	
+	@Test
+	public void testlistBanComm() {
+		PaginationBean<Comments> pb = cs.findBanComm("1", "10");
+		System.out.println(pb);
+		assertNotNull(pb);
+	}
+	
+	@Test
 	public void testAddNewComment() {
 		Comments cm = new Comments();
 		cm.setUserid("1000");

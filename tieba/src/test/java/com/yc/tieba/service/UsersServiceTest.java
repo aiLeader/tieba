@@ -20,7 +20,7 @@ public class UsersServiceTest {
 	private UsersService userService;
 	@Test
 	public void testListUsers() {
-		PaginationBean<Users> users=userService.listuser("10", "1","1000");
+		PaginationBean<Users> users=userService.listuser("10", "1","uname","dw");
 		System.out.println(users);
 		assertNotNull(users);
 	}
@@ -79,5 +79,13 @@ public class UsersServiceTest {
 		int r = userService.updateSkin(user);
 		System.out.println(r);
 		assertEquals(r,1);
+	}
+	
+	//查找用户姓名
+	@Test
+	public void testfindName(){
+		List<Users> r = userService.listusername("dw");
+		System.out.println(r);
+		assertNotNull(r);
 	}
 }

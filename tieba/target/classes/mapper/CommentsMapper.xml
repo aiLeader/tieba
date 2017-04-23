@@ -4,26 +4,84 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 映射文件的命名空间namespace的值是，与之对应的映射接口的全类名 -->
 <mapper namespace="com.yc.tieba.mapper.CommentsMapper">
-	<select id="findAllComment" resultType="Comments">
-		select * from comments
-		where cstatus = 1
+
+	<resultMap type="PaginationBean" id="PBBackMap">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage}" ofType="Comments"
+			select="findComBack" />
+	</resultMap>
+	<select id="findAllComment" parameterType="PaginationBean"
+		resultMap="PBBackMap">
+		select
+		count(1)
+		total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize}
+		pageSize
+		,${currPage} currPage from comments where
+		cstatus=1
+	</select>
+	<select id="findComBack" resultMap="noteIndexComments">
+		select * from (
+		select
+		n.* ,
+		rownum rn from (
+		select
+		cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
+		from comments inner join users on comments.userid=users.userid inner
+		join note on note.nid=comments.nid where comments.cstatus=1 order
+		by
+		ctime asc ) n where ${pageSize}*
+		${currPage} >=rownum )
+		where
+		rn>(${currPage}-1)*${pageSize}
 	</select>
 	<select id="findCommById" parameterType="String" resultType="Comments">
-		select * from comments where cid = ${_parameter} and cstatus = 1
+		select * from comments where cid = ${_parameter}
 	</select>
 	<select id="findCommByUid" parameterType="QueryEntity"
-		resultType="Comments">
-		select * from comments where cstatus = #{status}
-		<if test="param != null and param != ''"> and userid=#{param}</if>
+		resultMap="noteIndexComments">
+		select * from comments inner join users on comments.userid=users.userid inner
+		join note on note.nid=comments.nid where cstatus = #{status}
+		<if test="param != null and param != ''"> and users.uname=#{param}</if>
 	</select>
 	<select id="findCommByNid" parameterType="QueryEntity"
-		resultType="Comments">
-		select * from comments where cstatus = #{status}
-		<if test="param != null and param != ''"> and nid=#{param}</if>
+		resultMap="noteIndexComments">
+		select * from comments inner join users on comments.userid=users.userid inner
+		join note on note.nid=comments.nid where cstatus = #{status}
+		<if test="param != null and param != ''"> and note.ntitle=#{param}</if>
 	</select>
-	<select id="findBanComm" resultType="Comments">
-		select * from comments where
-		cstatus = 0
+	<resultMap type="PaginationBean" id="banPBBackMap">
+		<result property="pageSize" column="PageSize" />
+		<result property="currPage" column="currPage" />
+		<collection property="rows"
+			column="{pageSize=PageSize,currPage=currPage}" ofType="Comments"
+			select="findBanComBack" />
+	</resultMap>
+	<select id="findBanComm" parameterType="PaginationBean"
+		resultMap="banPBBackMap">
+		select
+		count(1)
+		total,ceil(count(1)/${pageSize})
+		totalPage,${pageSize}
+		pageSize
+		,${currPage} currPage from comments where
+		cstatus=0
+	</select>
+	<select id="findBanComBack" resultMap="noteIndexComments">
+		select * from (
+		select
+		n.* , rownum rn from (
+		select
+		cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
+		from comments inner join users on comments.userid=users.userid inner
+		join note on note.nid=comments.nid where comments.cstatus=0 order
+		by
+		ctime asc ) n where ${pageSize}*
+		${currPage} >=rownum )
+		where
+		rn>(${currPage}-1)*${pageSize}
 	</select>
 	<update id="banComm" parameterType="int">
 		update comments set cstatus=0
@@ -49,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<association property="users" javaType="Users">
 			<id column="userid" property="userid" />
 			<result column="uname" property="uname" />
-			<result column="picPath" property="picPath"/>
+			<result column="picPath" property="picPath" />
 		</association>
 	</resultMap>
 	<resultMap type="PaginationBean" id="PBMNoteIndexCom">
@@ -73,23 +131,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		cid,note.nid,ntitle,users.userid,uname,pcid,ccontent,ctime,cgood,cstatus,cstates,cremark,picPath
 		from comments inner join users on comments.userid=users.userid inner
-		join note on note.nid=comments.nid where comments.nid=${noteid} and comments.cstatus=1 order
-		by ctime asc ) n where ${pageSize}* ${currPage} >=rownum )
+		join note on note.nid=comments.nid where comments.nid=${noteid} and
+		comments.cstatus=1 order
+		by ctime asc ) n where ${pageSize}*
+		${currPage} >=rownum )
 		where
 		rn>(${currPage}-1)*${pageSize}
 	</select>
 	<insert id="addNewComm" parameterType="Comments">
 		insert into
 		comments(cid,nid,userid,ccontent,ctime,cgood,cstatus,cstates)
-		values(comments_id.nextval,#{nid},#{userid},#{ccontent},to_char(sysdate,'yyyy--mm-dd hh24:mi:ss'),0,1,0)
+		values(comments_id.nextval,#{nid},#{userid},#{ccontent},to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'),0,1,0)
 	</insert>
 	<update id="addAComnum">
 		update note set nnum=nnum+1 where nid=#{nid}
 	</update>
 	<select id="JBanUser" parameterType="String" resultType="QueryEntity">
-		select count(1) status from users where userid=#{userid} and status=0
+		select
+		count(1) status from users where userid=#{userid} and status=0
 	</select>
 	<select id="JBanNote" parameterType="String" resultType="QueryEntity">
-		select count(1) status from note where nid=#{nid} and nstates=1
+		select
+		count(1) status from note where nid=#{nid} and nstates=1
 	</select>
 </mapper>

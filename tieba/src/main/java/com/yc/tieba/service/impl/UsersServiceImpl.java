@@ -41,7 +41,7 @@ public class UsersServiceImpl implements UsersService {
 	
 	//分页操作
 	@Override
-	public PaginationBean<Users> listuser(String rows, String page,String option) {
+	public PaginationBean<Users> listuser(String rows, String page,String option,String value) {
 		int pageSize=10; //条数
 		int currPage=1; //当前页
 		if(rows!=null){
@@ -59,6 +59,7 @@ public class UsersServiceImpl implements UsersService {
 		map.put("currPage", page);
 		map.put("pageSize",rows);
 		map.put("options", option);
+		map.put("value", value);
 		return usersMapper.listUsers(map);
 	}
 	//删除用户 更改状态值 禁言
@@ -117,9 +118,21 @@ public class UsersServiceImpl implements UsersService {
 	public int updateSkin(Users users) {
 		return usersMapper.updateSkin(users);
 	}
+	@Override
+	public List<Users> listusername(String keyword) {
+		return usersMapper.findusername(keyword);
+	}
 
 
 	
 
 	
+	public boolean JugleBanUser(String userid) {
+		return usersMapper.jugleBanUser(userid)!=null;
+	}
+	@Override
+	public Users showStatus(String userid) {
+		
+		return usersMapper.selectUserById(userid);
+	}
 }

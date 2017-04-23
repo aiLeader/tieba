@@ -6,20 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>帖子详情</title>
+<link rel="stylesheet" type="text/css"
+	href="../easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
 <link type="text/css" rel="stylesheet"
 	href="../bootstrap/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="../css/index0.css"/>
+<link type="text/css" rel="stylesheet" href="../css/index0.css" />
 <link type="text/css" rel="stylesheet" href="../css/noteDetail.css" />
 </head>
 <body>
 	<input type="hidden" id="LoginUserId" value="${loginUser.userid}" />
+	<form method="post" id="collectFrom" enctype="multipart/form-data">
+		<input type="hidden" id="userid" name="userid"
+			value="${loginUser.userid}">
+	</form>
 	<c:choose>
 		<c:when test="${addComMsg ==4}">
 			<script type="text/javascript">
 				alert("您当前已被禁言,没有发言权限！");
 			</script>
 		</c:when>
-		<c:when test="${addComMsg ==3}" >
+		<c:when test="${addComMsg ==3}">
 			<script type="text/javascript">
 				alert("该帖子当前禁止评论！");
 			</script>
@@ -30,7 +37,7 @@
 			</script>
 		</c:when>
 	</c:choose>
-	<c:remove var="addComMsg" scope="session"/>
+	<c:remove var="addComMsg" scope="session" />
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
@@ -200,6 +207,9 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../easyui/jquery.min.js"></script>
+<script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/noteDetail.js"></script>
 	<script type="text/javascript">
