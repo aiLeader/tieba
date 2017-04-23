@@ -86,6 +86,7 @@ create table typeadmin(
 create  sequence typeadmin_id start with 10000;--版块ID
 
 --板块信息表
+
 create table types(
     tid varchar2(5) primary key,   --版块id
     tname varchar2(50) unique not null,  --版名

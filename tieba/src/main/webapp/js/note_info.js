@@ -27,7 +27,7 @@ function loadDataGrid(url){
 			        	  }},*/
 			          { field: 'tid', title: '板块', width: 100,align:'center', 
 			        	  formatter: function(value,row,index){
-			        		  //alert(row + "==>" + JSON.stringify(row));
+			        		  //(row + "==>" + JSON.stringify(row));
 			        		  return row.types.tname;
 			        	  }  
 			          },

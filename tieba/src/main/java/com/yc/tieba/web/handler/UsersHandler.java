@@ -256,11 +256,17 @@ public class UsersHandler {
 	//查询用户状态
 	@RequestMapping(value="status")
 	@ResponseBody
-	public Users  showStatus(String userid){
-		if(userid == null||userid==""){
+	public Users  showStatus(String userid,String tid){
+		if(userid == null||userid==""||tid == null||tid==""){
 			Users user = new Users();
 			user.setStatus(2);
 			return user ;
+		}
+		System.out.println("tstates"+usersService.showtypeSatus(tid).getTstate());
+		if(usersService.showtypeSatus(tid).getTstate()<1){
+			Users user = new Users();
+			user.setStatus(-1);
+			return user ; 
 		}
 		return usersService.showStatus(userid);
 	}

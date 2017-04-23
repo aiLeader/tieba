@@ -3,6 +3,7 @@ package com.yc.tieba.service;
 import java.util.List;
 
 import com.yc.tieba.entity.PaginationBean;
+import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 public interface UsersService {
@@ -25,4 +26,5 @@ public interface UsersService {
 	List<Users> listusername(String keyword);
 	boolean JugleBanUser(String userid);
 	Users showStatus(String userid);
+	Types showtypeSatus(String tid);
 }
