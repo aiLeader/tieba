@@ -8,9 +8,9 @@ import com.yc.tieba.entity.PaginationBean;
 import com.yc.tieba.entity.QueryEntity;
 
 public interface CommentsMapper {
-	List<Comments> findAllComment();
+	PaginationBean<Comments> findAllComment(PaginationBean<Comments> pb);
 	
-	List<Comments> findBanComm();
+	PaginationBean<Comments> findBanComm(PaginationBean<Comments> pb);
 
 	Comments findCommById(String cid);
 

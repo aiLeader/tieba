@@ -41,6 +41,28 @@ public class TypesSericeImpl implements TypesService {
 		pb = typesMapper.listTypes(pb);
 		return pb;
 	}
+	@Override
+	public PaginationBean<Types> listTypes2(String rows ,String page) {
+		PaginationBean<Types> pb=null;
+		int pageSize = 30;
+		int currPage = 1;
+
+		if(rows != null){
+			pageSize = Integer.parseInt(rows);
+		}
+
+		if(page != null){
+			currPage = Integer.parseInt(page);
+			if(currPage <= 0){
+				currPage = 1;
+			}
+		}
+		pb = new PaginationBean<Types>();
+		pb.setCurrPage(currPage);
+		pb.setPageSize(pageSize);
+		pb = typesMapper.listTypes2(pb);
+		return pb;
+	}
 
 	@Override
 	public int addTypes(Types types) {

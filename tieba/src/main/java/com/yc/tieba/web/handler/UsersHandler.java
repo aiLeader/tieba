@@ -82,9 +82,17 @@ public class UsersHandler {
 
 	@RequestMapping(value = "list")
 	@ResponseBody
-	private PaginationBean<Users> doFindUser(String page, String rows, String options) throws IOException {
-		return usersService.listuser(rows, page, options);
+	private PaginationBean<Users> doFindUser(String page, String rows, String options,String value) throws IOException {
+		return usersService.listuser(rows, page, options,value);
 	}
+	
+	@RequestMapping(value ="findname")
+	@ResponseBody
+	private List<Users> doFindName(String keyword) throws IOException {
+		System.out.println(keyword);
+		return usersService.listusername(keyword);
+	}
+	
 
 	@RequestMapping(value = "/{userid}", method = RequestMethod.GET)
 	@ResponseBody
@@ -221,14 +229,30 @@ public class UsersHandler {
 		LogManager.getLogger().debug("修改密码。。。user==>" + user);
 		return usersService.insertnpwd(user);
 	}
-	
+
 	//统计用户地址
 	@RequestMapping(value="countusers")
 	@ResponseBody
 	public List<Users> selectAddress(){
 		return usersService.selectAddress();
 	}
-	
+	//查询用户的皮肤
+	@RequestMapping(value="showSkin")
+	@ResponseBody
+	public Users showSkin(String userid){
+		return usersService.selectSkin(userid);
+	}
+	//更换皮肤
+	@RequestMapping(value="updateSkin")
+	@ResponseBody
+	public boolean updateSkin(Users users){
+		return usersService.updateSkin(users)>0;
+	}
+	@RequestMapping(value="jugleBan")
+	@ResponseBody
+	public boolean JugleBanUser(String userid){
+		return usersService.JugleBanUser(userid);
+	}
 	//查询用户状态
 	@RequestMapping(value="status")
 	@ResponseBody

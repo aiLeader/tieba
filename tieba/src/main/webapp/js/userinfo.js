@@ -1,3 +1,4 @@
+var tstate= [{ "value": "0", "text": "可发言" },{ "value": "1", "text": "禁言" }];
 $(function () {
 	var datagrid; //定义全局变量datagrid
 	var editRow = undefined; //定义全局变量：当前编辑的行
@@ -28,8 +29,20 @@ $(function () {
 		        	  { field: 'signs', title: '签名', width: 180,align:'center'},      
 		        	  { field: 'num', title: '经验值', width: 50,align:'center'},
 		        	  { field: 'regDate', title: '注册日期', width: 200,align:'center',formatter:formatDatebox},      
-		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',editor:'numberbox' },
-		        	  { field: 'previl', title: '用户权限', width:50,align:'center',editor:'numberbox'},      
+		        	  { field: 'status', title: '是否禁言', width: 100,align:'center',formatter: function(value,row,index){
+							if (row.status<1){
+								return '可发言';
+							} else {
+								return '禁言';
+							}
+						},editor: { 
+		        		  type: 'combobox', 
+		        		  options: { 
+		        			  data: tstate, 
+		        			  valueField: "value", 
+		        			  textField: "text" 
+		        		  } 
+		        	  }  },
 		        	  ]],
 		        	  toolbar: [{ text: '删除', iconCls: 'icon-remove', handler: function () {
 		        		  //删除时先获取选择行
@@ -123,17 +136,17 @@ function formatDatebox(value) {
 }
 Date.prototype.format = function(format) {
 	var o = {
-		"M+": this.getMonth() + 1, // month
-		"d+": this.getDate(), // day
-		"h+": this.getHours(), // hour
-		"m+": this.getMinutes(), // minute
-		"s+": this.getSeconds(), // second
-		"q+": Math.floor((this.getMonth() + 3) / 3), // quarter
-		"S": this.getMilliseconds()
+			"M+": this.getMonth() + 1, // month
+			"d+": this.getDate(), // day
+			"h+": this.getHours(), // hour
+			"m+": this.getMinutes(), // minute
+			"s+": this.getSeconds(), // second
+			"q+": Math.floor((this.getMonth() + 3) / 3), // quarter
+			"S": this.getMilliseconds()
 	}
 	if (/(y+)/.test(format))
 		format = format.replace(RegExp.$1, (this.getFullYear() + "")
-			.substr(4 - RegExp.$1.length));
+				.substr(4 - RegExp.$1.length));
 	for (var k in o)
 		if (new RegExp("(" + k + ")").test(format))
 			format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
@@ -144,10 +157,9 @@ Date.prototype.format = function(format) {
 
 //根据id号删除数据 修改用户状态成功
 function deleteUser(ids){
-	//alert(JSON.stringify(ids));
 	$.get("user/"+ids,function(data){
 		alert("删除用户成功！！！");
-		 $('#userInfo').datagrid('reload');   
+		$('#userInfo').datagrid('reload');   
 	}, "json");
 }
 function updateUser(rowData){
@@ -155,23 +167,137 @@ function updateUser(rowData){
 		if(data){
 			$('#userInfo').datagrid('reload');   
 		}
-	},"json");
-	
-	
-	
+	},"json");	
 }
-
 $(function () {  
-    obj = {  
-        search: function () {  
-            $('#userInfo').datagrid('load', {  
-                options: $('input[name="Eq"]').val(),  
-            });  
-        }  
-    }  
-});  
+	obj = {  
+			search: function () {  
+				$('#userInfo').datagrid('load', { 
+					options:$('#option').val(),
+					value:$('#inputt').val(),
+				});    
+			}  
+	}  
+});
 
-
+function oSearchSuggest(searchFuc)
+{ 
+	var input = $('#inputt'); 
+	var suggestWrap = $('#gov_search_suggest'); 
+	var key = ""; 
+	var init = function(){ 
+		input.bind('keyup',sendKeyWord); 
+		input.bind('blur',function(){setTimeout(hideSuggest,100);}) 
+	} 
+	var hideSuggest = function(){ 
+		suggestWrap.hide(); 
+	} 
+	//发送请求，根据关键字到后台查询 
+	var sendKeyWord = function(event){ 
+		//键盘选择下拉项 
+		if(suggestWrap.css('display')=='block'&&event.keyCode == 38||event.keyCode == 40)
+		  { 
+		   var current = suggestWrap.find('li.hover'); 
+		   if(event.keyCode == 38)
+		   { 
+		    if(current.length>0)
+		    { 
+		     var prevLi = current.removeClass('hover').prev(); 
+		     if(prevLi.length>0)
+		     { 
+		      prevLi.addClass('hover'); 
+		      input.val(prevLi.html()); 
+		     } 
+		    }
+		    else
+		    { 
+		     var last = suggestWrap.find('li:last'); 
+		     last.addClass('hover'); 
+		     input.val(last.html()); 
+		    } 
+		   }
+		   else if(event.keyCode == 40)
+		   { 
+		    if(current.length>0)
+		    { 
+		     var nextLi = current.removeClass('hover').next(); 
+		     if(nextLi.length>0)
+		     { 
+		      nextLi.addClass('hover'); 
+		      input.val(nextLi.html()); 
+		     } 
+		    }
+		    else
+		    { 
+		     var first = suggestWrap.find('li:first'); 
+		     first.addClass('hover'); 
+		     input.val(first.html()); 
+		    } 
+		   } 
+		   //输入字符 
+		  }
+		  else
+		  { 
+		   var valText = $.trim(input.val()); 
+		   if(valText ==''||valText==key)
+		   { 
+		    return; 
+		   } 
+		   searchFuc(valText); 
+		   key = valText; 
+		  } 
+		 } 
+		 //请求返回后，执行数据展示 
+		 this.dataDisplay = function(data){ 
+		  if(data.length<=0)
+		  { 
+		   suggestWrap.hide(); 
+		   return; 
+		  } 
+		  //往搜索框下拉建议显示栏中添加条目并显示 
+		  var li; 
+		  var tmpFrag = document.createDocumentFragment(); 
+		  suggestWrap.find('ul').html(''); 
+		  for(var i=0; i<data.length; i++)
+		  { 
+		   li = document.createElement('LI'); 
+		   li.innerHTML = data[i]; 
+		   tmpFrag.appendChild(li); 
+		  } 
+		  suggestWrap.find('ul').append(tmpFrag); 
+		  suggestWrap.show(); 
+		  //为下拉选项绑定鼠标事件 
+		  suggestWrap.find('li').hover(function(){ 
+		   suggestWrap.find('li').removeClass('hover'); 
+		   $(this).addClass('hover'); 
+		  },function(){ 
+		   $(this).removeClass('hover'); 
+		  }).bind('click',function(){ 
+		   $(this).find("span").remove(); 
+		   input.val(this.innerHTML); 
+		   suggestWrap.hide(); 
+		  }); 
+		 } 
+		 init(); 
+}; 
+//实例化输入提示的JS,参数为进行查询操作时要调用的函数名 
+var searchSuggest = new oSearchSuggest(sendKeyWordToBack); 
+//这是一个模拟函数，实现向后台发送ajax查询请求，并返回一个查询结果数据，传递给前台的JS,再由前台JS来展示数据。本函数由程序员进行修改实现查询的请求 
+//参数为一个字符串，是搜索输入框中当前的内容 
+var aData =[]; 
+function sendKeyWordToBack(){ 
+	var keyword=$('#inputt').val();
+	$.post("user/findname",{"keyword":keyword},function(data){
+		var str="";
+		$("#pasta").empty();
+		for(var i=0;i<data.length;i++){
+			str+='<option>'+data[i].uname+'</option>';
+		}	
+		$("#pasta").append(str);
+	},"json")
+	//将返回的数据传递给实现搜索输入框的输入提示js类 
+	searchSuggest.dataDisplay(aData);                     
+} 
 
 
 

@@ -11,18 +11,18 @@ function reloadDatagrid(Url){
 	        {field:'nid',title:'ID',width:50,align:'center'},    
 	        {field:'ntitle',title:'标题',width:50,align:'center'},   
 	        {field:'ncontent',title:'内容',width:50,align:'center'},   
-	        {field:'tid',title:'版块',width:50,align:'center',
-	        	formatter: function(value,row,index){
-	          		return row.types.tid;
-	  			}},  
+//	        {field:'tid',title:'版块',width:50,align:'center',
+//	        	formatter: function(value,row,index){
+//	          		return row.types.tid;
+//	  			}},  
 	        {field:'tname',title:'版块名',width:50,align:'center', 
 	        	formatter: function(value,row,index){
           		return row.types.tname;
   			}},   
-	        {field:'userid',title:'用户',width:50,align:'center',
-  				formatter: function(value,row,index){
-  	          		return row.users.userid;
-  	  			}},   
+//	        {field:'userid',title:'用户',width:50,align:'center',
+//  				formatter: function(value,row,index){
+//  	          		return row.users.userid;
+//  	  			}},   
 	        {field:'uname',title:'用户名',width:50,align:'center',
   	  			formatter: function(value,row,index){
   	          		return row.users.uname;
@@ -65,9 +65,9 @@ function showDetail(id){
 	$.post("note/getNoteById?nid="+id,function(data){
 		$("#TNSnid").val(data.nid);
 		$("#TNSntitle").val(data.ntitle);
-		$("#TNStid").val(data.types.tid);
+//		$("#TNStid").val(data.types.tid);
 		$("#TNStname").val(data.types.tname);
-		$("#TNSuserid").val(data.users.userid);
+//		$("#TNSuserid").val(data.users.userid);
 		$("#TNSuname").val(data.users.uname);
 		$("#TNSntimes").val(data.ntimes);
 		$("#TNSnnum").val(data.nnum);
@@ -76,7 +76,6 @@ function showDetail(id){
 }
 function SendNote(nid){
 	$.post("note/SendNote?nid="+nid,function(data){
-		alert(data);
 		if(data==1){
 			alert("推送成功！！");
 			reloadDatagrid("note/findNote?ftype=nop&fparem=nop");

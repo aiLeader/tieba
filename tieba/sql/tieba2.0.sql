@@ -30,6 +30,8 @@ create table admin(
 create sequence admin_id start with 1000;--管理员ID序列
 select * from admin;
 
+select count(1) total, ceil(count(1) /10) totalPage, 10 pageSize,1 currPage ,'dw' value from users where status in (0,1) and uname like '%dw%' 
+select * from (select n.*, rownum rn from (select * from users where status in (0,1) and uname like '%dw%' ) ) n where 10* 1 >= rownum) where rn>(1-1)*10 
 insert into admin(aid,aname,apassword,asex,aemail,aphone,apic) values(admin_id.nextval||'','sh',default,'女','joyceshenhui@qq.com','18711449775','');
 --用户(板块管理员，普通用户)
 
@@ -50,6 +52,13 @@ create table users(
     previl NUMBER DEFAULT 0 CONSTRAINT users_previl CHECK(previl IN(0,1)), --权限（0用户,1板块管理员）
     uremark varchar2(20) 
 );
+
+ALTER TABLE users RENAME COLUMN uremark TO uskin;--修改表的字段名
+ALTER TABLE users MODIFY uskin NUMBER default 0;--修改字段类型
+update users set uskin=0;
+select * from users;
+select uskin from users where userid='1000';
+update users set uskin=1 where userid='1001'
 
 create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);

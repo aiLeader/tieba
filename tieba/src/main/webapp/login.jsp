@@ -27,7 +27,7 @@
 
 				<div id="loginDiv">
 					<form id="loginForm" action="user/login" method="post">
-						<img title="贴吧logo" src="images/logo1.png" id="image">
+						<img src="images/logo1.png" id="image">
 						<p><a href="findpwd.jsp" id="findpwd">手机快捷登录</a></p>
 						<p>
 							<label>${errorMsg }&nbsp;</label>

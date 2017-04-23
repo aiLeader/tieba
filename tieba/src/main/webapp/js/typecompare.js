@@ -52,8 +52,8 @@ $(function () {
     $('#polar').click(function () {
         chart.update({
             chart: {
-                inverted: false,
-                polar: true
+            	polar: true,
+                inverted: false
             },
             subtitle: {
                 text: '极地图'

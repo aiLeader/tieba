@@ -10,27 +10,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="pageSize" property="pageSize" />
 		<result column="currPage" property="currPage" />
 		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage,options=options}"
+			column="{pageSize=pageSize,currPage=currPage,options=options,value=value}"
 		 select="getusers" />
 	</resultMap>
 	<select id="listUsers" parameterType="Map" resultMap="PaginationBeanMap">
 		select count(1) total, ceil(count(1) /${pageSize}) totalPage,
-		${pageSize} pageSize,${currPage} currPage
-		<if test="options!=null">
-			,'${options}' options
+		${pageSize} pageSize,${currPage} currPage,'${options}' options
+		<if test="value!=null">
+			,'${value}' value
 		</if>
-		<if test="options==null">
-			,'' options
+		<if test="value==null">
+			,'' value
 		</if>
 		from users where status in (0,1)
-		<if test="options!=null">
-			and (userid like '%${options}%'
-			or uname like '%${options}%'
-			or telephone like '%${options}%'
-			or address like '%${options}%'
-			or email like '%${options}%'
-			or sex like '${options}%'
-			)
+		<if test="value!=null">
+			and ${options} like '%${value}%'
 		</if>
 	</select>
 
@@ -39,14 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select n.*, rownum rn from
 		(select * from users where
 		status in (0,1)
-		<if test="options!=null">
-			and (userid like '%${options}%'
-			or uname like '%${options}%'
-			or telephone like '%${options}%'
-			or address like '%${options}%'
-			or email like '%${options}%'
-			or sex like '${options}'
-			)
+		<if test="value!=null">
+			and ${options} like '%${value}%'
+			
 		</if>
 		) n
 		where ${pageSize}* ${currPage} >= rownum)
@@ -179,7 +168,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAddress" resultMap="usermap">
 		select u.address address,count(1),round(count(1)/(select count(*) from users)*100,1) ratio from users u group by u.address
 	</select>
+	<!-- 查询皮肤 -->
+	<select id="selectSkin" parameterType="string" resultType="Users">
+		select uskin from users where userid='${_parameter}'
+	</select>
+	<!-- 更换皮肤 -->
+	<update id="updateSkin" parameterType="Users">
+		update users set uskin=#{uskin} where userid=#{userid}
+	</update>
+	<!-- 提示查询 -->        
+	<select id="findusername" parameterType="string" resultType="Users">
+		select * from users where uname like '${_parameter}%'
+	</select>
 
+	<select id="jugleBanUser" parameterType="String" resultType="Users">
+		select * from users where userid=#{userid} and status=0
+	</select>
 
 
 </mapper>

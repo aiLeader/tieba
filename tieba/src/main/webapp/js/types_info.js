@@ -1,6 +1,6 @@
 var editRow = undefined; //定义全局变量：当前编辑的行
 var flag=0;//1表示添加，-1表示修改
-var tstate= [{ "value": "1", "text": "1可用" },{ "value": "-1", "text": "-1不可用" }];
+var tstate= [{ "value": "1", "text": "可用" },{ "value": "-1", "text": "不可用" }];
 function unitformatter(value, rowData, rowIndex) {  
     if (value == 0) {  
         return;  
@@ -29,8 +29,13 @@ $("#typesinfo").datagrid({
 	        		  return (a>b?1:-1);
 	        	  }},   
 	          {field:'tdesc',title:'板块格言',width:100,align:'center',editor:'text'},
-	          {field:'tstate',title:'板块状态',width:50,align:'center',
-	        	  editor: { 
+	          {field:'tstate',title:'板块状态',width:50,align:'center',formatter: function(value,row,index){
+					if (row.tstate<1){
+						return '不可用';
+					} else {
+						return '可用';
+					}
+				},editor: { 
 	        		  type: 'combobox', 
 	        		  options: { 
 	        			  data: tstate, 

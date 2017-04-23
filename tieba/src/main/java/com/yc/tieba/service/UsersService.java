@@ -7,7 +7,7 @@ import com.yc.tieba.entity.Types;
 import com.yc.tieba.entity.Users;
 
 public interface UsersService {
-	PaginationBean<Users> listuser(String rows, String page,String options);
+	PaginationBean<Users> listuser(String rows, String page,String options, String value);
 	boolean deleteUser(String userid);
 	boolean updateUser(Users users);
 	int insertUser(Users users);
@@ -20,6 +20,11 @@ public interface UsersService {
 	Users tellogin(Users user);
 	Users selectuser(String userid);
 	List<Users> selectAddress();
+	Users selectSkin(String userid);//查询皮肤
+	//更换皮肤
+	int updateSkin(Users users);
+	List<Users> listusername(String keyword);
+	boolean JugleBanUser(String userid);
 	Users showStatus(String userid);
 	Types showtypeSatus(String tid);
 }

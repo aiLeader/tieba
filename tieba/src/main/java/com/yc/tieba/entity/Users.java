@@ -16,12 +16,13 @@ public class Users {
 	private String regDate;  //注册日期
 	private Integer status;  //是否被禁言 0 1
 	private Integer previl;     //权限 0 1 2
+	private Integer uskin;
 	public Users() {
 	}
 	
 	public Users(String userid, String uname, String password, String sex, String email, String address,
 			String telephone, String birthday, String picPath, String signs, Integer num, String regDate, Integer status,
-			Integer previl) {
+			Integer previl,Integer uskin) {
 		super();
 		this.userid = userid;
 		this.uname = uname;
@@ -37,6 +38,23 @@ public class Users {
 		this.regDate = regDate;
 		this.status = status;
 		this.previl = previl;
+		this.uskin=uskin;
+	}
+	
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
+	public Integer getUskin() {
+		return uskin;
+	}
+
+	public void setUskin(Integer uskin) {
+		this.uskin = uskin;
 	}
 
 	public String getUserid() {
@@ -106,14 +124,6 @@ public class Users {
 		this.num = num;
 	}
 	
-	public String getregDate() {
-		return regDate;
-	}
-
-	public void setregDate(String regDate) {
-		this.regDate = regDate;
-	}
-
 	public Integer getStatus() {
 		return status;
 	}
@@ -126,12 +136,13 @@ public class Users {
 	public void setPrevil(Integer previl) {
 		this.previl = previl;
 	}
+
 	@Override
 	public String toString() {
-		return "\nUsers [userid=" + userid + ", uname=" + uname + ", password=" + password + ", sex=" + sex + ", email="
+		return "Users [userid=" + userid + ", uname=" + uname + ", password=" + password + ", sex=" + sex + ", email="
 				+ email + ", address=" + address + ", telephone=" + telephone + ", birthday=" + birthday + ", picPath="
 				+ picPath + ", signs=" + signs + ", num=" + num + ", regDate=" + regDate + ", status=" + status
-				+ ", previl=" + previl + "]";
+				+ ", previl=" + previl + ", uskin=" + uskin + "]";
 	}
 	
 	

@@ -15,15 +15,15 @@
 			<p>
 				<label> 标题 </label> <input id="CTNSntitle" required="required" readonly="readonly"/>
 			</p>
-			<p>
+			<!-- <p>
 				<label> 版块 </label> <input id="CTNStid" required="required" readonly="readonly"/>
-			</p>
+			</p> -->
 			<p>
 				<label> 版块名 </label> <input id="CTNStname" required="required" readonly="readonly"/>
 			</p>
-			<p>
+			<!-- <p>
 				<label> 用户 </label> <input id="CTNSuserid" required="required" readonly="readonly"/>
-			</p>
+			</p> -->
 			<p>
 				<label> 用户名 </label> <input id="CTNSuname" required="required" readonly="readonly"/>
 			</p>

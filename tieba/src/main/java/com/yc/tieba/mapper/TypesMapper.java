@@ -12,6 +12,7 @@ import com.yc.tieba.entity.Types;
 public interface TypesMapper {
 
 	PaginationBean<Types> listTypes(PaginationBean<Types> pb);
+	PaginationBean<Types> listTypes2(PaginationBean<Types> pb);
 
 	int addTypes(Types types);
 

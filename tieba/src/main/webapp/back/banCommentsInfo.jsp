@@ -18,28 +18,22 @@
 	<div id="bancommentDetail">
 		<form action="#" method="post">
 			<p>
-				<label> 评论ID </label> <input id="pcid" required="required" />
+				<label> 评论ID </label> <input id="ppcid" required="required" />
 			</p>
 			<p>
-				<label> 评论贴 </label> <input id="pnid" required="required" />
+				<label> 评论贴 </label> <input id="ppnid" required="required" />
 			</p>
 			<p>
-				<label> 评论者 </label> <input id="puserid" required="required" />
+				<label> 评论者 </label> <input id="ppuserid" required="required" />
 			</p>
 			<p>
-				<label> 插楼评论 </label> <input id="ppcid" required="required" />
+				<label> 评论内容 </label> <input id="ppccontent" required="required" />
 			</p>
 			<p>
-				<label> 评论内容 </label> <input id="pccontent" required="required" />
+				<label> 评论时间 </label> <input id="ppctime" required="required" />
 			</p>
 			<p>
-				<label> 评论时间 </label> <input id="pctime" required="required" />
-			</p>
-			<p>
-				<label> 点赞数 </label> <input id="pcgood" required="required" />
-			</p>
-			<p>
-				<label> 是否私密 </label> <input id="pcstates" required="required" />
+				<label> 点赞数 </label> <input id="ppcgood" required="required" />
 			</p>
 		</form>
 	</div>

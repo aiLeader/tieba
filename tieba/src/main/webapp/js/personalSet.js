@@ -89,7 +89,7 @@ $('.ship').click(function () {
 
 loadUserInfo(userid);
 function loadUserInfo(userid){
-	$.get("../user/list",{options:userid}, function(data){
+	$.get("../user/list",{value:userid,options:"userid"}, function(data){
 		$("#username").val(data.rows[0].uname);
 		password=data.rows[0].password;
 		$("#username").val(data.rows[0].uname);
@@ -119,7 +119,7 @@ $("#PerInfoForm").form({
 		$.messager.show({
 			title:'修改个人信息',
 			msg:'修改个人信息' + (data=="true" ? "成功..." : "失败!!!"),
-			showType:'show',
+			showType:'show',  
 			style:{
 				top:document.body.scrollTop+document.documentElement.scrollTop,
 			}
@@ -143,6 +143,7 @@ $("#updatePic").form({
 	}
 })
 var mima=document.getElementById("pwd");
+var flag=0;
 mima.onblur=function(){
 	if($('#pwd').val()==null ||$('#pwd').val()==""){
 		$.messager.alert('警告','请输入原密码！！！');    
@@ -158,7 +159,9 @@ mima.onblur=function(){
 			contentType:"application/json;charset=utf-8",//指定请求数据为json格式
 			success:function(data){
 				if(data){
+					flag=1;
 				}else{
+					flag=0;
 					$.messager.alert('提示','原密码不正确，请重新输入！！'); 
 				}
 
@@ -182,6 +185,8 @@ function insertPwd(){
 	var param={password:yypwd,userid:userid}; //创建一个javascript对象
 	if($("#ypwd").val()!=$("#npwd").val()){
 		$.messager.alert('提示','两次密码输入不一致'); 
+	}else if(flag==0){
+		$.messager.alert('提示','原密码不正确，请重新输入！！'); 
 	}else{
 		$.ajax({
 			type:"post",
