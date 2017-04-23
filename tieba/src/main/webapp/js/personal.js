@@ -93,7 +93,6 @@ function dianzan(nid){
 
 function collectNote(tnid){
 	nid=tnid;
-	alert(nid);
 /*	collectFrom*/
 	$("#collectFrom").submit();
 	
@@ -141,7 +140,6 @@ showConcernUser("../concern/showConcernByUserid?");
 
 //关注
 function attentionUs(useridbc){
-	alert(useridbc);
 	useridb=useridbc;
 	$("#attentionFrom").submit();
 }
