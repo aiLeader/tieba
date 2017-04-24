@@ -36,4 +36,6 @@ public interface NoteService {
 
 	PaginationBean<NoteInfo> searchNote(String page, String param);
 
+	List<NoteInfo> findListNoteName(String param1);
+
 }

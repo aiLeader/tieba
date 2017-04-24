@@ -57,4 +57,6 @@ public interface NoteMapper {
 	List<NoteInfo> findSendNotes();
 
 	PaginationBean<NoteInfo> searchNotes(Map<String, String> map);
+
+	List<NoteInfo> findListNoteName(String param1);
 }

@@ -273,6 +273,11 @@ public class NoteServiceImpl implements NoteService {
 		map.put("param", param);
 		return noteMapper.searchNotes(map);
 	}
+
+	@Override
+	public List<NoteInfo> findListNoteName(String param1) {
+		return noteMapper.findListNoteName(param1);
+	}
 }
 
 
