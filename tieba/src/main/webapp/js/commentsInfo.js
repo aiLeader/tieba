@@ -43,7 +43,8 @@ function reloadDatagrid(commentInfoUrl){
 
 $("#commentDetail").dialog({
 	title:'评论信息',
-	left:10,
+	width:280,
+	height:220,
 	closed:true,
 });
 

@@ -148,6 +148,8 @@ update note set nstatus =1 where nstatus=0;
 select n.ntitle,n.ncontent,n.ngood,n.ntimes,u.uname from note n join users u on n.userid = u.userid where u.userid='1001';
 
 delete from note where nid='10144';
+select n.*,rownum
+from (select * from note where nstatus=1 order by nnum desc) n where 5>=rownum
 
 
 create sequence comments_id start with 10000;--评论ID
@@ -170,6 +172,7 @@ select comments_id.nextval||'','10001','1001','',
 dbms_random.string('l',6),
 sysdate,0,1,0,'' from dual connect by level<=10;
 --select * from comments;
+update comments set ccontent='哦哦哦' where cid='10100';
 
 --收藏表
 --drop table store;

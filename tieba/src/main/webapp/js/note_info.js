@@ -1,4 +1,4 @@
-var nstates= [{ "value": "1", "text": "锁定" },{ "value": "0", "text": "不锁定" }];
+var nstates= [{ "value": "1", "text": "不锁定" },{ "value": "0", "text": "锁定" }];
 var nstatus= [{ "value": "1", "text": "可用" },{ "value": "0", "text": "不可用" }];
 function loadDataGrid(url){
 	$(function () {
@@ -45,9 +45,9 @@ function loadDataGrid(url){
 			        	  { field: 'regDate', title: '注册日期', width: 170,align:'center',formatter:formatDatebox},      */
 			          { field: 'nstates', title: '是否锁帖', width: 80,align:'center',formatter: function(value,row,index){
 							if (row.nstates<1){
-								return '不锁定';
-							} else {
 								return '锁定';
+							} else {
+								return '不锁定';
 							}
 						}
  ,editor:'numberbox',editor: { 
@@ -95,7 +95,7 @@ function loadDataGrid(url){
 			        				  }
 			        				  //将选择到的行存入数组并用,分隔转换成字符串，
 			        				  //本例只是前台操作没有与数据库进行交互所以此处只是弹出要传入后台的id
-			        				  alert(ids.join(','));
+			        				  //alert(ids.join(','));
 			        				  deleteNote(ids);
 			        			  }
 			        		  });
@@ -200,9 +200,8 @@ Date.prototype.format = function(format) {
 
 //根据id号删除数据 修改用户状态成功
 function deleteNote(ids){
-	//alert(JSON.stringify(ids));
 	$.get("note/"+ids,function(data){
-		alert("删除用户成功！！！");
+		alert("删除帖子成功！！！");
 		$('#noteInfoTable').datagrid('reload');   
 	}, "json");
 }
@@ -225,7 +224,6 @@ $(function () {
 			search: function () {  
 				$('#noteInfoTable').datagrid('loadData',{total:0,rows:[]});
 				var postUrl='note/find?options='+$('select[name="title"]').val()+$('input[name="condition"]').val();
-				alert(postUrl);
 				loadDataGrid('note/find?options='+$('select[name="title"]').val()+$('input[name="condition"]').val());
 			}  
 	}  

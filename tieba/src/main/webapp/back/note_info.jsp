@@ -15,7 +15,6 @@
 		</select><input id="inputt" type="text" name="condition" style="width: 150px" />
 		&nbsp;&nbsp; <a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-search'" onclick="obj.search()">查询</a>
-			<p>对于后面的状态0是通过1是拒绝通过</p>
 	</div>
 	
 	<div id="noteInfoDiv">
