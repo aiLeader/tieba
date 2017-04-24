@@ -65,16 +65,8 @@
 						<ul class="nav navbar-nav navbar-right">
 							<c:choose>
 								<c:when test="${loginUser !=null}">
-									<li><c:choose>
-											<c:when test="${loginUser.picPath !=null}">
-												<img class="img-circle" id="picPath"
-													src="${loginUser.picPath}">
-											</c:when>
-											<c:otherwise>
-												<img class="img-circle" id="picPath" src="../images/mr.jpg">
-											</c:otherwise>
-										</c:choose></li>
-									<li><a href="#">${loginUser.uname}</a></li>
+									<li><img class="img-circle" id="picPath" src="../images/mr.jpg"></li>
+									<li><a href="#" id="uname"></a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="../register.jsp">注册</a></li>

@@ -5,6 +5,18 @@ var sc="收藏";
 var href = window.location.href;
 var currPage="";
 
+showPersonal("../user/userinfo");
+function showPersonal(url){
+	$.post(url+"?userid="+userid,function(data){
+		if(data.picPath){
+			$("#picPath").attr("src",data.picPath);
+		}else{
+			//$("#picPath").attr("src", "images/mr.jpg");
+		}
+		$("#uname").html(data.uname);
+	},"json");
+}
+
 // 异步加载左边板块信息
 $("#collectFrom").form({
 	url:"../note/collectNote",
@@ -107,7 +119,7 @@ function findNoteCom(url){
 			}
 			$("#comment-list").append('<div id="comment" userid="'+data.rows[i].users.userid+'"><p>'
 					+'<img class="img-circle" id="picPath" src="'+headPic+'"/><a href="'+href1+data.rows[i].users.userid+'" id="uname">'+data.rows[i].users.uname+'</a>'
-					+'<p href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</p>'
+					+'<a href="#" class="glyphicon glyphicon-thumbs-up" style="padding-left: 30px">'+data.rows[i].cgood+'</a>'
 					+'</p><p id="ccontent">'+data.rows[i].ccontent+'</p></div>');
 
 		}
