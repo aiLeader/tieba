@@ -66,8 +66,6 @@
 					地址:<input type="text" name="address" id="address"><br /> <br />
 					签名:
 					<textarea id="signs" name="signs"></textarea>
-					<br /><%--  <input  type="hidden"
-						value="${loginUser.picPath}"> --%>
 					<button type="submit">保存</button>
 				</form>
 			</div>

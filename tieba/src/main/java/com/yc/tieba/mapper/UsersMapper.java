@@ -27,4 +27,5 @@ public interface UsersMapper {
 	int updateSkin(Users users);
 	List<Users> findusername(String keyword);
 	Users jugleBanUser(String userid);
+	int listuservalue(String value);
 }

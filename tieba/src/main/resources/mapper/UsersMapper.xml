@@ -27,6 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and ${options} like '%${value}%'
 		</if>
 	</select>
+	
+	<select id="listuservalue" resultType="int" parameterType="string">
+		 select count(1) total from users where uname=#{value} or email=#{value} or telephone=#{value} 
+	</select>
+	
 
 	<select id="getusers" resultType="Users">
 		select * from

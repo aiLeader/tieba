@@ -27,4 +27,5 @@ public interface UsersService {
 	boolean JugleBanUser(String userid);
 	Users showStatus(String userid);
 	Types showtypeSatus(String tid);
+	int listuservalue(String value);
 }

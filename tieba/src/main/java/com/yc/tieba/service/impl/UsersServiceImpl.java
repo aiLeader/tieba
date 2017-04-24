@@ -35,10 +35,7 @@ public class UsersServiceImpl implements UsersService {
 		Users users=usersMapper.telselect(user);
 		return users;
 	}
-	
-	
-	
-	
+
 	
 	//分页操作
 	@Override
@@ -140,5 +137,9 @@ public class UsersServiceImpl implements UsersService {
 	public Users showStatus(String userid) {
 		
 		return usersMapper.selectUserById(userid);
+	}
+	@Override
+	public int listuservalue(String value) {
+		return usersMapper.listuservalue(value);
 	}
 }
