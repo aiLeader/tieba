@@ -403,5 +403,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rn
 		>(${currPage}-1)*${pageSize}
 	</select>
+	<select id="findListNoteName" parameterType="String" resultType="NoteInfo">
+		select ntitle from note where ntitle like '%${_parameter}%'
+	</select>
 </mapper>
 

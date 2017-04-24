@@ -29,7 +29,6 @@ public class NoteHandler {
 	@ResponseBody
 	public PaginationBean<NoteInfo> listFind(String page, String rows,@RequestParam("options")String options) throws UnsupportedEncodingException{
 		options = new String(options.getBytes("ISO-8859-1"),"UTF-8");
-		System.out.println("page==>"+page+"rows==>"+rows+"options===>"+options);
 		return noteService.findNote(page,rows,options);
 	}
 	
@@ -68,7 +67,6 @@ public class NoteHandler {
 	@RequestMapping(value="showByUserid")
 	@ResponseBody
 	public PaginationBean<NoteInfo> listFind(String userid,String page){
-		System.out.println(noteService.showByUserid(userid,page,"5"));
 		return noteService.showByUserid(userid,page,"5");
 	}
 	
@@ -83,7 +81,6 @@ public class NoteHandler {
 		@RequestMapping(value="collectNote")
 		@ResponseBody
 		public Integer collectNote(String userid,String nid){
-		System.out.println("userid:"+userid+"      nid:"+nid);
 		if(userid.isEmpty()){
 			return 9;
 		}else if(nid.isEmpty()||nid==null){
@@ -125,8 +122,13 @@ public class NoteHandler {
 	@ResponseBody
 	public PaginationBean<NoteInfo> searchNote(String page , String param) throws UnsupportedEncodingException{
 		String param1 =new String(param.getBytes("iso-8859-1"),"utf-8");
-		System.out.println("===>"+param1);
 		return noteService.searchNote(page,param1);
 	}
 	
+	@RequestMapping(value="findListNoteName")
+	@ResponseBody
+	public List<NoteInfo> findListNoteName(String var) throws UnsupportedEncodingException{
+		String param1 =new String(var.getBytes("iso-8859-1"),"utf-8");
+		return noteService.findListNoteName(param1);
+	}
 }

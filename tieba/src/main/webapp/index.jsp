@@ -36,7 +36,8 @@
 						<form id="searchForm" action="searchPage.jsp" class="navbar-form navbar-left" role="search">
 							<div class="form-group">
 								<input name="page" id="page" type="hidden" value="1"/>
-								<input name="param" id="param" class="form-control" type="text" style="width: 400px" />
+								<input name="param" id="param" list="paramDateList" class="form-control" type="text" style="width: 400px" />
+								<datalist id="paramDateList"></datalist>
 							</div>
 							<button type="submit" class="btn btn-default">搜索</button>
 						</form>
