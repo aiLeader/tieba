@@ -231,9 +231,8 @@ $(function () {
 
 $("#TNoteInfoDetail").dialog({
 	title:'帖子信息',
-	left:10,
-	width:1000,
-	height:500,
+	width:260,
+	height:240,
 	closed:true,
 	resizable:true,
 	collapsible:true,

@@ -49,7 +49,6 @@ reloadDatagrid("note/findSendNote");
 
 $("#CTNoteInfoDetail").dialog({
 	title:'帖子信息',
-	left:10,
 	closed:true,
 });
 

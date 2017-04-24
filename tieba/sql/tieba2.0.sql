@@ -64,6 +64,7 @@ create sequence users_id start with 1000;--用户ID
 insert into users(userid,uname,password,birthday,sex,telephone,email,address,picPath,signs,num,regDate) values(users_id.nextval||'','莱因哈特',default,'2017-03-13','男','12345678911','154131546@qq.com','湖南省衡阳市',null,'努巴尼是个好地方',0,sysdate);
 delete from users where userid='1083'
 update users set address='重庆市' where address='重庆南岸'
+update users set email='12345@qq.com' where userid='1060'
 delete from users where userid='1200'
 
 insert into users
@@ -75,7 +76,7 @@ dbms_random.string('l',dbms_random.value(5, 12))||'@qq.com',
 decode(ceil(dbms_random.value(0, 6)), 1, '湖南', 2, '湖北', 3, '广东', 4, '广西', 5, '北京', '上海'),'',
 dbms_random.string('l',11),0,sysdate,0,0,'' from dual connect by level <= 10; 
 
-delete from users where userid='1121'
+delete from users where userid='1060'
 select * from users;
 create table typeadmin(
     taid varchar2(5) primary key,--板块
