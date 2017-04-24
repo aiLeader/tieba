@@ -2,6 +2,8 @@ package com.yc.tieba.service;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +92,13 @@ public class NoteServiceTest {
 	@Test
 	public void testSearchNote() {
 		PaginationBean<NoteInfo>  s =noteService.searchNote("1", "巧克力");
+		System.out.println(s);
+		assertNotNull(s);
+	}
+	
+	@Test
+	public void testfindListNoteName() {
+		List<NoteInfo> s = noteService.findListNoteName("u");
 		System.out.println(s);
 		assertNotNull(s);
 	}

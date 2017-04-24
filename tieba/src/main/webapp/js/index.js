@@ -47,13 +47,13 @@ function IndexListNote(url){
 			if(jubuStore==null||jubuStore==undefined||jubuStore==""){
 				store="收藏";
 			}else{
-			if(jubuStore!=null&&jubuStore!=undefined&&jubuStore!=""){
-				for(var j=0;j<jubuStore.length;j++){
-					if(jubuStore[j].nid==data.rows[i].nid){
-						store="取消收藏";
-						jubuStore.splice(j);
+				if(jubuStore!=null&&jubuStore!=undefined&&jubuStore!=""){
+					for(var j=0;j<jubuStore.length;j++){
+						if(jubuStore[j].nid==data.rows[i].nid){
+							store="取消收藏";
+							jubuStore.splice(j);
+						}
 					}
-				}
 				}
 			}
 			if(data.rows[i].users.userid==userid){
@@ -135,25 +135,25 @@ $("#collectFrom").form({
 		IndexListNote("note/listindex?page=nop&totalPage=nop");
 	}
 });
-	
-	$("#collectFrom").form({
-		url:"note/collectNote",
-		onSubmit: function(param){    
-			param.nid = nid;
-		},    
-		success:function(data){
-			$.messager.show({
-				title:'收藏信息',
-				msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"收藏失败,请先登录":"")+(data==8?"本帖不能收藏":""),
-				showType:'show',
-				style:{
-					top:document.body.scrollTop+document.documentElement.scrollTop,
-				}
-			});
-			//重新加载帖子信息
-			IndexListNote("note/listindex?page=nop&totalPage=nop");
-		}
-	});
+
+$("#collectFrom").form({
+	url:"note/collectNote",
+	onSubmit: function(param){    
+		param.nid = nid;
+	},    
+	success:function(data){
+		$.messager.show({
+			title:'收藏信息',
+			msg:'帖子' + (data==1 ? "收藏成功..." : "")+(data==2 ? "取消收藏成功..." : "")+(data==3 ? "收藏成功..." : "")+(data==9?"收藏失败,请先登录":"")+(data==8?"本帖不能收藏":""),
+			showType:'show',
+			style:{
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+			}
+		});
+		//重新加载帖子信息
+		IndexListNote("note/listindex?page=nop&totalPage=nop");
+	}
+});
 //一键换肤
 var $li = $("#skin li");
 $li.click(function () {
@@ -204,8 +204,30 @@ function showSkin(){
 				.siblings().removeClass("selected");
 				$("#cssfile").attr("href","css/"+skin+".css");
 			}
-			
+
 		}
 	});
 }
 showSkin();
+
+$('input').bind('input propertychange', function() {
+	var nowVar=$(this).val();
+	if(nowVar==""||nowVar==undefined||nowVar==null){
+		$("#paramDateList").empty();
+	}else{
+		$.post("note/findListNoteName?var="+nowVar,function(data){
+			var length;
+			if(data.length>5){
+				length=5;
+			}else{
+				length=data.length;
+			}
+			var str="";
+			$("#paramDateList").empty();
+			for(var i=0;i<length;i++){
+				str+='<option value="'+data[i].ntitle+'">'+data[i].ntitle+'</option>';
+			}	
+			$("#paramDateList").append(str);
+		},"JSON");
+	}
+});

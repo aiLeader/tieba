@@ -26,7 +26,6 @@ $("#collectFrom").form({
 //收藏
 function collectNote(tnid){
 	nid=tnid;
-	alert(nid);
 	$("#collectFrom").submit();
 	
 }
