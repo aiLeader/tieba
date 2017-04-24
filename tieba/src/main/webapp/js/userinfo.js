@@ -186,10 +186,9 @@ function oSearchSuggest(searchFuc)
 	var suggestWrap = $('#gov_search_suggest'); 
 	var key = ""; 
 	var init = function(){ 
-		//input.bind('keyup',sendKeyWord); 
 		input.bind('keyup',function(){sendKeyWordToBack()});
 		input.bind('blur',function(){setTimeout(hideSuggest,100);}) 
-	} 
+	}  
 		 init(); 
 }; 
 //实例化输入提示的JS,参数为进行查询操作时要调用的函数名 

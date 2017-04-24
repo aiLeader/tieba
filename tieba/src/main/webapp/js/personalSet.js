@@ -225,9 +225,8 @@ username.onblur=function(){
 	if(uname=="" || uname==null){
 		$.messager.alert('警告','请输入用户名');
 	}else{
-		$.post("../user/list",{"options":uname}, function(data){
-			//alert(JSON.stringify(data.rows[0].uname));
-			if(data.total!=0 && uname!=data.rows[0].uname){
+		$.post("../user/listvalue",{"value":uname}, function(data){
+			if(data>0){
 				$.messager.alert('警告','该用户名已存在,请重新输入');
 			}else{
 				//$.messager.alert('提示','请输入用户名');

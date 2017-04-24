@@ -2,6 +2,8 @@ package com.yc.tieba.web.service;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,12 @@ public class UsersServiceTest {
 	@Test
 	public void testSelectUsers() {
 		Users user=userService.selectuser("1141");
+		System.out.println(user);
+		assertNotNull(user);
+	}
+	@Test
+	public void testlistUsers() {
+		int user=userService.listuservalue("yoyoyo");
 		System.out.println(user);
 		assertNotNull(user);
 	}

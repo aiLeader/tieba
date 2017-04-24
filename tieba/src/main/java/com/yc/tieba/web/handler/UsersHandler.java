@@ -86,10 +86,16 @@ public class UsersHandler {
 		return usersService.listuser(rows, page, options,value);
 	}
 	
+	@RequestMapping(value = "listvalue")
+	@ResponseBody
+	private int doFindUservalue(String value) throws IOException {
+		return usersService.listuservalue(value);
+	}
+	
+	
 	@RequestMapping(value ="findname")
 	@ResponseBody
 	private List<Users> doFindName(String keyword) throws IOException {
-		System.out.println(keyword);
 		return usersService.listusername(keyword);
 	}
 	

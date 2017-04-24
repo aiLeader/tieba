@@ -50,9 +50,8 @@ email.onblur=function(){
 		mimats41.style.display="none";
 		mimats5.style.display="none";
 	}else if(emails.match(reg3)){
-		$.post("user/list",{"options":emails}, function(data){
-			//alert(data.total);
-			if(data.total!=0){
+		$.post("user/listvalue",{"value":emails}, function(data){
+			if(data>0){
 				mimats4.style.display="block";
 				mimats3.style.display="none";
 				mimats41.style.display="none";
@@ -85,7 +84,6 @@ function getnumber(){
 		if(emailBox.match(reg)){
 			time=60;
 			$.post("user/sendMail",{"email":emailBox},function(data){
-				//alert(data);
 				if(data>0){
 					timeObj=window.setInterval(timeCode, 1000);
 					$(".sendMail").attr("disabled","false");
@@ -116,9 +114,8 @@ username.onblur=function(){
 		mimats7.style.display="none";
 		mimats8.style.display="none";
 	}else{
-		$.post("user/list",{"options":uname}, function(data){
-			//alert(data.total);
-			if(data.total!=0){
+		$.post("user/listvalue",{"value":uname}, function(data){
+			if(data>0){
 				mimats7.style.display="block";
 				mimats6.style.display="none";
 				mimats8.style.display="none";
@@ -154,8 +151,8 @@ tel.onblur=function(){
 			shoujits3.style.display="none";
 			shoujits4.style.display="none";
 		}else{
-			$.post("user/list",{"options":telephone}, function(data){
-				if(data.total!=0){
+			$.post("user/listvalue",{"value":telephone}, function(data){
+				if(data>0){
 					shoujits1.style.display="none";
 					shoujits2.style.display="none";
 					shoujits3.style.display="block";
@@ -184,9 +181,8 @@ username1.onblur=function(){
 		mimats10.style.display="none";
 		mimats11.style.display="none";
 	}else{
-		$.post("user/list",{"options":uname1}, function(data){
-			//alert(data.total);
-			if(data.total!=0){
+		$.post("user/listvalue",{"value":uname1}, function(data){
+			if(data>0){
 				mimats9.style.display="none";
 				mimats10.style.display="block";
 				mimats11.style.display="none";
